@@ -377,13 +377,13 @@ public class CardUtil {
             case Common:
                 return 50;
             case Uncommon:
-                return 150;
+                return 100;
             case Rare:
                 return 300;
             case MythicRare:
                 return 500;
             default:
-                return 600;
+                return 500;
         }
     }
     public static int getRewardPrice(Reward reward)

@@ -119,8 +119,12 @@ public class StartScene extends UIScene {
     }
 
     public void switchToClassic() {
+    	if (resumeButton.isVisible()) {
+    		Resume();
+    	} else {
         GameHUD.getInstance().stopAudio();
         Forge.switchToClassic();
+    	}
     }
 
     @Override
