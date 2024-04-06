@@ -21,7 +21,6 @@ package forge.sound;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
-//import forge.Forge;
 
 public class AudioClip implements IAudioClip {
     private Sound clip;
@@ -36,6 +35,7 @@ public class AudioClip implements IAudioClip {
         try {
             //investigate why sound is called outside edt -> Forge.getAssets().getSound(fileHandle), seems the audioclip is cached in SoundSystem instead of using it directly from assetManager
             clip = Gdx.audio.newSound(fileHandle);
+            Object obj = Gdx.audio;
         }
         catch (Exception ex) {
             System.err.println("Unable to load sound file: " + fileHandle.toString());

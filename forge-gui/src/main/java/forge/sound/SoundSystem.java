@@ -17,7 +17,7 @@ import java.util.*;
  * Manages playback of all sounds for the client.
  */
 public class SoundSystem {
-    public static final SoundSystem instance = new SoundSystem();
+    public static SoundSystem instance = new SoundSystem();
 
     public static final int DELAY = 30;
 
@@ -42,12 +42,15 @@ public class SoundSystem {
      *         was unavailable or failed to load.
      */
     protected IAudioClip fetchResource(final SoundEffectType type) {
+    	//System.out.println("Fetching sound soundEffectType");
         if (GuiBase.getInterface().isLibgdxPort()) {
             if (FModel.getPreferences().getPrefInt(FPref.UI_VOL_SOUNDS)<1) {
+            	System.out.println("Failed to Fetch");
                 return emptySound;
             }
         } else {
             if (!FModel.getPreferences().getPrefBoolean(FPref.UI_ENABLE_SOUNDS)) {
+            	System.out.println("Failed to Fetch");
                 return emptySound;
             }
         }
@@ -57,6 +60,7 @@ public class SoundSystem {
             final String resource = type.getResourceFileName();
             clip = GuiBase.getInterface().createAudioClip(resource);
             if (clip == null) {
+            	System.out.println("Failed to Fetch");
                 return emptySound;
             } else
                 loadedClips.put(type, clip);
@@ -71,12 +75,15 @@ public class SoundSystem {
      *         was unavailable or failed to load.
      */
     protected IAudioClip fetchResource(final String fileName) {
+    	//System.out.println("Fetching sound string");
         if (GuiBase.getInterface().isLibgdxPort()) {
             if (FModel.getPreferences().getPrefInt(FPref.UI_VOL_SOUNDS)<1) {
+            	System.out.println("Failed to Fetch");
                 return emptySound;
             }
         } else {
             if (!FModel.getPreferences().getPrefBoolean(FPref.UI_ENABLE_SOUNDS)) {
+            	System.out.println("Failed to Fetch");
                 return emptySound;
             }
         }
@@ -85,6 +92,7 @@ public class SoundSystem {
         if (null == clip) { // cache miss
             clip = GuiBase.getInterface().createAudioClip(fileName);
             if (clip == null) {
+            	System.out.println("Failed to Fetch");
                 return emptySound;
             } else
                 loadedScriptClips.put(fileName, clip);
@@ -107,6 +115,7 @@ public class SoundSystem {
      */
     public void play(final String resourceFileName, final boolean isSynchronized) {
         if (isUsingAltSystem()) {
+        	System.out.println("Is using alt system");
             GuiBase.getInterface().startAltSoundSystem(getSoundDirectory() + resourceFileName, isSynchronized);
         }
         else {
@@ -298,6 +307,7 @@ public class SoundSystem {
     }
 
     public void invalidateSoundCache() {
+    	//System.out.println("Invalidating");
         for (IAudioClip c : loadedClips.values()) {
             c.dispose();
         }

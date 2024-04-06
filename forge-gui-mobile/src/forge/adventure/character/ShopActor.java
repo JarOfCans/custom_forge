@@ -1,5 +1,7 @@
 package forge.adventure.character;
 
+import java.util.List;
+
 import com.badlogic.gdx.utils.Array;
 import forge.Forge;
 import forge.adventure.data.ShopData;
@@ -14,9 +16,9 @@ import forge.adventure.util.Reward;
 public class ShopActor extends MapActor{
     private final MapStage stage;
     private ShopData shopData;
-    Array<Reward> rewardData;
+    List<Reward> rewardData;
 
-    public ShopActor(MapStage stage, int id, Array<Reward> rewardData, ShopData data)
+    public ShopActor(MapStage stage, int id, List<Reward> rewardData, ShopData data)
     {
         super(id);
         this.stage = stage;
@@ -63,6 +65,6 @@ public class ShopActor extends MapActor{
 
     public ShopData getShopData() { return shopData; }
 
-    public void setRewardData(Array<Reward> data) { rewardData = data; }
-    public Array<Reward> getRewardData() { return rewardData;}
+    public void setRewardData(List<Reward> data) { rewardData = data; }
+    public List<Reward> getRewardData() { return rewardData;}
 }

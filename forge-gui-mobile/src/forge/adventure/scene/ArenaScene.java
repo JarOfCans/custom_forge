@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.utils.Array;
 import com.github.tommyettinger.textra.TextraButton;
 import com.github.tommyettinger.textra.TextraLabel;
 import forge.Forge;
@@ -22,6 +21,8 @@ import forge.adventure.util.*;
 import forge.gui.FThreads;
 import forge.screens.TransitionScreen;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -159,9 +160,9 @@ public class ArenaScene extends UIScene implements IAfterMatch {
     @Override
     public void setWinner(boolean winner) {
         enable = false;
-        Array<ArenaRecord> winners = new Array<>();
-        Array<EnemySprite> winnersEnemies = new Array<>();
-        for (int i = 0; i < fighters.size - 2; i += 2) {
+        List<ArenaRecord> winners = new ArrayList<ArenaRecord>();
+        List<EnemySprite> winnersEnemies = new ArrayList<EnemySprite>();
+        for (int i = 0; i < fighters.size() - 2; i += 2) {
             int matchHP = enemies.get(i).getData().life + enemies.get(i+1).getData().life;
             boolean leftWon = rand.nextInt(matchHP) < enemies.get(i).getData().life;
             if (leftWon) {
@@ -177,14 +178,14 @@ public class ArenaScene extends UIScene implements IAfterMatch {
             }
         }
         if (winner) {
-            markLostFighter(fighters.get(fighters.size - 2).actor);
-            moveFighter(fighters.get(fighters.size - 1).actor, false);
-            winners.add(fighters.get(fighters.size - 1));
+            markLostFighter(fighters.get(fighters.size() - 2).actor);
+            moveFighter(fighters.get(fighters.size() - 1).actor, false);
+            winners.add(fighters.get(fighters.size() - 1));
             roundsWon++;
         } else {
-            markLostFighter(fighters.get(fighters.size - 1).actor);
-            moveFighter(fighters.get(fighters.size - 2).actor, true);
-            winners.add(fighters.get(fighters.size - 2));
+            markLostFighter(fighters.get(fighters.size() - 1).actor);
+            moveFighter(fighters.get(fighters.size() - 2).actor, true);
+            winners.add(fighters.get(fighters.size() - 2));
             loose();
         }
 
@@ -240,7 +241,7 @@ public class ArenaScene extends UIScene implements IAfterMatch {
 
     private void startRound() {
         DuelScene duelScene = DuelScene.instance();
-        EnemySprite enemy = enemies.get(enemies.size - 1);
+        EnemySprite enemy = enemies.get(enemies.size() - 1);
         FThreads.invokeInEdtNowOrLater(() -> {
             Forge.setTransitionScreen(new TransitionScreen(() -> {
                 duelScene.initDuels(WorldStage.getInstance().getPlayerSprite(), enemy);
@@ -258,7 +259,7 @@ public class ArenaScene extends UIScene implements IAfterMatch {
         GameHUD.getInstance().getTouchpad().setVisible(false);
         Forge.switchToLast();
         if (roundsWon != 0) {
-            Array<Reward> data = new Array<>();
+            List<Reward> data = new ArrayList<>();
             for (int i = 0; i < roundsWon; i++) {
                 for (int j = 0; j < arenaData.rewards[i].length; j++) {
                     data.addAll(arenaData.rewards[i][j].generate(false, null, true));
@@ -276,8 +277,8 @@ public class ArenaScene extends UIScene implements IAfterMatch {
     }
 
 
-    Array<EnemySprite> enemies = new Array<>();
-    Array<ArenaRecord> fighters = new Array<>();
+    List<EnemySprite> enemies = new ArrayList<EnemySprite>();
+    List<ArenaRecord> fighters = new ArrayList<ArenaRecord>();
     Actor player;
 
     public void loadArenaData(ArenaData data, long seed) {
@@ -304,7 +305,7 @@ public class ArenaScene extends UIScene implements IAfterMatch {
             fighters.add(new ArenaRecord(new Image(enemy.getAvatar()), enemyData.getName()));
         }
         fighters.add(new ArenaRecord(new Image(Current.player().avatar()), Current.player().getName()));
-        player = fighters.get(fighters.size - 1).actor;
+        player = fighters.get(fighters.size() - 1).actor;
 
         goldLabel.setText("[+GoldCoin] " + data.entryFee);
         goldLabel.layout();
@@ -320,7 +321,7 @@ public class ArenaScene extends UIScene implements IAfterMatch {
             for (int y = 0; y < gridHeight; y++) {
                 if (x % Math.pow(2, y + 1) == Math.pow(2, y)) {
                     if (y == 0) {
-                        if (fighterIndex < fighters.size) {
+                        if (fighterIndex < fighters.size()) {
                             float widthDiff = gridSize - fighters.get(fighterIndex).actor.getWidth();
                             fighters.get(fighterIndex).actor.setPosition(x * gridSize + widthDiff / 2, y * gridSize * 2 + widthDiff / 2);
                             arenaPlane.addActor(fighters.get(fighterIndex).actor);
@@ -373,7 +374,7 @@ public class ArenaScene extends UIScene implements IAfterMatch {
             } else {
                 arenaTable.add(Controls.newTextraLabel("[;][%150]" + GameScene.instance().getAdventurePlayerLocation(true, true) + " Arena")).colspan(3).top();
                 arenaTable.row();
-                int size = fighters.size;
+                int size = fighters.size();
                 int pv = 0;
                 for (int x = 0; x < size; x++) {
                     ArenaRecord record = fighters.get(x);

@@ -42,6 +42,7 @@ public class RewardData implements Serializable {
     public String cardText;
     public boolean matchAllSubTypes;
     public boolean matchAllColors;
+    public boolean includeLands;
     public RewardData[] cardUnion;
     public String[] deckNeeds;
     public RewardData[] rotation;
@@ -74,6 +75,7 @@ public class RewardData implements Serializable {
         cardText    =rewardData.cardText;
         matchAllSubTypes    =rewardData.matchAllSubTypes;
         matchAllColors =rewardData.matchAllColors;
+        includeLands =rewardData.includeLands;
         cardUnion         =rewardData.cardUnion==null?null:rewardData.cardUnion.clone();
         rotation          =rewardData.rotation==null?null:rewardData.rotation.clone();
         deckNeeds         =rewardData.deckNeeds==null?null:rewardData.deckNeeds.clone();
@@ -122,26 +124,26 @@ public class RewardData implements Serializable {
         return allCards;
     }
 
-    public Array<Reward> generate(boolean isForEnemy, boolean useSeedlessRandom) {
+    public List<Reward> generate(boolean isForEnemy, boolean useSeedlessRandom) {
         return generate(isForEnemy, null, useSeedlessRandom);
     }
 
-    public Array<Reward> generate(boolean isForEnemy, boolean useSeedlessRandom, boolean isNoSell) {
+    public List<Reward> generate(boolean isForEnemy, boolean useSeedlessRandom, boolean isNoSell) {
         return generate(isForEnemy, null, useSeedlessRandom, isNoSell);
     }
 
-    public Array<Reward> generate(boolean isForEnemy, Iterable<PaperCard> cards, boolean useSeedlessRandom){
+    public List<Reward> generate(boolean isForEnemy, Iterable<PaperCard> cards, boolean useSeedlessRandom){
         return generate(isForEnemy, cards, useSeedlessRandom, false);
     }
 
-    public Array<Reward> generate(boolean isForEnemy, Iterable<PaperCard> cards, boolean useSeedlessRandom, boolean isNoSell) {
+    public List<Reward> generate(boolean isForEnemy, Iterable<PaperCard> cards, boolean useSeedlessRandom, boolean isNoSell) {
 
         boolean allCardVariants = Config.instance().getSettingData().useAllCardVariants;
         Random rewardRandom = useSeedlessRandom?new Random():WorldSave.getCurrentSave().getWorld().getRandom();
         //Keep using same generation method for shop rewards, but fully randomize loot drops by not using the instance pre-seeded by the map
 
         if(allCards==null) initializeAllCards();
-        Array<Reward> ret=new Array<>();
+        List<Reward> ret=new ArrayList<Reward>();
 
 
         if(probability == 0 || rewardRandom.nextFloat() <= probability) {
@@ -249,7 +251,7 @@ public class RewardData implements Serializable {
         return rewardsToCards(generateAll(dataList, isForEnemy));
     }
     static public Iterable<Reward> generateAll(Iterable<RewardData> dataList, boolean isForEnemy) {
-        Array<Reward> ret=new Array<Reward>();
+        List<Reward> ret=new ArrayList<Reward>();
         for (RewardData data:dataList)
             ret.addAll(data.generate(isForEnemy, false));
         return ret;

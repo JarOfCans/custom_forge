@@ -52,6 +52,7 @@ public class CardUtil {
         private final Pattern text;
         private final boolean matchAllSubTypes;
         private final boolean matchAllColors;
+        private final boolean includeLands;
         private  int colors;
         private final ColorType colorType;
         private final boolean shouldBeEqual;
@@ -158,7 +159,16 @@ public class CardUtil {
                 }
                 if(!found)
                     return !this.shouldBeEqual;
-            }
+            } else if(!this.includeLands)
+                {
+                    for(CardType.CoreType type:card.getRules().getType().getCoreTypes())
+                    {
+                        if(type == CardType.CoreType.Land)
+                        {
+                            return !this.shouldBeEqual;
+                        }
+                    }
+                }
             if(!this.superType.isEmpty())
             {
                 boolean found=false;
@@ -260,6 +270,7 @@ public class CardUtil {
         public CardPredicate(final RewardData type, final boolean wantEqual) {
             this.matchAllSubTypes=type.matchAllSubTypes;
             this.matchAllColors=type.matchAllColors;
+            this.includeLands = type.includeLands;
             this.shouldBeEqual = wantEqual;
             for(int i=0;type.manaCosts!=null&&i<type.manaCosts.length;i++)
                 manaCosts.add(type.manaCosts[i]);
@@ -373,17 +384,17 @@ public class CardUtil {
         switch (card.getRarity())
         {
             case BasicLand:
-                return 5;
+                return (card.isFoil())?200:5;
             case Common:
-                return 50;
+                return (card.isFoil())?100:50;
             case Uncommon:
-                return 100;
+                return (card.isFoil())?200:100;
             case Rare:
-                return 300;
+                return (card.isFoil())?500:300;
             case MythicRare:
-                return 500;
+                return (card.isFoil())?800:500;
             default:
-                return 500;
+                return (card.isFoil())?800:500;
         }
     }
     public static int getRewardPrice(Reward reward)
@@ -404,7 +415,7 @@ public class CardUtil {
 
     public static Deck generateDeck(GeneratedDeckData data, CardEdition starterEdition, boolean discourageDuplicates)
     {
-        List<String> editionCodes = (starterEdition != null)?Arrays.asList(starterEdition.getCode(), starterEdition.getCode2()):Arrays.asList("JMP", "J22", "DMU", "BRO", "ONE", "MOM");
+        List<String> editionCodes = (starterEdition != null)?Arrays.asList(starterEdition.getCode(), starterEdition.getCode2()):Arrays.asList("JMP", "J22", "DMU", "BRO", "ONE", "MOM", "WOE");
         Deck deck= new Deck(data.name);
         if(data.mainDeck!=null)
         {

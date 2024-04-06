@@ -1,5 +1,8 @@
 package forge.adventure.character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.utils.Array;
 import forge.adventure.data.RewardData;
 import forge.adventure.util.JSONStringLoader;
@@ -42,8 +45,8 @@ public class RewardSprite extends CharacterSprite {
         boundingRect.set(getX(), getY(), getWidth(), getHeight());
     }
 
-    public Array<Reward> getRewards() { //Get list of rewards.
-        Array<Reward> ret = new Array<Reward>();
+    public List<Reward> getRewards() { //Get list of rewards.
+    	List<Reward> ret = new ArrayList<Reward>();
         if(rewards == null) return ret;
         for(RewardData rdata:rewards) {
             ret.addAll(rdata.generate(false, true));

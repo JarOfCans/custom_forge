@@ -231,6 +231,7 @@ public abstract class InputPayMana extends InputSyncronizedBase {
         }
 
         if (colorCanUse == 0) { // no mana cost or something
+        	System.out.println("No mana cost to pay");
             return false;
         }
 

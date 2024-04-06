@@ -6411,3 +6411,323 @@ War of the Last Alliance|LTR
 Dawn of a New Age|LTR
 Gandalf the White|LTR
 
+[WOE Street Rats]
+1 Ogre Chitterlord|WOE
+1 Charging Hooligan|WOE
+1 Tattered Ratter|WOE
+1 Monstrous Rage|WOE
+1 Witchstalker Frenzy|WOE
+1 Raid Bombardment|WOT
+1 Edgewall Pack|WOE
+1 Ratcatcher Trainee|WOE
+1 Redcap Thief|WOE
+1 Harried Spearguard|WOE
+1 Gnawing Crescendo|WOE
+1 Torch the Tower|WOE
+7 Mountain|WOE
+1 Evolving Wilds|WOE
+
+[WOE Party Crashing]
+1 Raging Battle Mouse|WOE
+1 Impact Tremors|WOT
+1 Belligerent of the Ball|WOE
+1 Korvold and the Noble Thief|WOE
+1 Become Brutes|WOE
+1 Witchstalker Frenzy|WOE
+1 Edgewall Pack|WOE
+1 Grand Ball Guest|WOE
+1 Ratcatcher Trainee|WOE
+1 Redcap Thief|WOE
+1 Gnawing Crescendo|WOE
+1 Grabby Giant|WOE
+7 Mountain|WOE
+1 Evolving Wilds|WOE
+
+[WOE Brutes]
+1 Charming Scoundrel|WOE
+1 Two-Headed Hunter|WOE
+1 Monstrous Rage|WOE
+1 Become Brutes|WOE
+1 Boundary Lands Ranger|WOE
+1 Dragon Mantle|WOT
+1 Minecart Daredevil|WOE
+1 Bellowing Bruiser|WOE
+1 Grabby Giant|WOE
+1 Redcap Thief|WOE
+1 Torch the Tower|WOE
+1 Candy Trail|WOE
+7 Mountain|WOE
+1 Evolving Wilds|WOE
+
+[WOE Sorcerer's Apprentice]
+1 Imodane, the Pyrohammer|WOE
+1 Witchstalker Frenzy|WOE
+1 Stonesplitter Bolt|WOE
+1 Hearth Elemental|WOE
+1 Twisted Fealty|WOE
+1 Two-Headed Hunter|WOE
+1 Unruly Catapult|WOE
+1 Grabby Giant|WOE
+1 Skewer Slinger|WOE
+1 Frantic Firebolt|WOE
+1 Flick a Coin|WOE
+1 Cut In|WOE
+7 Mountain|WOE
+1 Evolving Wilds|WOE
+
+[WOE Celebration]
+1 Lady of Laughter|WOE
+1 Gallant Pie-Wielder|WOE
+1 Pests of Honor|WOE
+1 Knightly Valor|WOT
+1 Food Coma|WOE
+1 Cursed Courtier|WOE
+1 Hopeful Vigil|WOE
+1 Besotted Knight|WOE
+1 Armory Mice|WOE
+1 Charmed Clothier|WOE
+1 Tuinvale Guide|WOE
+1 Stockpiling Celebrant|WOE
+7 Plains|WOE
+1 Evolving Wilds|WOE
+
+[WOE Brave Bargin]
+1 Three Blind Mice|WOE
+1 Knight of Doves|WOE
+1 The Princess Takes Flight|WOE
+1 Cursed Courtier|WOE
+1 Dutiful Griffin|WOE
+1 Solitary Sanctuary|WOE
+1 Hopeful Vigil|WOE
+1 Savior of the Sleeping|WOE
+1 Slumbering Keepguard|WOE
+1 Archon's Glory|WOE
+1 Kellan's Lightblades|WOE
+1 Cooped Up|WOE
+7 Plains|WOE
+1 Evolving Wilds|WOE
+
+[WOE White Winter]
+1 Blind Obedience|WOT
+1 Solitary Sanctuary|WOE
+1 Three Bowls of Porridge|WOE
+1 Glass Casket|WOE
+1 Cheeky House-Mouse|WOE
+1 Grasp of Fate|WOT
+1 Frostbridge Guard|WOE
+1 Plunge into Winter|WOE
+1 Rimefur Reindeer|WOE
+1 Hopeful Vigil|WOE
+1 Unassuming Sage|WOE
+1 Charmed Clothier|WOE
+7 Plains|WOE
+1 Evolving Wilds|WOE
+
+[WOE Enchanted]
+1 A Tale for the Ages|WOE
+1 Knightly Valor|WOT
+1 Cursed Courtier|WOE
+1 Cheeky House-Mouse|WOE
+1 Stroke of Midnight|WOE
+1 Glass Casket|WOE
+1 Protective Parents|WOE
+1 Return Triumphant|WOE
+1 Charmed Clothier|WOE
+1 Besotted Knight|WOE
+1 Slumbering Keepguard|WOE
+1 Unassuming Sage|WOE
+7 Plains|WOE
+1 Evolving Wilds|WOE
+
+[WOE Tricky Fae]
+1 Faerie Slumber Party|WOE
+1 Rowdy Research|WOE
+1 Picklock Prankster|WOE
+1 Storyteller Pixie|WOE
+1 Curiosity|WOT
+1 Disdainful Stroke|WOE
+1 Into the Fae Court|WOE
+1 Obyra's Attendants|WOE
+1 Snaremaster Sprite|WOE
+1 Mocking Sprite|WOE
+1 Spell Stutter|WOE
+1 Misleading Motes|WOE
+7 Island|WOE
+1 Evolving Wilds|WOE
+
+[WOE Adventures and Spells]
+1 Extraordinary Journey|WOE
+1 Storyteller Pixie|WOE
+1 Chancellor of Tales|WOE
+1 Picklock Prankster|WOE
+1 Splashy Spellcaster|WOE
+1 Gadwick's First Duel|WOE
+1 Beluna's Gatekeeper|WOE
+1 Obyra's Attendants|WOE
+1 Aquatic Alchemist|WOE
+1 Mocking Sprite|WOE
+1 Vantress Transmuter|WOE
+1 Quick Study|WOE
+7 Island|WOE
+1 Evolving Wilds|WOE
+
+[WOE Numbing Cold]
+1 Hylda's Crown of Winter|WOE
+1 Icewrought Sentry|WOE
+1 Bitter Chill|WOE
+1 Hatching Plans|WOT
+1 Succumb to the Cold|WOE
+1 Three Bowls of Porridge|WOE
+1 Snaremaster Sprite|WOE
+1 Johann's Stopgap|WOE
+1 Into the Fae Court|WOE
+1 Ice Out|WOE
+1 Vantress Transmuter|WOE
+1 Freeze in Place|WOE
+7 Island|WOE
+1 Evolving Wilds|WOE
+
+[WOE Great Tales]
+1 Ingenious Prodigy|WOE
+1 Archive Dragon|WOE
+1 Galvanic Giant|WOE
+1 Bitter Chill|WOE
+1 Disdainful Stroke|WOE
+1 Three Bowls of Porridge|WOE
+1 Ice Out|WOE
+1 Vantress Transmuter|WOE
+1 Beluna's Gatekeeper|WOE
+1 Obyra's Attendants|WOE
+1 Into the Fae Court|WOE
+1 Stormkeld Prowler|WOE
+7 Island|WOE
+1 Evolving Wilds|WOE
+
+[WOE Munch]
+1 Wildwood Mentor|WOE
+1 Intrepid Trufflesnout|WOE
+1 Night of the Sweets' Revenge|WOE
+1 Welcome to Sweettooth|WOE
+1 Provisions Merchant|WOE
+1 Tough Cookie|WOE
+1 Hamlet Glutton|WOE
+1 Hollow Scavenger|WOE
+1 Gingerbrute|WOE
+1 Candy Trail|WOE
+1 Troublemaker Ouphe|WOE
+1 Return from the Wilds|WOE
+7 Forest|WOE
+1 Evolving Wilds|WOE
+
+[WOE Wild Roles]
+1 Elvish Archivist|WOE
+1 Royal Treatment|WOE
+1 Tanglespan Lookout|WOE
+1 Utopia Sprawl|WOT
+1 Redtooth Vanguard|WOE
+1 Graceful Takedown|WOE
+1 Bestial Bloodline|WOE
+1 Ferocious Werefox|WOE
+1 Curse of the Werefox|WOE
+1 Hamlet Glutton|WOE
+1 Redtooth Genealogist|WOE
+1 Rootrider Faun|WOE
+7 Forest|WOE
+1 Evolving Wilds|WOE
+
+[WOE Tracking]
+1 Feral Encounter|WOE
+1 Garruk's Uprising|WOT
+1 Howling Galefang|WOE
+1 Stormkeld Vanguard|WOE
+1 Agatha's Champion|WOE
+1 Utopia Sprawl|WOT
+1 Ferocious Werefox|WOE
+1 Beanstalk Wurm|WOE
+1 Rootrider Faun|WOE
+1 Territorial Witchstalker|WOE
+1 Verdant Outrider|WOE
+1 Titanic Growth|WOE
+7 Forest|WOE
+1 Evolving Wilds|WOE
+
+[WOE Beanstalk]
+1 Bramble Familiar|WOE
+1 Up the Beanstalk|WOE
+1 Utopia Sprawl|WOT
+1 Agatha's Champion|WOE
+1 Stormkeld Vanguard|WOE
+1 Collector's Vault|WOE
+1 Rootrider Faun|WOE
+1 Hamlet Glutton|WOE
+1 Beanstalk Wurm|WOE
+1 Return from the Wilds|WOE
+1 Skybeast Tracker|WOE
+1 Curse of the Werefox|WOE
+7 Forest|WOE
+1 Evolving Wilds|WOE
+
+[WOE Nightmares]
+1 Malevolent Witchkite|WOE
+1 The Witch's Vanity|WOE
+1 Ashiok's Reaper|WOE
+1 Stab Wound|WOT
+1 Back for Seconds|WOE
+1 High Fae Negotiator|WOE
+1 Conceited Witch|WOE
+1 Mintstrosity|WOE
+1 Hopeless Nightmare|WOE
+1 Eriette's Whisper|WOE
+1 Gingerbrute|WOE
+1 Stingblade Assassin|WOE
+7 Swamp|WOE
+1 Evolving Wilds|WOE
+
+[WOE Confectionaries]
+1 Gumdrop Poisoner
+1 Eriette's Tempting Apple|WOE
+1 Experimental Confectioner|WOE
+1 Scream Puff|WOE
+1 Mintstrosity|WOE
+1 Sweettooth Witch|WOE
+1 Old Flitterfang|WOE
+1 Vampiric Rites|WOT
+1 Faerie Dreamthief|WOE
+1 Feed the Cauldron|WOE
+1 Candy Grapple|WOE
+1 Shatter the Oath|WOE
+7 Swamp|WOE
+1 Evolving Wilds|WOE
+
+[WOE Lord Skitter's Vermin]
+1 Lord Skitter's Butcher|WOE
+1 Dark Tutelage|WOT
+1 Experimental Confectioner|WOE
+1 Old Flitterfang|WOE
+1 Lord Skitter, Sewer King|WOE
+1 Warehouse Tabby|WOE
+1 Twisted Sewer-Witch|WOE
+1 Voracious Vermin|WOE
+1 Feed the Cauldron|WOE
+1 Rat Out|WOE
+1 Hopeless Nightmare|WOE
+1 Candy Grapple|WOE
+7 Swamp|WOE
+1 Evolving Wilds|WOE
+
+[WOE Devious Prankle]
+1 Stingblade Assassin|WOE
+1 Faerie Fencing|WOE
+1 High Fae Negotiator|WOE
+1 Barrow Naughty|WOE
+1 Dream Spoilers|WOE
+1 Faerie Dreamthief|WOE
+1 Scream Puff|WOE
+1 Eriette's Whisper|WOE
+1 Taken by Nightmares|WOE
+1 Rankle's Prank|WOE
+1 Hopeless Nightmare|WOE
+1 Candy Grapple|WOE
+7 Swamp|WOE
+1 Evolving Wilds|WOE
+

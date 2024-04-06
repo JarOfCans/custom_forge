@@ -1,6 +1,6 @@
 package forge.adventure.data;
 
-import com.badlogic.gdx.utils.Array;
+import java.util.List;
 
 /**
  * Data class that will be used to read Json configuration files
@@ -15,7 +15,7 @@ public class ShopData {
     public String spriteAtlas;
     public String sprite;
     public boolean unlimited;
-    public Array<RewardData> rewards;
+    public List<RewardData> rewards;
     public String overlaySprite = "";
 
 

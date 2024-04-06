@@ -499,7 +499,7 @@ public class AdventureEventData implements Serializable {
 
     public void giveRewards() {
         int wins = matchesWon;
-        Array<Reward> ret = new Array<>();
+        List<Reward> ret = new ArrayList<Reward>();
 
         //Todo: this should be automatic... "somehow"
 
@@ -549,7 +549,7 @@ public class AdventureEventData implements Serializable {
                 ret.addAll(data.generate(false, true));
             }
         }
-        if (ret.size > 0) {
+        if (ret.size() > 0) {
             RewardScene.instance().loadRewards(ret, RewardScene.Type.Loot, null);
             Forge.switchScene(RewardScene.instance());
         }

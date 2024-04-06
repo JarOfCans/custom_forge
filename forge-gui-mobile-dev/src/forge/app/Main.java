@@ -14,6 +14,7 @@ import forge.util.FileUtil;
 import forge.util.OperatingSystem;
 import forge.util.RestartUtil;
 import forge.util.Utils;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -29,6 +30,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Main {
+
+	public static Lwjgl3ApplicationConfiguration config;
+	
     public static void main(String[] args) {
         Options options = new Options();
         options.addOption("h","help", false, "Show help.");
@@ -104,7 +108,7 @@ public class Main {
             }
         }
 
-        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        config = new Lwjgl3ApplicationConfiguration();
         config.setResizable(false);
         ForgePreferences prefs = FModel.getPreferences();
         boolean propertyConfig = prefs != null && prefs.getPrefBoolean(ForgePreferences.FPref.UI_NETPLAY_COMPAT);

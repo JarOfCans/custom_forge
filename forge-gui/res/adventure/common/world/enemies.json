@@ -15,35 +15,47 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 5,
+			"addMaxCount": 1,
 			"rarity": [
-				"rare",
-				"Mythic Rare"
-			]
-		},
-		{
-			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
-		},
-		{
-			"type": "shards",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2
+				"common",
+				"uncommon"
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
-			"colors": [
-				"Black",
-				"Red"
-			],
 			"rarity": [
-				"Rare",
+				"common",
+				"uncommon"
+			],
+			"subTypes": [
+				"Demon"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Demon"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
 				"Mythic Rare"
 			],
 			"subTypes": [
@@ -51,6 +63,29 @@
 			],
 			"cardTypes": [
 				"Creature"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 200,
+			"addMaxCount": 150
+		},
+		{
+			"type": "shards",
+			"probability": 1,
+			"count": 5,
+			"addMaxCount": 5
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -84,53 +119,35 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 1,
-			"rarity": [
-				"Common"
-			]
-		},
-		{
-			"type": "card",
-			"probability": 1,
 			"count": 2,
 			"addMaxCount": 1,
-			"colors": [
-				"Black"
-			],
 			"rarity": [
-				"Common"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "deckCard",
-			"probability": 1,
-			"count": 1,
-			"rarity": [
+				"Common",
 				"Uncommon"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
+			"count": 3,
 			"addMaxCount": 1,
 			"colors": [
 				"Black"
 			],
 			"rarity": [
+				"Common",
 				"Uncommon"
 			],
 			"colorType": "MonoColor"
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"Rare"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
@@ -140,18 +157,7 @@
 				"Black"
 			],
 			"rarity": [
-				"Rare"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "card",
-			"probability": 0.3,
-			"count": 1,
-			"colors": [
-				"Black"
-			],
-			"rarity": [
+				"Rare",
 				"Mythic Rare"
 			],
 			"colorType": "MonoColor"
@@ -213,54 +219,35 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 1,
-			"rarity": [
-				"Common"
-			]
-		},
-		{
-			"type": "card",
-			"probability": 1,
 			"count": 2,
 			"addMaxCount": 1,
-			"colors": [
-				"Blue"
-			],
 			"rarity": [
-				"Common"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "deckCard",
-			"probability": 1,
-			"count": 1,
-			"rarity": [
+				"Common",
 				"Uncommon"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
+			"count": 3,
 			"addMaxCount": 1,
 			"colors": [
 				"Blue"
 			],
 			"rarity": [
+				"Common",
 				"Uncommon"
 			],
 			"colorType": "MonoColor"
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 1,
 			"rarity": [
 				"Rare"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
@@ -270,18 +257,7 @@
 				"Blue"
 			],
 			"rarity": [
-				"Rare"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "card",
-			"probability": 0.3,
-			"count": 1,
-			"colors": [
-				"Blue"
-			],
-			"rarity": [
+				"Rare",
 				"Mythic Rare"
 			],
 			"colorType": "MonoColor"
@@ -339,53 +315,35 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 1,
-			"rarity": [
-				"Common"
-			]
-		},
-		{
-			"type": "card",
-			"probability": 1,
 			"count": 2,
 			"addMaxCount": 1,
-			"colors": [
-				"Green"
-			],
 			"rarity": [
-				"Common"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "deckCard",
-			"probability": 1,
-			"count": 1,
-			"rarity": [
+				"Common",
 				"Uncommon"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
+			"count": 3,
 			"addMaxCount": 1,
 			"colors": [
 				"Green"
 			],
 			"rarity": [
+				"Common",
 				"Uncommon"
 			],
 			"colorType": "MonoColor"
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"Rare"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
@@ -395,18 +353,7 @@
 				"Green"
 			],
 			"rarity": [
-				"Rare"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "card",
-			"probability": 0.3,
-			"count": 1,
-			"colors": [
-				"Green"
-			],
-			"rarity": [
+				"Rare",
 				"Mythic Rare"
 			],
 			"colorType": "MonoColor"
@@ -470,53 +417,35 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 1,
-			"rarity": [
-				"Common"
-			]
-		},
-		{
-			"type": "card",
-			"probability": 1,
 			"count": 2,
 			"addMaxCount": 1,
-			"colors": [
-				"Red"
-			],
 			"rarity": [
-				"Common"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "deckCard",
-			"probability": 1,
-			"count": 1,
-			"rarity": [
+				"Common",
 				"Uncommon"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
+			"count": 3,
 			"addMaxCount": 1,
 			"colors": [
 				"Red"
 			],
 			"rarity": [
+				"Common",
 				"Uncommon"
 			],
 			"colorType": "MonoColor"
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"Rare"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
@@ -526,18 +455,7 @@
 				"Red"
 			],
 			"rarity": [
-				"Rare"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "card",
-			"probability": 0.3,
-			"count": 1,
-			"colors": [
-				"Red"
-			],
-			"rarity": [
+				"Rare",
 				"Mythic Rare"
 			],
 			"colorType": "MonoColor"
@@ -598,53 +516,35 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 1,
-			"rarity": [
-				"Common"
-			]
-		},
-		{
-			"type": "card",
-			"probability": 1,
 			"count": 2,
 			"addMaxCount": 1,
-			"colors": [
-				"White"
-			],
 			"rarity": [
-				"Common"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "deckCard",
-			"probability": 1,
-			"count": 1,
-			"rarity": [
+				"Common",
 				"Uncommon"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
+			"count": 3,
 			"addMaxCount": 1,
 			"colors": [
 				"White"
 			],
 			"rarity": [
+				"Common",
 				"Uncommon"
 			],
 			"colorType": "MonoColor"
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"Rare"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
@@ -654,18 +554,7 @@
 				"White"
 			],
 			"rarity": [
-				"Rare"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "card",
-			"probability": 0.3,
-			"count": 1,
-			"colors": [
-				"White"
-			],
-			"rarity": [
+				"Rare",
 				"Mythic Rare"
 			],
 			"colorType": "MonoColor"
@@ -726,26 +615,64 @@
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 5,
+			"count": 1,
+			"addMaxCount": 1,
 			"colors": [
 				"Green"
 			],
 			"rarity": [
-				"common",
-				"uncommon",
-				"rare",
-				"Mythic Rare"
+				"common"
 			],
 			"subTypes": [
 				"Dragon"
 			]
 		},
 		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"cardText": "then shuffle."
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Dragon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"rare"
+			],
+			"subTypes": [
+				"Dragon"
+			]
 		},
 		{
 			"type": "card",
@@ -767,23 +694,40 @@
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 5,
+			"colors": [
+				"Green"
+			],
 			"rarity": [
-				"uncommon",
-				"common",
-				"Rare"
+				"Mythic Rare"
 			],
-			"cardTypes": [
-				"Land"
-			],
-			"colorType": "Colorless",
-			"cardText": "{R}"
+			"subTypes": [
+				"Dragon"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 200,
+			"addMaxCount": 200
 		},
 		{
 			"type": "shards",
 			"probability": 1,
 			"count": 5,
 			"addMaxCount": 5
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"Rare"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"colorType": "Colorless",
+			"cardText": "{G}"
 		}
 	],
 	"colors": "U",
@@ -813,26 +757,64 @@
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 5,
+			"count": 1,
+			"addMaxCount": 1,
 			"colors": [
 				"Blue"
 			],
 			"rarity": [
-				"common",
-				"uncommon",
-				"rare",
-				"Mythic Rare"
+				"common"
 			],
 			"subTypes": [
 				"Dragon"
 			]
 		},
 		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Blue"
+			],
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"cardText": "scry"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Blue"
+			],
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Dragon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Blue"
+			],
+			"rarity": [
+				"rare"
+			],
+			"subTypes": [
+				"Dragon"
+			]
 		},
 		{
 			"type": "card",
@@ -854,23 +836,40 @@
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 5,
+			"colors": [
+				"Blue"
+			],
 			"rarity": [
-				"uncommon",
-				"common",
-				"Rare"
+				"Mythic Rare"
 			],
-			"cardTypes": [
-				"Land"
-			],
-			"colorType": "Colorless",
-			"cardText": "{R}"
+			"subTypes": [
+				"Dragon"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 200,
+			"addMaxCount": 200
 		},
 		{
 			"type": "shards",
 			"probability": 1,
 			"count": 5,
 			"addMaxCount": 5
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"Rare"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"colorType": "Colorless",
+			"cardText": "{U}"
 		}
 	],
 	"colors": "U",
@@ -894,34 +893,84 @@
 	"life": 13,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 6,
+			"addMaxCount": 2,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Warrior",
+				"Cleric",
+				"Wizard",
+				"Rogue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"cardText": "Venture into the dungeon"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
 				"common",
 				"uncommon"
+			],
+			"cardText": "The initiative"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardText": "Venture into the dungeon"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"subTypes": [
+				"Class"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.25,
+			"type": "card",
+			"probability": 0.3,
 			"count": 1,
-			"addMaxCount": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
+			"cardText": "The initiative"
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"mythic rare"
+			],
+			"cardText": "Venture into the dungeon"
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 100,
+			"addMaxCount": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
@@ -929,12 +978,6 @@
 			"cardTypes": [
 				"Land"
 			]
-		},
-		{
-			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
 		}
 	],
 	"colors": "UW",
@@ -982,7 +1025,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -1067,7 +1110,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -1182,7 +1225,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -1230,10 +1273,38 @@
 	"life": 25,
 	"rewards": [
 		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"colors": [
+				"Black"
+			],
+			"rarity": [
+				"Common",
+				"Uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"colors": [
+				"Black"
+			],
+			"rarity": [
+				"Common",
+				"Uncommon"
+			],
+			"subTypes": [
+				"Vampire"
+			]
+		},
+		{
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"rare",
 				"Uncommon"
@@ -1244,32 +1315,29 @@
 				"Enchantment",
 				"Instant",
 				"Sorcery"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 4,
+			"count": 2,
 			"colors": [
 				"Black"
 			],
 			"rarity": [
-				"rare",
+				"Mythic Rare",
 				"Rare"
 			],
 			"subTypes": [
 				"Vampire"
-			],
-			"cardTypes": [
-				"Land"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 200,
+			"addMaxCount": 120
 		},
 		{
 			"type": "shards",
@@ -1321,7 +1389,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -1437,7 +1505,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -1523,7 +1591,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -1601,7 +1669,7 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
 				"Black"
@@ -1701,7 +1769,7 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
 				"Blue"
@@ -1802,7 +1870,7 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
 				"Green"
@@ -1903,7 +1971,7 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
 				"Red"
@@ -2003,7 +2071,7 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
 				"White"
@@ -2234,7 +2302,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -2289,7 +2357,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -2342,37 +2410,157 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
 			"rarity": [
-				"common",
-				"uncommon"
+				"common"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.5,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Artifact"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 2,
-			"addMaxCount": 4,
+			"probability": 1,
+			"count": 1,
 			"rarity": [
-				"uncommon",
-				"rare"
+				"common",
+				"uncommon"
 			],
 			"cardTypes": [
 				"Creature",
 				"Artifact",
 				"Enchantment",
 				"Instant",
-				"Sorcery"
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Blue",
+				"White"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Artifact"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 2,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Artifact",
+				"Instant",
+				"Sorcery",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"mythic rare"
+			],
+			"cardTypes": [
+				"Artifact",
+				"Instant",
+				"Sorcery",
+				"Battle"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 200
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"editions": [
+				"MRD"
+			]
 		}
 	],
 	"colors": "U",
@@ -2398,20 +2586,115 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			],
 			"colors": [
 				"Green"
 			],
+			"cardText": " land"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
+			"colors": [
+				"Green",
+				"White"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
 				"common",
-				"uncommon",
-				"Rare"
+				"uncommon"
 			],
-			"colorType": "MonoColor",
-			"cardText": "Landfall"
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
+			"colors": [
+				"Green",
+				"White"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			],
+			"cardText": " land"
 		},
 		{
 			"type": "gold",
@@ -2423,15 +2706,11 @@
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"colors": [
-				"White",
-				"Green"
-			],
 			"rarity": [
-				"uncommon",
-				"common",
-				"Mythic Rare",
-				"Rare"
+				"rare"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -2461,35 +2740,36 @@
 			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
-			"rarity": [
-				"common",
-				"uncommon",
-				"Rare",
-				"Mythic Rare"
-			],
+			"addMaxCount": 1,
 			"subTypes": [
 				"Equipment"
-			],
-			"cardTypes": [
-				"Artifact"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 3,
+			"addMaxCount": 1,
+			"colors": [
+				"White"
+			],
+			"cardText": "Equipment"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
 			"colors": [
 				"White"
 			],
 			"rarity": [
-				"Rare"
+				"Rare",
+				"Mythic Rare"
 			],
 			"subTypes": [
 				"Knight"
-			],
-			"cardText": "Equipment"
+			]
 		},
 		{
 			"type": "item",
@@ -2500,7 +2780,7 @@
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 50,
+			"count": 150,
 			"addMaxCount": 100
 		}
 	],
@@ -2529,33 +2809,94 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
-		},
-		{
-			"type": "card",
-			"probability": 0.5,
-			"count": 3,
+			"rarity": [
+				"Common"
+			],
 			"colors": [
 				"Blue"
 			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Common",
+				"Uncommon"
+			],
+			"colors": [
+				"Blue"
+			],
+			"subTypes": [
+				"Wizard"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"Uncommon"
+			],
+			"colors": [
+				"Blue"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
 				"Rare"
 			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic"
+			],
+			"colors": [
+				"Blue"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 100,
+			"addMaxCount": 100
 		},
 		{
 			"type": "shards",
 			"probability": 1,
 			"count": 10,
 			"addMaxCount": 10
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "Add {U}."
 		}
 	],
 	"colors": "GR",
@@ -2596,7 +2937,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -2661,7 +3002,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 13,
 			"addMaxCount": 87
 		}
@@ -2734,7 +3075,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -2776,7 +3117,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -2824,14 +3165,52 @@
 			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
 			"colors": [
 				"Green"
 			],
 			"rarity": [
-				"common",
-				"uncommon",
-				"Rare"
+				"common"
+			],
+			"subTypes": [
+				"Badger",
+				"Mongoose"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"common"
+			],
+			"colorType": "MonoColor",
+			"cardText": "Landfall"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"uncommon"
+			],
+			"colorType": "MonoColor",
+			"cardText": "Landfall"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"rare"
 			],
 			"colorType": "MonoColor",
 			"cardText": "Landfall"
@@ -2858,13 +3237,16 @@
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"rarity": [
-				"uncommon",
-				"common",
-				"Mythic Rare",
-				"Rare"
+			"colors": [
+				"Green"
 			],
-			"cardText": "Badger"
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Badger"
+			],
+			"cardText": "Trample"
 		}
 	],
 	"colors": "G",
@@ -2893,33 +3275,19 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 2,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
 				"common"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 2,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
 				"common"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
@@ -2928,13 +3296,6 @@
 			"count": 1,
 			"rarity": [
 				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
@@ -2943,42 +3304,14 @@
 			"count": 1,
 			"rarity": [
 				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery",
-				"Planeswalker",
-				"Battle"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
-			],
-			"cardTypes": [
-				"Land"
 			]
 		},
 		{
@@ -2987,11 +3320,12 @@
 			"count": 1,
 			"rarity": [
 				"rare"
-			]
+			],
+			"includeLands": true
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 50,
 			"addMaxCount": 80
 		},
@@ -3039,52 +3373,71 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 2,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
-				"uncommon",
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.7,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
-			]
+			"includeLands": true
 		},
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 10,
-			"addMaxCount": 90
+			"count": 50,
+			"addMaxCount": 80
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BR",
@@ -3117,52 +3470,71 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 2,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
-				"uncommon",
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
-			]
+			"includeLands": true
 		},
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 10,
-			"addMaxCount": 90
+			"count": 50,
+			"addMaxCount": 110
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BR",
@@ -3197,53 +3569,80 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 5,
-			"addMaxCount": 5,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
-				"uncommon",
-				"rare",
-				"mythic"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
-			]
+			"includeLands": true
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"mythic rare"
+			],
+			"includeLands": true
 		},
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 100,
-			"addMaxCount": 100
+			"count": 110,
+			"addMaxCount": 90
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BR",
@@ -3277,51 +3676,70 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
 			"rarity": [
-				"uncommon",
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
+			"probability": 1,
+			"count": 2,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
-			]
+			"includeLands": true
 		},
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 10,
-			"addMaxCount": 90
+			"count": 50,
+			"addMaxCount": 80
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BR",
@@ -3352,52 +3770,71 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 3,
-			"addMaxCount": 4,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
-				"uncommon",
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
+			"probability": 1,
+			"count": 2,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
-			]
+			"includeLands": true
 		},
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 10,
-			"addMaxCount": 90
+			"count": 90,
+			"addMaxCount": 80
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BR",
@@ -3428,35 +3865,95 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 100,
-			"addMaxCount": 90
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Barbarian"
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.9,
-			"count": 3,
-			"addMaxCount": 4,
-			"colors": [
-				"Red"
-			],
+			"probability": 1,
+			"count": 1,
 			"rarity": [
-				"Uncommon",
-				"Rare"
+				"common",
+				"uncommon"
+			],
+			"subTypes": [
+				"Equipment"
 			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Barbarian"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"mythic rare"
+			],
+			"subTypes": [
+				"Barbarian"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 40
 		},
 		{
 			"type": "shards",
 			"probability": 1,
 			"count": 10,
 			"addMaxCount": 10
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Land"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Land"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "R",
@@ -3489,40 +3986,104 @@
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
-				"uncommon",
-				"Rare"
+				"common"
 			],
-			"cardTypes": [
-				"Creature"
-			],
-			"colorType": "MonoColor",
-			"cardText": "Bat"
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"subTypes": [
+				"Bat"
+			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 3,
+			"rarity": [
+				"Common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
 			"colors": [
 				"Black"
 			],
 			"rarity": [
-				"uncommon",
-				"common",
-				"Rare"
+				"Common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
 			],
-			"colorType": "MonoColor",
-			"cardText": "Bat"
+			"subTypes": [
+				"Bat"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"colors": [
+				"Black"
+			],
+			"rarity": [
+				"Uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"colors": [
+				"Black"
+			],
+			"rarity": [
+				"Rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.5,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"mythic rare"
+			],
+			"subTypes": [
+				"Bat"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 55,
+			"addMaxCount": 11
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			],
+			"subTypes": [
+				"Cave"
+			]
 		}
 	],
 	"colors": "B",
@@ -3553,53 +4114,106 @@
 	"life": 16,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Bear"
+			]
+		},
+		{
+			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 4,
+			"rarity": [
+				"Common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"Common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
 			"rarity": [
 				"uncommon"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"subTypes": [
+				"Bear"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.5,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"Uncommon"
 			]
 		},
 		{
-			"type": "deckCard",
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"Uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"colors": [
+				"Green"
+			],
+			"rarity": [
+				"Rare"
+			]
+		},
+		{
+			"type": "card",
 			"probability": 0.5,
 			"count": 1,
 			"rarity": [
-				"rare"
+				"rare",
+				"mythic rare"
 			],
-			"cardTypes": [
-				"Land"
+			"subTypes": [
+				"Bear"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 55,
+			"addMaxCount": 11
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			],
+			"subTypes": [
+				"Cave"
+			]
 		}
 	],
 	"colors": "G",
@@ -3673,7 +4287,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -3707,23 +4321,15 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.7,
-			"count": 1,
-			"addMaxCount": 2,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
 			"rarity": [
 				"rare"
 			],
@@ -3736,8 +4342,8 @@
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
@@ -3748,9 +4354,9 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 100,
+			"addMaxCount": 200
 		}
 	],
 	"colors": "BRU",
@@ -3786,7 +4392,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 5,
 			"addMaxCount": 95
 		}
@@ -3825,7 +4431,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -3919,7 +4525,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -3965,7 +4571,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -4040,7 +4646,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -4319,7 +4925,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -4365,25 +4971,36 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
 			"colors": [
 				"Green"
 			],
 			"rarity": [
-				"common",
-				"uncommon",
-				"Mythic Rare",
 				"Rare"
 			],
 			"colorType": "MonoColor"
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
-				"Green"
+				"White"
 			],
 			"rarity": [
 				"Rare"
@@ -4504,7 +5121,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -4579,7 +5196,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -4867,7 +5484,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -4972,7 +5589,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 15,
 			"addMaxCount": 85
 		}
@@ -5007,7 +5624,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 15,
 			"addMaxCount": 85
 		}
@@ -5681,7 +6298,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -5786,7 +6403,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -5891,7 +6508,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -5995,7 +6612,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -6100,7 +6717,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -6205,7 +6822,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -6310,7 +6927,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -6386,30 +7003,79 @@
 	"life": 25,
 	"rewards": [
 		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 4,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 4,
+			"rarity": [
+				"common",
+				"uncommon"
+			],
+			"subTypes": [
+				"Chimera"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"mythic rare"
+			],
 			"subTypes": [
 				"Chimera"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
+			"probability": 1,
+			"count": 100,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 3,
-			"colors": [
-				"Green"
-			],
 			"rarity": [
 				"Rare"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -6527,7 +7193,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 50,
 			"addMaxCount": 80
 		},
@@ -6567,19 +7233,45 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 4,
-			"addMaxCount": 4,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
-				"uncommon",
-				"rare"
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Cleric"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"White"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
+			"probability": 1,
+			"count": 2,
 			"rarity": [
 				"uncommon"
 			],
@@ -6592,37 +7284,68 @@
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.25,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"uncommon"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"subTypes": [
+				"Cleric"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
+			"subTypes": [
+				"Cleric"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.6,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"White"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 80
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "Add {W}."
 		}
 	],
 	"colors": "W",
@@ -6661,7 +7384,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -6722,7 +7445,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -6809,7 +7532,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -6913,7 +7636,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 900
 		},
@@ -7131,7 +7854,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -7159,16 +7882,60 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Artifact"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
 				"uncommon"
 			],
@@ -7182,9 +7949,8 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 1,
 			"rarity": [
 				"rare",
 				"mythicrare"
@@ -7198,21 +7964,23 @@
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
-			"count": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Land"
-			]
+			"type": "gold",
+			"probability": 1,
+			"count": 70,
+			"addMaxCount": 90
 		},
 		{
-			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Artifact"
+			],
+			"cardText": "Add "
 		}
 	],
 	"colors": "G",
@@ -7969,37 +8737,43 @@
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 5,
-			"colors": [
-				"Blue"
-			],
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
-				"uncommon",
-				"Rare"
+				"common"
 			],
 			"subTypes": [
 				"Crab"
-			],
-			"cardTypes": [
-				"Creature"
-			],
-			"colorType": "MonoColor"
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Crab"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"Rare"
+				"rare"
+			],
+			"subTypes": [
+				"Crab"
 			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 30,
+			"addMaxCount": 70
 		},
 		{
 			"type": "card",
@@ -8049,7 +8823,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -8102,7 +8876,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -8213,21 +8987,92 @@
 	"life": 12,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
-			"count": 4,
-			"addMaxCount": 6,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"Common"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"Common"
+			],
+			"subTypes": [
+				"Cyclops"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
 				"Common",
-				"Rare",
 				"Uncommon"
+			],
+			"subTypes": [
+				"Cyclops"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"Uncommon"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Uncommon",
+				"Rare"
+			],
+			"subTypes": [
+				"Cyclops"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.4,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"colors": [
+				"Red"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
-			"count": 15,
-			"addMaxCount": 85
+			"probability": 1,
+			"count": 55,
+			"addMaxCount": 55
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "R",
@@ -8617,7 +9462,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -8702,7 +9547,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -8784,7 +9629,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -8867,7 +9712,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -8944,7 +9789,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -9012,7 +9857,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -9074,7 +9919,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -9285,7 +10130,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -9315,7 +10160,7 @@
 	"rewards": [
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 150
 		},
@@ -9371,7 +10216,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -9498,19 +10343,25 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
-			"rarity": [
-				"common",
-				"uncommon"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
+			"count": 4,
 			"addMaxCount": 2,
 			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
 				"uncommon"
 			],
 			"cardTypes": [
@@ -9523,9 +10374,8 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 1,
 			"rarity": [
 				"rare"
 			],
@@ -9535,24 +10385,25 @@
 				"Enchantment",
 				"Instant",
 				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.1,
-			"count": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Land"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 100,
+			"addMaxCount": 100
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "RU",
@@ -9825,7 +10676,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -9867,7 +10718,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -9972,7 +10823,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10053,7 +10904,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10133,7 +10984,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10216,7 +11067,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10290,7 +11141,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10374,7 +11225,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10446,7 +11297,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10486,7 +11337,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -10538,7 +11389,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -10585,7 +11436,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 50,
 			"addMaxCount": 95
 		}
@@ -10669,7 +11520,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -10753,7 +11604,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -11092,7 +11943,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -11153,7 +12004,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -11186,7 +12037,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -11232,7 +12083,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -11316,7 +12167,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -11504,7 +12355,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 300
 		},
@@ -11654,7 +12505,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -11902,7 +12753,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -11988,7 +12839,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -12069,7 +12920,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -12151,7 +13002,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -12232,7 +13083,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -12284,7 +13135,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -12353,52 +13204,37 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
+			"probability": 1,
+			"count": 2,
 			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon",
+				"rare"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.25,
-			"count": 1,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
 			"addMaxCount": 1,
-			"rarity": [
-				"rare"
+			"colors": [
+				"Red"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.1,
-			"count": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Land"
-			]
+			"colorType": "MonoColor"
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 70,
+			"addMaxCount": 45
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "Add {R}"
 		}
 	],
 	"colors": "R",
@@ -12551,7 +13387,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -12886,22 +13722,32 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 5,
+			"count": 5,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"uncommon"
 			]
 		},
 		{
-			"type": "card",
-			"probability": 0.5,
+			"type": "deckCard",
+			"probability": 1,
 			"count": 1,
+			"rarity": [
+				"Rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 2,
 			"colors": [
 				"Green",
 				"Blue"
 			],
 			"rarity": [
+				"uncommon",
 				"Rare"
 			]
 		},
@@ -13007,7 +13853,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -13041,8 +13887,22 @@
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon"
+			],
+			"subTypes": [
+				"Saproling",
+				"Fungus"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -13051,7 +13911,7 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"colors": [
 				"Black",
@@ -13084,7 +13944,7 @@
 			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
 			"colors": [
 				"Green",
 				"Black"
@@ -13178,7 +14038,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -13258,7 +14118,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -13820,7 +14680,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -13903,7 +14763,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -13933,14 +14793,65 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 7
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
+			"colors": [
+				"Black"
+			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 45,
+			"addMaxCount": 25
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{B}"
 		}
 	],
 	"colors": "BU",
@@ -13975,7 +14886,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -14028,8 +14939,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -14037,9 +14948,8 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
 				"uncommon"
 			],
@@ -14053,7 +14963,7 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
@@ -14080,8 +14990,8 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
+			"probability": 1,
+			"count": 72,
 			"addMaxCount": 90
 		}
 	],
@@ -14123,7 +15033,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -14213,7 +15123,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -14250,7 +15160,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -14334,7 +15244,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -14417,7 +15327,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -14514,7 +15424,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -14557,7 +15467,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -14633,7 +15543,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -15004,7 +15914,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -15039,7 +15949,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -15431,7 +16341,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -15606,7 +16516,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -15669,7 +16579,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -15719,7 +16629,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -15894,7 +16804,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 200
 		},
@@ -15942,7 +16852,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 75,
 			"addMaxCount": 225
 		},
@@ -16008,19 +16918,34 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"uncommon"
 			]
 		},
 		{
-			"type": "card",
-			"probability": 0.5,
+			"type": "deckCard",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"Rare"
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"Uncommon"
+				"Rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"Black",
+				"Green"
 			]
 		},
 		{
@@ -16122,7 +17047,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 150,
 			"addMaxCount": 150
 		}
@@ -16206,7 +17131,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16291,7 +17216,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16376,7 +17301,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16460,7 +17385,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16527,8 +17452,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -16536,7 +17461,7 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 2,
 			"rarity": [
@@ -16552,7 +17477,7 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
@@ -16568,7 +17493,7 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 0.4,
 			"count": 1,
 			"rarity": [
 				"rare"
@@ -16579,7 +17504,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16663,7 +17588,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16748,7 +17673,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16777,8 +17702,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -16786,52 +17711,41 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"rare",
+				"mythic rare"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"includeLands": true
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"colors": [
+				"Red"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"rarity": [
-				"rare"
-			],
 			"cardTypes": [
 				"Land"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 45,
+			"addMaxCount": 25
 		}
 	],
 	"colors": "BR",
@@ -16884,7 +17798,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -16915,29 +17829,60 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
 			]
 		},
 		{
-			"type": "card",
-			"probability": 0.1,
+			"type": "deckCard",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"rare"
+				"rare",
+				"mythic rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"subTypes": [
+				"Snake"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common",
+				"uncommon"
+			],
+			"colors": [
+				"Green"
+			],
+			"cardText": "Flash"
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 45,
+			"addMaxCount": 65
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
 			],
 			"cardTypes": [
 				"Land"
 			]
-		},
-		{
-			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
 		}
 	],
 	"colors": "GU",
@@ -17015,7 +17960,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -17048,7 +17993,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -17093,8 +18038,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -17102,26 +18047,11 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.25,
-			"count": 1,
+			"probability": 1,
+			"count": 2,
 			"addMaxCount": 1,
 			"rarity": [
+				"uncommon",
 				"rare"
 			],
 			"cardTypes": [
@@ -17133,8 +18063,21 @@
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
@@ -17145,9 +18088,9 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 150,
+			"addMaxCount": 100
 		}
 	],
 	"colors": "B",
@@ -17178,26 +18121,108 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"count": 3,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Green"
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 3,
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"subTypes": [
+				"Hippo"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
 			"colors": [
 				"Green"
-			],
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
-				"Rare"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"rare"
+			],
+			"subTypes": [
+				"Hippo"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"Blue",
+				"Green"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 75
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"rare"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -17227,17 +18252,106 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Blue"
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"Rare"
+				"uncommon",
+				"common"
+			],
+			"subTypes": [
+				"Homarid"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"rare"
+			],
+			"subTypes": [
+				"Homarid"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
+			],
+			"includeLands": true
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 75
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"rare"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		},
 		{
@@ -17251,12 +18365,6 @@
 			"cardTypes": [
 				"Land"
 			]
-		},
-		{
-			"type": "gold",
-			"probability": 1,
-			"count": 50,
-			"addMaxCount": 100
 		}
 	],
 	"questTags": [
@@ -17288,64 +18396,72 @@
 	"life": 17,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
-			"rarity": [
-				"common",
-				"uncommon"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
+			"count": 4,
 			"addMaxCount": 2,
 			"rarity": [
-				"uncommon"
+				"common"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery",
-				"Land"
+			"subTypes": [
+				"Horror",
+				"Leech"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.25,
-			"count": 1,
+			"type": "card",
+			"probability": 1,
+			"count": 3,
 			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"uncommon"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"subTypes": [
+				"Horror",
+				"Leech"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Land"
+			"subTypes": [
+				"Horror",
+				"Leech"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"Black"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 25,
+			"addMaxCount": 80
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BU",
@@ -17392,7 +18508,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -17482,7 +18598,7 @@
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 4,
+			"count": 1,
 			"colors": [
 				"White"
 			],
@@ -17493,16 +18609,37 @@
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 50,
-			"addMaxCount": 200
+			"count": 550,
+			"addMaxCount": 450
 		},
 		{
 			"type": "card",
 			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"uncommon",
 				"rare"
+			],
+			"cardTypes": [
+				"Land"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Land"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"rarity": [
+				"common"
 			],
 			"cardTypes": [
 				"Land"
@@ -17538,17 +18675,63 @@
 	"life": 14,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Horse"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Horse"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			]
 		},
 		{
 			"type": "card",
 			"probability": 0.5,
 			"count": 1,
 			"rarity": [
-				"Rare"
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Horse"
 			]
 		},
 		{
@@ -17595,17 +18778,72 @@
 	"life": 14,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Horse"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Horse"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"White"
+			]
 		},
 		{
 			"type": "card",
 			"probability": 0.5,
 			"count": 1,
 			"rarity": [
-				"Rare"
+				"rare"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Horse"
 			]
 		},
 		{
@@ -17655,23 +18893,75 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Horse"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Horse"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.6,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"includeLands" : true
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
+			"probability": 1,
+			"count": 70,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 2,
-			"colors": [
-				"White"
-			],
+			"probability": 1,
+			"count": 1,
 			"rarity": [
-				"Mythic Rare"
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -17704,23 +18994,95 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 3,
-			"colors": [
-				"White"
-			],
+			"probability": 1,
+			"count": 2,
 			"rarity": [
-				"Rare"
+				"Common"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 0.6,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 50
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -17751,25 +19113,99 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 3,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
-				"uncommon",
-				"rare"
+				"common"
 			],
 			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"Artifact"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Saga"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"superTypes": [
+				"Legend",
+				"Legendary"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Saga"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"superTypes": [
+				"Legend",
+				"Legendary"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"rare"
+			],
+			"subTypes": [
+				"Saga"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"mythic rare"
 			]
 		},
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 10,
+			"count": 20,
 			"addMaxCount": 50
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			],
+			"superTypes": [
+				"Legend",
+				"Legendary"
+			]
 		}
 	],
 	"colors": "RW",
@@ -17804,7 +19240,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -17856,7 +19292,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -18003,7 +19439,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -18034,26 +19470,85 @@
 	"life": 19,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
+			"probability": 1,
+			"count": 4,
+			"addMaxCount": 1,
+			"rarity": [
+				"Common"
+			],
+			"colors": [
+				"Green"
+			],
+			"cardTypes": [
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"addMaxCount": 1,
+			"rarity": [
+				"Uncommon"
+			],
+			"colors": [
+				"Green"
+			],
+			"cardTypes": [
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Uncommon",
+				"Rare"
+			],
+			"subTypes": [
+				"Hydra"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Hydra"
+			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 3,
-			"colors": [
-				"Green"
-			],
+			"probability": 1,
+			"count": 1,
 			"rarity": [
-				"Mythic Rare"
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],
@@ -18217,7 +19712,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -18302,7 +19797,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -18345,7 +19840,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 15,
 			"addMaxCount": 85
 		}
@@ -18385,7 +19880,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -18426,8 +19921,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"Uncommon"
@@ -18435,23 +19930,7 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
@@ -18467,10 +19946,25 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"rare"
+				"rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"Black",
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
 			],
 			"cardTypes": [
 				"Land"
@@ -18478,7 +19972,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -18714,61 +20208,43 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.25,
-			"count": 1,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
 			"addMaxCount": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"subTypes": [
+				"Kavu"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
-			],
-			"cardTypes": [
-				"Land"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
+			"probability": 1,
+			"count": 50,
 			"addMaxCount": 90
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "RGW",
@@ -18857,7 +20333,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -19002,7 +20478,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -19094,7 +20570,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -19664,7 +21140,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -19764,7 +21240,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -20046,7 +21522,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -20229,7 +21705,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 150,
 			"addMaxCount": 150
 		}
@@ -20310,7 +21786,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 150,
 			"addMaxCount": 150
 		}
@@ -20745,7 +22221,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -20808,7 +22284,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -21424,7 +22900,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -21474,7 +22950,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -21736,7 +23212,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -21788,7 +23264,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -21896,7 +23372,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 50,
 			"addMaxCount": 95
 		},
@@ -22085,7 +23561,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -22120,61 +23596,65 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
 			]
 		},
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"addMaxCount": 1,
+			"subTypes": [
+				"Minotaur"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"subTypes": [
+				"Equipment"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
 				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"rarity": [
-				"rare"
+			"colors": [
+				"Red"
 			],
-			"cardTypes": [
-				"Land"
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BR",
@@ -22211,61 +23691,56 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"addMaxCount": 1,
+			"subTypes": [
+				"Minotaur"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
 				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
-			"rarity": [
-				"rare"
+			"colors": [
+				"Red"
 			],
-			"cardTypes": [
-				"Land"
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "R",
@@ -22296,26 +23771,38 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"addMaxCount": 1
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
+			"probability": 1,
+			"count": 75,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 4,
+			"count": 5,
+			"addMaxCount": 1,
 			"colors": [
 				"Red"
 			],
 			"rarity": [
-				"Rare"
+				"Common",
+				"Uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"colors": [
+				"Red"
 			],
-			"colorType": "MonoColor"
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
+			]
 		},
 		{
 			"type": "shards",
@@ -22355,8 +23842,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 2,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -22364,52 +23851,53 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"uncommon"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon",
+				"rare",
+				"mythic rare"
 			],
-			"cardTypes": [
-				"Land"
+			"colors": [
+				"White"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 20,
+			"addMaxCount": 25
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "W",
@@ -22602,7 +24090,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 200
 		},
@@ -22701,7 +24189,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -22917,7 +24405,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -22991,7 +24479,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -23350,24 +24838,17 @@
 			"count": 4,
 			"addMaxCount": 1,
 			"rarity": [
-				"common"
+				"common",
+				"Uncommon"
 			]
 		},
 		{
 			"type": "card",
 			"probability": 1,
-			"count": 4,
+			"count": 3,
 			"addMaxCount": 1,
 			"rarity": [
 				"common"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 1,
-			"count": 2,
-			"rarity": [
-				"Uncommon"
 			]
 		},
 		{
@@ -23658,7 +25139,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 210,
 			"addMaxCount": 90
 		}
@@ -23691,51 +25172,37 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 4,
+			"count": 3,
+			"cardTypes": [
+				"Instant"
+			],
+			"cardText": "Counter target"
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
+				"common",
 				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
+			"addMaxCount": 1,
 			"rarity": [
 				"rare"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Land"
-			]
+			"includeLands": true
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 44,
+			"addMaxCount": 50
 		}
 	],
 	"colors": "G",
@@ -24373,8 +25840,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -24382,38 +25849,23 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 1,
-			"colors": [
-				"White"
-			],
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
 				"Rare",
 				"common",
 				"uncommon"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
-			]
+			"cardText": "Poison"
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
 				"rare"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
 			]
 		}
 	],
@@ -24441,12 +25893,14 @@
 	"life": 16,
 	"rewards": [
 		{
-			"type": "deckCard",
+			"type": "card",
 			"probability": 1,
-			"count": 1,
-			"addMaxCount": 4,
+			"count": 4,
 			"rarity": [
-				"uncommon"
+				"Uncommon"
+			],
+			"superTypes": [
+				"Snow"
 			],
 			"cardTypes": [
 				"Creature",
@@ -24457,10 +25911,25 @@
 			]
 		},
 		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"Uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			],
+			"cardText": "{S}"
+		},
+		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
 				"rare"
 			],
@@ -24473,8 +25942,26 @@
 			]
 		},
 		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"superTypes": [
+				"Snow"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 100
+		},
+		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
@@ -24484,10 +25971,19 @@
 			]
 		},
 		{
-			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"superTypes": [
+				"Snow"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "G",
@@ -24585,7 +26081,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -24660,7 +26156,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -24788,7 +26284,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -24838,18 +26334,28 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4
+			"count": 4,
+			"addMaxCount": 2,
+			"rarity": [
+				"Uncommon",
+				"Common"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
-			"count": 3,
+			"count": 2,
 			"colors": [
 				"Red"
 			],
@@ -24895,18 +26401,28 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4
+			"count": 4,
+			"addMaxCount": 2,
+			"rarity": [
+				"Uncommon",
+				"Common"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
-			"count": 3,
+			"count": 2,
 			"colors": [
 				"Red"
 			],
@@ -24952,18 +26468,28 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4
+			"count": 4,
+			"addMaxCount": 2,
+			"rarity": [
+				"Uncommon",
+				"Common"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
 		{
 			"type": "card",
-			"count": 3,
+			"count": 2,
 			"colors": [
 				"Red"
 			],
@@ -25059,7 +26585,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -25140,7 +26666,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -25371,7 +26897,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -25407,7 +26933,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 5,
 			"addMaxCount": 95
 		}
@@ -25550,7 +27076,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 150,
 			"addMaxCount": 150
 		}
@@ -25759,19 +27285,67 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"Common",
+				"Uncommon"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"rare",
 				"Uncommon",
-				"Rare"
+				"Mythic Rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"Common",
+				"Uncommon"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
+			],
+			"colors": [
+				"Red"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 45,
+			"addMaxCount":44
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "R",
@@ -25799,22 +27373,53 @@
 	"rewards": [
 		{
 			"type": "card",
-			"count": 2,
-			"addMaxCount": 2,
+			"count": 4,
+			"addMaxCount": 1,
 			"colors": [
 				"Black"
 			],
 			"rarity": [
-				"Common",
-				"Uncommon",
+				"Common"
+			]
+		},
+		{
+			"type": "card",
+			"count": 2,
+			"addMaxCount": 1,
+			"colors": [
+				"Black"
+			],
+			"rarity": [
+				"Uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"colors": [
+				"Black"
+			],
+			"rarity": [
 				"Rare"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.6,
-			"count": 7,
-			"addMaxCount": 32
+			"probability": 1,
+			"count": 27,
+			"addMaxCount": 73
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "B",
@@ -25844,20 +27449,103 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 1,
 			"rarity": [
-				"common",
-				"uncommon",
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Rhino"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Rhino"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Rhino"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
 				"Rare"
 			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"Rare"
+				"Rare",
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Rhino"
 			]
 		},
 		{
@@ -26017,7 +27705,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -26065,7 +27753,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -26159,7 +27847,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -26243,7 +27931,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -26463,15 +28151,75 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"addMaxCount": 1,
+			"subTypes": [
+				"Scorpion"
+			],
+			"rarity": [
+				"common"
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"subTypes": [
+				"Scorpion"
+			],
+			"rarity": [
+				"common",
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"Rare"
 			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 100
 		},
 		{
 			"type": "card",
@@ -26484,12 +28232,6 @@
 			"cardTypes": [
 				"Land"
 			]
-		},
-		{
-			"type": "gold",
-			"probability": 1,
-			"count": 50,
-			"addMaxCount": 100
 		}
 	],
 	"questTags": [
@@ -26535,7 +28277,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -26643,7 +28385,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -26757,60 +28499,102 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
-				"uncommon"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2,
-			"rarity": [
-				"uncommon"
+				"common"
 			],
 			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"Red",
+				"Green"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"uncommon"
 			],
 			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"Red",
+				"Green"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.1,
+			"probability": 1,
 			"count": 1,
 			"rarity": [
 				"rare"
 			],
 			"cardTypes": [
-				"Land"
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.5,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Red",
+				"Green"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 40,
+			"addMaxCount": 60
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "GR",
@@ -26893,7 +28677,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -26988,15 +28772,66 @@
 	"life": 11,
 	"rewards": [
 		{
-			"type": "randomCard",
+			"type": "card",
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
 			"count": 2,
-			"addMaxCount": 8
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.6,
-			"count": 7,
-			"addMaxCount": 32
+			"probability": 1,
+			"count": 25,
+			"addMaxCount": 75
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "B",
@@ -27022,15 +28857,66 @@
 	"life": 11,
 	"rewards": [
 		{
-			"type": "randomCard",
+			"type": "card",
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
 			"count": 2,
-			"addMaxCount": 8
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"count": 1,
+			"rarity": [
+				"rare"
+			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.6,
-			"count": 7,
-			"addMaxCount": 32
+			"probability": 1,
+			"count": 25,
+			"addMaxCount": 75
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "B",
@@ -27111,7 +28997,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -27236,30 +29122,113 @@
 	"life": 30,
 	"rewards": [
 		{
-			"type": "deckCard",
-			"count": 2,
-			"cardTypes": [
-				"Creature"
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.05,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Eldrazi"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
 			"cardTypes": [
-				"Artifact",
-				"Enchantment",
 				"Instant",
 				"Sorcery"
 			]
 		},
 		{
-			"type": "randomCard",
-			"count": 2
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Eldrazi"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Eldrazi"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Mythic Rare",
+				"Special"
+			],
+			"subTypes": [
+				"Eldrazi",
+				"Sliver"
+			]
 		},
 		{
 			"type": "gold",
 			"count": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BUR",
@@ -27289,7 +29258,7 @@
 			"type": "card",
 			"probability": 1,
 			"count": 3,
-			"addMaxCount": 2,
+			"addMaxCount": 1,
 			"rarity": [
 				"common"
 			],
@@ -27303,6 +29272,19 @@
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
 				"uncommon"
 			],
 			"subTypes": [
@@ -27313,6 +29295,7 @@
 			"type": "card",
 			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
 			"rarity": [
 				"Rare"
 			],
@@ -27365,30 +29348,141 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
-			"count": 2,
-			"cardTypes": [
-				"Creature"
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.05,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
 			"cardTypes": [
-				"Artifact",
-				"Enchantment",
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"Black"
 			]
 		},
 		{
-			"type": "randomCard",
-			"count": 2
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.2,
+			"count": 1,
+			"rarity": [
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
 		},
 		{
 			"type": "gold",
 			"count": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{B}"
 		}
 	],
 	"colors": "BUR",
@@ -27420,30 +29514,141 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
-			"count": 2,
-			"cardTypes": [
-				"Creature"
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.05,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
 			"cardTypes": [
-				"Artifact",
-				"Enchantment",
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"Blue"
 			]
 		},
 		{
-			"type": "randomCard",
-			"count": 2
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Blue"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.2,
+			"count": 1,
+			"rarity": [
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
 		},
 		{
 			"type": "gold",
 			"count": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{U}"
 		}
 	],
 	"colors": "UWB",
@@ -27475,30 +29680,141 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
-			"count": 2,
-			"cardTypes": [
-				"Creature"
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.05,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
 			"cardTypes": [
-				"Artifact",
-				"Enchantment",
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"Green"
 			]
 		},
 		{
-			"type": "randomCard",
-			"count": 2
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.2,
+			"count": 1,
+			"rarity": [
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
 		},
 		{
 			"type": "gold",
 			"count": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{G}"
 		}
 	],
 	"colors": "GWRBU",
@@ -27530,30 +29846,141 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
-			"count": 2,
-			"cardTypes": [
-				"Creature"
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.05,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
 			"cardTypes": [
-				"Artifact",
-				"Enchantment",
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"Red"
 			]
 		},
 		{
-			"type": "randomCard",
-			"count": 2
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"Red"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.2,
+			"count": 1,
+			"rarity": [
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
 		},
 		{
 			"type": "gold",
 			"count": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{R}"
 		}
 	],
 	"colors": "RBG",
@@ -27585,30 +30012,141 @@
 	"life": 20,
 	"rewards": [
 		{
-			"type": "deckCard",
-			"count": 2,
-			"cardTypes": [
-				"Creature"
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.05,
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
 			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
 			"cardTypes": [
-				"Artifact",
-				"Enchantment",
 				"Instant",
 				"Sorcery"
+			],
+			"colors": [
+				"White"
 			]
 		},
 		{
-			"type": "randomCard",
-			"count": 2
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			],
+			"colors": [
+				"White"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.2,
+			"count": 1,
+			"rarity": [
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Sliver"
+			]
 		},
 		{
 			"type": "gold",
 			"count": 150
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{W}"
 		}
 	],
 	"colors": "WGU",
@@ -27794,18 +30332,58 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Blue",
+				"Green"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
 				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
 			]
 		},
 		{
 			"type": "deckCard",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
 				"rare"
 			],
@@ -27814,41 +30392,46 @@
 				"Artifact",
 				"Enchantment",
 				"Instant",
-				"Sorcery"
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.25,
+			"probability": 0.3,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"mythic rare"
 			],
 			"cardTypes": [
 				"Creature",
 				"Artifact",
 				"Enchantment",
 				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.1,
-			"count": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Land"
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 30,
+			"addMaxCount": 70
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "GU",
@@ -27948,7 +30531,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -27995,61 +30578,106 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 3,
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Black",
+				"Green"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
 				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
 			]
 		},
 		{
 			"type": "deckCard",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
-				"uncommon"
+				"rare"
 			],
 			"cardTypes": [
 				"Creature",
 				"Artifact",
 				"Enchantment",
 				"Instant",
-				"Sorcery"
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
 			]
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 0.3,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"mythic rare"
 			],
 			"cardTypes": [
 				"Creature",
 				"Artifact",
 				"Enchantment",
 				"Instant",
-				"Sorcery"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.1,
-			"count": 1,
-			"rarity": [
-				"rare"
-			],
-			"cardTypes": [
-				"Land"
+				"Sorcery",
+				"Planeswalker",
+				"Battle"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 30,
+			"addMaxCount": 70
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "BG",
@@ -28082,30 +30710,38 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 5,
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
 				"rare",
-				"Mythic Rare"
+				"mythic rare"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"probability": 1,
+			"count": 70,
+			"addMaxCount": 35
 		},
 		{
 			"type": "shards",
-			"probability": 0.5,
-			"count": 1,
-			"addMaxCount": 2
+			"probability": 1,
+			"count": 5,
+			"addMaxCount": 5
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
 			"colors": [
 				"Black",
 				"Red",
@@ -28148,8 +30784,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
+			"count": 4,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -28157,26 +30793,45 @@
 		},
 		{
 			"type": "deckCard",
-			"probability": 0.5,
+			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
+			"rarity": [
+				"uncommon",
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"mythic rare",
+				"rare"
+			],
+			"colors": [
+				"Blue"
+			],
+			"subTypes": [
+				"Spirit"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
 			"rarity": [
 				"uncommon",
 				"rare"
 			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+			"colors": [
+				"Blue"
 			]
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 100,
-			"addMaxCount": 200
+			"addMaxCount": 125
 		}
 	],
 	"colors": "U",
@@ -28206,13 +30861,83 @@
 			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4,
-			"colors": [
-				"Red,Green"
-			],
+			"addMaxCount": 1,
 			"rarity": [
-				"common",
-				"uncommon",
+				"common"
+			],
+			"subTypes": [
+				"Dinosaur"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Red",
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"subTypes": [
+				"Dinosaur"
+			],
+			"cardTypes": [
+				"Creature"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			],
+			"colors": [
+				"Red",
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Artifact"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
 				"Rare"
 			],
 			"subTypes": [
@@ -28220,8 +30945,7 @@
 			],
 			"cardTypes": [
 				"Creature"
-			],
-			"colorType": "MonoColor"
+			]
 		},
 		{
 			"type": "card",
@@ -28232,10 +30956,15 @@
 			]
 		},
 		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 20
+		},
+		{
 			"type": "card",
 			"probability": 1,
 			"count": 1,
-			"addMaxCount": 5,
 			"rarity": [
 				"uncommon",
 				"common"
@@ -28243,12 +30972,6 @@
 			"cardTypes": [
 				"Land"
 			]
-		},
-		{
-			"type": "gold",
-			"probability": 1,
-			"count": 20,
-			"addMaxCount": 50
 		}
 	],
 	"colors": "RG",
@@ -28288,7 +31011,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 900
 		},
@@ -28470,21 +31193,49 @@
 			"type": "card",
 			"probability": 1,
 			"count": 3,
-			"addMaxCount": 6,
+			"addMaxCount": 2,
 			"colors": [
 				"Green"
 			],
 			"rarity": [
 				"common",
-				"uncommon",
-				"Rare"
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"rarity": [
+				"common",
+				"uncommon"
 			],
-			"colorType": "MonoColor",
 			"cardText": "Squirrel"
 		},
 		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"colors": [
+				"Green"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic Rare"
+			],
+			"subTypes": [
+				"Squirrel"
+			]
+		},
+		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -28586,7 +31337,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -28671,7 +31422,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -28710,7 +31461,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 50,
 			"addMaxCount": 95
 		}
@@ -28911,7 +31662,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 900
 		},
@@ -29273,7 +32024,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -29349,7 +32100,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -29497,7 +32248,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -29592,15 +32343,61 @@
 	"rewards": [
 		{
 			"type": "deckCard",
-			"count": 2,
-			"addMaxCount": 8,
+			"probability": 1,
+			"count": 5,
+			"addMaxCount": 1,
+			"rarity": [
+				"common",
+				"uncommon"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon",
+				"rare"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
 			"colors": [
 				"Black"
-			],
-			"rarity": [
-				"Uncommon",
-				"Rare"
 			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 85,
+			"addMaxCount": 100
 		}
 	],
 	"colors": "B",
@@ -29713,7 +32510,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -29774,7 +32571,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -29828,7 +32625,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -29962,7 +32759,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -30169,7 +32966,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 100,
 			"addMaxCount": 90
 		},
@@ -30326,7 +33123,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -30360,7 +33157,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.6,
+			"probability": 1,
 			"count": 7,
 			"addMaxCount": 32
 		}
@@ -30402,7 +33199,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 20,
 			"addMaxCount": 80
 		}
@@ -30699,7 +33496,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -30757,7 +33554,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -30871,7 +33668,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -30935,7 +33732,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.3,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		}
@@ -30969,7 +33766,7 @@
 		},
 		{
 			"type": "gold",
-			"probability": 0.7,
+			"probability": 1,
 			"count": 10,
 			"addMaxCount": 90
 		},
@@ -31269,36 +34066,21 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4,
-			"rarity": [
-				"Common",
-				"rare"
-			]
-		},
-		{
-			"type": "deckCard",
-			"probability": 0.5,
 			"count": 1,
-			"addMaxCount": 2,
 			"rarity": [
-				"uncommon"
-			],
-			"cardTypes": [
-				"Creature",
-				"Artifact",
-				"Enchantment",
-				"Instant",
-				"Sorcery"
+				"Common"
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.25,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"addMaxCount": 1,
 			"rarity": [
-				"rare"
+				"common"
+			],
+			"superTypes": [
+				"Snow"
 			],
 			"cardTypes": [
 				"Creature",
@@ -31309,21 +34091,125 @@
 			]
 		},
 		{
-			"type": "deckCard",
-			"probability": 0.1,
+			"type": "card",
+			"probability": 1,
 			"count": 1,
 			"rarity": [
-				"rare"
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			],
+			"cardText": "{S}"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Common",
+				"Uncommon"
+			],
+			"subTypes": [
+				"Yeti"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Uncommon"
+			],
+			"superTypes": [
+				"Snow"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Artifact",
+				"Enchantment",
+				"Instant",
+				"Sorcery"
+			],
+			"cardText": "{S}"
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Uncommon"
+			],
+			"subTypes": [
+				"Yeti"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"Mythic Rare"
+			],
+			"superTypes": [
+				"Snow"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 50,
+			"addMaxCount": 100
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"superTypes": [
+				"Snow"
 			],
 			"cardTypes": [
 				"Land"
 			]
 		},
 		{
-			"type": "gold",
-			"probability": 0.3,
-			"count": 10,
-			"addMaxCount": 90
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"common"
+			],
+			"superTypes": [
+				"Snow"
+			],
+			"cardTypes": [
+				"Land"
+			]
 		}
 	],
 	"colors": "GRU",
@@ -31442,26 +34328,88 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 10,
-			"addMaxCount": 90
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			]
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 3,
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
 			"colors": [
 				"Black"
-			],
-			"rarity": [
-				"Common",
-				"Uncommon",
-				"Rare"
 			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"cardTypes": [
+				"Creature",
+				"Enchantment",
+				"Sorcery"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 45,
+			"addMaxCount": 25
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{B}"
 		}
 	],
 	"colors": "B",
@@ -31489,25 +34437,83 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 2,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 100,
-			"addMaxCount": 90
+			"count": 3,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			]
 		},
 		{
 			"type": "card",
-			"count": 3,
+			"probability": 1,
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			],
 			"colors": [
 				"Black"
-			],
-			"rarity": [
-				"Uncommon",
-				"Rare"
 			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 55,
+			"addMaxCount": 45
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"common"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{B}"
 		}
 	],
 	"colors": "B",
@@ -31535,25 +34541,93 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 4,
-			"addMaxCount": 4
-		},
-		{
-			"type": "gold",
-			"probability": 0.7,
-			"count": 150,
-			"addMaxCount": 90
+			"count": 2,
+			"addMaxCount": 1,
+			"rarity": [
+				"common"
+			]
 		},
 		{
 			"type": "card",
-			"count": 4,
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"common"
+			],
 			"colors": [
 				"Black"
-			],
-			"rarity": [
-				"Uncommon",
-				"Rare"
 			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 2,
+			"rarity": [
+				"uncommon"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"uncommon"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "deckCard",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 1,
+			"rarity": [
+				"rare",
+				"mythic rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 0.3,
+			"count": 1,
+			"rarity": [
+				"mythic rare"
+			],
+			"colors": [
+				"Black"
+			]
+		},
+		{
+			"type": "gold",
+			"probability": 1,
+			"count": 75,
+			"addMaxCount": 75
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"rare",
+				"uncommon",
+				"mythic rare"
+			],
+			"cardTypes": [
+				"Land"
+			],
+			"cardText": "{B}"
 		}
 	],
 	"colors": "B",

@@ -716,9 +716,9 @@ public class MapStage extends GameStage {
 
                         ShopData data = shops.get(WorldSave.getCurrentSave().getWorld().getRandom().nextInt(shops.size));
                         shopsAlreadyPresent.add(data.name);
-                        Array<Reward> ret = new Array<>();
+                        List<Reward> ret = new ArrayList<Reward>();
                         WorldSave.getCurrentSave().getWorld().getRandom().setSeed(changes.getShopSeed(id));
-                        for (RewardData rdata : new Array.ArrayIterator<>(data.rewards)) {
+                        for (RewardData rdata : data.rewards) {
                             ret.addAll(rdata.generate(false, false));
                         }
                         ShopActor actor = new ShopActor(this, id, ret, data);

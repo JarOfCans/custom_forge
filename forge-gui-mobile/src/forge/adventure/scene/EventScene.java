@@ -649,7 +649,7 @@ public class EventScene extends MenuScene implements IAfterMatch {
     }
 
     private boolean selectedJumpstartPackIsLast(Deck selectedPack){
-        int packsToPick = 3;
+        int packsToPick = 2;
         int packsPicked = 0;
         Deck currentPicks = new Deck();
         for (Deck deckOption :  currentEvent.jumpstartBoosters) {

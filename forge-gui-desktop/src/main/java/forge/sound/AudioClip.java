@@ -209,6 +209,7 @@ public class AudioClip implements IAudioClip {
                 AudioInputStream stream = AudioSystem.getAudioInputStream(bis);
                 AudioFormat format = stream.getFormat();
                 DataLine.Info info = new DataLine.Info(Clip.class, stream.getFormat(), ((int) stream.getFrameLength() * format.getFrameSize()));
+                
                 Clip clip = (Clip) AudioSystem.getLine(info);
                 clip.open(stream);
                 return clip;

@@ -310,7 +310,7 @@ public class SpellSmithScene extends UIScene {
 
     public void filterResults() {
         Iterable<PaperCard> P = RewardData.getAllCards();
-        float totalCost = basePrice * Current.player().goldModifier();
+        float modifierCost = Current.player().goldModifier();
         final List<String> colorFilter = new ArrayList<>();
         for (Map.Entry<String, TextraButton> B : colorButtons.entrySet())
             switch (B.getKey()) {
@@ -350,36 +350,42 @@ public class SpellSmithScene extends UIScene {
         }).collect(Collectors.toList());
         //Stream method is very fast, might not be necessary to precache anything.
         if (!edition.isEmpty())
-            totalCost *= 4.0f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
+        	modifierCost *= 1.2f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
         if (colorFilter.size() > 0)
-            totalCost *= Math.min(colorFilter.size() * 2.5f, 6.0f); //Color filter cost multiplier.
+        	modifierCost *= 1.5f; //Color filter cost multiplier.
         if (!rarity.isEmpty()) { //Rarity cost multiplier.
             switch (rarity) {
                 case "C":
-                    totalCost *= 1.5f;
+                	modifierCost *= 2f;
                     break;
                 case "U":
-                    totalCost *= 2.5f;
+                	modifierCost *= 1.5f;
                     break;
                 case "R":
-                    totalCost *= 4.0f;
+                	modifierCost *= 1.5f;
                     break;
                 case "M":
-                    totalCost *= 5.5f;
+                	modifierCost *= 1f;
                     break;
                 default:
                     break;
             }
         }
-        if (cost_low > -1) totalCost *= 2.5f; //And CMC cost multiplier.
+        if (cost_low > -1) modifierCost *= 1.5f; //And CMC cost multiplier.
 
         cardPool = StreamSupport.stream(P.spliterator(), false).collect(Collectors.toList());
         poolSize.setText(((cardPool.size() > 0 ? "[/][FOREST]" : "[/][RED]")) + cardPool.size() + " possible card" + (cardPool.size() != 1 ? "s" : ""));
-        currentPrice = (int) totalCost;
-        currentShardPrice = (int) (totalCost * 0.2f); //Intentionally rounding up via the cast to int
+        int buyPrice = 10000;
+        for (PaperCard card: cardPool) {
+        	buyPrice += Math.pow(CardUtil.getCardPrice(card), 1.1);
+        }
+        buyPrice /= cardPool.size();
+        
+        currentPrice = (int) (buyPrice * modifierCost);
+        currentShardPrice = (int) (currentPrice * 0.2f); //casting to int rounds down, idk why this comment originally said it rounds up
         pullUsingGold.setText("[+Pull][+goldcoin] "+ currentPrice);
         pullUsingShards.setText("[+Pull][+shards]" + currentShardPrice);
-        pullUsingGold.setDisabled(!(cardPool.size() > 0) || Current.player().getGold() < totalCost);
+        pullUsingGold.setDisabled(!(cardPool.size() > 0) || Current.player().getGold() < currentPrice);
         pullUsingShards.setDisabled(!(cardPool.size() > 0) || Current.player().getShards() < currentShardPrice);
         editionList.setUserObject(edition);
     }

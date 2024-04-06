@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
+import com.github.tommyettinger.textra.TextraButton;
 import com.google.common.base.Function;
 import forge.Forge;
 import forge.Graphics;
@@ -127,6 +128,7 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
     }
 
     private static class StoreCatalogPage extends CatalogPage {
+
         protected StoreCatalogPage() {
             super(ItemManagerConfig.QUEST_EDITOR_POOL, Localizer.getInstance().getMessage("lblInventory"), CATALOG_ICON);
             Current.player().onGoldChange(() -> lblGold.setText(String.valueOf(AdventurePlayer.current().getGold())));
@@ -158,6 +160,26 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         @Override
         public void refresh() {
             cardManager.setPool(AdventurePlayer.current().getSellableCards());
+        }
+
+        public void doDupSell(int dupCount) {
+        	/*boolean promptToConfirmSale = false;
+            if (promptToConfirmSale) {
+                int profit = 0;
+                int cards = 0;
+                for (PaperCard cardToSell: Current.player().autoSellCards.toFlatList()) {
+                    cards++;
+                    profit += AdventurePlayer.current().cardSellPrice(cardToSell);
+                    
+                }
+                if (!confirmAutosell(profit, cards, AdventurePlayer.current().chang.getTownPriceModifier())) {
+                    return;
+                }
+            }*/
+        	List<PaperCard> remove = AdventurePlayer.current().doDupsell(dupCount);
+        	for (PaperCard card: remove) {
+        		removeCard(card, 1);
+        	}
         }
     }
 
@@ -549,6 +571,14 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
                             }
                             if (!catalogPage.showNoSellCards || !catalogPage.showAutoSellCards || !catalogPage.showCollectionCards) {
                                 addItem(new FMenuItem("Show All cards", Forge.hdbuttons ? FSkinImage.HDPLUS : FSkinImage.PLUS, e1 -> catalogPage.showAllCards()));
+                            }
+                            if (catalogPage instanceof StoreCatalogPage) {
+                                FMenuItem SellToFour = new FMenuItem("Sell down to 4", FSkinImage.MANA_4, e1 -> ((StoreCatalogPage)catalogPage).doDupSell(4));
+                                addItem(SellToFour);
+                                SellToFour.setEnabled(true);
+                                FMenuItem SellToOne = new FMenuItem("Sell down to 1", FSkinImage.MANA_1, e1 -> ((StoreCatalogPage)catalogPage).doDupSell(1));
+                                addItem(SellToOne);
+                                SellToOne.setEnabled(true);
                             }
                         }
                         ((DeckEditorPage) getSelectedPage()).buildDeckMenu(this);

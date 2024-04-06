@@ -16,6 +16,7 @@ import forge.adventure.world.WorldSave;
 import forge.card.ColorSet;
 import forge.deck.CardPool;
 import forge.deck.Deck;
+import forge.deck.DeckFormat;
 import forge.deck.DeckProxy;
 import forge.deck.DeckSection;
 import forge.item.InventoryItem;
@@ -1156,5 +1157,64 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
             cards.remove(cardToSell, 1);
         }
         addGold(profit); //do this as one transaction so as not to get multiple copies of sound effect
+    }
+    public List<PaperCard> getDupsellCards(int maxCount) {
+    	HashMap<String, HashMap<String, List<PaperCard>>> cardsNonFoil = new HashMap<String, HashMap<String, List<PaperCard>>>();
+    	HashMap<String, HashMap<String, List<PaperCard>>> cardsFoil = new HashMap<String, HashMap<String, List<PaperCard>>>();
+    	HashMap<String, HashMap<String, List<PaperCard>>> currentMap;
+    	HashMap<String, List<PaperCard>> currentEditionMap;
+    	List<PaperCard> sellCards = new ArrayList<PaperCard>();
+    	for (PaperCard card: getSellableCards().toFlatList()) {
+    		
+    		if (DeckFormat.canHaveAnyNumberOf(card) || card.getRules().getType().isBasicLand()) {
+    			continue;
+    		}
+    		
+    		currentMap = (card.isFoil())?cardsFoil:cardsNonFoil;
+    		if (!currentMap.containsKey(card.getEdition())) {
+    			currentMap.put(card.getEdition(), new HashMap<String, List<PaperCard>>());
+    		}
+    		currentEditionMap = currentMap.get(card.getEdition());
+    		if (!currentEditionMap.containsKey(card.getCollectorNumberSortingKey())) {
+    			currentEditionMap.put(card.getCollectorNumberSortingKey(), new ArrayList<PaperCard>());
+    		}
+    		
+    		Integer count = DeckFormat.canHaveSpecificNumberInDeck(card);
+    		if (count == null) {
+    			count = maxCount;
+    		}
+    		
+    		if (currentEditionMap.get(card.getCollectorNumberSortingKey()).size() < count) {
+    			currentEditionMap.get(card.getCollectorNumberSortingKey()).add(card);
+    			continue;
+    		} else {
+    			sellCards.add(card);
+    		}
+    		
+    		
+    		
+    	}
+    	System.out.println(sellCards.size());
+    	return sellCards;
+    }
+    
+    public List<PaperCard> doDupsell(int count) {
+        int profit = 0;
+        List<PaperCard> output = getDupsellCards(count);
+        for (PaperCard cardToSell : output) {
+            profit += AdventurePlayer.current().cardSellPrice(cardToSell);
+            cards.remove(cardToSell, 1);
+        }
+        addGold(profit); //do this as one transaction so as not to get multiple copies of sound effect
+        return output;
+    }
+    public int getOwnedCount(PaperCard card) {
+        int count = 0;
+        for (PaperCard cardToCheck : cards.toFlatList()) {
+            if (cardToCheck.getEdition().equals(card.getEdition()) && cardToCheck.getCollectorNumberSortingKey().equals(card.getCollectorNumberSortingKey())) {
+            	count++;
+            }
+        }
+        return count;
     }
 }

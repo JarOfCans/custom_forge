@@ -126,6 +126,7 @@ March of the Machine Jumpstart, -/2/MOM, Meta-Choose(S(MOM Brood 1)Brood 1;S(MOM
 The Lord of the Rings: Tales of Middle-earth, 3/6/LTR, LTR
 The Lord of the Rings: Tales of Middle-earth Jumpstart, -/2/LTR, Meta-Choose(S(LTR Courageous 1)Courageous 1;S(LTR Courageous 2)Courageous 2;S(LTR Tricksy 1)Tricksy 1;S(LTR Tricksy 2)Tricksy 2;S(LTR Mordor 1)Mordor 1;S(LTR Mordor 2)Mordor 1;S(LTR Marauders 1)Marauders 1;S(LTR Marauders 2)Marauders 1;S(LTR Journey 1)Journey 1;S(LTR Journey 2)Journey 2)Themes
 Wilds of Eldraine, 3/6/WOE, WOE
+Wilds of Eldraine Jumpstart, -/2/WOE, Meta-Choose(S(WOE Street Rats)Street Rats;S(WOE Party Crashing)Party Crashing;S(WOE Brutes)Brutes;S(WOE Sorcerer's Apprentice)Sorcerer's Apprentice;S(WOE Celebration)Celebration;S(WOE Brave Bargin)Brave Bargin;S(WOE White Winter)White Winter;S(WOE Enchanted)Enchanted;S(WOE Tricky Fae)Tricky Fae;S(WOE Adventures and Spells)Adventures and Spells;S(WOE Numbing Cold)Numbing Cold;S(WOE Great Tales)Great Tales;S(WOE Munch)Munch;S(WOE Wild Roles)Wild Roles;S(WOE Tracking)Tracking;S(WOE Beanstalk)Beanstalk;S(WOE Nightmares)Nightmares;S(WOE Confectionaries)Confectionaries;S(WOE Lord Skitter's Vermin)Lord Skitter's Vermin;S(WOE Devious Prankle)Devious Prankle)Themes
 Alchemy: Eldraine, 3/6/WOE, YWOE
 The Lost Caverns of Ixalan, 3/6/LCI, LCI
 Alchemy: Ixalan, 3/6/LCI, YLCI

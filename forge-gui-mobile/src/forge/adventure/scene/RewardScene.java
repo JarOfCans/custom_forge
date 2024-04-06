@@ -1,12 +1,17 @@
 package forge.adventure.scene;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.github.tommyettinger.textra.TextraButton;
 import com.github.tommyettinger.textra.TextraLabel;
@@ -56,7 +61,7 @@ public class RewardScene extends UIScene {
     }
 
     Type type;
-    Array<Actor> generated = new Array<>();
+    List<Actor> generated = new ArrayList<Actor>();
     static public final float CARD_WIDTH = 550f;
     static public final float CARD_HEIGHT = 400f;
     static public final float CARD_WIDTH_TO_HEIGHT = CARD_WIDTH / CARD_HEIGHT;
@@ -124,7 +129,7 @@ public class RewardScene extends UIScene {
 
     public void quitScene() {
         //There were reports of memory leaks after using the shop many times, so remove() everything on exit to be sure.
-        for (Actor A : new Array.ArrayIterator<>(generated)) {
+        for (Actor A : generated) {
             if (A instanceof RewardActor) {
                 ((RewardActor) A).removeTooltip();
                 ((RewardActor) A).dispose();
@@ -175,7 +180,7 @@ public class RewardScene extends UIScene {
     }
 
     void clearGenerated() {
-        for (Actor actor : new Array.ArrayIterator<>(generated)) {
+        for (Actor actor : generated) {
             if (!(actor instanceof RewardActor)) {
                 continue;
             }
@@ -217,7 +222,7 @@ public class RewardScene extends UIScene {
 
     private void showLootOrDone() {
         boolean exit = true;
-        for (Actor actor : new Array.ArrayIterator<>(generated)) {
+        for (Actor actor : generated) {
             if (!(actor instanceof RewardActor)) {
                 continue;
             }
@@ -232,8 +237,8 @@ public class RewardScene extends UIScene {
         else if ((type == Type.Loot || type == Type.QuestReward) && !shown) {
             shown = true;
             float delay = 0.09f;
-            generated.shuffle();
-            for (Actor actor : new Array.ArrayIterator<>(generated)) {
+            Collections.shuffle(generated);
+            for (Actor actor : generated) {
                 if (!(actor instanceof RewardActor)) {
                     continue;
                 }
@@ -280,11 +285,11 @@ public class RewardScene extends UIScene {
         clearGenerated();
 
         ShopData data = shopActor.getShopData();
-        Array<Reward> ret = new Array<>();
+        List<Reward> ret = new ArrayList<Reward>();
 
         long shopSeed = changes.getShopSeed(shopActor.getObjectId());
         WorldSave.getCurrentSave().getWorld().getRandom().setSeed(shopSeed);
-        for (RewardData rdata : new Array.ArrayIterator<>(data.rewards)) {
+        for (RewardData rdata : data.rewards) {
             ret.addAll(rdata.generate(false, false));
         }
         shopActor.setRewardData(ret);
@@ -292,14 +297,14 @@ public class RewardScene extends UIScene {
     }
 
     public void loadRewards(Deck deck, Type type, ShopActor shopActor, boolean noSell) {
-        Array<Reward> rewards = new Array<>();
+        List<Reward> rewards = new ArrayList<Reward>();
         for (PaperCard card : deck.getAllCardsInASinglePool().toFlatList()) {
             rewards.add(new Reward(card, noSell));
         }
         loadRewards(rewards, type, shopActor);
     }
 
-    public void loadSelectableRewards(Array<Reward> choices, Type type, int countToSelect) {
+    public void loadSelectableRewards(List<Reward> choices, Type type, int countToSelect) {
         if (type != Type.RewardChoice)
             return;
         this.remainingSelections = countToSelect;
@@ -317,17 +322,18 @@ public class RewardScene extends UIScene {
         this.collectionPool.addAllFlat(AdventurePlayer.current().getCollectionCards(true).toFlatList());
     }
 
-    public void loadRewards(Array<Reward> newRewards, Type type, ShopActor shopActor) {
+    public void loadRewards(List<Reward> newRewards, Type type, ShopActor shopActor) {
         clearSelectable();
         this.type = type;
         doneClicked = false;
+        //ArrayList<Reward> alr = new ArrayList<Reward>(Arrays.asList(newRewards.items));
         updateCollectionPool();
         if (type == Type.Shop) {
             this.shopActor = shopActor;
             this.changes = shopActor.getMapStage().getChanges();
             addToSelectable(restockButton);
         }
-        for (Actor actor : new Array.ArrayIterator<>(generated)) {
+        for (Actor actor : generated) {
             actor.remove();
             if (actor instanceof RewardActor) {
                 ((RewardActor) actor).dispose();
@@ -373,6 +379,10 @@ public class RewardScene extends UIScene {
 
         switch (type) {
             case Shop:
+            	if (newRewards.stream().allMatch(x -> x.getType() != Reward.Type.Item)) {
+            		Collections.shuffle(newRewards);
+            		Collections.sort(newRewards);
+            	}
                 doneButton.setText("[+OK]");
                 String shopName = shopActor.getDescription();
                 if ((shopName != null && !shopName.isEmpty())) {
@@ -390,6 +400,9 @@ public class RewardScene extends UIScene {
                 break;
             case QuestReward:
             case Loot:
+            	//newRewards.reverse();
+            	Collections.shuffle(newRewards);
+            	Collections.sort(newRewards);
                 headerLabel.setVisible(false);
                 headerLabel.setText("");
                 restockButton.setVisible(false);
@@ -409,10 +422,10 @@ public class RewardScene extends UIScene {
             }
             //cardHeight=targetHeight/i;
             cardWidth = h / CARD_WIDTH_TO_HEIGHT;
-            newArea = newRewards.size * cardWidth * cardHeight;
+            newArea = newRewards.size() * cardWidth * cardHeight;
 
             int rows = (int) (targetHeight / cardHeight);
-            int cols = (int) Math.ceil(newRewards.size / (double) rows);
+            int cols = (int) Math.ceil(newRewards.size() / (double) rows);
             if (newArea > oldCardArea && newArea <= targetArea && rows * cardHeight < targetHeight && cols * cardWidth < targetWidth) {
                 oldCardArea = newArea;
                 numberOfRows = rows;
@@ -460,7 +473,7 @@ public class RewardScene extends UIScene {
 
         float spacing = 2;
         int i = 0;
-        for (Reward reward : new Array.ArrayIterator<>(newRewards)) {
+        for (Reward reward : newRewards) {
             boolean skipCard = false;
             if (type == Type.Shop) {
                 if (changes.wasCardBought(shopActor.getObjectId(), i)) {
@@ -472,14 +485,15 @@ public class RewardScene extends UIScene {
             int currentRow = (i / numberOfColumns);
             float lastRowXAdjust = 0;
             if (currentRow == numberOfRows - 1) {
-                int lastRowCount = newRewards.size % numberOfColumns;
+                int lastRowCount = newRewards.size() % numberOfColumns;
                 if (lastRowCount != 0)
                     lastRowXAdjust = ((numberOfColumns * cardWidth) - (lastRowCount * cardWidth)) / 2;
             }
 
             RewardActor actor = new RewardActor(reward, type == Type.Loot || type == Type.QuestReward, type, type == Type.Shop && (numberOfRows > 2 || numberOfColumns > 2));
-
-            actor.setBounds(lastRowXAdjust + xOff + cardWidth * (i % numberOfColumns) + spacing, yOff + cardHeight * currentRow + spacing, cardWidth - spacing * 2, cardHeight - spacing * 2);
+            //System.out.println("xoff: " + xOff);
+            //System.out.println("cardWidth: " + cardWidth);
+            actor.setBounds(-lastRowXAdjust + xOff + cardWidth * ((numberOfColumns - 1) - (i % numberOfColumns)) + spacing, yOff + cardHeight * currentRow + spacing, cardWidth - spacing * 2, cardHeight - spacing * 2);
 
             if (type == Type.Shop) {
                 if (currentRow != ((i + 1) / numberOfColumns))
@@ -515,7 +529,7 @@ public class RewardScene extends UIScene {
 
 
     private void updateBuyButtons() {
-        for (Actor actor : new Array.ArrayIterator<>(generated)) {
+        for (Actor actor : generated) {
             if (actor instanceof BuyButton) {
                 ((BuyButton) actor).update();
             }
@@ -523,7 +537,7 @@ public class RewardScene extends UIScene {
     }
 
     private void updateChooseRewardButtons() {
-        for (Actor actor : new Array.ArrayIterator<>(generated)) {
+        for (Actor actor : generated) {
             if (actor instanceof ChooseRewardButton) {
                 ((ChooseRewardButton) actor).update();
             }

@@ -1,13 +1,14 @@
 package forge.adventure.util;
 
 import forge.adventure.data.ItemData;
+import forge.card.CardRarity;
 import forge.deck.Deck;
 import forge.item.PaperCard;
 
 /**
  * Reward class that may contain gold,cards or items
  */
-public class Reward {
+public class Reward implements Comparable<Reward> {
     public enum Type {
         Card,
         Gold,
@@ -60,4 +61,41 @@ public class Reward {
     public Type getType()      { return type;  }
     public int getCount()      { return count; }
     public boolean isNoSell()      { return isNoSell; }
+	@Override
+	public int compareTo(Reward o) {
+		//System.out.println(o.getCard().getName() + o.getNumValue() + " vs " + this.getCard().getName() + this.getNumValue());
+		return o.getNumValue() - this.getNumValue();
+	}
+	
+	private int getNumValue() {
+		switch (type) {
+		case Card:
+			switch (card.getRarity()) {
+			case Common:
+				return 1;
+			case Uncommon:
+				return 2;
+			case Rare:
+				return 3;
+			case MythicRare:
+				return 4;
+			case Special:
+				return 8;
+			case BasicLand:
+				return 10;
+			default:
+				return 10;
+			}
+		case Gold:
+			return 5;
+		case Shards:
+			return 6;
+		case Life:
+			return 7;
+		case CardPack:
+		case Item:
+			return 9;
+		}
+		return 9;
+	}
 }

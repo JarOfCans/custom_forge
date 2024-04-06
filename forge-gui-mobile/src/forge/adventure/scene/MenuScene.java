@@ -21,6 +21,7 @@ import forge.card.ColorSet;
 import forge.util.Localizer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MenuScene
@@ -95,7 +96,7 @@ public class MenuScene extends UIScene {
                 Current.player().advanceQuestFlag(E.advanceQuestFlag);
             }
             if (E.grantRewards != null && E.grantRewards.length > 0) {
-                Array<Reward> ret = new Array<Reward>();
+                List<Reward> ret = new ArrayList<Reward>();
                 for (RewardData rdata : E.grantRewards) {
                     ret.addAll(rdata.generate(false, true));
                 }

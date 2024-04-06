@@ -382,7 +382,7 @@ public class MapDialog {
                 EN.effect = E.setEffect;
             }
             if (E.grantRewards != null && E.grantRewards.length > 0) {
-                Array<Reward> ret = new Array<Reward>();
+                List<Reward> ret = new ArrayList<Reward>();
                 for(RewardData rdata:E.grantRewards) {
                     ret.addAll(rdata.generate(false, true));
                 }
