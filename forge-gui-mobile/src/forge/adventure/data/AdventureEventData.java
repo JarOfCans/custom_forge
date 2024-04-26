@@ -36,7 +36,7 @@ public class AdventureEventData implements Serializable {
     public int rounds;
     public int currentRound;
     public AdventureEventRules eventRules = new AdventureEventRules();
-    public AdventureEventReward[] rewards;
+    public List<AdventureEventReward> rewards;
     public int eventOrigin;
     public String sourceID;
     public long eventSeed;
@@ -60,7 +60,7 @@ public class AdventureEventData implements Serializable {
         participants = other.participants.clone();
         rounds = other.rounds;
         eventRules = other.eventRules;
-        rewards = other.rewards.clone();
+        rewards = new ArrayList<AdventureEventReward>(other.rewards);
         eventOrigin = other.eventOrigin;
         sourceID = other.sourceID;
         eventSeed = other.eventSeed;
@@ -103,12 +103,12 @@ public class AdventureEventData implements Serializable {
             cardBlockName = cardBlock.getName();
 
             //Below all to be fully generated in later release
-            rewardPacks = getRewardPacks(3);
+            rewardPacks = getRewardPacks(6);
             generateParticipants(7);
             if (cardBlock != null){
                 packConfiguration = getBoosterConfiguration(cardBlock);
 
-                rewards = new AdventureEventData.AdventureEventReward[5];
+                rewards = new ArrayList<AdventureEventData.AdventureEventReward>();
                 AdventureEventData.AdventureEventReward r0 = new AdventureEventData.AdventureEventReward();
                 AdventureEventData.AdventureEventReward r1 = new AdventureEventData.AdventureEventReward();
                 AdventureEventData.AdventureEventReward r2 = new AdventureEventData.AdventureEventReward();
@@ -117,19 +117,27 @@ public class AdventureEventData implements Serializable {
                 r0.minWins = 0;
                 r0.maxWins = 3;
                 r0.cardRewards = new Deck[]{rewardPacks[0]};
-                rewards[0] = r0;
+                rewards.add(r0);
+                
                 r1.minWins = 1;
                 r1.maxWins = 3;
                 r1.cardRewards = new Deck[]{rewardPacks[1]};
-                rewards[1] = r1;
+                rewards.add(r1);
+                
                 r2.minWins = 2;
                 r2.maxWins = 3;
-                r2.cardRewards = new Deck[]{rewardPacks[2]};
-                rewards[2] = r2;
+                r2.cardRewards = new Deck[]{rewardPacks[2], rewardPacks[3]};
+                rewards.add(r2);
+                
+                r3.minWins = 3;
+                r3.maxWins = 3;
+                r3.cardRewards = new Deck[]{rewardPacks[4], rewardPacks[5]};
+                rewards.add(r3);
+                
                 r4.minWins = 3;
                 r4.maxWins = 3;
                 r4.itemRewards = new String[]{"Challenge Coin"};
-                rewards[4] = r4;
+                rewards.add(r4);
             }
         }
         else if (format.equals(AdventureEventController.EventFormat.Jumpstart)) {
@@ -239,12 +247,15 @@ public class AdventureEventData implements Serializable {
                 }
             }
 
-            rewards = new AdventureEventData.AdventureEventReward[5];
+            
+            List<Deck> bonusJumpStarts = AdventureEventController.instance().getJumpstartBoosters(cardBlock, 3);
+            rewards = new ArrayList<AdventureEventData.AdventureEventReward>();
             AdventureEventData.AdventureEventReward r0 = new AdventureEventData.AdventureEventReward();
             AdventureEventData.AdventureEventReward r1 = new AdventureEventData.AdventureEventReward();
             AdventureEventData.AdventureEventReward r2 = new AdventureEventData.AdventureEventReward();
             AdventureEventData.AdventureEventReward r3 = new AdventureEventData.AdventureEventReward();
             AdventureEventData.AdventureEventReward r4 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r5 = new AdventureEventData.AdventureEventReward();
 
             RewardData r0gold = new RewardData();
             r0gold.count = 100;
@@ -252,27 +263,36 @@ public class AdventureEventData implements Serializable {
             r0.rewards = new RewardData[]{r0gold};
             r0.minWins = 1;
             r0.maxWins = 1;
-            rewards[0] = r0;
+            rewards.add(r0);
+            
             RewardData r1gold = new RewardData();
-            r1gold.count = 200;
+            r1gold.count = 250;
             r1gold.type = "gold";
             r1.rewards = new RewardData[]{r1gold};
             r1.minWins = 2;
-            r1.maxWins = 2;
-            rewards[1] = r1;
+            r1.maxWins = 3;
+            rewards.add(r1);
+            
             r2.minWins = 3;
             r2.maxWins = 3;
-            RewardData r2gold = new RewardData();
-            r2gold.count = 500;
-            r2gold.type = "gold";
-            r2.rewards = new RewardData[]{r2gold};
-            rewards[2] = r2;
+            r2.itemRewards = new String[]{"Bronze Challenge Coin"};
+            rewards.add(r2);
+            
             r3.minWins = 0;
             r3.maxWins = 3;
-            rewards[3] = r3;
-            r3.minWins = 0;
-            r3.maxWins = 3;
-            rewards[4] = r4;
+            r3.cardRewards = new Deck[]{bonusJumpStarts.get(0)};
+            rewards.add(r3);
+            
+            r4.minWins = 2;
+            r4.maxWins = 3;
+            r4.cardRewards = new Deck[]{bonusJumpStarts.get(1)};
+            rewards.add(r4);
+            
+            r5.minWins = 3;
+            r5.maxWins = 3;
+            r5.cardRewards = new Deck[]{bonusJumpStarts.get(2)};
+            rewards.add(r5);
+            
             //r3 will be the selected card packs
         }
     }
@@ -503,7 +523,7 @@ public class AdventureEventData implements Serializable {
 
         //Todo: this should be automatic... "somehow"
 
-        if (format == AdventureEventController.EventFormat.Draft) {
+        /*if (format == AdventureEventController.EventFormat.Draft) {
 
             rewards[3] = new AdventureEventReward();
             rewards[3].minWins = 0;
@@ -512,15 +532,15 @@ public class AdventureEventData implements Serializable {
             draftedDeck.setComment("Prize for completing draft event");
             rewards[3].cardRewards = new Deck[]{draftedDeck};
 
-        }
+        }*/
 
-        else if (format == AdventureEventController.EventFormat.Jumpstart) {
-
-            rewards[3] = new AdventureEventReward();
-            rewards[3].minWins = 0;
-            rewards[3].maxWins = 3;
+        if (format == AdventureEventController.EventFormat.Jumpstart) {
+        	AdventureEventReward r3 = new AdventureEventReward();
+            r3.minWins = 0;
+            r3.maxWins = 3;
             registeredDeck.setName("Jumpstart Event Packs");
-            rewards[3].cardRewards = new Deck[]{registeredDeck};
+            r3.cardRewards = new Deck[]{registeredDeck};
+            rewards.add(r3);
             //rewards[3].isNoSell = false;
 
         }
@@ -751,8 +771,8 @@ public class AdventureEventData implements Serializable {
                     acceptsChallengeCoin = false;
                     acceptsSilverChallengeCoin = false;
                     acceptsBronzeChallengeCoin = true;
-                    baseGoldEntry = 200;
-                    baseShardEntry = 10;
+                    baseGoldEntry = 400;
+                    baseShardEntry = 20;
                     startingLife = 15;
                     allowsAddBasicLands = false;
                     break;

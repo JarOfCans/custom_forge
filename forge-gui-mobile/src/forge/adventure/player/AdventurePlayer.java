@@ -1180,7 +1180,7 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
     		}
     		
     		Integer count = DeckFormat.canHaveSpecificNumberInDeck(card);
-    		if (count == null) {
+    		if (count == null || count < maxCount) {
     			count = maxCount;
     		}
     		
@@ -1216,5 +1216,15 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
             }
         }
         return count;
+    }
+    public boolean atOwnCount(PaperCard card, int maxCount) {
+		if (DeckFormat.canHaveAnyNumberOf(card) || card.getRules().getType().isBasicLand()) {
+			return false;
+		}
+		Integer count = DeckFormat.canHaveSpecificNumberInDeck(card);
+		if (count == null || count < maxCount) {
+			count = maxCount;
+		}
+		return getOwnedCount(card) >= count;
     }
 }

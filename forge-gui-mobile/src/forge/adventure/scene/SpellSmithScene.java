@@ -350,10 +350,10 @@ public class SpellSmithScene extends UIScene {
         }).collect(Collectors.toList());
         //Stream method is very fast, might not be necessary to precache anything.
         if (!edition.isEmpty())
-        	modifierCost *= 1.2f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
+        	modifierCost *= 1.1f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
         if (colorFilter.size() > 0)
-        	modifierCost *= 1.5f; //Color filter cost multiplier.
-        if (!rarity.isEmpty()) { //Rarity cost multiplier.
+        	modifierCost *= 1.2f; //Color filter cost multiplier.
+        /*if (!rarity.isEmpty()) { //Rarity cost multiplier.
             switch (rarity) {
                 case "C":
                 	modifierCost *= 2f;
@@ -370,16 +370,16 @@ public class SpellSmithScene extends UIScene {
                 default:
                     break;
             }
-        }
-        if (cost_low > -1) modifierCost *= 1.5f; //And CMC cost multiplier.
+        }*/
+        if (cost_low > -1) modifierCost *= 1.2f; //And CMC cost multiplier.
 
         cardPool = StreamSupport.stream(P.spliterator(), false).collect(Collectors.toList());
         poolSize.setText(((cardPool.size() > 0 ? "[/][FOREST]" : "[/][RED]")) + cardPool.size() + " possible card" + (cardPool.size() != 1 ? "s" : ""));
-        int buyPrice = 10000;
+        int buyPrice = 1000;
         for (PaperCard card: cardPool) {
         	buyPrice += Math.pow(CardUtil.getCardPrice(card), 1.1);
         }
-        buyPrice /= cardPool.size();
+        buyPrice /= Math.max(cardPool.size(),1);
         
         currentPrice = (int) (buyPrice * modifierCost);
         currentShardPrice = (int) (currentPrice * 0.2f); //casting to int rounds down, idk why this comment originally said it rounds up

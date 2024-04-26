@@ -8819,7 +8819,20 @@
 			"type": "deckCard",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 4
+			"addMaxCount": 1
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 3,
+			"colors": [
+				"White",
+				"Blue"
+			],
+			"rarity": [
+				"Common",
+				"Uncommon"
+			]
 		},
 		{
 			"type": "gold",
@@ -8829,14 +8842,36 @@
 		},
 		{
 			"type": "card",
-			"probability": 0.5,
-			"count": 3,
+			"probability": 1,
+			"count": 1,
 			"colors": [
 				"White",
 				"Blue"
 			],
 			"rarity": [
+				"Rare",
 				"Mythic Rare"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"subTypes": [
+				"Sphinx"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"rarity": [
+				"Rare",
+				"Mythic Rare",
+				"Special"
+			],
+			"cardTypes": [
+				"Land"
 			]
 		}
 	],

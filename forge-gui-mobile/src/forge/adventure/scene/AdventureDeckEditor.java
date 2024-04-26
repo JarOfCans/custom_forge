@@ -98,6 +98,7 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         private void afterCardPicked(PaperCard card) {
             BoosterDraft draft = getDraft();
             draft.setChoice(card);
+            AdventurePlayer.current().addCard(card);
 
             if (draft.hasNextChoice()) {
                 refresh();
