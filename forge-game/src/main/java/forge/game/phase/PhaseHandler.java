@@ -299,7 +299,7 @@ public class PhaseHandler implements java.io.Serializable {
 
                 case COMBAT_DECLARE_ATTACKERS:
                     combat.initConstraints();
-                    game.getStack().freezeStack();
+                    game.getStack().freezeStack(null);
                     declareAttackersTurnBasedAction();
                     game.getStack().unfreezeStack();
 
@@ -308,7 +308,7 @@ public class PhaseHandler implements java.io.Serializable {
 
                 case COMBAT_DECLARE_BLOCKERS:
                     combat.removeAbsentCombatants();
-                    game.getStack().freezeStack();
+                    game.getStack().freezeStack(null);
                     declareBlockersTurnBasedAction();
                     game.getStack().unfreezeStack();
                     break;
@@ -375,8 +375,9 @@ public class PhaseHandler implements java.io.Serializable {
                         final CardCollection discarded = new CardCollection();
                         List<Card> discardedBefore = Lists.newArrayList(playerTurn.getDiscardedThisTurn());
                         for (Card c : playerTurn.getController().chooseCardsToDiscardToMaximumHandSize(numDiscard)) {
-                            if (playerTurn.discard(c, null, false, moveParams) != null) {
-                                discarded.add(c);
+                            Card moved = playerTurn.discard(c, null, false, moveParams);
+                            if (moved != null) {
+                                discarded.add(moved);
                             }
                         }
                         table.triggerChangesZoneAll(game, null);
@@ -1032,6 +1033,7 @@ public class PhaseHandler implements java.io.Serializable {
                         // state-based effects check could lead to game over
                         return;
                     }
+                    game.stashGameState();
 
                     chosenSa = pPlayerPriority.getController().chooseSpellAbilityToPlay();
 
@@ -1049,12 +1051,18 @@ public class PhaseHandler implements java.io.Serializable {
                     if (DEBUG_PHASES) {
                         System.out.print("... " + pPlayerPriority + " plays " + chosenSa);
                     }
+
+                    boolean rollback = false;
                     for (SpellAbility sa : chosenSa) {
                         Card saHost = sa.getHostCard();
                         final Zone originZone = saHost.getZone();
 
                         if (pPlayerPriority.getController().playChosenSpellAbility(sa)) {
+                            // 117.3c If a player has priority when they cast a spell, activate an ability, [play a land]
+                            // that player receives priority afterward.
                             pFirstPriority = pPlayerPriority; // all opponents have to pass before stack is allowed to resolve
+                        } else if (game.EXPERIMENTAL_RESTORE_SNAPSHOT) {
+                            rollback = true;
                         }
 
                         saHost = game.getCardState(saHost);
@@ -1068,7 +1076,10 @@ public class PhaseHandler implements java.io.Serializable {
                             triggerList.triggerChangesZoneAll(game, sa);
                         }
                     }
-                    game.copyLastState();
+                    // Don't copy last state if we're in the middle of rolling back a spell...
+                    if (!rollback) {
+                        game.copyLastState();
+                    }
                     loopCount++;
                 } while (loopCount < 999 || !pPlayerPriority.getController().isAI());
 

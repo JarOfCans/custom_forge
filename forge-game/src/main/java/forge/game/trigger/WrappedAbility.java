@@ -67,6 +67,8 @@ public class WrappedAbility extends Ability {
             ApiType.SacrificeAll,
             ApiType.Pump,
 
+            ApiType.DealDamage, // checked
+
             ApiType.Regenerate, // Updated
             ApiType.RegenerateAll, // No Triggered
             ApiType.Regeneration, // Replacement Effect only
@@ -490,9 +492,7 @@ public class WrappedAbility extends Ability {
             }
         }
 
-        if (!regtrig.hasParam("NoTimestampCheck")) {
-            timestampCheck();
-        }
+        timestampCheck();
 
         getActivatingPlayer().getController().playSpellAbilityNoStack(sa, false);
     }
@@ -512,7 +512,7 @@ public class WrappedAbility extends Ability {
             if (ev.getValue() instanceof Card) {
                 Card card = (Card) ev.getValue();
                 Card current = game.getCardState(card);
-                if (card.isInPlay() && current.isInPlay() && current.getTimestamp() != card.getTimestamp()) {
+                if (card.isInPlay() && current.isInPlay() && !current.equalsWithGameTimestamp(card)) {
                     // TODO: figure out if NoTimestampCheck should be the default for ChangesZone triggers
                     sa.getTriggeringObjects().remove(ev.getKey());
                 }

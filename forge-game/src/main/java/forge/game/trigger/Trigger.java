@@ -373,6 +373,10 @@ public abstract class Trigger extends TriggerReplacementBase {
                 getActivationsThisTurn() >= Integer.parseInt(getParam("ActivationLimit"))) {
             return false;
         }
+        if (hasParam("GameActivationLimit") && 
+            getActivationsThisGame() >= Integer.parseInt(getParam("GameActivationLimit"))) {
+                return false;
+        }
         return true;
     }
 
@@ -441,6 +445,11 @@ public abstract class Trigger extends TriggerReplacementBase {
             }
             if (attacked == null || !attacked.isValid("Player.withMostLife",
                     this.getHostCard().getController(), this.getHostCard(), null)) {
+                return false;
+            }
+        } else if ("AttackerHasUnattackedOpp".equals(condition)) {
+            Player attacker = (Player) runParams.get(AbilityKey.AttackingPlayer);
+            if (game.getCombat().getAttackersAndDefenders().values().containsAll(attacker.getOpponents())) {
                 return false;
             }
         }
@@ -572,6 +581,10 @@ public abstract class Trigger extends TriggerReplacementBase {
 
     public int getActivationsThisTurn() {
         return hostCard.getAbilityActivatedThisTurn(this.getOverridingAbility());
+    }
+
+    public int getActivationsThisGame() {
+        return hostCard.getAbilityActivatedThisGame(this.getOverridingAbility());
     }
 
     public void triggerRun() {

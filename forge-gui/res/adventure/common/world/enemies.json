@@ -16133,7 +16133,7 @@
 			"type": "card",
 			"probability": 1,
 			"count": 2,
-			"addMaxCount": 2,
+			"addMaxCount": 1,
 			"subTypes": [
 				"Goblin"
 			],
@@ -16155,7 +16155,8 @@
 		{
 			"type": "deckCard",
 			"probability": 1,
-			"count": 1,
+			"count": 2,
+			"addMaxCount": 1,
 			"rarity": [
 				"common",
 				"uncommon"
@@ -16191,8 +16192,8 @@
 		{
 			"type": "gold",
 			"probability": 1,
-			"count": 25,
-			"addMaxCount": 110
+			"count": 75,
+			"addMaxCount": 60
 		},
 		{
 			"type": "card",
@@ -16203,7 +16204,16 @@
 				"uncommon"
 			],
 			"cardTypes": [
-				"land"
+				"Land"
+			]
+		},
+		{
+			"type": "card",
+			"probability": 1,
+			"count": 1,
+			"addMaxCount": 2,
+			"cardTypes": [
+				"Artifact"
 			]
 		}
 	],

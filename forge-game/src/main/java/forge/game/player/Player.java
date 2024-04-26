@@ -92,13 +92,12 @@ public class Player extends GameEntity implements Comparable<Player> {
     private int landsPlayedLastTurn;
     private int investigatedThisTurn;
     private int surveilThisTurn;
-    private int cycledThisTurn;
-    private int equippedThisTurn;
     private int lifeLostThisTurn;
     private int lifeLostLastTurn;
     private int lifeGainedThisTurn;
     private int lifeGainedTimesThisTurn;
     private int lifeGainedByTeamThisTurn;
+    private int committedCrimeThisTurn;
     private int numManaShards;
     private int numPowerSurgeLands;
     private int numLibrarySearchedOwn; //The number of times this player has searched his library
@@ -1329,6 +1328,12 @@ public class Player extends GameEntity implements Comparable<Player> {
         view.updateZone(zone);
     }
 
+    public void updateAllZonesForView() {
+        for (PlayerZone zone : zones.values()) {
+            updateZoneForView(zone);
+        }
+    }
+
     public final CardCollectionView getCardsIn(final ZoneType zoneType) {
         return getCardsIn(zoneType, true);
     }
@@ -2475,8 +2480,6 @@ public class Player extends GameEntity implements Comparable<Player> {
         resetLandsPlayedThisTurn();
         resetInvestigatedThisTurn();
         resetSurveilThisTurn();
-        resetCycledThisTurn();
-        resetEquippedThisTurn();
         resetDiscardedThisTurn();
         resetSacrificedThisTurn();
         resetVenturedThisTurn();
@@ -2493,6 +2496,8 @@ public class Player extends GameEntity implements Comparable<Player> {
         setLibrarySearched(0);
         setNumManaConversion(0);
 
+        setCommitedCrimeThisTurn(0);
+
         damageReceivedThisTurn.clear();
         planeswalkedToThisTurn.clear();
 
@@ -2508,20 +2513,6 @@ public class Player extends GameEntity implements Comparable<Player> {
     public boolean canCastSorcery() {
         PhaseHandler now = game.getPhaseHandler();
         return now.isPlayerTurn(this) && now.getPhase().isMain() && game.getStack().isEmpty();
-    }
-
-    //NOTE: for conditions the stack must only have the sa being checked
-    public boolean couldCastSorcery(final SpellAbility sa) {
-        final Card source = sa.getRootAbility().getHostCard();
-
-        for (final Card card : game.getCardsIn(ZoneType.Stack)) {
-            if (!card.equals(source)) {
-                return false;
-            }
-        }
-
-        PhaseHandler now = game.getPhaseHandler();
-        return now.isPlayerTurn(this) && now.getPhase().isMain();
     }
 
     public final PlayerController getController() {
@@ -2599,6 +2590,10 @@ public class Player extends GameEntity implements Comparable<Player> {
         if (controller != null) {
             throw new IllegalStateException("Controller creator already assigned");
         }
+        dangerouslySetController(ctrlr);
+    }
+
+    public final void dangerouslySetController(PlayerController ctrlr) {
         controller = ctrlr;
         updateAvatar();
         updateSleeve();
@@ -2970,23 +2965,23 @@ public class Player extends GameEntity implements Comparable<Player> {
     public boolean allCardsUniqueManaSymbols() {
         for (final Card c : getCardsIn(ZoneType.Library)) {
             Set<CardStateName> cardStateNames = c.isSplitCard() ?  EnumSet.of(CardStateName.LeftSplit, CardStateName.RightSplit) : EnumSet.of(CardStateName.Original);
-        	Set<ManaCostShard> coloredManaSymbols = new HashSet<>();
-        	Set<Integer> genericManaSymbols = new HashSet<>();
+            Set<ManaCostShard> coloredManaSymbols = new HashSet<>();
+            Set<Integer> genericManaSymbols = new HashSet<>();
 
-        	for (final CardStateName cardStateName : cardStateNames) {
-        		final ManaCost manaCost = c.getState(cardStateName).getManaCost();
-	        	for (final ManaCostShard manaSymbol : manaCost) {
-	        		if (!coloredManaSymbols.add(manaSymbol)) {
-	        			return false;
-	        		}
-	        	}
-	        	int generic = manaCost.getGenericCost();
-	        	if (generic > 0 || manaCost.getCMC() == 0) {
-	        		if (!genericManaSymbols.add(Integer.valueOf(generic))) {
-	        			return false;
-	        		}
-	        	}
-        	}
+            for (final CardStateName cardStateName : cardStateNames) {
+                final ManaCost manaCost = c.getState(cardStateName).getManaCost();
+                for (final ManaCostShard manaSymbol : manaCost) {
+                    if (!coloredManaSymbols.add(manaSymbol)) {
+                        return false;
+                    }
+                }
+                int generic = manaCost.getGenericCost();
+                if (generic > 0 || manaCost.getCMC() == 0) {
+                    if (!genericManaSymbols.add(Integer.valueOf(generic))) {
+                        return false;
+                    }
+                }
+            }
         }
         return true;
     }
@@ -3029,9 +3024,9 @@ public class Player extends GameEntity implements Comparable<Player> {
                             legalCompanions.add(c);
                         }
                     } else if (specialRules.equals("UniqueManaSymbols")) {
-                    	if (this.allCardsUniqueManaSymbols()) {
-                    		legalCompanions.add(c);
-                    	}
+                        if (this.allCardsUniqueManaSymbols()) {
+                            legalCompanions.add(c);
+                        }
                     } else if (specialRules.equals("DeckSizePlus20")) {
                         // +20 deck size to min deck size
                         if (deckSize >= minSize + 20) {
@@ -3115,7 +3110,7 @@ public class Player extends GameEntity implements Comparable<Player> {
             else if (game.getRules().hasAppliedVariant(GameType.Oathbreaker)) {
                 moved += " | Destination$ Graveyard,Exile,Hand,Library | Description$ If a commander would be exiled or put into hand, graveyard, or library from anywhere, that player may put it into the command zone instead.";
             } else {
-            	// rule 903.9b
+                // rule 903.9b
                 moved += " | Destination$ Hand,Library | Description$ If a commander would be put into its owner's hand or library from anywhere, its owner may put it into the command zone instead.";
             }
             ReplacementEffect re = ReplacementHandler.parseReplacement(moved, eff, true);
@@ -3135,7 +3130,7 @@ public class Player extends GameEntity implements Comparable<Player> {
         final PlayerZone com = getZone(ZoneType.Command);
         final String name = "Planar Dice";
         final Card eff = new Card(game.nextCardId(), game);
-        eff.setTimestamp(game.getNextTimestamp());
+        eff.setGameTimestamp(game.getNextTimestamp());
         eff.setName(name);
         eff.setOwner(this);
         eff.setImmutable(true);
@@ -3155,7 +3150,7 @@ public class Player extends GameEntity implements Comparable<Player> {
         SpellAbility planarRoll = AbilityFactory.getAbility(specialA, eff);
         planarRoll.setSVar("X", "Count$PlanarDiceSpecialActionThisTurn");
         eff.addSpellAbility(planarRoll);
-        
+
         eff.updateStateForView();
         com.add(eff);
         this.updateZoneForView(com);
@@ -3692,31 +3687,11 @@ public class Player extends GameEntity implements Comparable<Player> {
     }
 
     public void addCycled(SpellAbility sp) {
-        cycledThisTurn++;
-
         Map<AbilityKey, Object> cycleParams = AbilityKey.mapFromCard(CardCopyService.getLKICopy(game.getCardState(sp.getHostCard())));
         cycleParams.put(AbilityKey.Cause, sp);
         cycleParams.put(AbilityKey.Player, this);
-        cycleParams.put(AbilityKey.FirstTime, cycledThisTurn == 1);
+        cycleParams.put(AbilityKey.FirstTime, CardUtil.getThisTurnActivated("Activated.Cycling+YouCtrl", sp.getHostCard(), sp, this).size() == 1);
         game.getTriggerHandler().runTrigger(TriggerType.Cycled, cycleParams, false);
-    }
-
-    public int getCycledThisTurn() {
-        return cycledThisTurn;
-    }
-
-    public void resetCycledThisTurn() {
-        cycledThisTurn = 0;
-    }
-
-    public void addEquipped() { equippedThisTurn++; }
-
-    public int getEquippedThisTurn() {
-        return equippedThisTurn;
-    }
-
-    public void resetEquippedThisTurn() {
-        equippedThisTurn = 0;
     }
 
     public boolean hasUrzaLands() {
@@ -3776,12 +3751,13 @@ public class Player extends GameEntity implements Comparable<Player> {
             game.getAction().moveTo(ZoneType.Hand, c, sa, params);
         } else if (c.isInZone(ZoneType.Hand)) { // Discard and Draw
             List<Card> discardedBefore = Lists.newArrayList(getDiscardedThisTurn());
-            if (discard(c, sa, true, params) != null) {
+            Card moved = discard(c, sa, true, params);
+            if (moved != null) {
                 // Change this if something would make multiple player learn at the same time
 
                 // Discard Trigger outside Effect
                 final Map<AbilityKey, Object> runParams = AbilityKey.mapFromPlayer(this);
-                runParams.put(AbilityKey.Cards, new CardCollection(c));
+                runParams.put(AbilityKey.Cards, new CardCollection(moved));
                 runParams.put(AbilityKey.Cause, sa);
                 runParams.put(AbilityKey.DiscardedBefore, discardedBefore);
                 if (params != null) {
@@ -3792,5 +3768,22 @@ public class Player extends GameEntity implements Comparable<Player> {
                 drawCards(1, sa, params);
             }
         }
+    }
+
+    public void commitCrime() {
+        //boolean firstTime = this.commitedCrimeThisTurn == 0;
+        committedCrimeThisTurn++;
+
+        // Run triggers
+        final Map<AbilityKey, Object> runParams = AbilityKey.mapFromPlayer(this);
+        game.getTriggerHandler().runTrigger(TriggerType.CommitCrime, runParams, false);
+
+    }
+
+    public int getCommittedCrimeThisTurn() {
+        return committedCrimeThisTurn;
+    }
+    public void setCommitedCrimeThisTurn(int v) {
+        committedCrimeThisTurn = v;
     }
 }

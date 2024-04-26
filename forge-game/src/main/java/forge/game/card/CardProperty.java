@@ -127,7 +127,7 @@ public class CardProperty {
             if (i == -1) {
                 return false;
             }
-            if (property.contains("Strict") && !chosen.get(i).equalsWithTimestamp(card)) {
+            if (property.contains("Strict") && !chosen.get(i).equalsWithGameTimestamp(card)) {
                 return false;
             }
         } else if (property.equals("nonChosenCard")) {
@@ -187,7 +187,7 @@ public class CardProperty {
             for (Object o : spellAbility.getTriggerRemembered()) {
                 if (o instanceof Card) {
                     Card trigRem = (Card) o;
-                    if (trigRem.equalsWithTimestamp(card)) {
+                    if (trigRem.equalsWithGameTimestamp(card)) {
                         found = true;
                         break;
                     }
@@ -305,7 +305,7 @@ public class CardProperty {
                 return false;
             }
             SpellAbility sp = (SpellAbility)spellAbility;
-            if (!sp.isTargeting(card)) {
+            if (!sp.getRootAbility().isTargeting(card)) {
                 return false;
             }
         } else if (property.equals("TargetedPlayerCtrl")) {
@@ -387,7 +387,7 @@ public class CardProperty {
                 }
             }
         } else if (property.startsWith("StrictlyOther")) {
-            if (card.equalsWithTimestamp(source)) {
+            if (card.equalsWithGameTimestamp(source)) {
                 return false;
             }
         } else if (property.startsWith("Other")) {
@@ -395,7 +395,7 @@ public class CardProperty {
                 return false;
             }
         } else if (property.startsWith("StrictlySelf")) {
-            if (!card.equalsWithTimestamp(source)) {
+            if (!card.equalsWithGameTimestamp(source)) {
                 return false;
             }
         } else if (property.startsWith("Self")) {
@@ -411,7 +411,7 @@ public class CardProperty {
             }
         } else if (property.startsWith("ExiledWithSourceLKI")) {
             List<Card> exiled = card.getZone().getCardsAddedThisTurn(null);
-            exiled.sort(CardPredicates.compareByTimestamp());
+            exiled.sort(CardPredicates.compareByGameTimestamp());
             int idx = exiled.lastIndexOf(card);
             if (idx == -1) {
                 return false;
@@ -430,7 +430,7 @@ public class CardProperty {
                     host = spellAbility.getHostCard();
                 }
             }
-            if (!lkiExiled.getExiledWith().equalsWithTimestamp(host)) {
+            if (!lkiExiled.getExiledWith().equalsWithGameTimestamp(host)) {
                 return false;
             }
         } else if (property.startsWith("ExiledWithSource")) {
@@ -446,14 +446,14 @@ public class CardProperty {
                     host = spellAbility.getHostCard();
                 }
             }
-            if (!source.hasExiledCard(card) || !card.getExiledWith().equalsWithTimestamp(host)) {
+            if (!source.hasExiledCard(card) || !card.getExiledWith().equalsWithGameTimestamp(host)) {
                 return false;
             }
         } else if (property.equals("ExiledWithEffectSource")) {
             if (card.getExiledWith() == null) {
                 return false;
             }
-            if (!card.getExiledWith().equalsWithTimestamp(source.getEffectSource())) {
+            if (!card.getExiledWith().equalsWithGameTimestamp(source.getEffectSource())) {
                 return false;
             }
         } else if (property.equals("EncodedWithSource")) {
@@ -605,6 +605,15 @@ public class CardProperty {
             if (!card.canBeAttached(source, null)) {
                 return false;
             }
+        } else if (property.startsWith("CanBeTargetedBy")) {
+            final String def = property.substring(15);
+            SpellAbility targetingSA = AbilityUtils.getDefinedSpellAbilities(source, def, spellAbility).get(0);
+            while (targetingSA != null) {
+                if (targetingSA.usesTargeting() && !targetingSA.canTarget(card)) {
+                    return false;
+                }
+                targetingSA = targetingSA.getSubAbility();
+            }
         } else if (property.startsWith("HauntedBy")) {
             if (!card.isHauntedBy(source)) {
                 return false;
@@ -741,6 +750,14 @@ public class CardProperty {
                         if (payingMana.isEmpty() || !card.getColor().hasAnyColor(payingMana.get(0).getColor())) {
                             return false;
                         }
+                        break;
+                    case "TriggeredProduced":
+                        final SpellAbility root = ((SpellAbility) spellAbility).getRootAbility();
+                        final Object prod = (Object) root.getTriggeringObject(AbilityKey.Produced);
+                        if (!(prod instanceof String)) return false;
+                        String produced = (String) prod;
+                        ColorSet cs = ColorSet.fromNames(produced.split(" "));
+                        if (!card.getColor().hasAnyColor(cs.getColor())) return false;
                         break;
                     default:
                         if (!Iterables.any(AbilityUtils.getDefinedCards(source, restriction, spellAbility), CardPredicates.sharesColorWith(card))) {
@@ -954,7 +971,7 @@ public class CardProperty {
 
                     if (list.size() == 1) {
                         Card c = list.getFirst();
-                        if (c.getTimestamp() == card.getTimestamp() && c.getId() == card.getId()) {
+                        if (c.equalsWithGameTimestamp(card)) {
                             list.remove(card);
                         }
                     }
@@ -994,7 +1011,7 @@ public class CardProperty {
             if (cards.size() < 2) {
                 return false;
             }
-            if (!cards.get(1).equalsWithTimestamp(card)) {
+            if (!cards.get(1).equalsWithGameTimestamp(card)) {
                 return false;
             }
         } else if (property.equals("ThisTurnCast")) {
@@ -1180,12 +1197,12 @@ public class CardProperty {
                 Card dmgSource = game.getDamageLKI(p).getLeft();
                 if (def != null) {
                     for (Card c : def) {
-                        if (dmgSource.equalsWithTimestamp(c)) {
+                        if (dmgSource.equalsWithGameTimestamp(c)) {
                             found = true;
                         }
                     }
                 }
-                else if (prop.isEmpty() && dmgSource.equalsWithTimestamp(source)) {
+                else if (prop.isEmpty() && dmgSource.equalsWithGameTimestamp(source)) {
                     found = true;
                 } else if (dmgSource.isValid(prop.split(","), sourceController, source, spellAbility)) {
                     found = true;
@@ -1197,10 +1214,14 @@ public class CardProperty {
             if (!found) {
                 return false;
             }
-        } else if (property.startsWith("Damaged")) {
+        } else if (property.equals("isDamaged")) { // with any damage
+            if (card.getDamage() <= 0) {
+                return false;
+            }
+        } else if (property.startsWith("Damaged")) { // gets cards that Damaged source
             boolean found = false;
             for (Pair<Integer, Boolean> p : source.getDamageReceivedThisTurn()) {
-                if (game.getDamageLKI(p).getLeft().equalsWithTimestamp(card)) {
+                if (game.getDamageLKI(p).getLeft().equalsWithGameTimestamp(card)) {
                     found = true;
                     break;
                 }
@@ -1253,7 +1274,7 @@ public class CardProperty {
                 return false;
             }
             Card c = (Card) source.getDamageHistory().getThisGameDamaged().get(idx);
-            if (!c.equalsWithTimestamp(game.getCardState(card))) {
+            if (!c.equalsWithGameTimestamp(game.getCardState(card))) {
                 return false;
             }
         } else if (property.startsWith("dealtDamageThisTurn")) {
@@ -1493,6 +1514,10 @@ public class CardProperty {
             if (card.getNetPower() <= card.getCurrentPower()) {
                 return false;
             }
+        } else if (property.equals("powerNOTbasePower")) {
+            if (card.getNetPower() == card.getCurrentPower()) {
+                return false;
+            }
         } else if (property.equals("powerLTtoughness")) {
             if (card.getNetPower() >= card.getNetToughness()) {
                 return false;
@@ -1635,6 +1660,8 @@ public class CardProperty {
             }
         } else if (property.startsWith("notattacking")) {
             return null == combat || !combat.isAttacking(card);
+        } else if (property.startsWith("enlistedThisCombat")) {
+            if (card.getEnlistedThisCombat() == false) return false;
         } else if (property.startsWith("attackedThisCombat")) {
             if (null == combat || card.getDamageHistory().getCreatureAttackedThisCombat() == 0) {
                 return false;
@@ -1777,12 +1804,19 @@ public class CardProperty {
             }
         } else if (property.equals("hadToAttackThisCombat")) {
             AttackRequirement e = combat == null ? null : combat.getAttackConstraints().getRequirements().get(card);
-            if (e == null || !e.hasRequirement() || !e.getAttacker().equalsWithTimestamp(card)) {
+            if (e == null || !e.hasRequirement() || !e.getAttacker().equalsWithGameTimestamp(card)) {
                 return false;
             }
         } else if (property.equals("couldAttackButNotAttacking")) {
             if (!game.getPhaseHandler().isPlayerTurn(controller)) return false;
             return CombatUtil.couldAttackButNotAttacking(combat, card);
+        } else if (property.equals("linkedCastSA")) {
+            if (card.getCastSA() == null) {
+                return false;
+            }
+            if (AbilityUtils.isUnlinkedFromCastSA(spellAbility, card)) {
+                return false;
+            }
         } else if (property.startsWith("kicked")) {
             // CR 607.2i check cost is linked
             if (AbilityUtils.isUnlinkedFromCastSA(spellAbility, card)) {
@@ -1796,10 +1830,6 @@ public class CardProperty {
                 String s = property.split("kicked ")[1];
                 if ("1".equals(s) && !card.isOptionalCostPaid(OptionalCost.Kicker1)) return false;
                 if ("2".equals(s) && !card.isOptionalCostPaid(OptionalCost.Kicker2)) return false;
-            }
-        } else if (property.startsWith("pseudokicked")) {
-            if (property.equals("pseudokicked")) {
-                if (!card.isOptionalCostPaid(OptionalCost.Generic)) return false;
             }
         } else if (property.equals("bargained")) {
             if (card.getCastSA() == null) {
@@ -1869,6 +1899,8 @@ public class CardProperty {
             if (!card.isForetold()) {
                 return false;
             }
+        } else if (property.equals("CrewedThisTurn")) {
+            if (!hasTimestampMatch(card, source.getCrewedByThisTurn())) return false;
         } else if (property.equals("HasDevoured")) {
             if (card.getDevouredCards().isEmpty()) {
                 return false;
@@ -1909,6 +1941,8 @@ public class CardProperty {
             if (!card.isSaddled()) {
                 return false;
             }
+        } else if (property.equals("SaddledThisTurn")) {
+            if (!hasTimestampMatch(card, source.getSaddledByThisTurn())) return false;
         } else if (property.equals("IsSuspected")) {
             if (!card.isSuspected()) {
                 return false;
@@ -2163,4 +2197,17 @@ public class CardProperty {
         return true;
     }
 
+    private static boolean hasTimestampMatch (final Card card, final CardCollection coll) {
+        if (coll == null) {
+            return false;
+        }
+        boolean match = false;
+        for (Card c : coll) {
+            if (c.equalsWithGameTimestamp(card)) {
+                match = true;
+                break;
+            }
+        }
+        return match;
+    }
 }

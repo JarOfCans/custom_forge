@@ -19,16 +19,13 @@ package forge.ai;
 
 import java.util.*;
 
+import com.google.common.collect.*;
 import forge.game.card.*;
 import forge.game.cost.*;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
 
 import forge.ai.AiCardMemory.MemorySet;
 import forge.ai.ability.ProtectAi;
@@ -87,7 +84,6 @@ public class ComputerUtil {
         return handlePlayingSpellAbility(ai, sa, game, null);
     }
     public static boolean handlePlayingSpellAbility(final Player ai, SpellAbility sa, final Game game, Runnable chooseTargets) {
-        game.getStack().freezeStack();
         final Card source = sa.getHostCard();
         source.setSplitStateToPlayAbility(sa);
 
@@ -124,14 +120,16 @@ public class ComputerUtil {
                 return false;
             }
         }
-
+        // Spell Permanents inherit their cost from Mana Cost
         final Cost cost = sa.getPayCosts();
 
         // Remember the now-forgotten kicker cost? Why is this needed?
         sa.getHostCard().setKickerMagnitude(source.getKickerMagnitude());
+        game.getStack().freezeStack(sa);
 
         // TODO: update mana color conversion for Daxos of Meletis
         if (cost == null) {
+            // Is this fork even used for anything anymore?
             if (ComputerUtilMana.payManaCost(ai, sa, false)) {
                 game.getStack().addAndUnfreeze(sa);
                 return true;
@@ -616,9 +614,26 @@ public class ComputerUtil {
         return -1;
     }
 
-    public static CardCollection chooseSacrificeType(final Player ai, final String type, final SpellAbility ability, final Card target, final boolean effect, final int amount, final CardCollectionView exclude) {
+    public static CardCollection chooseSacrificeType(final Player ai, String type, final SpellAbility ability, final Card target, final boolean effect, final int amount, final CardCollectionView exclude) {
         final Card source = ability.getHostCard();
+        boolean differentNames = false;
+        if (type.contains("+WithDifferentNames")) {
+            differentNames = true;
+            type = type.replace("+WithDifferentNames", "");
+        }
+
         CardCollection typeList = CardLists.getValidCards(ai.getCardsIn(ZoneType.Battlefield), type.split(";"), source.getController(), source, ability);
+        if (differentNames) {
+            final Set<Card> uniqueNameCards = Sets.newHashSet();
+            for (final Card card : typeList) {
+                // CR 201.2b Those objects have different names only if each of them has at least one name and no two objects in that group have a name in common
+                if (!card.hasNoName()) {
+                    uniqueNameCards.add(card);
+                }
+            }
+            typeList.clear();
+            typeList.addAll(uniqueNameCards);
+        }
 
         if (exclude != null) {
             typeList.removeAll(exclude);
@@ -790,11 +805,7 @@ public class ComputerUtil {
         all.removeAll(exclude);
         CardCollection typeList = CardLists.getValidCards(all, type.split(";"), activate.getController(), activate, sa);
 
-        if (sa.hasParam("Crew")) {
-            typeList = CardLists.getNotKeyword(typeList, "CARDNAME can't crew Vehicles.");
-        }
-
-        typeList = CardLists.filter(typeList, Presets.CAN_TAP);
+        typeList = CardLists.filter(typeList, sa.isCrew() ? Presets.CAN_CREW : Presets.CAN_TAP);
 
         if (tap) {
             typeList.remove(activate);
@@ -816,7 +827,7 @@ public class ComputerUtil {
                 tapList.clear();
             }
             tapList.add(next);
-            totalPower = CardLists.getTotalPower(tapList, true, sa.hasParam("Crew"));
+            totalPower = CardLists.getTotalPower(tapList, true, sa.isCrew());
             if (totalPower >= amount) {
                 break;
             }
