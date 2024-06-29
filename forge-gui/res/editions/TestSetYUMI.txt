@@ -1,0 +1,51 @@
+[metadata]
+Code=YUMI
+Date=2024-05-01
+Name=Custom YUMI Set
+Code2=YUMI
+Type=Draft
+BoosterCovers=3
+Booster=3 fromSheet("YUMI Battles")
+ScryfallCode=YUMI
+
+[cards]
+
+
+
+[Battles]
+2 Invasion of Alara|MOM
+4 Invasion of Amonkhet|MOM
+2 Invasion of Arcavios|MOM
+4 Invasion of Azgol|MOM
+4 Invasion of Belenon|MOM
+4 Invasion of Dominaria|MOM
+4 Invasion of Eldraine|MOM
+4 Invasion of Ergamon|MOM
+2 Invasion of Fiora|MOM
+2 Invasion of Gobakhan|MOM
+2 Invasion of Ikoria|MOM
+1 Invasion of Innistrad|MOM
+2 Invasion of Ixalan|MOM
+4 Invasion of Kaladesh|MOM
+2 Invasion of Kaldheim|MOM
+4 Invasion of Kamigawa|MOM
+2 Invasion of Karsus|MOM
+4 Invasion of Kylem|MOM
+4 Invasion of Lorwyn|MOM
+4 Invasion of Mercadia|MOM
+4 Invasion of Moag|MOM
+4 Invasion of Muraganda|MOM
+4 Invasion of New Capenna|MOM
+1 Invasion of New Phyrexia|MOM
+4 Invasion of Pyrulea|MOM
+1 Invasion of Ravnica|MOM
+4 Invasion of Regatha|MOM
+2 Invasion of Segovia|MOM
+1 Invasion of Shandalar|MOM
+1 Invasion of Tarkir|MOM
+2 Invasion of Theros|MOM
+2 Invasion of Tolvada|MOM
+4 Invasion of Ulgrotha|MOM
+4 Invasion of Vryn|MOM
+4 Invasion of Xerex|MOM
+4 Invasion of Zendikar|MOM

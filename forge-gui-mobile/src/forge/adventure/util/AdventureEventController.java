@@ -29,7 +29,8 @@ public class AdventureEventController implements Serializable {
         Draft,
         Sealed,
         Jumpstart,
-        Constructed
+        Constructed,
+        JumpstartDraft
     }
 
     public enum EventStyle{
@@ -100,9 +101,12 @@ public class AdventureEventController implements Serializable {
         Random random = new Random(eventSeed);
 
         AdventureEventData e ;
-
-        if (random.nextInt(20) <=5){
+        int randInt = random.nextInt(20);
+        if (randInt <= 3){
             e = new AdventureEventData(eventSeed, EventFormat.Jumpstart);
+        }
+        else if (randInt <= 6){
+            e = new AdventureEventData(eventSeed, EventFormat.JumpstartDraft);
         }
         else{
             e = new AdventureEventData(eventSeed, EventFormat.Draft);
@@ -115,7 +119,7 @@ public class AdventureEventController implements Serializable {
         e.sourceID = pointID;
         e.eventOrigin = eventOrigin;
         e.eventRules = new AdventureEventData.AdventureEventRules(e.format, changes.getTownPriceModifier());
-        e.style = style;
+        e.style = e.eventRules.pairingStyle.getEventStyle();
 
         switch (style){
             case Swiss:

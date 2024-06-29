@@ -182,6 +182,12 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         		removeCard(card, 1);
         	}
         }
+        public void doDuelsSell() {
+        	List<PaperCard> remove = AdventurePlayer.current().doDuelsSell();
+        	for (PaperCard card: remove) {
+        		removeCard(card, 1);
+        	}
+        }
     }
 
     private static class CollectionCatalogPage extends CatalogPage {
@@ -441,7 +447,7 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         if (event == null) {
             return getPages(false);
         }
-        if (event.format == AdventureEventController.EventFormat.Draft) {
+        if (event.format == AdventureEventController.EventFormat.Draft || event.format == AdventureEventController.EventFormat.JumpstartDraft) {
             switch (event.eventStatus) {
                 case Available:
                     return null;
@@ -580,6 +586,9 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
                                 FMenuItem SellToOne = new FMenuItem("Sell down to 1", FSkinImage.MANA_1, e1 -> ((StoreCatalogPage)catalogPage).doDupSell(1));
                                 addItem(SellToOne);
                                 SellToOne.setEnabled(true);
+                                FMenuItem SellToDuels = new FMenuItem("Sell down to duels", FSkinImage.MANA_SNOW, e1 -> ((StoreCatalogPage)catalogPage).doDuelsSell());
+                                addItem(SellToDuels);
+                                SellToDuels.setEnabled(true);
                             }
                         }
                         ((DeckEditorPage) getSelectedPage()).buildDeckMenu(this);

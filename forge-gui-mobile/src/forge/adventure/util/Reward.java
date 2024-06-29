@@ -66,6 +66,37 @@ public class Reward implements Comparable<Reward> {
 		//System.out.println(o.getCard().getName() + o.getNumValue() + " vs " + this.getCard().getName() + this.getNumValue());
 		return o.getNumValue() - this.getNumValue();
 	}
+	public float getDelay() {
+		switch (type) {
+		case Card:
+			switch (card.getRarity()) {
+			case Common:
+				return 0.6f;
+			case Uncommon:
+				return 0.85f;
+			case Rare:
+				return 1.15f;
+			case MythicRare:
+				return 1.5f;
+			case Special:
+				return 0.85f;
+			case BasicLand:
+				return 0.35f;
+			default:
+				return 0.5f;
+			}
+		case Gold:
+			return 0.3f;
+		case Shards:
+			return 0.3f;
+		case Life:
+			return 2f;
+		case CardPack:
+		case Item:
+			return 0.4f;
+		}
+		return 9;
+	}
 	
 	private int getNumValue() {
 		switch (type) {

@@ -191,7 +191,9 @@ public class EventScene extends MenuScene implements IAfterMatch {
         editDeck.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (currentEvent.format == AdventureEventController.EventFormat.Draft && currentEvent.eventStatus == Ready) {
+                if ((currentEvent.format == AdventureEventController.EventFormat.Draft
+                		|| currentEvent.format == AdventureEventController.EventFormat.JumpstartDraft)
+                		&& currentEvent.eventStatus == Ready) {
                     DraftScene.instance().loadEvent(currentEvent);
                     Forge.switchScene(DraftScene.instance());
                 }
@@ -472,6 +474,12 @@ public class EventScene extends MenuScene implements IAfterMatch {
                         break;
                     case Jumpstart:
                         loadMetaDraft();
+                        break;
+                    case JumpstartDraft:
+                        DraftScene.instance().loadEvent(currentEvent);
+                        Forge.switchScene(DraftScene.instance());
+                        break;
+                        
                 }
                 break;
             case Ready: //Commit to selected deck

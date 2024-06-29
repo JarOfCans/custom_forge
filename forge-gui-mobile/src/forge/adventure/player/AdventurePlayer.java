@@ -13,6 +13,7 @@ import forge.adventure.scene.DeckEditScene;
 import forge.adventure.stage.MapStage;
 import forge.adventure.util.*;
 import forge.adventure.world.WorldSave;
+import forge.card.CardRarity;
 import forge.card.ColorSet;
 import forge.deck.CardPool;
 import forge.deck.Deck;
@@ -1166,9 +1167,6 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
     	List<PaperCard> sellCards = new ArrayList<PaperCard>();
     	for (PaperCard card: getSellableCards().toFlatList()) {
     		
-    		if (DeckFormat.canHaveAnyNumberOf(card) || card.getRules().getType().isBasicLand()) {
-    			continue;
-    		}
     		
     		currentMap = (card.isFoil())?cardsFoil:cardsNonFoil;
     		if (!currentMap.containsKey(card.getEdition())) {
@@ -1180,8 +1178,62 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
     		}
     		
     		Integer count = DeckFormat.canHaveSpecificNumberInDeck(card);
-    		if (count == null || count < maxCount) {
+    		if (count == null) {
+    			count = 1;
+    		}
+    		if (card.getRules().checksItself() && count < 4) {
+				count = 4;
+    		}
+    		if (count < maxCount) {
     			count = maxCount;
+    		}
+    		if (DeckFormat.canHaveAnyNumberOf(card) || card.getRules().getType().isBasicLand()) {
+    			count = 50;
+    		}
+    		
+    		if (currentEditionMap.get(card.getCollectorNumberSortingKey()).size() < count) {
+    			currentEditionMap.get(card.getCollectorNumberSortingKey()).add(card);
+    			continue;
+    		} else {
+    			sellCards.add(card);
+    		}
+    		
+    		
+    		
+    	}
+    	System.out.println(sellCards.size());
+    	return sellCards;
+    }
+    public List<PaperCard> getDuelsSellCards() {
+    	HashMap<String, HashMap<String, List<PaperCard>>> cardsNonFoil = new HashMap<String, HashMap<String, List<PaperCard>>>();
+    	HashMap<String, HashMap<String, List<PaperCard>>> cardsFoil = new HashMap<String, HashMap<String, List<PaperCard>>>();
+    	HashMap<String, HashMap<String, List<PaperCard>>> currentMap;
+    	HashMap<String, List<PaperCard>> currentEditionMap;
+    	List<PaperCard> sellCards = new ArrayList<PaperCard>();
+    	for (PaperCard card: getSellableCards().toFlatList()) {
+    		
+    		
+    		currentMap = (card.isFoil())?cardsFoil:cardsNonFoil;
+    		if (!currentMap.containsKey(card.getEdition())) {
+    			currentMap.put(card.getEdition(), new HashMap<String, List<PaperCard>>());
+    		}
+    		currentEditionMap = currentMap.get(card.getEdition());
+    		if (!currentEditionMap.containsKey(card.getCollectorNumberSortingKey())) {
+    			currentEditionMap.put(card.getCollectorNumberSortingKey(), new ArrayList<PaperCard>());
+    		}
+    		
+    		Integer count = DeckFormat.canHaveSpecificNumberInDeck(card);
+    		if (count == null) {
+    			count = 1;
+    		}
+    		if (card.getRules().checksItself() && count < 4) {
+				count = 4;
+    		}
+    		if (count < rarityDuelsCount(card.getRarity())) {
+    			count = rarityDuelsCount(card.getRarity());
+    		}
+    		if (DeckFormat.canHaveAnyNumberOf(card) || card.getRules().getType().isBasicLand()) {
+    			count = 50;
     		}
     		
     		if (currentEditionMap.get(card.getCollectorNumberSortingKey()).size() < count) {
@@ -1198,6 +1250,24 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
     	return sellCards;
     }
     
+    public int rarityDuelsCount(CardRarity cr) {
+    	switch (cr) {
+    	case Common:
+    		return 4;
+    	case Uncommon:
+    	case Special:
+    		return 3;
+    	case Rare:
+    		return 2;
+    	case MythicRare:
+    		return 1;
+    	case BasicLand:
+    		return 50;
+    	default:
+    		return 4;
+    	}
+    }
+    
     public List<PaperCard> doDupsell(int count) {
         int profit = 0;
         List<PaperCard> output = getDupsellCards(count);
@@ -1208,7 +1278,26 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
         addGold(profit); //do this as one transaction so as not to get multiple copies of sound effect
         return output;
     }
+    public List<PaperCard> doDuelsSell() {
+        int profit = 0;
+        List<PaperCard> output = getDuelsSellCards();
+        for (PaperCard cardToSell : output) {
+            profit += AdventurePlayer.current().cardSellPrice(cardToSell);
+            cards.remove(cardToSell, 1);
+        }
+        addGold(profit); //do this as one transaction so as not to get multiple copies of sound effect
+        return output;
+    }
     public int getOwnedCount(PaperCard card) {
+        int count = 0;
+        for (PaperCard cardToCheck : cards.toFlatList()) {
+            if (cardToCheck.getEdition().equals(card.getEdition()) && cardToCheck.getCollectorNumberSortingKey().equals(card.getCollectorNumberSortingKey()) && card.isFoil() == cardToCheck.isFoil()) {
+            	count++;
+            }
+        }
+        return count;
+    }
+    public int getOwnedCountIgnoreFoil(PaperCard card) {
         int count = 0;
         for (PaperCard cardToCheck : cards.toFlatList()) {
             if (cardToCheck.getEdition().equals(card.getEdition()) && cardToCheck.getCollectorNumberSortingKey().equals(card.getCollectorNumberSortingKey())) {
@@ -1222,7 +1311,13 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
 			return false;
 		}
 		Integer count = DeckFormat.canHaveSpecificNumberInDeck(card);
-		if (count == null || count < maxCount) {
+		if (count == null) {
+			count = 1;
+		}
+		if (card.getRules().checksItself() && count < 4) {
+				count = 4;
+		}
+		if (count < maxCount) {
 			count = maxCount;
 		}
 		return getOwnedCount(card) >= count;

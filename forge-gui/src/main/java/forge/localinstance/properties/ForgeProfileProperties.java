@@ -84,6 +84,7 @@ public class ForgeProfileProperties {
     }
 
     public static String getUserDir() {
+    	System.out.println(userDir);
         return userDir;
     }
     public static void setUserDir(final String userDir0) {

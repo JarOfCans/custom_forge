@@ -77,6 +77,9 @@ public final class CardRules implements ICardCharacteristics {
             colMask |= calculateColorIdentity(otherPart);
         }
         colorIdentity = ColorSet.fromMask(colMask);
+        if (checksItself()) {
+        	System.out.println(getName());
+        }
     }
 
     void reinitializeFromRules(CardRules newRules) {
@@ -254,6 +257,10 @@ public final class CardRules implements ICardCharacteristics {
         default:
             return mainPart.getOracleText();
         }
+    }
+    
+    public boolean checksItself() {
+    	return (!getOracleText().contains("not named " + getName())&&getOracleText().contains("named " + getName())) || getOracleText().contains("ripple") || getOracleText().contains("count it as a card named");
     }
 
     public boolean isEnterableDungeon() {

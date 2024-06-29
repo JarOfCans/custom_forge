@@ -200,6 +200,11 @@ public final class CardDb implements ICardDatabase, IDeckGenPool {
                 cNrPos = -1;
             }
             String cardName = info[0];
+            if (cardName.contains(" //")) {
+            	//System.out.print(cardName + " -> ");
+            	cardName = cardName.substring(0, cardName.indexOf(" //"));
+            	//System.out.println(cardName);
+            }
             boolean isFoil = false;
             if (isFoilCardName(cardName)) {
                 cardName = cardName.substring(0, cardName.length() - foilSuffix.length());

@@ -263,36 +263,6 @@
     }
   },
   {
-    "name": "Battle Standard",
-    "equipmentSlot": "Left",
-    "iconName": "BattleStandard",
-    "effect": {
-      "lifeModifier": -1,
-      "startBattleWithCard": [
-        "r_1_1_goblin"
-      ]
-    }
- },
- {
-    "name": "Hivestone",
-    "equipmentSlot": "Left",
-    "iconName": "Hivestone",
-    "effect": {
-      "startBattleWithCard": [
-        "Hivestone"
-      ]
-    }
-  },
-  {
-    "name": "Life Amulet",
-    "equipmentSlot": "Neck",
-    "iconName": "LifeAmulet",
-    "cost": 4000,
-    "effect": {
-      "lifeModifier": 2
-    }
-  },
-  {
     "name": "Red Key",
     "iconName": "RedKey",
     "questItem": true
@@ -363,6 +333,75 @@
     "questItem": true
   },
   {
+    "name": "Life Amulet",
+    "equipmentSlot": "Neck",
+    "iconName": "LifeAmulet",
+    "cost": 4000,
+    "effect": {
+      "lifeModifier": 2
+    }
+  },
+  {
+    "name": "Dynavolt Necklace",
+    "equipmentSlot": "Neck",
+    "iconName": "DynavoltNecklace",
+    "cost": 4000,
+    "effect": {
+      "lifeModifier": -2,
+      "startBattleWithCard": [
+        "Dynavolt Tower"
+      ]
+    }
+  },
+  {
+    "name": "Iron Armor",
+    "equipmentSlot": "Body",
+    "cost": 3000,
+    "iconName": "IronArmor",
+    "effect": {
+      "lifeModifier": 2
+    }
+  },
+  {
+    "name": "Steel Armor",
+    "equipmentSlot": "Body",
+    "cost": 5000,
+    "iconName": "SteelArmor",
+    "effect": {
+      "lifeModifier": 3
+    }
+  },
+  {
+    "name": "Armor of the Hivelord",
+    "equipmentSlot": "Body",
+    "iconName": "HiveLordArmor",
+    "effect": {
+      "lifeModifier": 5,
+      "changeStartCards": 1
+    }
+  },
+  {
+    "name": "Battle Standard",
+    "equipmentSlot": "Left",
+    "iconName": "BattleStandard",
+    "effect": {
+      "lifeModifier": -1,
+      "startBattleWithCard": [
+        "r_1_1_goblin"
+      ]
+    }
+ },
+ {
+    "name": "Hivestone",
+    "equipmentSlot": "Left",
+    "iconName": "Hivestone",
+    "effect": {
+      "startBattleWithCard": [
+        "Hivestone"
+      ]
+    }
+  },
+  {
     "name": "Axt",
     "equipmentSlot": "Left",
     "iconName": "SteelAxt",
@@ -379,18 +418,142 @@
     "iconName": "BronzeSword",
     "cost": 2500,
     "effect": {
+      "lifeModifier": 2,
       "startBattleWithCard": [
         "Bronze Sword"
       ]
     }
   },
   {
-    "name": "Iron Boots",
-    "equipmentSlot": "Boots",
-    "iconName": "IronBoots",
-    "cost": 2000,
-    "effect": { 
-      "moveSpeed": 1.2
+    "name": "Sword of Fire and Ice",
+    "equipmentSlot": "Left",
+    "iconName": "SwordFireIce",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Fire and Ice"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Light And Shadow",
+    "equipmentSlot": "Left",
+    "iconName": "SwordLightShadow",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Light and Shadow"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Body and Mind",
+    "equipmentSlot": "Left",
+    "iconName": "SwordBodyMind",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Body and Mind"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Feast and Famine",
+    "equipmentSlot": "Left",
+    "iconName": "SwordFeastFamine",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Feast and Famine"
+      ]
+    }
+  },
+  {
+    "name": "Sword of War and Peace",
+    "equipmentSlot": "Left",
+    "iconName": "SwordWarPeace",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of War and Peace"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Sinew and Steel",
+    "equipmentSlot": "Left",
+    "iconName": "SwordSinewSteel",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Sinew and Steel"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Truth and Justice",
+    "equipmentSlot": "Left",
+    "iconName": "SwordTruthJustice",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Truth and Justice"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Hearth and Home",
+    "equipmentSlot": "Left",
+    "iconName": "SwordHearthHome",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Hearth and Home"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Forge and Frontier",
+    "equipmentSlot": "Left",
+    "iconName": "SwordForgeFrontier",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Forge and Frontier"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Once and Future",
+    "equipmentSlot": "Left",
+    "iconName": "SwordOnceFuture",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Once and Future"
+      ]
+    }
+  },
+  {
+    "name": "Sword of Wealth and Power",
+    "equipmentSlot": "Left",
+    "iconName": "SwordWealthPower",
+    "cost": 10000,
+    "effect": {
+      "lifeModifier": -4,
+      "startBattleWithCard": [
+        "Sword of Wealth and Power"
+      ]
     }
   },
   {
@@ -403,12 +566,12 @@
     }
   },
   {
-    "name": "Iron Armor",
-    "equipmentSlot": "Body",
-    "cost": 3000,
-    "iconName": "IronArmor",
-    "effect": {
-      "lifeModifier": 2
+    "name": "Iron Boots",
+    "equipmentSlot": "Boots",
+    "iconName": "IronBoots",
+    "cost": 2000,
+    "effect": { 
+      "moveSpeed": 1.2
     }
   },
   {
@@ -444,24 +607,6 @@
     }
   },
   {
-    "name": "Steel Armor",
-    "equipmentSlot": "Body",
-    "cost": 5000,
-    "iconName": "SteelArmor",
-    "effect": {
-      "lifeModifier": 3
-    }
-  },
-  {
-    "name": "Armor of the Hivelord",
-    "equipmentSlot": "Body",
-    "iconName": "HiveLordArmor",
-    "effect": {
-      "lifeModifier": 5,
-      "changeStartCards": 1
-    }
-  },
-  {
     "name": "Leather Boots",
     "equipmentSlot": "Boots",
     "iconName": "LeatherBoots",
@@ -488,6 +633,17 @@
     "effect": {
       "startBattleWithCard": [
         "Spare Dagger"
+      ]
+    }
+  },
+  {
+    "name": "Turret Lever",
+    "equipmentSlot": "Left",
+    "iconName": "TurretLever",
+    "cost": 2000,
+    "effect": {
+      "startBattleWithCard": [
+        "Consulate Turret"
       ]
     }
   },

@@ -1017,6 +1017,7 @@ public class MapStage extends GameStage {
                     if (mob.dialog != null && mob.dialog.canShow()) { //This enemy has something to say. Display a dialog like if it was a DialogActor but only if dialogue is possible.
                         mob.dialog.activate();
                     } else { //Duel the enemy.
+                    	System.out.println(mob.getName());
                         beginDuel(mob);
                     }
                     break;

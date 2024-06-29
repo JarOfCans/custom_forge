@@ -513,3 +513,42 @@ SirDonovansAmulet
 LandscapeSketchbook
   xy:80,672
   size:16,16
+SwordFireIce
+  xy:336,176
+  size:16,16
+SwordLightShadow
+  xy:336,192
+  size:16,16
+SwordBodyMind
+  xy:336,208
+  size:16,16
+SwordFeastFamine
+  xy:336,224
+  size:16,16
+SwordWarPeace
+  xy:336,240
+  size:16,16
+SwordSinewSteel
+  xy:336,256
+  size:16,16
+SwordTruthJustice
+  xy:336,272
+  size:16,16
+SwordHearthHome
+  xy:336,288
+  size:16,16
+SwordForgeFrontier
+  xy:336,304
+  size:16,16
+SwordOnceFuture
+  xy:336,320
+  size:16,16
+SwordWealthPower
+  xy:336,336
+  size:16,16
+DynavoltNecklace
+  xy:336,352
+  size:16,16
+TurretLever
+  xy:336,368
+  size:16,16

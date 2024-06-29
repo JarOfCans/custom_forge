@@ -258,6 +258,23 @@ public class BoosterDraft implements IBoosterDraft {
         draft.initializeBoosters();
         return draft;
     }
+    public static BoosterDraft createJumpstartDraft(final LimitedPoolType draftType, final CardBlock block, final List<Deck> boosters) {
+        final BoosterDraft draft = new BoosterDraft(LimitedPoolType.JumpstartDraft);
+
+        /*for (String booster : boosters) {
+            try {
+                draft.product.add(block.getBooster(booster));
+            } catch (Exception ex) {
+                System.err.println("Booster Draft Error: "+ex.getMessage());
+            }
+        }*/
+
+        IBoosterDraft.LAND_SET_CODE[0] = block.getLandSet();
+        IBoosterDraft.CUSTOM_RANKINGS_FILE[0] = null;
+
+        draft.initializeBoostersJumpstart(boosters);
+        return draft;
+    }
 
     protected BoosterDraft() {
         this(LimitedPoolType.Full);
@@ -358,6 +375,46 @@ public class BoosterDraft implements IBoosterDraft {
             for (int i = 0; i < N_PLAYERS; i++) {
                 this.players.get(i).receiveUnopenedPack(boosterRound.get());
             }
+        }
+        startRound();
+    }
+    public void initializeBoostersJumpstart(List<Deck> cards) {
+    	Stack<PaperCard> tempCards = new Stack<PaperCard>();
+    	Stack<PaperCard> tempBasics = new Stack<PaperCard>();
+    	Stack<List<PaperCard>> packs = new Stack<List<PaperCard>>();
+    	for (Deck deck: cards) {
+    		for (PaperCard card: deck.getAllCardsInASinglePool().toFlatList()) {
+    			if (card.isVeryBasicLand()) {
+    				tempBasics.push(card);
+    			} else {
+    				tempCards.push(card);
+    			}
+    		}
+    	}
+    	
+    	Collections.shuffle(tempCards);
+    	Collections.shuffle(tempBasics);
+
+        for (int i = 0; i < N_PLAYERS*3; i++) {
+        	packs.add(new ArrayList<PaperCard>());
+        }
+        for (int b = 0; b < 15; b++) {
+            for (int i = 0; i < N_PLAYERS*3; i++) {
+            	if (tempCards.size() > 0) {
+                	packs.get(i).add(tempCards.pop());
+            	} else {
+            		packs.get(i).add(tempBasics.pop());
+            	}
+        	}
+    	}
+
+    	Collections.shuffle(packs);
+    	
+    	
+        for (int i = 0; i < N_PLAYERS; i++) {
+            this.players.get(i).receiveUnopenedPack(packs.pop());
+            this.players.get(i).receiveUnopenedPack(packs.pop());
+            this.players.get(i).receiveUnopenedPack(packs.pop());
         }
         startRound();
     }

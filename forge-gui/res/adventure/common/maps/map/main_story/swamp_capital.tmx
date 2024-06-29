@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
  <editorsettings>
   <export format="tmx"/>
  </editorsettings>
@@ -83,13 +83,7 @@
 		{
 			&quot;type&quot;: &quot;gold&quot;,
 			&quot;probability&quot;: 1,
-			&quot;count&quot;: 500 
-		}
-		],[{
-			&quot;type&quot;: &quot;item&quot;,
-			&quot;probability&quot;: 1,
-			&quot;count&quot;: 1,
-			&quot;itemNames&quot;: [&quot;Death Ring&quot;,&quot;Dark Armor&quot;,&quot;Dark Shield&quot;,&quot;Dark Boots&quot;]
+			&quot;count&quot;: 499 
 		}
 		],
 		[
@@ -101,6 +95,12 @@
 				&quot;Rare&quot;,&quot;Mythic Rare&quot;
 			],
       			&quot;colors&quot;: [&quot;black&quot;] 
+		}
+		],[{
+			&quot;type&quot;: &quot;item&quot;,
+			&quot;probability&quot;: 1,
+			&quot;count&quot;: 1,
+			&quot;itemNames&quot;: [&quot;Death Ring&quot;,&quot;Dark Armor&quot;,&quot;Dark Shield&quot;,&quot;Dark Boots&quot;,&quot;Sword of Light And Shadow&quot;, &quot;Sword of Feast and Famine&quot;, &quot;Sword of Sinew and Steel&quot;, &quot;Sword of Once and Future&quot;, &quot;Sword of Wealth and Power&quot;]
 		}
 		]
 		] 

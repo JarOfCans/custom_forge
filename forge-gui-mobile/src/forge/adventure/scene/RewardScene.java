@@ -237,12 +237,19 @@ public class RewardScene extends UIScene {
         else if ((type == Type.Loot || type == Type.QuestReward) && !shown) {
             shown = true;
             float delay = 0.09f;
-            Collections.shuffle(generated);
+            Collections.reverse(generated);
+            int i = 0;
+            float priorDelay = 0f;
             for (Actor actor : generated) {
                 if (!(actor instanceof RewardActor)) {
                     continue;
                 }
+                i++;
                 RewardActor reward = (RewardActor) actor;
+                if (i > 1) {
+                	delay += Math.max(reward.getReward().getDelay(), priorDelay);
+                }
+            	priorDelay = reward.getReward().getDelay();
                 if (!reward.isFlipped()) {
                     Timer.schedule(new Timer.Task() {
                         @Override
@@ -250,7 +257,6 @@ public class RewardScene extends UIScene {
                             reward.flip();
                         }
                     }, delay);
-                    delay += 0.15f;
                 }
             }
         } else {

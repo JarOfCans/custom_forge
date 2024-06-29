@@ -1044,9 +1044,16 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
                     }
                     String value = String.valueOf(draftRank);
                     g.drawText(value, FSkinFont.forHeight(rankSize / 4), Color.WHITE, x, y, w, h, true, Align.center, true);
-                    
-                    String count = String.valueOf(AdventurePlayer.current().getOwnedCount((PaperCard)item));
-                    System.out.println(x + ", " + y);
+                    String count = "";
+                    if (((PaperCard)item).isFoil()) {
+                    	int allCount = AdventurePlayer.current().getOwnedCountIgnoreFoil((PaperCard)item);
+                    	int thisCount = AdventurePlayer.current().getOwnedCount((PaperCard)item);
+                        count = String.format("%d + %d", (allCount - thisCount), thisCount);
+                    } else {
+
+                       count = String.valueOf(AdventurePlayer.current().getOwnedCount((PaperCard)item));
+                    }
+                    //System.out.println(x + ", " + y);
                     g.drawText(count, FSkinFont.forHeight(rankSize / 8), Color.WHITE, x, y - getHeight()/20, w, h, false, Align.center, true);
                 }
             } else if (item instanceof ConquestCommander) {

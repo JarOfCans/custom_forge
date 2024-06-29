@@ -1,0 +1,6 @@
+[metadata]
+Code=YUM
+Date=2024-04-20
+Name=YUMI Custom
+Type=Draft
+ScryfallCode=YUM

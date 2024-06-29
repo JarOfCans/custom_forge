@@ -13,6 +13,7 @@ import forge.Forge;
 import forge.StaticData;
 import forge.adventure.data.ConfigData;
 import forge.adventure.data.RewardData;
+import forge.adventure.player.AdventurePlayer;
 import forge.adventure.util.*;
 import forge.card.CardEdition;
 import forge.card.ColorSet;
@@ -352,7 +353,7 @@ public class SpellSmithScene extends UIScene {
         if (!edition.isEmpty())
         	modifierCost *= 1.1f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
         if (colorFilter.size() > 0)
-        	modifierCost *= 1.2f; //Color filter cost multiplier.
+        	modifierCost *= 1.1f; //Color filter cost multiplier.
         /*if (!rarity.isEmpty()) { //Rarity cost multiplier.
             switch (rarity) {
                 case "C":
@@ -371,13 +372,13 @@ public class SpellSmithScene extends UIScene {
                     break;
             }
         }*/
-        if (cost_low > -1) modifierCost *= 1.2f; //And CMC cost multiplier.
+        if (cost_low > -1) modifierCost *= 1.1f; //And CMC cost multiplier.
 
         cardPool = StreamSupport.stream(P.spliterator(), false).collect(Collectors.toList());
         poolSize.setText(((cardPool.size() > 0 ? "[/][FOREST]" : "[/][RED]")) + cardPool.size() + " possible card" + (cardPool.size() != 1 ? "s" : ""));
         int buyPrice = 1000;
         for (PaperCard card: cardPool) {
-        	buyPrice += Math.pow(CardUtil.getCardPrice(card), 1.1);
+        	buyPrice += CardUtil.getCardPrice(card)*(AdventurePlayer.current().getDifficulty().sellFactor+0.1f);
         }
         buyPrice /= Math.max(cardPool.size(),1);
         
@@ -393,10 +394,11 @@ public class SpellSmithScene extends UIScene {
     public void pullCard(boolean usingShards) {
         PaperCard P = cardPool.get(MyRandom.getRandom().nextInt(cardPool.size())); //Don't use the standard RNG.
         Reward R = null;
-        if (Config.instance().getSettingData().useAllCardVariants) {
+        if (Config.instance().getSettingData().useAllCardVariants || true) {
             if (!edition.isEmpty()) {
                 R = new Reward(CardUtil.getCardByNameAndEdition(P.getCardName(), edition));
             } else {
+            	//System.out.println("No edition");
                 R = new Reward(CardUtil.getCardByName(P.getCardName())); // grab any random variant if no set preference is specified
             }
         } else {

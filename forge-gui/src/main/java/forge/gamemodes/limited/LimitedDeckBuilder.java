@@ -362,7 +362,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
             	int nLand = 2;
             	System.out.printf("Basics[%s]: %d cards%n", MagicColor.Constant.BASIC_LANDS.get(i), nLand);
             	for (int j = 0; j < nLand; j++) {
-                    deckList.add(getBasicLand(i, landSetCode));
+                    deckList.add(getBasicLand(i, (landSetCode.equals("YUM"))?"M15":landSetCode));
                 }
             }
         }
