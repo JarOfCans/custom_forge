@@ -635,33 +635,6 @@
 1 Wayfaring Temple|RTR
 1 Wild Beastmaster|RTR
 
-[CNS Draft Matters]
-#1 Advantageous Proclamation|CNS
-#1 AEther Searcher|CNS
-#1 Agent of Acquisitions|CNS
-#1 Backup Plan|CNS
-1 Brago's Favor|CNS
-#1 Canal Dredger|CNS
-#1 Cogwork Grinder|CNS
-#1 Cogwork Librarian|CNS
-#1 Cogwork Spy|CNS
-#1 Cogwork Tracker|CNS
-#1 Deal Broker|CNS
-#1 Double Stroke|CNS
-1 Immediate Action|CNS
-#1 Iterative Analysis|CNS
-#1 Lore Seeker|CNS
-#1 Lurking Automaton|CNS
-1 Muzzio's Preparations|CNS
-#1 Paliano, the High City|CNS
-#1 Power Play|CNS
-1 Secret Summoning|CNS
-1 Secrets of Paradise|CNS
-#1 Sentinel Dispatch|CNS
-#1 Unexpected Potential|CNS
-#1 Whispergear Sneak|CNS
-#1 Worldknit|CNS
-
 [M15 Sample Cards]
 1 Aegis Angel|M15
 1 Cancel|M15
@@ -964,21 +937,6 @@ Mana Confluence|EXP
 Strip Mine|EXP
 Tectonic Edge|EXP
 Wasteland|EXP
-
-
-[CN2 Draft Matters]
-Adriana's Valor
-Assemble the Rank and Vile
-Echoing Boon
-#Emissary's Ploy
-Hired Heist
-Hold the Perimeter
-Hymn of the Wilds
-Incendiary Dissent
-Natural Unity
-#Sovereign's Realm
-Summoner's Bond
-Weight Advantage
 
 [MPS Amonkhet Invocations]
 Austere Command|MPS_AKH
@@ -1482,24 +1440,6 @@ Slaying Fire|ELD|2
 Kenrith's Transformation|ELD|2
 Improbable Alliance|ELD|2
 Inspiring Veteran|ELD|2
-
-[CN2 Not In Normal Slots]
-Adriana's Valor
-Assemble the Rank and Vile
-Echoing Boon
-#Emissary's Ploy
-Hired Heist
-Hold the Perimeter
-Hymn of the Wilds
-Incendiary Dissent
-Natural Unity
-#Sovereign's Realm
-Summoner's Bond
-Weight Advantage
-Kaya, Ghost Assassin|CN2|2
-
-[CN2 Foil Kaya]
-Kaya, Ghost Assassin|CN2|2
 
 [JMP Above the Clouds 1]
 1 Warden of Evos Isle|JMP
@@ -8544,3 +8484,171 @@ Gandalf the White|LTR
 1 Gateway Plaza
 1 Crystal Grotto
 1 Rupture Spire
+
+[JSE White1]
+1 Circle of Protection: Red
+1 Reveille Squad
+1 Silkwrap
+1 Pegasus Charger
+1 Chastise
+1 Troubled Healer
+1 Circle of Protection: Black
+1 Angelic Blessing
+1 Amrou Seekers
+1 Welkin Hawk
+1 Whitemane Lion
+1 Weathered Wayfarer
+8 Plains
+
+[JSE Blue1]
+1 Fade Away
+1 Gossamer Phantasm
+1 Stormwatch Eagle
+1 Youthful Scholar
+1 Walk the Aeons
+1 Zephyr Scribe
+1 Crafty Pathmage
+1 Logic Knot
+1 Dream Stalker
+1 Coastal Hornclaw
+1 Prodigal Sorcerer
+1 Encase in Ice
+1 Evolving Wilds
+7 Island
+
+[JSE Black1]
+1 Phthisis
+1 Death Charmer
+1 Vampire Hounds
+1 Fen Stalker
+1 Vulturous Aven
+1 Dark Banishing
+1 Keldon Battlewagon
+1 Deadly Grub
+1 Dauthi Cutthroat
+1 Death's Duet
+1 Kormus Bell
+1 Flatten
+
+[JSE Red1]
+1 Disintegrate
+1 Brute Force
+1 Lightning Elemental
+1 Sudden Shock
+1 Demolish
+1 Goblin Piker
+1 Branded Brawlers
+1 Empty the Warrens
+1 Cinder Crawler
+1 Scoria Cat
+1 Seething Song
+1 Screamreach Brawler
+8 Mountain
+
+[JSE Green1]
+1 Regeneration
+1 Jackalope Herd
+1 Search for Tomorrow
+1 Thicket Basilisk
+1 Giant Spider
+1 Field of Ruin
+1 Avenging Druid
+1 Vintara Elephant
+1 Ainok Artillerist
+1 Plated Rootwalla
+1 Shanodin Dryads
+1 Pinion Feast
+1 Avatar of the Resolute
+7 Forest
+
+[YUM2 Plains]
+1 Plains
+
+[YUM2 Island]
+1 Island
+
+[YUM2 Swamp]
+1 Swamp
+
+[YUM2 Mountain]
+1 Mountain
+
+[YUM2 Forest]
+1 Forest
+
+[YUM2 Colorless Lands]
+10 Captivating Cave
+10 Cloudpost
+10 Conduit Pylons
+10 Cradle of the Accursed
+10 Crystal Grotto
+10 Escape Tunnel
+10 Evolving Wilds
+10 Gateway Plaza
+10 Glimmerpost
+10 Public Thoroughfare
+10 Radiant Fountain
+10 Shimmerdrift Vale
+10 Sunscorched Desert
+10 Survivors' Encampment
+10 Terramorphic Expanse
+10 Tocasia's Dig Site
+10 Urza's Mine
+10 Urza's Power Plant
+10 Urza's Tower
+10 Warped Landscape
+5 Arid Archway
+5 Ash Barrens
+5 Blasted Landscape
+5 Buried Ruin
+5 Cryptic Caves
+5 Darksteel Citadel
+5 Desert
+5 Emergence Zone
+5 Field of Ruin
+5 Foundry of the Consuls
+5 Grasping Dunes
+5 Mishra's Factory
+5 Myriad Landscape
+5 Reliquary Tower
+5 Rogue's Passage
+5 Scene of the Crime
+5 Temple of the False God
+5 Urza's Cave
+5 Urza's Factory
+5 Zoetic Cavern
+2 Ancient Tomb
+2 Arch of Orazca
+2 Crawling Barrens
+2 Ancient Ziggurat
+2 Blast Zone
+2 Cascading Cataracts
+2 Cathedral of War
+2 Blinkmoth Nexus
+2 Fabled Passage
+2 Field of the Dead
+2 Hall of Oracles
+2 Karn's Bastion
+2 Lotus Field
+2 Mana Confluence
+2 Maze of Ith
+2 Mishra's Foundry
+2 Mutavault
+2 Nykthos, Shrine to Nyx
+2 Prismatic Vista
+2 Rishadan Port
+2 Thespian's Stage
+2 Throne of the High City
+2 Urza's Saga
+2 Vesuva
+2 Wasteland
+1 Strip Mine
+1 Cavern of Souls
+1 Library of Alexandria
+1 Mirrorpool
+1 Dark Depths
+1 Fomori Vault
+1 Gemstone Caverns
+1 Tarnation Vista
+1 Bazaar of Baghdad
+1 Glacial Chasm

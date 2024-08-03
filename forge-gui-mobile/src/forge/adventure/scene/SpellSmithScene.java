@@ -383,7 +383,7 @@ public class SpellSmithScene extends UIScene {
         buyPrice /= Math.max(cardPool.size(),1);
         
         currentPrice = (int) (buyPrice * modifierCost);
-        currentShardPrice = (int) (currentPrice * 0.2f); //casting to int rounds down, idk why this comment originally said it rounds up
+        currentShardPrice = (int) ((currentPrice+25) /50); //casting to int rounds down, idk why this comment originally said it rounds up
         pullUsingGold.setText("[+Pull][+goldcoin] "+ currentPrice);
         pullUsingShards.setText("[+Pull][+shards]" + currentShardPrice);
         pullUsingGold.setDisabled(!(cardPool.size() > 0) || Current.player().getGold() < currentPrice);

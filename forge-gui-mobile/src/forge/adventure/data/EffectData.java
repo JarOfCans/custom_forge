@@ -18,13 +18,16 @@ public class EffectData implements Serializable {
     public int lifeModifier = 0;         //Amount to add to starting Life.
     public int changeStartCards = 0;     //Amount to add to starting hand size.
     public String[] startBattleWithCard; //Cards that start in the Battlefield.
+    public String[] enemystartBattleWithCard; //Cards that start in the Enemy Battlefield.
     public String[] startBattleWithCardInCommandZone; //Cards that start in the Command Zone of the Battlefield.
     //Map only effects.
     public boolean colorView = false;    //Allows to display enemy colors on the map.
     public float moveSpeed = 1.0f;       //Change of movement speed. Map only.
     public float goldModifier = -1.0f;   //Modifier for shop discounts.
-    public int cardRewardBonus = 0;    //Bonus "DeckCard" drops. Max 3.
+    public int deckcardRewardBonus = 0;    //Bonus "DeckCard" drops. Max 5.
+    public int cardRewardBonus = 0;    //Bonus "RandomCard" drops. Max 8.
     public int extraManaShards = 0; //Mana Shard tokens available to spend in battle
+    public int goldBonus = 0; //Bonus gold drops. Max 200
 
     //Opponent field.
     public EffectData opponent;          //Effects to be applied to the opponent's side.
@@ -35,6 +38,8 @@ public class EffectData implements Serializable {
         lifeModifier=effect.lifeModifier;
         changeStartCards=effect.changeStartCards;
         startBattleWithCard=effect.startBattleWithCard;
+        enemystartBattleWithCard=effect.enemystartBattleWithCard;
+        startBattleWithCardInCommandZone=effect.startBattleWithCardInCommandZone;
         colorView=effect.colorView;
         opponent = (effect.opponent == null) ? null : new EffectData(effect.opponent);
         extraManaShards = effect.extraManaShards;
@@ -44,6 +49,22 @@ public class EffectData implements Serializable {
         Array<IPaperCard> startCards=new Array<>(IPaperCard.class);
         if(startBattleWithCard != null) {
             for (String name:startBattleWithCard) {
+                PaperCard C = FModel.getMagicDb().getCommonCards().getCard(name);
+                if(C != null)
+                    startCards.add(C);
+                else {
+                    PaperToken T = FModel.getMagicDb().getAllTokens().getToken(name);
+                    if (T != null) startCards.add(T);
+                    else System.err.print("Can not find card \"" + name + "\"\n");
+                }
+            }
+        }
+        return startCards;
+    }
+    public Array<IPaperCard> enemystartBattleWithCards() {
+        Array<IPaperCard> startCards=new Array<>(IPaperCard.class);
+        if(enemystartBattleWithCard != null) {
+            for (String name:enemystartBattleWithCard) {
                 PaperCard C = FModel.getMagicDb().getCommonCards().getCard(name);
                 if(C != null)
                     startCards.add(C);
@@ -88,6 +109,8 @@ public class EffectData implements Serializable {
             description += "[+Life] " + ((lifeModifier > 0) ? "+" : "") + lifeModifier + "\n";
         if(startBattleWithCard != null && startBattleWithCard.length != 0)
             description+="Battlefield:" + itemize(startBattleWithCards()) + "\n";
+        if(enemystartBattleWithCard != null && enemystartBattleWithCard.length != 0)
+            description+="Enemy Battlefield:" + itemize(enemystartBattleWithCards()) + "\n";
         if(startBattleWithCardInCommandZone != null && startBattleWithCardInCommandZone.length != 0)
             description+="Command:" + itemize(startBattleWithCardsInCommandZone()) + "\n";
         if(changeStartCards != 0)
@@ -96,8 +119,12 @@ public class EffectData implements Serializable {
             description+="[+MovementSpeed] " + ((moveSpeed > 0) ? "+" : "") + Math.round((moveSpeed-1.f)*100) + "%\n";
         if(goldModifier > 0.0f)
             description+="Shop discount: x" + (goldModifier) + "\n";
+        if(deckcardRewardBonus > 0)
+            description += "Bonus enemy deck rewards: +" + (deckcardRewardBonus) + "\n";
         if(cardRewardBonus > 0)
-            description += "Bonus enemy deck rewards: +" + (cardRewardBonus) + "\n";
+            description += "Bonus random card rewards: +" + (cardRewardBonus) + "\n";
+        if(goldBonus > 0)
+            description += "Bonus gold rewards: +" + (goldBonus) + "\n";
         if(this.opponent != null) {
             String oppEffect = this.opponent.getDescription();
             description += "Gives Opponent:\n";

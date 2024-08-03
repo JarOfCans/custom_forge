@@ -32,6 +32,7 @@ import org.apache.commons.lang3.StringUtils;
 import forge.card.MagicColor;
 import forge.card.mana.ManaCost;
 import forge.game.ability.AbilityFactory;
+import forge.game.ability.AbilityUtils;
 import forge.game.ability.ApiType;
 import forge.game.ability.SpellAbilityEffect;
 import forge.game.card.CardPlayOption.PayManaCost;
@@ -227,6 +228,7 @@ public final class GameActionUtil {
 
                 // some needs to check after ability was put on the stack
                 if (game.getAction().hasStaticAbilityAffectingZone(ZoneType.Stack, StaticAbilityLayer.ABILITIES)) {
+                    Map<StaticAbility, CardPlayOption> oldMayPlay = source.getMayPlay();
                     Zone oldZone = source.getLastKnownZone();
                     Card stackCopy = source;
                     if (!source.isLKI()) {
@@ -239,12 +241,15 @@ public final class GameActionUtil {
                     CardCollection preList = new CardCollection(stackCopy);
                     game.getAction().checkStaticAbilities(false, Sets.newHashSet(stackCopy), preList);
 
+                    stackCopy.setMayPlay(oldMayPlay);
+
                     for (final KeywordInterface inst : stackCopy.getUnhiddenKeywords()) {
                         for (SpellAbility iSa : inst.getAbilities()) {
                             // do only non intrinsic
                             if (iSa.isSpell() && !iSa.isIntrinsic()) {
                                 alternatives.add(iSa);
-                                alternatives.addAll(StaticAbilityAlternativeCost.alternativeCosts(iSa, source, activator));
+                                alternatives.addAll(getMayPlaySpellOptions(iSa, stackCopy, activator, altCostOnly));
+                                // currently only AltCost get added this way
                             }
                         }
                     }
@@ -316,6 +321,13 @@ public final class GameActionUtil {
 
             if (o.getAbility().hasParam("ValidAfterStack")) {
                 newSA.getMapParams().put("ValidAfterStack", o.getAbility().getParam("ValidAfterStack"));
+            }
+            if (o.getAbility().hasParam("RaiseCost")) {
+                String raise = o.getAbility().getParam("RaiseCost");
+                if (o.getAbility().hasSVar(raise)) {
+                    raise = Integer.toString(AbilityUtils.calculateAmount(host, raise, o.getAbility()));
+                }
+                newSA.getMapParams().put("RaiseCost", raise);
             }
 
             final SpellAbilityRestriction sar = newSA.getRestrictions();
@@ -883,6 +895,10 @@ public final class GameActionUtil {
 
             if (ability.hasParam("Prototype")) {
                 oldCard.removeCloneState(oldCard.getPrototypeTimestamp());
+            }
+
+            for (Card c : ability.getTappedForConvoke()) {
+                c.setTapped(false);
             }
         }
 

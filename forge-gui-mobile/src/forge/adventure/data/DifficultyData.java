@@ -18,7 +18,7 @@ public class DifficultyData {
     public float sellFactor=0.2f;
     public float goldLoss=0.2f;
     public float lifeLoss=0.2f;
-    public float shardSellRatio = 0.8f;
+    public float shardSellRatio = 0.2f;
 
     public float rewardMaxFactor=1f;
     public String[] startItems=new String[0];

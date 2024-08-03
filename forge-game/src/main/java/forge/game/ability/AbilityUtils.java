@@ -29,11 +29,7 @@ import forge.game.spellability.*;
 import forge.game.trigger.Trigger;
 import forge.game.trigger.TriggerType;
 import forge.game.zone.ZoneType;
-import forge.util.Aggregates;
-import forge.util.Expressions;
-import forge.util.Localizer;
-import forge.util.MyRandom;
-import forge.util.TextUtil;
+import forge.util.*;
 import forge.util.collect.FCollection;
 import forge.util.collect.FCollectionView;
 import io.sentry.Breadcrumb;
@@ -340,7 +336,7 @@ public class AbilityUtils {
         } else if (defined.equals("Convoked")) {
             cards.addAll(hostCard.getConvoked());
         } else {
-            CardCollection list = getPaidCards(sa, defined);
+            CardCollection list = getPaidCards(sa, incR[0]);
             if (list != null) {
                 cards.addAll(list);
             }
@@ -673,17 +669,18 @@ public class AbilityUtils {
                 final SpellAbility root = sa.getRootAbility();
                 final String[] l = calcX[1].split("/");
                 final String m = CardFactoryUtil.extractOperators(calcX[1]);
+                final Object to = root.getTriggeringObject(AbilityKey.fromString(l[0]));
                 Integer count = null;
-                if (calcX[0].endsWith("Max")) {
+                if (to instanceof Iterable<?>) {
                     @SuppressWarnings("unchecked")
-                    Iterable<Integer> numbers = (Iterable<Integer>) root.getTriggeringObject(AbilityKey.fromString(l[0]));
-                    for (Integer n : numbers) {
-                        if (count == null || n > count) {
-                            count = n;
-                        }
+                    Iterable<Integer> numbers = (Iterable<Integer>) to;
+                    if (calcX[0].endsWith("Max")) {
+                        count = Aggregates.max(numbers, Functions.identity());
+                    } else {
+                        count = Aggregates.sum(numbers, Functions.identity());
                     }
                 } else {
-                    count = (Integer) root.getTriggeringObject(AbilityKey.fromString(l[0]));
+                    count = (Integer) to;
                 }
 
                 val = doXMath(ObjectUtils.firstNonNull(count, 0), m, card, ability);
@@ -948,7 +945,7 @@ public class AbilityUtils {
 
         if (defined.equals("Self") || defined.equals("TargetedCard") || defined.equals("ThisTargetedCard")
                 || defined.equals("Convoked")
-                || defined.startsWith("Valid") || getPaidCards(sa, defined) != null || defined.equals("TargetedSource")
+                || defined.startsWith("Valid") || getPaidCards(sa, incR[0]) != null || defined.equals("TargetedSource")
                 || defined.startsWith("CardUID_")) {
             // defined syntax indicates cards only, so don't include any players
         } else if (defined.equals("TargetedOrController")) {
@@ -1292,10 +1289,10 @@ public class AbilityUtils {
                 }
             }
         } else if (defined.startsWith("ValidStack")) {
-            String[] valid = defined.split(" ", 2);
+            String valid = changedDef.split(" ", 2)[1];
             for (SpellAbilityStackInstance stackInstance : game.getStack()) {
                 SpellAbility instanceSA = stackInstance.getSpellAbility();
-                if (instanceSA != null && instanceSA.isValid(valid[1], player, card, s)) {
+                if (instanceSA != null && instanceSA.isValid(valid, player, card, sa)) {
                     sas.add(instanceSA);
                 }
             }
@@ -1996,7 +1993,7 @@ public class AbilityUtils {
             return doXMath(calculateAmount(c, sq[!isUnlinkedFromCastSA(ctb, c) && c.getKickerMagnitude() > 0 ? 1 : 2], ctb), expr, c, ctb);
         }
         if (sq[0].startsWith("Escaped")) {
-            return doXMath(calculateAmount(c, sq[!isUnlinkedFromCastSA(ctb, c) && c.getCastSA() != null && c.getCastSA().isEscape() ? 1 : 2], ctb), expr, c, ctb);
+            return doXMath(calculateAmount(c, sq[c.getCastSA() != null && c.getCastSA().isEscape() ? 1 : 2], ctb), expr, c, ctb);
         }
         if (sq[0].startsWith("Emerged")) {
             return doXMath(calculateAmount(c, sq[!isUnlinkedFromCastSA(ctb, c) && c.getCastSA() != null && c.getCastSA().isEmerge() ? 1 : 2], ctb), expr, c, ctb);
@@ -2037,7 +2034,7 @@ public class AbilityUtils {
         }
 
         if (sq[0].equals("CrewSize")) {
-            return doXMath(c.getCrewedByThisTurn().size(), expr, c, ctb);
+            return doXMath(c.getCrewedByThisTurn() == null ? 0 : c.getCrewedByThisTurn().size(), expr, c, ctb);
         }
 
         if (sq[0].equals("Intensity")) {
@@ -2356,6 +2353,37 @@ public class AbilityUtils {
         if (sq[0].equals("NotedNumber")) {
             return doXMath(player.getNotedNumberForName(c.getName()), expr, c, ctb);
         }
+
+        if (sq[0].equals("DraftNotesHighest")) {
+            // Just in case you are playing this card in a deck without draft notes
+            String note = player.getDraftNotes().getOrDefault(sq[1],  "0");
+            int highest = 0;
+            for (String n : note.split(",")) {
+                int num = Integer.parseInt(n);
+                if (num > highest) {
+                    highest = num;
+                }
+            }
+
+            return doXMath(highest, expr, c, ctb);
+            // Other draft notes include: Names, Colors, Players, Creature Type.
+            // But these aren't really things you count so they'll show up in properties most likely
+        }
+
+        if (sq[0].equals("DraftNotesCount")) {
+            // Just in case you are playing this card in a deck without draft notes
+            String note = player.getDraftNotes().getOrDefault(sq[1],  null);
+
+            if (note == null) {
+                return 0;
+            }
+            int highest = note.split(";").length;
+
+            return doXMath(highest, expr, c, ctb);
+            // Other draft notes include: Names, Colors, Players, Creature Type.
+            // But these aren't really things you count so they'll show up in properties most likely
+        }
+
 
         //Count$TypesSharedWith [defined]
         if (sq[0].startsWith("TypesSharedWith")) {
@@ -3551,6 +3579,7 @@ public class AbilityUtils {
             }
             return doXMath(amount, m, source, ctb);
         }
+
         if (value.startsWith("PlaneswalkedToThisTurn")) {
             int found = 0;
             String name = value.split(" ")[1];
@@ -3839,40 +3868,11 @@ public class AbilityUtils {
         return someCards;
     }
 
-    public static CardCollection getPaidCards(CardTraitBase sa, String defined) {
+    private static CardCollection getPaidCards(CardTraitBase sa, String defined) {
         CardCollection list = null;
         if (sa instanceof SpellAbility) {
             SpellAbility root = ((SpellAbility)sa).getRootAbility();
-            // TODO do we really need these checks?
-            if (defined.startsWith("SacrificedCards")) {
-                list = root.getPaidList("SacrificedCards", true);
-            } else if (defined.startsWith("Sacrificed")) {
-                list = root.getPaidList("Sacrificed", true);
-            } else if (defined.startsWith("Revealed")) {
-                list = root.getPaidList("Revealed", true);
-            } else if (defined.startsWith("DiscardedCards")) {
-                list = root.getPaidList("DiscardedCards", true);
-            } else if (defined.startsWith("Discarded")) {
-                list = root.getPaidList("Discarded", true);
-            } else if (defined.startsWith("ExiledCards")) {
-                list = root.getPaidList("ExiledCards", true);
-            } else if (defined.startsWith("Exiled")) {
-                list = root.getPaidList("Exiled", true);
-            } else if (defined.startsWith("Milled")) {
-                list = root.getPaidList("Milled", true);
-            } else if (defined.startsWith("TappedCards")) {
-                list = root.getPaidList("TappedCards", true);
-            } else if (defined.startsWith("Tapped")) {
-                list = root.getPaidList("Tapped", true);
-            } else if (defined.startsWith("UntappedCards")) {
-                list = root.getPaidList("UntappedCards", true);
-            } else if (defined.startsWith("Untapped")) {
-                list = root.getPaidList("Untapped", true);
-            } else if (defined.startsWith("CollectedCards")) {
-                list = root.getPaidList("CollectedCards", true);
-            } else if (defined.startsWith("Collected")) {
-                list = root.getPaidList("Collected", true);
-            }
+            list = root.getPaidList(defined, true);
         }
         return list;
     }

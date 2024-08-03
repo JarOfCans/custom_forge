@@ -105,7 +105,7 @@ public class AdventureEventData implements Serializable {
             cardBlockName = cardBlock.getName();
 
             //Below all to be fully generated in later release
-            rewardPacks = getRewardPacks(6);
+            rewardPacks = getRewardPacks(12);
             generateParticipants(7);
             if (cardBlock != null){
                 packConfiguration = getBoosterConfiguration(cardBlock);
@@ -123,17 +123,17 @@ public class AdventureEventData implements Serializable {
                 
                 r1.minWins = 1;
                 r1.maxWins = 3;
-                r1.cardRewards = new Deck[]{rewardPacks[1]};
+                r1.cardRewards = new Deck[]{rewardPacks[1], rewardPacks[2]};
                 rewards.add(r1);
                 
                 r2.minWins = 2;
                 r2.maxWins = 3;
-                r2.cardRewards = new Deck[]{rewardPacks[2], rewardPacks[3]};
+                r2.cardRewards = new Deck[]{rewardPacks[6], rewardPacks[7],rewardPacks[3],rewardPacks[4], rewardPacks[5]};
                 rewards.add(r2);
                 
                 r3.minWins = 3;
                 r3.maxWins = 3;
-                r3.cardRewards = new Deck[]{rewardPacks[4], rewardPacks[5]};
+                r3.cardRewards = new Deck[]{rewardPacks[8], rewardPacks[9],rewardPacks[10], rewardPacks[11]};
                 rewards.add(r3);
                 
                 r4.minWins = 3;
@@ -156,20 +156,6 @@ public class AdventureEventData implements Serializable {
             packConfiguration = new String[] {cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode()};
 
             
-           /*for (AdventureEventParticipant participant : participants) {
-                List<Deck> availableOptions = AdventureEventController.instance().getJumpstartBoosters(cardBlock, numPacksToPickFrom);
-                List<Deck> chosenPacks = new ArrayList<>();
-                boolean done = false;
-                
-                chosenPacks.add(availableOptions.get(0));
-
-                chosenPacks.add(availableOptions.get(1));
-                participant.registeredDeck = new Deck();
-                for (Deck chosen : chosenPacks){
-                    participant.registeredDeck.getMain().addAllFlat(chosen.getMain().toFlatList());
-                }
-            }*/
-
             
             List<Deck> bonusJumpStarts = AdventureEventController.instance().getJumpstartBoosters(cardBlock, 6);
             rewards = new ArrayList<AdventureEventData.AdventureEventReward>();
@@ -438,7 +424,7 @@ public class AdventureEventData implements Serializable {
         Predicate<CardEdition> rolledFilter;
         if (rollD100 < 20) {
             rolledFilter = filterStandard;
-        } else if (rollD100 < 40) {
+        } else if (rollD100 < 33) {
             rolledFilter = filterPioneer;
         } else if (rollD100 < 75) {
             rolledFilter = filterModern;
@@ -630,12 +616,17 @@ public class AdventureEventData implements Serializable {
             matches.put(round, new ArrayList<>());
             Collections.shuffle(activePlayers);
             Collections.sort(activePlayers);
+            for (AdventureEventParticipant aep: activePlayers) {
+            	System.out.printf("%s %d - %d %s",aep.getName(), aep.wins, aep.losses, System.lineSeparator());
+            }
             for (int i = 0; i < 4; i++) {
                 AdventureEventMatch match = new AdventureEventMatch();
                 match.p1 = activePlayers.get(i*2);
                 match.p2 = activePlayers.get(i*2+1);
                 matches.get(round).add(match);
             }
+        } else {
+        	System.out.println("Uhh wut");
         }
         return matches.get(currentRound);
     }
@@ -672,8 +663,11 @@ public class AdventureEventData implements Serializable {
 
         //end todo
 
+        //TODO change as needed
+        boolean giveAllRewards = false;
+        
         for (AdventureEventReward r : rewards) {
-            if (r.minWins > wins || r.maxWins < wins) {
+            if ((r.minWins > wins || r.maxWins < wins) && !giveAllRewards) {
                 continue;
             }
             for (Deck pack : r.cardRewards) {
@@ -837,10 +831,10 @@ public class AdventureEventData implements Serializable {
 
         @Override
         public int compareTo(AdventureEventParticipant other) {
-            if (this.wins != other.wins)
+            //if (this.wins != other.wins)
                 return other.wins - this.wins;
-            else
-                return this.losses - other.losses;
+            //else
+            //    return this.losses - other.losses;
         }
 
         public void setDeck(Deck deck) {
@@ -898,34 +892,34 @@ public class AdventureEventData implements Serializable {
                     acceptsChallengeCoin = false;
                     acceptsBronzeChallengeCoin = false;
                     baseGoldEntry = 500;
-                    baseShardEntry = 25;
+                    baseShardEntry = 10;
                     allowsAddBasicLands = false;
                     break;
                 case Draft:
                     acceptsChallengeCoin = true;
                     acceptsSilverChallengeCoin = false;
                     acceptsBronzeChallengeCoin = false;
-                    baseGoldEntry = 1000;
-                    baseShardEntry = 50;
-                    startingLife = 20;
+                    baseGoldEntry = 2000;
+                    baseShardEntry = 40;
+                    //startingLife = 20;
                     allowsAddBasicLands = true;
                     break;
                 case Jumpstart:
                     acceptsChallengeCoin = false;
                     acceptsSilverChallengeCoin = false;
                     acceptsBronzeChallengeCoin = true;
-                    baseGoldEntry = 400;
-                    baseShardEntry = 20;
-                    startingLife = 20;
+                    baseGoldEntry = 500;
+                    baseShardEntry = 10;
+                    //startingLife = 20;
                     allowsAddBasicLands = false;
                     break;
                 case JumpstartDraft:
                     acceptsChallengeCoin = false;
                     acceptsSilverChallengeCoin = true;
                     acceptsBronzeChallengeCoin = false;
-                    baseGoldEntry = 800;
-                    baseShardEntry = 40;
-                    startingLife = 20;
+                    baseGoldEntry = 1000;
+                    baseShardEntry = 20;
+                    //startingLife = 20;
                     allowsAddBasicLands = true;
                     break;
             }

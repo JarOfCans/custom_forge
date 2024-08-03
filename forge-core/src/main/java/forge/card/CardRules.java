@@ -22,6 +22,7 @@ import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import forge.card.mana.IParserManaCost;
@@ -51,6 +52,7 @@ public final class CardRules implements ICardCharacteristics {
     private ColorSet deckbuildingColors;
     private String meldWith;
     private String partnerWith;
+    private boolean addsWildCardColor;
     private boolean custom;
 
     public CardRules(ICardFace[] faces, CardSplitType altMode, CardAiHints cah) {
@@ -69,6 +71,7 @@ public final class CardRules implements ICardCharacteristics {
         aiHints = cah;
         meldWith = "";
         partnerWith = "";
+        addsWildCardColor = false;
 
         //calculate color identity
         byte colMask = calculateColorIdentity(mainPart);
@@ -94,6 +97,8 @@ public final class CardRules implements ICardCharacteristics {
         colorIdentity = newRules.colorIdentity;
         meldWith = newRules.meldWith;
         partnerWith = newRules.partnerWith;
+        addsWildCardColor = newRules.addsWildCardColor;
+        tokens = newRules.tokens;
     }
 
     private static byte calculateColorIdentity(final ICardFace face) {
@@ -204,20 +209,20 @@ public final class CardRules implements ICardCharacteristics {
     @Override
     public ManaCost getManaCost() {
         switch (splitType.getAggregationMethod()) {
-        case COMBINE:
-            return ManaCost.combine(mainPart.getManaCost(), otherPart.getManaCost());
-        default:
-            return mainPart.getManaCost();
+            case COMBINE:
+                return ManaCost.combine(mainPart.getManaCost(), otherPart.getManaCost());
+            default:
+                return mainPart.getManaCost();
         }
     }
 
     @Override
     public ColorSet getColor() {
         switch (splitType.getAggregationMethod()) {
-        case COMBINE:
-            return ColorSet.fromMask(mainPart.getColor().getColor() | otherPart.getColor().getColor());
-        default:
-            return mainPart.getColor();
+            case COMBINE:
+                return ColorSet.fromMask(mainPart.getColor().getColor() | otherPart.getColor().getColor());
+            default:
+                return mainPart.getColor();
         }
     }
 
@@ -231,10 +236,10 @@ public final class CardRules implements ICardCharacteristics {
 
     public boolean canCastWithAvailable(byte colorCode) {
         switch (splitType.getAggregationMethod()) {
-        case COMBINE:
-            return canCastFace(mainPart, colorCode) || canCastFace(otherPart, colorCode);
-        default:
-            return canCastFace(mainPart, colorCode);
+            case COMBINE:
+                return canCastFace(mainPart, colorCode) || canCastFace(otherPart, colorCode);
+            default:
+                return canCastFace(mainPart, colorCode);
         }
     }
 
@@ -252,10 +257,10 @@ public final class CardRules implements ICardCharacteristics {
     @Override
     public String getOracleText() {
         switch (splitType.getAggregationMethod()) {
-        case COMBINE:
-            return mainPart.getOracleText() + "\r\n\r\n" + otherPart.getOracleText();
-        default:
-            return mainPart.getOracleText();
+            case COMBINE:
+                return mainPart.getOracleText() + "\r\n\r\n" + otherPart.getOracleText();
+            default:
+                return mainPart.getOracleText();
         }
     }
     
@@ -271,6 +276,9 @@ public final class CardRules implements ICardCharacteristics {
     }
 
     public boolean canBeCommander() {
+        if (mainPart.getOracleText().contains(" is your commander, choose a color before the game begins.")) {
+            addsWildCardColor = true;
+        }
         if (mainPart.getOracleText().contains("can be your commander") || canBeBackground()) {
             return true;
         }
@@ -388,9 +396,19 @@ public final class CardRules implements ICardCharacteristics {
         return partnerWith;
     }
 
+    public boolean getAddsWildCardColor() {
+        return addsWildCardColor;
+    }
+
     // vanguard card fields, they don't use sides.
     private int deltaHand;
     private int deltaLife;
+
+    private List<String> tokens = Collections.emptyList();
+
+    public List<String> getTokens() {
+        return tokens;
+    }
 
     public int getHand() { return deltaHand; }
     public int getLife() { return deltaLife; }
@@ -424,8 +442,11 @@ public final class CardRules implements ICardCharacteristics {
         private CardSplitType altMode = CardSplitType.None;
         private String meldWith = "";
         private String partnerWith = "";
+        private boolean addsWildCardColor = false;
         private String handLife = null;
         private String normalizedName = "";
+
+        private List<String> tokens = Lists.newArrayList();
 
         // fields to build CardAiHints
         private boolean removedFromAIDecks = false;
@@ -459,7 +480,9 @@ public final class CardRules implements ICardCharacteristics {
             this.has = null;
             this.meldWith = "";
             this.partnerWith = "";
+            this.addsWildCardColor = false;
             this.normalizedName = "";
+            this.tokens = Lists.newArrayList();
         }
 
         /**
@@ -481,6 +504,10 @@ public final class CardRules implements ICardCharacteristics {
             result.setNormalizedName(this.normalizedName);
             result.meldWith = this.meldWith;
             result.partnerWith = this.partnerWith;
+            result.addsWildCardColor = this.addsWildCardColor;
+            if (!tokens.isEmpty()) {
+                result.tokens = tokens;
+            }
             if (StringUtils.isNotBlank(handLife))
                 result.setVanguardProperties(handLife);
             return result;
@@ -513,6 +540,18 @@ public final class CardRules implements ICardCharacteristics {
             String key = colonPos > 0 ? line.substring(0, colonPos) : line;
             String value = colonPos > 0 ? line.substring(1+colonPos).trim() : null;
 
+            if (value != null) {
+                int tokIdx = value.indexOf("TokenScript$");
+                if (tokIdx > 0) {
+                    String tokenParam = value.substring(tokIdx + 12).trim();
+                    int endIdx = tokenParam.indexOf("|");
+                    if (endIdx > 0) {
+                        tokenParam = tokenParam.substring(0, endIdx).trim();
+                    }
+                    this.tokens.addAll(Arrays.asList(tokenParam.split(",")));
+                }
+            }
+
             switch (key.charAt(0)) {
                 case 'A':
                     if ("A".equals(key)) {
@@ -534,7 +573,7 @@ public final class CardRules implements ICardCharacteristics {
                     } else if ("AltName".equals(key)) {
                         this.faces[curFace].setAltName(value);
                     }
-                break;
+                    break;
 
                 case 'C':
                     if ("Colors".equals(key)) {
@@ -554,6 +593,8 @@ public final class CardRules implements ICardCharacteristics {
                         has = new DeckHints(value);
                     } else if ("Defense".equals(key)) {
                         this.faces[this.curFace].setDefense(value);
+                    } else if ("Draft".equals(key)) {
+                        this.faces[this.curFace].addDraftAction(value);
                     }
                     break;
 
@@ -724,7 +765,10 @@ public final class CardRules implements ICardCharacteristics {
     }
 
     public boolean hasStartOfKeyword(final String k) {
-        for (final String inst : mainPart.getKeywords()) {
+        return hasStartOfKeyword(k, mainPart);
+    }
+    public boolean hasStartOfKeyword(final String k, ICardFace cf) {
+        for (final String inst : cf.getKeywords()) {
             final String[] parts = inst.split(":");
             if (parts[0].equals(k)) {
                 return true;

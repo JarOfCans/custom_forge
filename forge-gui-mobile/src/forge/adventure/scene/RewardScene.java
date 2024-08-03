@@ -296,6 +296,7 @@ public class RewardScene extends UIScene {
         long shopSeed = changes.getShopSeed(shopActor.getObjectId());
         WorldSave.getCurrentSave().getWorld().getRandom().setSeed(shopSeed);
         for (RewardData rdata : data.rewards) {
+        	rdata.probability = 1f;
             ret.addAll(rdata.generate(false, false));
         }
         shopActor.setRewardData(ret);

@@ -102,10 +102,10 @@ public class AdventureEventController implements Serializable {
 
         AdventureEventData e ;
         int randInt = random.nextInt(20);
-        if (randInt <= 3){
+        if (randInt <= 2){
             e = new AdventureEventData(eventSeed, EventFormat.Jumpstart);
         }
-        else if (randInt <= 6){
+        else if (randInt <= 5){
             e = new AdventureEventData(eventSeed, EventFormat.JumpstartDraft);
         }
         else{

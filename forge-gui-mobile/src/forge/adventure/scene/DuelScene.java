@@ -172,25 +172,28 @@ public class DuelScene extends ForgeScene {
         Forge.setTransitionScreen(new TransitionScreen(endRunnable, Forge.takeScreenshot(), false, false));
     }
 
-    void addEffects(RegisteredPlayer player, Array<EffectData> effects) {
+    void addEffects(RegisteredPlayer player, Array<EffectData> effects, RegisteredPlayer enemy) {
         if (effects == null) return;
         //Apply various combat effects.
         int lifeMod = 0;
         int changeStartCards = 0;
         int extraManaShards = 0;
         Array<IPaperCard> startCards = new Array<>();
+        Array<IPaperCard> enemystartCards = new Array<>();
         Array<IPaperCard> startCardsInCommandZone = new Array<>();
 
         for (EffectData data : effects) {
             lifeMod += data.lifeModifier;
             changeStartCards += data.changeStartCards;
             startCards.addAll(data.startBattleWithCards());
+            enemystartCards.addAll(data.enemystartBattleWithCards());
             startCardsInCommandZone.addAll(data.startBattleWithCardsInCommandZone());
 
             extraManaShards += data.extraManaShards;
         }
         player.addExtraCardsOnBattlefield(startCards);
         player.addExtraCardsInCommandZone(startCardsInCommandZone);
+        enemy.addExtraCardsOnBattlefield(enemystartCards);
 
         if (lifeMod != 0)
             player.setStartingLife(Math.max(1, lifeMod + player.getStartingLife()));
@@ -288,7 +291,6 @@ public class DuelScene extends ForgeScene {
                 playerEffects.add(dungeonEffect.opponent);
         }
 
-        addEffects(humanPlayer, playerEffects);
 
         currentEnemy = enemy.getData();
         boolean bossBattle = currentEnemy.boss;
@@ -332,8 +334,9 @@ public class DuelScene extends ForgeScene {
                     }
                 }
             }
-            addEffects(aiPlayer, oppEffects);
-            addEffects(aiPlayer, equipmentEffects);
+            addEffects(humanPlayer, playerEffects, aiPlayer);
+            addEffects(aiPlayer, oppEffects, humanPlayer);
+            addEffects(aiPlayer, equipmentEffects, humanPlayer);
 
             //add extra cards for challenger mode
             if (chaosBattle) {

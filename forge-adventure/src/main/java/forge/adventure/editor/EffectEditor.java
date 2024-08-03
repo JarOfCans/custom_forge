@@ -15,6 +15,7 @@ public class EffectEditor extends JComponent  {
     JSpinner lifeModifier = new JSpinner(new SpinnerNumberModel(0, 0, 1000, 1));
     JSpinner moveSpeed = new JSpinner(new SpinnerNumberModel(0f, 0, 1, 0.1f));
     TextListEdit startBattleWithCard =new TextListEdit();
+    TextListEdit enemystartBattleWithCard =new TextListEdit();
     JCheckBox colorView =new JCheckBox();
     EffectEditor opponent = null; 
     private boolean updating=false;
@@ -32,6 +33,7 @@ public class EffectEditor extends JComponent  {
         parameters.add("Change life:",             lifeModifier);
         parameters.add("Movement speed:",          moveSpeed);
         parameters.add("Start battle with cards:",    startBattleWithCard);
+        parameters.add("Enemy starts battle with cards:",    enemystartBattleWithCard);
         parameters.add("color view:",              colorView);
         add(parameters);
         if(!isOpponentEffect)
@@ -61,6 +63,7 @@ public class EffectEditor extends JComponent  {
         currentData.lifeModifier= ((Integer)lifeModifier.getValue()).intValue();
         currentData.moveSpeed= ((Float)moveSpeed.getValue()).floatValue();
         currentData.startBattleWithCard = startBattleWithCard.getList();
+        currentData.enemystartBattleWithCard = enemystartBattleWithCard.getList();
         currentData.colorView = colorView.isSelected();
         currentData.opponent = opponent.currentData;
 
@@ -102,6 +105,7 @@ public class EffectEditor extends JComponent  {
         lifeModifier.setValue(currentData.lifeModifier);
         changeStartCards.setValue(currentData.changeStartCards);
         startBattleWithCard.setText(currentData.startBattleWithCard);
+        enemystartBattleWithCard.setText(currentData.enemystartBattleWithCard);
         colorView.setSelected(currentData.colorView);
         moveSpeed.setValue(currentData.moveSpeed);
         if(opponent!=null)

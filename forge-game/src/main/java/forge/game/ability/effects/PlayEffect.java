@@ -163,15 +163,11 @@ public class PlayEffect extends SpellAbilityEffect {
             String name = source.getNamedCard();
             if (name.trim().isEmpty()) {
                 name = controller.getNamedCard();
-                if(name.trim().isEmpty()) {
-                    return;
-                }
+                if (name.trim().isEmpty()) return;
             }
             Card card = Card.fromPaperCard(StaticData.instance().getCommonCards().getUniqueByName(name), controller);
             // so it gets added to stack
             card.setCopiedPermanent(card);
-            // Keeps adventures from leaving the recast effect
-            card.setCopiedSpell(true);
             card.setToken(true);
             tgtCards = new CardCollection(card);
         } else {
@@ -287,7 +283,6 @@ public class PlayEffect extends SpellAbilityEffect {
                 tgtCard.setZone(zone);
                 // to fix the CMC
                 tgtCard.setCopiedPermanent(original);
-                tgtCard.setCopiedSpell(true);
                 if (zone != null) {
                     zone.add(tgtCard);
                 }
@@ -452,13 +447,13 @@ public class PlayEffect extends SpellAbilityEffect {
             if (sa.hasParam("ReplaceGraveyard")) {
                 if (!sa.hasParam("ReplaceGraveyardValid")
                         || tgtSA.isValid(sa.getParam("ReplaceGraveyardValid").split(","), controller, source, sa)) {
-                    addReplaceGraveyardEffect(tgtCard, sa, tgtSA, sa.getParam("ReplaceGraveyard"), moveParams);
+                    addReplaceGraveyardEffect(tgtCard, source, sa, tgtSA, sa.getParam("ReplaceGraveyard"));
                 }
             }
 
             // For Illusionary Mask effect
             if (sa.hasParam("ReplaceIlluMask")) {
-                addIllusionaryMaskReplace(tgtCard, sa, moveParams);
+                addIllusionaryMaskReplace(tgtCard, sa);
             }
 
             // Add controlled by player to target SA so when the spell is resolving, the controller would be changed again
@@ -503,8 +498,7 @@ public class PlayEffect extends SpellAbilityEffect {
         }
     }
 
-    protected void addReplaceGraveyardEffect(Card c, SpellAbility sa, SpellAbility tgtSA, String zone, Map<AbilityKey, Object> moveParams) {
-        final Card hostCard = sa.getHostCard();
+    public static void addReplaceGraveyardEffect(Card c, Card hostCard, SpellAbility sa, SpellAbility tgtSA, String zone) {
         final Game game = hostCard.getGame();
         final Player controller = sa.getActivatingPlayer();
         final String name = hostCard.getName() + "'s Effect";
@@ -538,7 +532,7 @@ public class PlayEffect extends SpellAbilityEffect {
         game.getAction().moveToCommand(eff, sa);
     }
 
-    protected void addIllusionaryMaskReplace(Card c, SpellAbility sa, Map<AbilityKey, Object> moveParams) {
+    protected void addIllusionaryMaskReplace(Card c, SpellAbility sa) {
         final Card hostCard = sa.getHostCard();
         final Game game = hostCard.getGame();
         final Player controller = sa.getActivatingPlayer();

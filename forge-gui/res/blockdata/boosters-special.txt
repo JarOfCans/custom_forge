@@ -457,3 +457,6 @@ YUM Make a Wish: 1 wholeSheet("YUM Make a Wish")
 YUM Strangleroot Geist: 1 wholeSheet("YUM Strangleroot Geist")
 YUM Altar of the Lost: 1 wholeSheet("YUM Altar of the Lost")
 YUM Trial of Solidarity: 1 wholeSheet("YUM Trial of Solidarity")
+
+# YUM2 Jumpstart
+YUM2 White Basic: 5 wholeSheet("YUM2 Plains"), 1 Any:fromSheet("YUM2 Colorless Lands")

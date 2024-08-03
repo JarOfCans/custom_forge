@@ -32,9 +32,10 @@ public class ShardTraderScene extends UIScene {
 
     int shardsToBuy = 5;
 
-    int shardPrice = Math.round(100 * Current.player().getDifficulty().shardSellRatio);
+    int shardCost = 1000;
+    
+    int shardPrice = Math.round(shardCost * Current.player().getDifficulty().shardSellRatio );
 
-    int shardCost = 100;
 
     private ShardTraderScene() {
         super(Forge.isLandscapeMode() ? "ui/shardtrader.json" : "ui/shardtrader_portrait.json");

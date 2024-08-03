@@ -829,13 +829,38 @@ public class AdventurePlayer implements Serializable, SaveFileContent {
         int result = 0;
         for (String name : equippedItems.values()) {
             ItemData data = ItemData.getItem(name);
+            if (data != null && data.effect != null && data.effect.deckcardRewardBonus > 0)
+                result += data.effect.deckcardRewardBonus;
+        }
+        if (blessing != null) {
+            if (blessing.deckcardRewardBonus > 0) result += blessing.deckcardRewardBonus;
+        }
+        return Math.min(result, 5);
+    }
+
+    public int bonusRandomCards() {
+        int result = 0;
+        for (String name : equippedItems.values()) {
+            ItemData data = ItemData.getItem(name);
             if (data != null && data.effect != null && data.effect.cardRewardBonus > 0)
                 result += data.effect.cardRewardBonus;
         }
         if (blessing != null) {
             if (blessing.cardRewardBonus > 0) result += blessing.cardRewardBonus;
         }
-        return Math.min(result, 3);
+        return Math.min(result, 8);
+    }
+    public int bonusRewardGold() {
+        int result = 0;
+        for (String name : equippedItems.values()) {
+            ItemData data = ItemData.getItem(name);
+            if (data != null && data.effect != null && data.effect.goldBonus > 0)
+                result += data.effect.goldBonus;
+        }
+        if (blessing != null) {
+            if (blessing.goldBonus > 0) result += blessing.goldBonus;
+        }
+        return Math.min(result, 200);
     }
 
     public DifficultyData getDifficulty() {

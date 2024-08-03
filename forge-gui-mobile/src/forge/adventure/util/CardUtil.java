@@ -386,13 +386,13 @@ public class CardUtil {
             case BasicLand:
                 return (card.isFoil())?200:5;
             case Common:
-                return (card.isFoil())?100:50;
+                return (card.isFoil())?100:40;
             case Uncommon:
-                return (card.isFoil())?200:100;
+                return (card.isFoil())?200:80;
             case Rare:
-                return (card.isFoil())?500:300;
+                return (card.isFoil())?800:300;
             case MythicRare:
-                return (card.isFoil())?800:500;
+                return (card.isFoil())?2000:500;
             default:
                 return (card.isFoil())?800:500;
         }
@@ -415,10 +415,12 @@ public class CardUtil {
 
     public static Deck generateDeck(GeneratedDeckData data, CardEdition starterEdition, boolean discourageDuplicates)
     {
+    	//TODO error exists with json
         List<String> editionCodes = (starterEdition != null)?Arrays.asList(starterEdition.getCode(), starterEdition.getCode2()):Arrays.asList("JMP", "J22", "DMU", "BRO", "ONE", "MOM", "WOE", "YUM");
         Deck deck= new Deck(data.name);
         if(data.mainDeck!=null)
         {
+        	System.out.println("Has main deck");
             deck.getOrCreate(DeckSection.Main).addAllFlat(generateAllCards(Arrays.asList(data.mainDeck), true));
             if(data.sideBoard!=null)
                 deck.getOrCreate(DeckSection.Sideboard).addAllFlat(generateAllCards(Arrays.asList(data.sideBoard), true));
@@ -489,14 +491,18 @@ public class CardUtil {
         }
        if(data.template!=null)
        {
+       	System.out.println("Has template");
            float count=data.template.count;
            float lands=count*0.4f;
            float spells=count-lands;
-           List<RewardData> dataArray= generateRewards(data.template,spells*0.5f,new int[]{1,2});
+           List<RewardData> dataArray= generateRewards(data.template,spells*0.15f,new int[]{1,2});
+           dataArray.addAll(generateRewards(data.template,spells*0.4f,new int[]{2,3}));
            dataArray.addAll(generateRewards(data.template,spells*0.3f,new int[]{3,4,5}));
-           dataArray.addAll(generateRewards(data.template,spells*0.2f,new int[]{6,7,8}));
+           dataArray.addAll(generateRewards(data.template,spells*0.15f,new int[]{6,7,8}));
+           //System.out.println("size:" + dataArray.size());
            List<PaperCard>  nonLand= generateAllCards(dataArray, true);
 
+           //System.out.println(nonLand.size());
            nonLand.addAll(fillWithLands(nonLand,data.template));
            deck.getOrCreate(DeckSection.Main).addAllFlat(nonLand);
        }
@@ -734,8 +740,10 @@ public class CardUtil {
         }
         Json json = new Json();
         FileHandle handle = Config.instance().getFile(path);
-        if (handle.exists())
+        if (handle.exists()) {
+        	//TODO look into
             return generateDeck(json.fromJson(GeneratedDeckData.class, handle), starterEdition, discourageDuplicates);
+        }
         Deck deck = DeckgenUtil.getRandomOrPreconOrThemeDeck(colors, true, false, true);
         System.err.println("Error loading JSON: " + handle.path() + "\nGenerating random deck: "+deck.getName());
         return deck;

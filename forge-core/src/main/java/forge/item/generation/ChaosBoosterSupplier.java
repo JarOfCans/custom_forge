@@ -17,6 +17,7 @@ public class ChaosBoosterSupplier implements IUnOpenedProduct {
     @Override
     public List<PaperCard> get() {
         final CardEdition set = randomizer.getNextItem();
+        System.out.println(set.getCode());
         final BoosterPack pack = new BoosterPack(set.getCode(), set.getBoosterTemplate());
         return pack.getCards();
     }

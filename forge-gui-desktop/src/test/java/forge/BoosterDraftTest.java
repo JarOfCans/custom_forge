@@ -1,17 +1,18 @@
 package forge;
 
-import java.util.List;
-
-import org.testng.annotations.Test;
-
 import forge.deck.CardPool;
 import forge.deck.Deck;
 import forge.game.card.Card;
 import forge.gamemodes.limited.IBoosterDraft;
+import forge.gamemodes.limited.IDraftLog;
+import forge.gamemodes.limited.LimitedPlayer;
 import forge.item.PaperCard;
 import forge.item.SealedProduct;
 import forge.item.generation.BoosterGenerator;
 import forge.model.FModel;
+import org.testng.annotations.Test;
+
+import java.util.List;
 
 /**
  * <p>
@@ -25,11 +26,27 @@ import forge.model.FModel;
 public class BoosterDraftTest implements IBoosterDraft {
 
     private int n = 3;
+    private int round = 1;
 
     @Override
     @Test(timeOut = 1000)
     public Deck[] getDecks() {
         return null;
+    }
+
+    @Override
+    public LimitedPlayer[] getOpposingPlayers() {
+        return new LimitedPlayer[0];
+    }
+
+    @Override
+    public LimitedPlayer getHumanPlayer() {
+        return null;
+    }
+
+    @Override
+    public int getRound() {
+        return round;
     }
 
     @Override
@@ -41,10 +58,15 @@ public class BoosterDraftTest implements IBoosterDraft {
         return result;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
     @Override
-    public void setChoice(final PaperCard c) {
+    public boolean setChoice(final PaperCard c) {
         System.out.println(c.getName());
+        return false;
     }
 
     @Override
@@ -68,5 +90,25 @@ public class BoosterDraftTest implements IBoosterDraft {
     @Override
     public boolean isPileDraft() {
         return false;
+    }
+
+    @Override
+    public void setLogEntry(IDraftLog draftingProcess) {
+
+    }
+
+    @Override
+    public IDraftLog getDraftLog() {
+        return null;
+    }
+
+    @Override
+    public LimitedPlayer getNeighbor(LimitedPlayer p, boolean left) {
+        return null;
+    }
+
+    @Override
+    public LimitedPlayer getPlayer(int i) {
+        return null;
     }
 }

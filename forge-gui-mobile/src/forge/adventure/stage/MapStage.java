@@ -1040,6 +1040,7 @@ public class MapStage extends GameStage {
         }
     }
 
+    boolean started = false;
     public void beginDuel(EnemySprite mob) {
         if (mob == null) return;
         mob.clearCollisionHeight();
@@ -1055,6 +1056,9 @@ public class MapStage extends GameStage {
         Forge.restrictAdvMenus = true;
         player.clearCollisionHeight();
         startPause(0.8f, () -> {
+            if (started)
+                return;
+            started = true;
             Forge.setCursor(null, Forge.magnifyToggle ? "1" : "2");
             SoundSystem.instance.play(SoundEffectType.ManaBurn, false);
             DuelScene duelScene = DuelScene.instance();
@@ -1062,6 +1066,7 @@ public class MapStage extends GameStage {
                 if (!isLoadingMatch) {
                     isLoadingMatch = true;
                     Forge.setTransitionScreen(new TransitionScreen(() -> {
+                        started = false;
                         duelScene.initDuels(player, mob);
                         if (isInMap && effect != null && !mob.ignoreDungeonEffect)
                             duelScene.setDungeonEffect(effect);

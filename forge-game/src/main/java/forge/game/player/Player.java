@@ -124,6 +124,7 @@ public class Player extends GameEntity implements Comparable<Player> {
 
     private final Map<String, FCollection<String>> notes = Maps.newHashMap();
     private final Map<String, Integer> notedNum = Maps.newHashMap();
+    private final Map<String, String> draftNotes = Maps.newHashMap();
 
     private boolean revolt = false;
     private int descended = 0;
@@ -193,6 +194,9 @@ public class Player extends GameEntity implements Comparable<Player> {
     private SortedSet<Long> controlVotes = Sets.newTreeSet();
     private Map<Long, Integer> additionalVillainousChoices = Maps.newHashMap();
 
+    private NavigableMap<Long, Player> declaresAttackers = Maps.newTreeMap();
+    private NavigableMap<Long, Player> declaresBlockers = Maps.newTreeMap();
+
     private final AchievementTracker achievementTracker = new AchievementTracker();
     private final PlayerView view;
 
@@ -209,6 +213,7 @@ public class Player extends GameEntity implements Comparable<Player> {
         view.updateMaxHandSize(this);
         view.updateKeywords(this);
         view.updateMaxLandPlay(this);
+        view.setDraftNotes(this.getDraftNotes());
         setName(chooseName(name0));
         if (id0 >= 0) {
             game.addPlayer(id, this);
@@ -633,21 +638,20 @@ public class Player extends GameEntity implements Comparable<Player> {
         return cnt >= energyPayment;
     }
 
-    public final int loseEnergy(int lostEnergy) {
+    public final boolean loseEnergy(int lostEnergy) {
         int cnt = getCounters(CounterEnumType.ENERGY);
         if (lostEnergy > cnt) {
-            return -1;
+            return false;
         }
-        cnt -= lostEnergy;
-        this.setCounters(CounterEnumType.ENERGY, cnt, null, true);
-        return cnt;
+        subtractCounter(CounterEnumType.ENERGY, lostEnergy, this);
+        return true;
     }
 
     public final boolean payEnergy(final int energyPayment, final Card source) {
         if (energyPayment <= 0)
             return true;
 
-        return canPayEnergy(energyPayment) && loseEnergy(energyPayment) > -1;
+        return canPayEnergy(energyPayment) && loseEnergy(energyPayment);
     }
 
     public final boolean canPayShards(final int shardPayment) {
@@ -893,7 +897,7 @@ public class Player extends GameEntity implements Comparable<Player> {
     }
 
     @Override
-    public void subtractCounter(CounterType counterName, int num) {
+    public void subtractCounter(CounterType counterName, int num, final Player remover) {
         int oldValue = getCounters(counterName);
         int newValue = Math.max(oldValue - num, 0);
 
@@ -901,6 +905,8 @@ public class Player extends GameEntity implements Comparable<Player> {
         if (delta == 0) { return; }
 
         setCounters(counterName, newValue, null, true);
+
+        getGame().addCounterRemovedThisTurn(counterName, this, delta);
 
         /* TODO Run triggers when something cares
         int curCounters = oldValue;
@@ -961,7 +967,7 @@ public class Player extends GameEntity implements Comparable<Player> {
         addCounter(CounterEnumType.RAD, num, source, table);
     }
     public final void removeRadCounters(final int num) {
-        subtractCounter(CounterEnumType.RAD, num);
+        subtractCounter(CounterEnumType.RAD, num, this);
     }
 
     // TODO Merge These calls into the primary counter calls
@@ -975,7 +981,7 @@ public class Player extends GameEntity implements Comparable<Player> {
         addCounter(CounterEnumType.POISON, num, source, table);
     }
     public final void removePoisonCounters(final int num, final Player source) {
-        subtractCounter(CounterEnumType.POISON, num);
+        subtractCounter(CounterEnumType.POISON, num, source);
     }
     // ================ POISON Merged =================================
     public final void addChangedKeywords(final List<String> addKeywords, final List<String> removeKeywords, final Long timestamp, final long staticId) {
@@ -2129,12 +2135,12 @@ public class Player extends GameEntity implements Comparable<Player> {
         return lost;
     }
 
-    public final boolean hasProwl(final Set<String> types) {
-        StringBuilder sb = new StringBuilder();
-        for (String type : types) {
-            sb.append("Card.YouCtrl+").append(type).append(",");
-        }
-        return !game.getDamageDoneThisTurn(true, true, sb.toString(), "Player", null, this, null).isEmpty();
+    public final boolean hasProwl(final SpellAbility sa) {
+        return !game.getDamageDoneThisTurn(true, true, "Card.YouCtrl+sharesCreatureTypeWith", "Player", sa.getHostCard(), this, sa).isEmpty();
+    }
+
+    public final boolean hasFreerunning() {
+        return !game.getDamageDoneThisTurn(true, true, "Card.Assassin+YouCtrl,Card.IsCommander+YouCtrl", "Player", null, this, null).isEmpty();
     }
 
     public final void setLibrarySearched(final int l) {
@@ -2298,7 +2304,7 @@ public class Player extends GameEntity implements Comparable<Player> {
     public final void addSpellCastSinceBegOfYourLastTurn(List<Card> spells) {
         spellsCastSinceBeginningOfLastTurn.addAll(spells);
     }
-    
+
     public final int getSpellsCastThisTurn() {
         return spellsCastThisTurn;
     }
@@ -2374,6 +2380,15 @@ public class Player extends GameEntity implements Comparable<Player> {
             return 1;
         }
         return getName().compareTo(o.getName());
+    }
+
+    public void setDraftNotes(Map<String, String> notes) {
+        this.draftNotes.clear();
+        this.draftNotes.putAll(notes);
+    }
+
+    public Map<String, String> getDraftNotes() {
+        return draftNotes;
     }
 
     public static class Accessors {
@@ -3432,7 +3447,7 @@ public class Player extends GameEntity implements Comparable<Player> {
                 radiationEffect.setSetCode(setCode);
             }
 
-            String trigStr = "Mode$ Phase | PreCombatMain$ True | ValidPlayer$ You | TriggerZones$ Command | TriggerDescription$ " +
+            String trigStr = "Mode$ Phase | Phase$ Main1 | ValidPlayer$ You | TriggerZones$ Command | TriggerDescription$ " +
             "At the beginning of your precombat main phase, if you have any rad counters, mill that many cards. For each nonland card milled this way, you lose 1 life and a rad counter.";
 
             Trigger tr = TriggerHandler.parseTrigger(trigStr, radiationEffect, true);
@@ -3801,5 +3816,31 @@ public class Player extends GameEntity implements Comparable<Player> {
     }
     public void setCommitedCrimeThisTurn(int v) {
         committedCrimeThisTurn = v;
+    }
+
+    public void addDeclaresAttackers(long ts, Player p) {
+        this.declaresAttackers.put(ts, p);
+    }
+
+    public void removeDeclaresAttackers(long ts) {
+        this.declaresAttackers.remove(ts);
+    }
+
+    public Player getDeclaresAttackers() {
+        Map.Entry<Long, Player> e = declaresAttackers.lastEntry();
+        return e == null ? null : e.getValue();
+    }
+
+    public void addDeclaresBlockers(long ts, Player p) {
+        this.declaresBlockers.put(ts, p);
+    }
+
+    public void removeDeclaresBlockers(long ts) {
+        this.declaresBlockers.remove(ts);
+    }
+
+    public Player getDeclaresBlockers() {
+        Map.Entry<Long, Player> e = declaresBlockers.lastEntry();
+        return e == null ? null : e.getValue();
     }
 }

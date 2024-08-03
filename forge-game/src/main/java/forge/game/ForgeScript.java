@@ -215,6 +215,8 @@ public class ForgeScript {
             return sa.isBargained();
         } else if (property.equals("Backup")) {
             return sa.isBackup();
+        } else if (property.equals("Bestow")) {
+            return sa.isBestow();
         } else if (property.equals("Blitz")) {
             return sa.isBlitz();
         } else if (property.equals("Buyback")) {
@@ -398,8 +400,17 @@ public class ForgeScript {
                 }
             }
             return found;
-        }
-        else if (property.equals("CouldCastTiming")) {
+        } else if (property.equals("otherAbility")) {
+            if (sa.equals(spellAbility)) {
+                return false;
+            }
+            if (spellAbility instanceof SpellAbility) {
+                SpellAbility sourceSpell = (SpellAbility) spellAbility;
+                if (sa.getRootAbility().equals(sourceSpell.getRootAbility())) {
+                    return false;
+                }
+            }
+        } else if (property.equals("CouldCastTiming")) {
             Card host = sa.getHostCard();
             Game game = host.getGame();
             if (game.getStack().isSplitSecondOnStack()) {

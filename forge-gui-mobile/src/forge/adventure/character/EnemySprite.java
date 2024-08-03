@@ -26,6 +26,7 @@ import forge.adventure.util.Reward;
 import forge.adventure.util.pathfinding.MovementBehavior;
 import forge.adventure.util.pathfinding.NavigationVertex;
 import forge.adventure.util.pathfinding.ProgressableGraphPath;
+import forge.adventure.world.WorldSave;
 import forge.card.CardRarity;
 import forge.card.CardRulesPredicates;
 import forge.deck.CardPool;
@@ -482,7 +483,79 @@ public class EnemySprite extends CharacterSprite implements Steerable<Vector2> {
                 // By popular demand, remove basic lands from the reward pool.
                 CardPool deckNoBasicLands = enemyDeck.getMain().getFilteredPool(Predicates.compose(Predicates.not(CardRulesPredicates.Presets.IS_BASIC_LAND), PaperCard.FN_GET_RULES));
 
+                //Add bonuses
+                List<RewardData> generateRandoms = new ArrayList<RewardData>();
+                List<RewardData> generateDeck = new ArrayList<RewardData>();
+                RewardData goldData = null;
+                List<RewardData> outputData = new ArrayList<RewardData>();
+                
+                
                 for (RewardData rdata : data.rewards) {
+                	outputData.add(new RewardData(rdata));
+                }
+                
+                for (RewardData rdata : outputData) {
+                	System.out.println(rdata.type + " :" + rdata);
+                    switch (rdata.type) {
+                    case "card":
+                    case "randomCard":
+                    	if (rdata.probability > 0f)
+                    		generateRandoms.add(rdata);
+                    	break;
+                    case "deckCard":
+                    	if (rdata.probability > 0f)
+                    		generateDeck.add(rdata);
+                    	break;
+                    case "gold":
+                    	if (goldData == null || (rdata.probability > goldData.probability))
+                    		goldData = rdata;
+                    	break;
+                    }
+                }
+                
+                for (int i = 0; i < Current.player().bonusRandomCards() && generateRandoms.size() > 0; i++) {
+                	System.out.println("generated random any");
+                	RewardData reward = generateRandoms.get(WorldSave.getCurrentSave().getWorld().getRandom().nextInt(generateRandoms.size()));
+                	System.out.println(reward +  ": "+ reward.type + " - " + reward.count);
+                	if (reward.probability < 0.5f) {
+                		System.out.println("increased chance");
+                		reward.probability = 1f;
+                	} else if (reward.probability < 1f) {
+                		System.out.println("increased chance + added max count");
+                		reward.probability = 1f;
+                		reward.addMaxCount++;
+                	}	
+                	else {
+                		System.out.println("increased count");
+                		reward.count++;
+                	}
+                }
+                for (int i = 0; i < Current.player().bonusDeckCards() && generateDeck.size() > 0; i++) {
+                	//System.out.println("generated random from deck");
+                	RewardData reward = generateDeck.get(WorldSave.getCurrentSave().getWorld().getRandom().nextInt(generateDeck.size()));
+                	if (reward.probability < 0.5f) {
+                		System.out.println("Guarenteed reward");
+                		reward.probability = 1f;
+                	} else if (reward.probability < 1f) {
+                		System.out.println("Guarenteed frequent reward");
+                		reward.probability = 1f;
+                		reward.addMaxCount++;
+                	}	
+                	else {
+                    	System.out.print("Card Reward " + reward.count);
+                		reward.count++;
+                    	System.out.println(" -> " + reward.count);
+                	}
+                }
+                
+                if (goldData != null) {
+                	System.out.print(goldData.count);
+                	goldData.count += Current.player().bonusRewardGold();
+                	System.out.println(" -> " + goldData.count);
+                	
+                }
+                
+                for (RewardData rdata : outputData) {
                     ret.addAll(rdata.generate(false,  enemyDeck == null ? null : deckNoBasicLands.toFlatList(),true ));
                 }
             }

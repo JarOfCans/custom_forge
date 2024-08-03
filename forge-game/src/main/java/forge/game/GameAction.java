@@ -19,24 +19,22 @@ package forge.game;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.*;
-
 import forge.GameCommand;
 import forge.StaticData;
 import forge.card.CardStateName;
-import forge.card.MagicColor;
 import forge.card.CardType.Supertype;
+import forge.card.MagicColor;
 import forge.deck.DeckSection;
-import forge.game.ability.*;
+import forge.game.ability.AbilityFactory;
+import forge.game.ability.AbilityKey;
+import forge.game.ability.AbilityUtils;
+import forge.game.ability.ApiType;
 import forge.game.card.*;
 import forge.game.event.*;
 import forge.game.keyword.Keyword;
 import forge.game.keyword.KeywordInterface;
 import forge.game.mulligan.MulliganService;
-import forge.game.player.GameLossReason;
-import forge.game.player.Player;
-import forge.game.player.PlayerActionConfirmMode;
-import forge.game.player.PlayerCollection;
-import forge.game.player.PlayerPredicates;
+import forge.game.player.*;
 import forge.game.replacement.ReplacementEffect;
 import forge.game.replacement.ReplacementResult;
 import forge.game.replacement.ReplacementType;
@@ -56,7 +54,6 @@ import forge.item.PaperCard;
 import forge.util.*;
 import forge.util.collect.FCollection;
 import forge.util.collect.FCollectionView;
-
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
@@ -1318,7 +1315,7 @@ public class GameAction {
                 final CounterType dreamType = CounterType.get(CounterEnumType.DREAM);
 
                 if (c.getCounters(dreamType) > 7 && c.hasKeyword("CARDNAME can't have more than seven dream counters on it.")) {
-                    c.subtractCounter(dreamType,  c.getCounters(dreamType) - 7);
+                    c.subtractCounter(dreamType,  c.getCounters(dreamType) - 7, null);
                     checkAgainCard = true;
                 }
 
@@ -1330,7 +1327,7 @@ public class GameAction {
                         c.addCounter(CounterEnumType.LOYALTY, beeble - loyal, c.getController(), counterTable);
                         counterTable.replaceCounterEffect(game, null, false);
                     } else if (loyal > beeble) {
-                        c.subtractCounter(CounterEnumType.LOYALTY, loyal - beeble);
+                        c.subtractCounter(CounterEnumType.LOYALTY, loyal - beeble, null);
                     }
                     // Only check again if counters actually changed
                     if (c.getCounters(CounterEnumType.LOYALTY) != loyal) {
@@ -1633,8 +1630,8 @@ public class GameAction {
             // N +1/+1 and N -1/-1 counters are removed from it, where N is the
             // smaller of the number of +1/+1 and -1/-1 counters on it.
             // This should fire remove counters trigger
-            c.subtractCounter(p1p1, remove);
-            c.subtractCounter(m1m1, remove);
+            c.subtractCounter(p1p1, remove, null);
+            c.subtractCounter(m1m1, remove, null);
             checkAgain = true;
         }
         return checkAgain;
@@ -2197,7 +2194,8 @@ public class GameAction {
 
             for (Card c : ploys) {
                 if (!cmc.isEmpty()) {
-                    chosen = takesAction.getController().chooseNumber(c.getSpellPermanent(), "Emissary's Ploy", cmc, c.getOwner());
+                    SpellAbility sa = new SpellAbility.EmptySa(ApiType.ChooseNumber, c, takesAction);
+                    chosen = takesAction.getController().chooseNumber(sa, "Emissary's Ploy", cmc, c.getOwner());
                     cmc.remove((Object)chosen);
                 }
 
