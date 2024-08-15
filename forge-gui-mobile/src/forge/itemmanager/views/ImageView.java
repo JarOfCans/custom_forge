@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.stream.IntStream;
 
 public class ImageView<T extends InventoryItem> extends ItemView<T> {
     private static final float PADDING = Utils.scale(5);
@@ -674,9 +675,7 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
     @Override
     public void selectAll() {
         clearSelection();
-        for (Integer i = 0; i < getCount(); i++) {
-            selectedIndices.add(i);
-        }
+        IntStream.range(0, getCount()).forEach(selectedIndices::add);
         updateSelection();
         onSelectionChange();
     }

@@ -1,6 +1,5 @@
 package forge.game.card;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 import forge.ImageKeys;
@@ -23,7 +22,10 @@ import forge.trackable.TrackableCollection;
 import forge.trackable.TrackableObject;
 import forge.trackable.TrackableProperty;
 import forge.trackable.Tracker;
-import forge.util.*;
+import forge.util.CardTranslation;
+import forge.util.Lang;
+import forge.util.Localizer;
+import forge.util.TextUtil;
 import forge.util.collect.FCollectionView;
 import org.apache.commons.lang3.StringUtils;
 
@@ -217,6 +219,14 @@ public class CardView extends GameEntityView {
         set(TrackableProperty.Tapped, c.isTapped());
     }
 
+    public GamePieceType getGamePieceType() {
+        return get(TrackableProperty.GamePieceType);
+    }
+    void updateGamePieceType(Card c) {
+        set(TrackableProperty.GamePieceType, c.getGamePieceType());
+    }
+
+    //Tracked separately from GamePieceType; a token card or a merged permanent with a token as the top is also considered a "token"
     public boolean isToken() {
         return get(TrackableProperty.Token);
     }
@@ -225,10 +235,7 @@ public class CardView extends GameEntityView {
     }
 
     public boolean isImmutable() {
-        return get(TrackableProperty.IsImmutable);
-    }
-    public void updateImmutable(Card c) {
-        set(TrackableProperty.IsImmutable, c.isImmutable());
+        return get(TrackableProperty.GamePieceType) == GamePieceType.EFFECT;
     }
 
     public boolean isEmblem() {
@@ -431,6 +438,12 @@ public class CardView extends GameEntityView {
     void updateChosenPlayer(Card c) {
         set(TrackableProperty.ChosenPlayer, PlayerView.get(c.getChosenPlayer()));
     }
+    public PlayerView getPromisedGift() {
+        return get(TrackableProperty.PromisedGift);
+    }
+    void updatePromisedGift(Card c) {
+        set(TrackableProperty.PromisedGift, PlayerView.get(c.getPromisedGift()));
+    }
     public PlayerView getProtectingPlayer() {
         return get(TrackableProperty.ProtectingPlayer);
     }
@@ -561,12 +574,7 @@ public class CardView extends GameEntityView {
     public boolean canBeShownToAny(final Iterable<PlayerView> viewers) {
         if (viewers == null || Iterables.isEmpty(viewers)) { return true; }
 
-        return Iterables.any(viewers, new Predicate<PlayerView>() {
-            @Override
-            public final boolean apply(final PlayerView input) {
-                return canBeShownTo(input);
-            }
-        });
+        return Iterables.any(viewers, this::canBeShownTo);
     }
 
     public boolean canBeShownTo(final PlayerView viewer) {
@@ -583,6 +591,7 @@ public class CardView extends GameEntityView {
         case Graveyard:
         case Flashback:
         case Stack:
+        case Junkyard:
             //cards in these zones are visible to all
             return true;
         case Exile:
@@ -605,6 +614,7 @@ public class CardView extends GameEntityView {
             return true;
         case Library:
         case PlanarDeck:
+        case AttractionDeck:
             //cards in these zones are hidden to all unless they specify otherwise
             break;
         case SchemeDeck:
@@ -630,12 +640,7 @@ public class CardView extends GameEntityView {
     public boolean canFaceDownBeShownToAny(final Iterable<PlayerView> viewers) {
         if (viewers == null || Iterables.isEmpty(viewers)) { return true; }
 
-        return Iterables.any(viewers, new Predicate<PlayerView>() {
-            @Override
-            public final boolean apply(final PlayerView input) {
-                return canFaceDownBeShownTo(input);
-            }
-        });
+        return Iterables.any(viewers, this::canFaceDownBeShownTo);
     }
 
     public boolean canFaceDownBeShownTo(final PlayerView viewer) {
@@ -806,6 +811,12 @@ public class CardView extends GameEntityView {
         if (!nonAbilityText.isEmpty()) {
             sb.append("\r\n \r\nNon ability features: \r\n");
             sb.append(nonAbilityText.replaceAll("CARDNAME", getName()));
+        }
+
+        Set<Integer> attractionLights = get(TrackableProperty.AttractionLights);
+        if (attractionLights != null && !attractionLights.isEmpty()) {
+            sb.append("\r\n\r\nLights: ");
+            sb.append(StringUtils.join(attractionLights, ", "));
         }
 
         sb.append(getRemembered());
@@ -1023,6 +1034,8 @@ public class CardView extends GameEntityView {
         currentState.getView().updateKeywords(c, currentState); //update keywords even if state doesn't change
         currentState.getView().setOriginalColors(c); //set original Colors
 
+        currentStateView.updateAttractionLights(currentState);
+
         CardState alternateState = isSplitCard && isFaceDown() ? c.getState(CardStateName.RightSplit) : c.getAlternateState();
 
         if (isSplitCard && isFaceDown()) {
@@ -1062,7 +1075,7 @@ public class CardView extends GameEntityView {
         if (hiddenId == null) {
             return getId();
         }
-        return hiddenId.intValue();
+        return hiddenId;
     }
     void updateHiddenId(final int hiddenId) {
         set(TrackableProperty.HiddenId, hiddenId);
@@ -1301,8 +1314,8 @@ public class CardView extends GameEntityView {
         public String getOracleText() {
             return get(TrackableProperty.OracleText);
         }
-        void updateOracleText(Card c) {
-            set(TrackableProperty.OracleText, c.getOracleText().replace("\\n", "\r\n\r\n").trim());
+        void setOracleText(String oracleText) {
+            set(TrackableProperty.OracleText, oracleText.replace("\\n", "\r\n\r\n").trim());
         }
 
         public String getRulesText() {
@@ -1430,6 +1443,13 @@ public class CardView extends GameEntityView {
                 }
             }
             updateDefense("0");
+        }
+
+        public Set<Integer> getAttractionLights() {
+            return get(TrackableProperty.AttractionLights);
+        }
+        void updateAttractionLights(CardState c) {
+            set(TrackableProperty.AttractionLights, c.getAttractionLights());
         }
 
         public String getSetCode() {
@@ -1717,6 +1737,9 @@ public class CardView extends GameEntityView {
             if (!getType().isEnchantment() || getType().getCoreTypes() == null)
                 return false;
             return Iterables.size(getType().getCoreTypes()) > 1;
+        }
+        public boolean isAttraction() {
+            return getType().isAttraction();
         }
     }
 

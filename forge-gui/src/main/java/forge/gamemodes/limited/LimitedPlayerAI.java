@@ -1,15 +1,21 @@
 package forge.gamemodes.limited;
 
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterables;
+import forge.card.CardEdition;
 import forge.card.ColorSet;
 import forge.deck.CardPool;
 import forge.deck.Deck;
 import forge.deck.DeckSection;
+import forge.deck.generation.DeckGeneratorBase;
 import forge.item.PaperCard;
 import forge.localinstance.properties.ForgePreferences;
 import forge.util.MyRandom;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static forge.gamemodes.limited.CardRanker.getOrderedRawScores;
@@ -39,16 +45,19 @@ public class LimitedPlayerAI extends LimitedPlayer {
             System.out.println("Player[" + order + "] pack: " + chooseFrom);
         }
 
-        // TODO Archdemon of Paliano random draft while active
+        PaperCard bestPick;
+        if (hasArchdemonCurse()) {
+            bestPick = pickFromArchdemonCurse(chooseFrom);
+        } else {
+            final ColorSet chosenColors = deckCols.getChosenColors();
+            final boolean canAddMoreColors = deckCols.canChoseMoreColors();
 
-        final ColorSet chosenColors = deckCols.getChosenColors();
-        final boolean canAddMoreColors = deckCols.canChoseMoreColors();
+            List<PaperCard> rankedCards = rankCardsInPack(chooseFrom, pool.toFlatList(), chosenColors, canAddMoreColors);
+            bestPick = rankedCards.get(0);
 
-        List<PaperCard> rankedCards = rankCardsInPack(chooseFrom, pool.toFlatList(), chosenColors, canAddMoreColors);
-        PaperCard bestPick = rankedCards.get(0);
-
-        if (canAddMoreColors) {
-            deckCols.addColorsOf(bestPick);
+            if (canAddMoreColors) {
+                deckCols.addColorsOf(bestPick);
+            }
         }
 
         if (ForgePreferences.DEV_MODE) {
@@ -146,6 +155,27 @@ public class LimitedPlayerAI extends LimitedPlayer {
     }
 
     @Override
+    protected boolean revealWithSmuggler(PaperCard bestPick) {
+        // Note a name we haven't noted yet
+        List<String> notedNames = getDraftNotes().getOrDefault("Smuggler Captain", null);
+        if (!notedNames.isEmpty() && notedNames.contains(bestPick.getName())) {
+            return false;
+        }
+
+        if (bestPick.getRules().getType().isConspiracy()) {
+            return false;
+        }
+
+        if (currentPack == 3) {
+            // If we're already on the last pack, we may not get a better choice
+            return true;
+        }
+
+        // If we're on the first two packs get the bombiest of cards available.
+        return draftedThisRound < 3;
+    }
+
+    @Override
     public boolean handleWhispergearSneak() {
         // Always choose the next pack I will open
         // What do I do with this information? Great question. I have no idea.
@@ -222,4 +252,65 @@ public class LimitedPlayerAI extends LimitedPlayer {
         return draftedThisRound < 3;
     }
 
+    @Override
+    protected CardEdition chooseEdition(List<CardEdition> possibleEditions) {
+        Collections.shuffle(possibleEditions);
+        return possibleEditions.get(0);
+    }
+
+    @Override
+    protected PaperCard chooseExchangeCard(PaperCard offer) {
+        final ColorSet colors = deckCols.getChosenColors();
+        List<PaperCard> deckCards = deck.getOrCreate(DeckSection.Sideboard).toFlatList();
+
+        DeckGeneratorBase.MatchColorIdentity hasColor = new DeckGeneratorBase.MatchColorIdentity(colors);
+        Iterable<PaperCard> colorList = Iterables.filter(deckCards,
+                Predicates.not(Predicates.compose(hasColor, PaperCard::getRules)));
+
+        PaperCard exchangeCard = null;
+
+        if (offer == null) {
+            // Choose the highest rated card outside your colors
+            List<PaperCard> rankedColorList = CardRanker.rankCardsInDeck(colorList);
+            return rankedColorList.get(0);
+        }
+
+        // Choose a card in my deck outside my colors with similar value
+        List<Pair<Double, PaperCard>> rankedColorList = CardRanker.getScores(colorList);
+        double score = CardRanker.getRawScore(offer);
+        double closestScore = Double.POSITIVE_INFINITY;
+
+        for (Pair<Double, PaperCard> pair : rankedColorList) {
+            double diff = Math.abs(pair.getLeft() - score);
+            if (diff < closestScore) {
+                closestScore = diff;
+                exchangeCard = pair.getRight();
+            }
+        }
+
+        return exchangeCard;
+    }
+
+    protected PaperCard chooseCardToExchange(PaperCard exchangeCard, Map<PaperCard, LimitedPlayer> offers) {
+        double score = CardRanker.getRawScore(exchangeCard);
+        List<Pair<Double, PaperCard>> rankedColorList = CardRanker.getScores(offers.keySet());
+        final ColorSet colors = deckCols.getChosenColors();
+        for(Pair<Double, PaperCard> pair : rankedColorList) {
+            ColorSet cardColors = pair.getRight().getRules().getColorIdentity();
+            if (!cardColors.hasNoColorsExcept(colors)) {
+                continue;
+            }
+
+            if (score < pair.getLeft()) {
+                return pair.getRight();
+            }
+
+            double threshold = Math.abs(pair.getLeft() - score) / pair.getLeft();
+            if (threshold < 0.1) {
+                return pair.getRight();
+            }
+        }
+
+        return null;
+    }
 }

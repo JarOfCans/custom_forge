@@ -17,10 +17,7 @@
  */
 package forge.game.phase;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
+import com.google.common.collect.*;
 import forge.game.*;
 import forge.game.ability.AbilityKey;
 import forge.game.ability.effects.AddTurnEffect;
@@ -84,6 +81,7 @@ public class PhaseHandler implements java.io.Serializable {
     private transient Player pPlayerPriority = null;
     private transient Player pFirstPriority = null;
     private transient Combat combat = null;
+    private boolean skipDamageSteps = false;
     private boolean bRepeatCleanup = false;
 
     /** The need to next phase. */
@@ -98,7 +96,7 @@ public class PhaseHandler implements java.io.Serializable {
     public final PhaseType getPhase() {
         return phase;
     }
-    private final void setPhase(final PhaseType phase0) {
+    private void setPhase(final PhaseType phase0) {
         if (phase == phase0) { return; }
         phase = phase0;
         game.updatePhaseForView();
@@ -225,20 +223,18 @@ public class PhaseHandler implements java.io.Serializable {
                 return playerTurn.isSkippingCombat();
 
             case COMBAT_DECLARE_BLOCKERS:
-                if (inCombat() && combat.getAttackers().isEmpty()) {
-                    endCombat();
-                }
+                skipDamageSteps = !inCombat() || combat.getAttackers().isEmpty();
                 //$FALL-THROUGH$
             case COMBAT_FIRST_STRIKE_DAMAGE:
             case COMBAT_DAMAGE:
-                return !inCombat();
+                return skipDamageSteps;
 
             default:
                 return false;
         }
     }
 
-    private final void onPhaseBegin() {
+    private void onPhaseBegin() {
         boolean skipped = false;
 
         game.getTriggerHandler().resetActiveTriggers();
@@ -280,11 +276,15 @@ public class PhaseHandler implements java.io.Serializable {
                             playerTurn.setSchemeInMotion(null);
                         }
                         GameEntityCounterTable table = new GameEntityCounterTable();
-                        // all Saga get Lore counter at the begin of pre combat
+                        // all Sagas get a Lore counter at the beginning of pre combat
                         for (Card c : playerTurn.getCardsIn(ZoneType.Battlefield)) {
                             if (c.isSaga()) {
                                 c.addCounter(CounterEnumType.LORE, 1, playerTurn, table);
                             }
+                        }
+                        // roll for attractions if we have any
+                        if (Iterables.any(playerTurn.getCardsIn(ZoneType.Battlefield), Presets.ATTRACTIONS)) {
+                            playerTurn.rollToVisitAttractions();
                         }
                         table.replaceCounterEffect(game, null, false);
                     }
@@ -980,6 +980,10 @@ public class PhaseHandler implements java.io.Serializable {
 
     public final boolean beforeFirstPostCombatMainEnd() {
         return nMain2sThisTurn == 0;
+    }
+
+    public final boolean skippedDeclareBlockers() {
+        return skipDamageSteps;
     }
 
     private final static boolean DEBUG_PHASES = false;

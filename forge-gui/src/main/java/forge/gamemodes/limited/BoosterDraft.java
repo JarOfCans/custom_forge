@@ -24,6 +24,7 @@ import forge.StaticData;
 import forge.card.CardEdition;
 import forge.deck.CardPool;
 import forge.deck.Deck;
+import forge.deck.DeckBase;
 import forge.gui.util.SGuiChoose;
 import forge.gui.util.SOptionPane;
 import forge.item.PaperCard;
@@ -50,7 +51,7 @@ import java.util.*;
  */
 public class BoosterDraft implements IBoosterDraft {
 
-    private static int nextId = 0;
+    private int nextId = 0;
     private static final int N_PLAYERS = 8;
     public static final String FILE_EXT = ".draft";
     private final List<LimitedPlayer> players = new ArrayList<>();
@@ -172,12 +173,7 @@ public class BoosterDraft implements IBoosterDraft {
                 if (myDrafts.isEmpty()) {
                     SOptionPane.showMessageDialog(Localizer.getInstance().getMessage("lblNotFoundCustomDraftFiles"));
                 } else {
-                    Collections.sort(myDrafts, new Comparator<CustomLimited>() {
-                        @Override
-                        public int compare(CustomLimited o1, CustomLimited o2) {
-                            return o1.getName().compareTo(o2.getName());
-                        }
-                    });
+                    myDrafts.sort(Comparator.comparing(DeckBase::getName));
 
                     final CustomLimited customDraft = SGuiChoose.oneOrNone(Localizer.getInstance().getMessage("lblChooseCustomDraft"), myDrafts);
                     if (customDraft == null) {
@@ -286,6 +282,11 @@ public class BoosterDraft implements IBoosterDraft {
         for (int i = 1; i < numPlayers; i++) {
             players.add(new LimitedPlayerAI(i, this));
         }
+    }
+
+    public DraftPack addBooster(CardEdition edition) {
+        final IUnOpenedProduct product = new UnOpenedProduct(FModel.getMagicDb().getBoosters().get(edition.getCode()));
+        return new DraftPack(product.get(), nextId++);
     }
 
     @Override
@@ -504,25 +505,52 @@ public class BoosterDraft implements IBoosterDraft {
         }
 
         // Do any players have a Canal Dredger?
+        List<LimitedPlayer> dredgers = new ArrayList<>();
+        for (LimitedPlayer pl : this.players) {
+            if (pl.hasCanalDredger()) {
+                dredgers.add(pl);
+            }
+        }
 
         for (int i = 0; i < N_PLAYERS; i++) {
-            DraftPack passingPack = this.players.get(i).passPack();
+            LimitedPlayer pl = this.players.get(i);
+            DraftPack passingPack = pl.passPack();
 
             if (passingPack == null)
                 continue;
 
-            if (!passingPack.isEmpty()) {
-                if (passingPack.size() == 1) {
-                    // TODO Canal Dredger for passing a pack with a single card in it
-
-                }
-
-                int passTo = (i + adjust + N_PLAYERS) % N_PLAYERS;
-                this.players.get(passTo).receiveOpenedPack(passingPack);
-                this.players.get(passTo).adjustPackNumber(adjust, packsInDraft);
-            } else {
+            LimitedPlayer passToPlayer = null;
+            if (passingPack.isEmpty()) {
                 packsInDraft--;
+                continue;
             }
+
+            if (passingPack.size() == 1) {
+                if (dredgers.size() == 1) {
+                    passToPlayer = dredgers.get(0);
+                } else if (dredgers.size() > 1) {
+                    // Multiple dredgers, so we need to choose one to pass to
+                    if (dredgers.contains(pl)) {
+                        // If the current player has a Canal Dredger, they should pass to themselves
+                        passToPlayer = pl;
+                    } else if (pl instanceof LimitedPlayerAI) {
+                        // Maybe the AI could have more knowledge about the other players.
+                        // Like don't pass to players that have revealed certain cards or colors
+                        // But random is probably fine for now
+                        Collections.shuffle(dredgers);
+                        passToPlayer = dredgers.get(0);
+                    } else {
+                        // Human player, so we need to ask them
+                        passToPlayer = SGuiChoose.one("Which player with Canal Dredger should we pass the last card to?", dredgers);
+                    }
+                }
+            }
+
+            if (passToPlayer == null) {
+                passToPlayer = this.players.get((i + adjust + N_PLAYERS) % N_PLAYERS);
+            }
+
+            passToPlayer.receiveOpenedPack(passingPack);
         }
     }
 
@@ -530,8 +558,6 @@ public class BoosterDraft implements IBoosterDraft {
         // Loop through players 1-7 to draft their current pack
         for (int i = 1; i < N_PLAYERS; i++) {
             LimitedPlayer pl = this.players.get(i);
-            // TODO Agent of Acquisitions activation to loop the entire pack?
-
             if (pl.shouldSkipThisPick()) {
                 continue;
             }
@@ -587,6 +613,22 @@ public class BoosterDraft implements IBoosterDraft {
         // But returning might be useful for testing or other things?
         return passPack;
     }
+
+    public void postDraftActions() {
+        List<LimitedPlayer> brokers = new ArrayList<>();
+        for (LimitedPlayer pl : this.players) {
+            if (pl.hasBrokers()) {
+                brokers.add(pl);
+            }
+        }
+
+        Collections.shuffle(brokers);
+        for(LimitedPlayer pl : brokers) {
+            pl.activateBrokers(this.players);
+        }
+
+    }
+
 
     private static String choosePackByPack(final List<String> setz, int packs) {
         StringBuilder sb = new StringBuilder();

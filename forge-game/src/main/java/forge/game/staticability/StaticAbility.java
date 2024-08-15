@@ -117,7 +117,7 @@ public class StaticAbility extends CardTraitBase implements IIdentifiable, Clone
      *
      * @return the applicable layers.
      */
-    private final Set<StaticAbilityLayer> generateLayer() {
+    private Set<StaticAbilityLayer> generateLayer() {
         if (!checkMode("Continuous")) {
             return EnumSet.noneOf(StaticAbilityLayer.class);
         }
@@ -148,10 +148,10 @@ public class StaticAbility extends CardTraitBase implements IIdentifiable, Clone
         if (hasParam("RemoveAllAbilities") || hasParam("GainsAbilitiesOf")
                 || hasParam("GainsAbilitiesOfDefined") || hasParam("GainsTriggerAbsOf")
                 || hasParam("AddKeyword") || hasParam("AddAbility")
-                || hasParam("AddTrigger") || hasParam("RemoveTriggers")
-                || hasParam("RemoveKeyword") || hasParam("AddReplacementEffects")
+                || hasParam("AddTrigger") || hasParam("AddReplacementEffect")
                 || hasParam("AddStaticAbility") || hasParam("AddSVar")
-                || hasParam("CantHaveKeyword") || hasParam("ShareRememberedKeywords")) {
+                || hasParam("CantHaveKeyword") || hasParam("ShareRememberedKeywords")
+                || hasParam("RemoveKeyword")) {
             layers.add(StaticAbilityLayer.ABILITIES);
         }
 

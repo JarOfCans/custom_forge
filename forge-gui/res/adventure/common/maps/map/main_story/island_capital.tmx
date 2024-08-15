@@ -165,6 +165,12 @@
 			&quot;probability&quot;: 1,
 			&quot;count&quot;: 500 
 		}
+		],[{
+			&quot;type&quot;: &quot;item&quot;,
+			&quot;probability&quot;: 1,
+			&quot;count&quot;: 1,
+			&quot;itemNames&quot;: [&quot;Gold Armor&quot;,&quot;Gold Shield&quot;,&quot;Gold Boots&quot;,&quot;Dagger&quot;]
+		}
 		],[
 		{
 			&quot;type&quot;: &quot;card&quot;,
@@ -174,12 +180,6 @@
 				&quot;Rare&quot;,&quot;Mythic Rare&quot;
 			],
       			&quot;colors&quot;: [&quot;blue&quot;] 
-		}
-		],[{
-			&quot;type&quot;: &quot;item&quot;,
-			&quot;probability&quot;: 1,
-			&quot;count&quot;: 1,
-			&quot;itemNames&quot;: [&quot;Mithril Armor&quot;,&quot;Mithril Shield&quot;,&quot;Mithril Boots&quot;,&quot;Dagger&quot;,&quot;Sword of Fire and Ice&quot;, &quot;Sword of Body and Mind&quot;, &quot;Sword of Truth and Justice&quot;, &quot;Sword of Once and Future&quot;, &quot;Dynavolt Necklace&quot;]
 		}
 		]
 		] 

@@ -469,10 +469,7 @@ public class AdventureEventData implements Serializable {
                     for (Pair<String, Integer> slot : slots) {
                         boosterSize += slot.getRight();
                     }
-                    if (boosterSize == 14) {
-                        System.out.println(c.getName());
-                    }
-                    isOkay = boosterSize <= 15 || boosterSize >=14;
+                    isOkay = boosterSize > 11;
                 }
                 for (PrintSheet ps : c.getPrintSheetsBySection()) {
                     //exclude block with sets containing P9 cards..

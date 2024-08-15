@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 import forge.GameCommand;
+import forge.card.GamePieceType;
 import forge.card.MagicColor;
 import forge.game.Game;
 import forge.game.GameEntity;
@@ -430,7 +431,7 @@ public abstract class SpellAbilityEffect {
     	String trigStr = "Mode$ Phase | Phase$ End of Turn | TriggerZones$ Battlefield " +
     	     "| TriggerDescription$ At the beginning of" + whose + "end step, " + location.toLowerCase()
                 + " CARDNAME.";
-        if (!player.equals("")) {
+        if (!player.isEmpty()) {
             trigStr += " | Player$ " + player;
         }
 
@@ -579,7 +580,7 @@ public abstract class SpellAbilityEffect {
 
         eff.setImageKey(image);
 
-        eff.setImmutable(true);
+        eff.setGamePieceType(GamePieceType.EFFECT);
         eff.setEffectSource(sa);
 
         return eff;
@@ -661,6 +662,7 @@ public abstract class SpellAbilityEffect {
         boolean combatChanged = false;
         final Combat combat = game.getCombat();
 
+        // CR 506.3b
         if (sa.hasParam(attackingParam) && combat.getAttackingPlayer().equals(c.getController())) {
             String attacking = sa.getParam(attackingParam);
 
@@ -690,7 +692,7 @@ public abstract class SpellAbilityEffect {
         }
         if (sa.hasParam(blockingParam)) {
             final Card attacker = Iterables.getFirst(AbilityUtils.getDefinedCards(host, sa.getParam(blockingParam), sa), null);
-            if (attacker != null) {
+            if (attacker != null && combat.getDefenderPlayerByAttacker(attacker).equals(c.getController())) {
                 final boolean wasBlocked = combat.isBlocked(attacker);
                 combat.addBlocker(attacker, c);
                 combat.orderAttackersForDamageAssignment(c);
