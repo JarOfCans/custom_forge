@@ -164,7 +164,7 @@ public class DuelScene extends ForgeScene {
         });
     }
 
-    void addEffects(RegisteredPlayer player, Array<EffectData> effects) {
+    void addEffects(RegisteredPlayer player, Array<EffectData> effects, RegisteredPlayer enemy) {
         if (effects == null) return;
         //Apply various combat effects.
         int lifeMod = 0;

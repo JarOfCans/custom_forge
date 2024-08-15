@@ -462,8 +462,6 @@ public final class CardRules implements ICardCharacteristics {
 
         private List<String> tokens = Lists.newArrayList();
 
-        private List<String> tokens = Lists.newArrayList();
-
         // fields to build CardAiHints
         private boolean removedFromAIDecks = false;
         private boolean removedFromRandomDecks = false;

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import forge.card.mana.ManaCost;
+
 import java.util.*;
 import java.util.Map.Entry;
 

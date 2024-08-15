@@ -61,8 +61,10 @@ public class Main {
         // like to make the game load from a desktop game folder configuration).
         //String desktopModeAssetsDir = "../forge-gui/";
         String desktopModeAssetsDir = "./";
-        if(!Files.exists(Paths.get(desktopModeAssetsDir+"res")))
+        if(!Files.exists(Paths.get(desktopModeAssetsDir+"res"))) {
             desktopModeAssetsDir = "../forge-gui/";//try IDE run
+            
+        }
 
         // Assets directory used when the game fully emulates smartphone/tablet mode (desktopMode = false), useful when debugging from IDE
         String assetsDir ;
@@ -109,6 +111,7 @@ public class Main {
         }
 
         config = new Lwjgl3ApplicationConfiguration();
+        System.out.println(config);
         config.setResizable(false);
         ForgePreferences prefs = FModel.getPreferences();
         boolean propertyConfig = prefs != null && prefs.getPrefBoolean(ForgePreferences.FPref.UI_NETPLAY_COMPAT);
