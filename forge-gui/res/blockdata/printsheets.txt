@@ -6672,7 +6672,6 @@ Gandalf the White|LTR
 1 Evolving Wilds|WOE
 
 
-
 [YUM Squadron Hawk]
 1 Necropouncer|NPH
 1 Batterbone|MH2
@@ -8484,6 +8483,347 @@ Gandalf the White|LTR
 1 Gateway Plaza
 1 Crystal Grotto
 1 Rupture Spire
+
+[YUM Anointer Priest]
+1 Embalmer's Tools
+1 Wand of Vertebrae
+1 Anointer Priest
+1 Sunscourge Champion
+1 Sacred Cat
+1 Trueheart Duelist
+1 Unwavering Initiate
+1 Oketra's Attendant
+1 Steadfast Sentinel
+1 Compulsory Rest
+1 Intangible Virtue
+1 Time to Reflect
+6 Plains
+1 Cradle of the Accursed
+1 Conduit Pylons
+
+[YUM Vizier of the True]
+1 Vizier of the True
+1 Steward of Solidarity
+1 Rhet-Crop Spearmaster
+1 Oketra's Avenger
+1 Gust Walker
+1 Devoted Crop-Mate
+1 Tah-Crop Elite
+1 Dauntless Aven
+1 Steadfast Unicorn
+1 Cast Out
+1 Blessed Alliance
+1 Tenacity
+6 Plains
+1 Hidden Courtyard
+1 Captivating Cave
+
+[YUM Binding Mummy]
+1 Cellar Door
+1 Binding Mummy
+1 Mummy Paramount
+1 Those Who Serve
+1 Fan Bearer
+1 Disposal Mummy
+1 Irregular Cohort
+1 Universal Automaton
+1 Compulsory Rest
+1 Time to Reflect
+1 In Oketra's Name
+1 Cradle of the Accursed
+6 Plains
+1 Vivid Meadow
+1 Unconventional Tactics
+
+[YUM Vizier of Remedies]
+1 Serrated Arrows
+1 Vizier of Remedies
+1 Serrated Biskelion
+1 Bloodied Ghost
+1 Chainbreaker
+1 Voracious Hatchling
+1 Wicker Warcrawler
+1 Medicine Runner
+1 Ferropede
+1 Lesser Masticore
+1 Safehold Elite
+1 Woeleecher
+6 Plains
+1 Grasping Dunes
+1 Gateway Plaza
+
+[YUM Vizier of the Anointed]
+1 Embalmer's Tools
+1 Vizier of the Anointed
+1 Proven Combatant
+1 Sinuous Striker
+1 Labyrinth Guardian
+1 Tah-Crop Skirmisher
+1 Aven Initiate
+1 Expendable Lackey
+1 Lay Claim
+1 Thought Scour
+1 Countervailing Winds
+1 Curate
+1 Conduit Pylons
+6 Island
+1 Memorial to Genius
+
+[YUM Vizier of Tumbling Sands]
+1 Everflowing Chalice
+1 Unstable Obelisk
+1 Vizier of Tumbling Sands
+1 Kelpie Guide
+1 Ioreth of the Healing House
+1 Clever Conjurer
+1 Zuran Spellcaster
+1 Clockwork Hydra
+1 Enclave Cryptologist
+1 Reckless Scholar
+1 Ugin's Conjurant
+1 Dominate
+6 Island
+1 Gateway Plaza
+1 Coral Atoll
+
+[YUM Sacred Excavation]
+1 Runaway Boulder
+1 Hekma Sentinels
+1 Zenith Seeker
+1 Ominous Sphinx
+1 Striped Riverwinder
+1 River Serpent
+1 Ominous Seas
+1 Lay Claim
+1 Countervailing Winds
+1 Hieroglyphic Illumination
+1 Choking Tethers
+1 Lonely Sandbar
+1 Ash Barrens
+1 Conduit Pylons
+5 Island
+1 Sacred Excavation
+
+[YUM Open into Wonder]
+1 Goldvein Pick
+1 Invasion of Kamigawa
+1 Invasion of Vryn
+1 Slither Blade
+1 Thrummingbird
+1 Mist-Cloaked Herald
+1 Hope-Ender Coatl
+1 Riftwing Cloudskate
+1 Fly
+1 Reconnaissance Mission
+1 Security Bypass
+1 Rogue's Passage
+6 Island
+1 Captivating Cave
+1 Open into Wonder
+
+[YUM Lord of the Accursed]
+1 Lord of the Accursed
+1 Accursed Marauder
+1 Accursed Horde
+1 Marauding Boneslasher
+1 Festering Mummy
+1 Liliana's Devotee
+1 Gravedigger
+1 Diregraf Horde
+1 Graf Harvest
+1 Cruel Revival
+1 Deadly Plot
+1 Cradle of the Accursed
+6 Swamp
+1 Conduit Pylons
+1 Stir the Sands
+
+[YUM Nest of Scarabs]
+1 Soulstinger
+1 Serrated Biskelion
+1 Quillspike
+1 Baleful Ammit
+1 Festering Mummy
+1 Rendclaw Trow
+1 Sickle Ripper
+1 Kulrath Knight
+1 Nest of Scarabs
+1 Cartouche of Ambition
+1 Grim Affliction
+1 Grasping Dunes
+6 Swamp
+1 Gateway Plaza
+1 Lethal Sting
+
+[YUM Faith of the Devoted]
+1 Horror of the Broken Lands
+1 Ruthless Sniper
+1 Pitiless Vizier
+1 Grisly Survivor
+1 Lurching Rotbeast
+1 Street Wraith
+1 Vile Manifestation
+1 Faith of the Devoted
+1 Easy Prey
+6 Swamp
+1 Barren Moor
+1 Gateway Plaza
+1 Ichor Slick
+1 Razaketh's Rite
+1 Stir the Sands
+
+[YUM Grim Strider]
+1 Grim Strider
+1 Headless Specter
+1 Sandstone Oracle
+1 Cutthroat il-Dal
+1 Necromancer's Familiar
+1 Pale Rider of Trostad
+1 Hell Mongrel
+1 Lesser Masticore
+1 Scrounger of Souls
+1 Tragic Fall
+6 Swamp
+1 Ebon Stronghold
+1 Crystal Grotto
+1 Bone Shards
+1 Gisa's Bidding
+
+[YUM Flameblade Adept]
+1 Flameblade Adept
+1 Drannith Stinger
+1 Containment Construct
+1 Prickly Marmoset
+1 Sanctuary Smasher
+1 Rooting Moloch
+1 Desert Cerodon
+1 Lightning Rift
+1 Reptilian Reflection
+1 Deem Worthy
+1 Raking Claws
+6 Mountain
+1 Forgotten Cave
+1 Captivating Cave
+1 Violent Impact
+
+[YUM Warfire Javelineer]
+1 Warfire Javelineer
+1 Kinetic Augur
+1 Cyclops Electromancer
+1 Blitz of the Thunder-Raptor
+1 Spikefield Hazard
+1 Dance with Devils
+1 Lightning Strike
+1 Goblin Wizardry
+1 Thrill of Possibility
+6 Mountain
+1 Conduit Pylons
+1 Spite of Mogis
+1 Seize the Storm
+1 Death by Dragons
+1 Dragon Fodder
+
+[YUM Trueheart Twins]
+1 Trueheart Twins
+1 Battlefield Scavenger
+1 Nef-Crop Entangler
+1 Fervent Paincaster
+1 Emberhorn Minotaur
+1 Ahn-Crop Crasher
+1 Khenra Scrapper
+1 Bloodlust Inciter
+1 Cartouche of Zeal
+1 Abrade
+1 Magma Spray
+1 Brute Force
+6 Mountain
+1 Captivating Cave
+1 Teetering Peaks
+
+[YUM Thresher Lizard]
+1 Loreseeker's Stone
+1 Thresher Lizard
+1 Bloodrage Brawler
+1 Zealot of the God-Pharaoh
+1 Burning-Fist Minotaur
+1 Blazing Rootwalla
+1 Plasma Jockey
+1 Skophos Reaver
+1 Battlefield Scavenger
+1 Senseless Rage
+1 Magmatic Sinkhole
+1 Magma Spray
+1 Keldon Megaliths
+6 Mountain
+1 Crystal Grotto
+
+[YUM Quarry Beetle]
+1 Quarry Beetle
+1 Sidewinder Naga
+1 Cartographer
+1 Harvest Wurm
+1 Skola Grovedancer
+1 Excavation Mole
+1 Cleanup Crew
+1 Greater Sandwurm
+1 Chainweb Aracnir
+1 Crawling Sensation
+6 Forest
+1 Conduit Pylons
+1 Desert of the Indomitable
+1 Benefaction of Rhonas
+1 Tapping at the Window
+
+[YUM Defiant Greatmaw]
+1 Defiant Greatmaw
+1 Crocodile of the Crossing
+1 Exemplar of Strength
+1 Ornery Kudu
+1 Tenacious Hunter
+1 Wickerbough Elder
+1 Towashi Guide-Bot
+1 Flourishing Defenses
+1 Lion Umbra
+1 Hapatra's Mark
+1 Shed Weakness
+1 Stinging Shot
+6 Forest
+1 Captivating Cave
+1 Grasping Dunes
+
+[YUM Sifter Wurm]
+1 Sifter Wurm
+1 Fierce Empath
+1 Krosan Drover
+1 Manaplasm
+1 Towering Gibbon
+1 Cleanup Crew
+1 Kurgadon
+1 Copper Host Crusher
+1 Warped Tusker
+1 Nurturing Bristleback
+1 Greater Tanuki
+1 Monstrous Vortex
+6 Forest
+1 Gateway Plaza
+1 Temple of the False God
+
+[YUM Sixth Sense]
+1 Mask of Memory
+1 Keeper of Fables
+1 Giant Dustwasp
+1 Scryb Sprites
+1 Spire Tracer
+1 Gingerbrute
+1 Scaled Behemoth
+1 Destructor Dragon
+1 Sixth Sense
+1 Snake Umbra
+1 Clear Shot
+1 Trash the Town
+6 Forest
+1 Captivating Cave
+1 Rogue's Passage
 
 [JSE White1]
 1 Circle of Protection: Red
