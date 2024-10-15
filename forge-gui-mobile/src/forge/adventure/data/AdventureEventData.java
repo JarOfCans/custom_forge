@@ -213,6 +213,85 @@ public class AdventureEventData implements Serializable {
             
             //r3 will be the selected card packs
         }
+        else if (format.equals(AdventureEventController.EventFormat.TriCubeDraft)) {
+            //int numPacksToPickFrom = 6;
+            generateParticipants(7);
+
+            cardBlock = pickTriCubeCardBlock();
+            if (cardBlock == null)
+                return;
+            cardBlockName = cardBlock.getName();
+
+            jumpstartBoosters = AdventureEventController.instance().getTriCubeBoosters(cardBlock, 3);
+
+            packConfiguration = new String[] {cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode()};
+
+            
+            
+            //List<Deck> bonusJumpStarts = AdventureEventController.instance().getJumpstartBoosters(cardBlock, 6);
+            rewards = new ArrayList<AdventureEventData.AdventureEventReward>();
+            AdventureEventData.AdventureEventReward r0 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r1 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r2 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r3 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r4 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r5 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r6 = new AdventureEventData.AdventureEventReward();
+
+            RewardData r0gold = new RewardData();
+            r0gold.count = 1000;
+            r0gold.type = "gold";
+            r0.rewards = new RewardData[]{r0gold};
+            r0.minWins = 0;
+            r0.maxWins = 0;
+            rewards.add(r0);
+            RewardData r1gold = new RewardData();
+            r1gold.count = 2000;
+            r1gold.type = "gold";
+            r1.rewards = new RewardData[]{r1gold};
+            r1.minWins = 1;
+            r1.maxWins = 1;
+            rewards.add(r1);
+            RewardData r2gold = new RewardData();
+            r2gold.count = 3000;
+            r2gold.type = "gold";
+            r2.rewards = new RewardData[]{r2gold};
+            r2.minWins = 2;
+            r2.maxWins = 2;
+            rewards.add(r2);
+            RewardData r3gold = new RewardData();
+            r3gold.count = 4000;
+            r3gold.type = "gold";
+            r3.rewards = new RewardData[]{r3gold};
+            r3.minWins = 3;
+            r3.maxWins = 3;
+            rewards.add(r3);
+            
+            RewardData r1shard = new RewardData();
+            r1shard.count = 20;
+            r1shard.type = "shard";
+            r4.rewards = new RewardData[]{r1shard};
+            r4.minWins = 1;
+            r4.maxWins = 1;
+            rewards.add(r4);
+
+            RewardData r2shard = new RewardData();
+            r2shard.count = 50;
+            r2shard.type = "shard";
+            r5.rewards = new RewardData[]{r2shard};
+            r5.minWins = 2;
+            r5.maxWins = 2;
+            rewards.add(r5);
+            RewardData r3shard = new RewardData();
+            r3shard.count = 100;
+            r3shard.type = "shard";
+            r6.rewards = new RewardData[]{r3shard};
+            r6.minWins = 3;
+            r6.maxWins = 3;
+            rewards.add(r6);
+            
+            //r3 will be the selected card packs
+        }
         else if (format.equals(AdventureEventController.EventFormat.Jumpstart)) {
             int numPacksToPickFrom = 6;
             generateParticipants(7);
@@ -229,92 +308,11 @@ public class AdventureEventData implements Serializable {
             for (AdventureEventParticipant participant : participants) {
                 List<Deck> availableOptions = AdventureEventController.instance().getJumpstartBoosters(cardBlock, numPacksToPickFrom);
                 List<Deck> chosenPacks = new ArrayList<>();
-                /*Map<String, List<Deck>> themeMap = new HashMap<>();
-
-                //1. Search for matching themes from deck names, fill deck with them if possible
-                for (Deck option : availableOptions) {
-                    // This matches up theme for all except DMU - with only 2 per color the next part will handle that
-                    String theme = option.getName().replaceAll("\\d$", "").trim();
-                    if (!themeMap.containsKey(theme)) {
-                        themeMap.put(theme, new ArrayList<>());
-                    }
-                    themeMap.get(theme).add(option);
-                }
-                String themeAdded = "";
-                while (!done) {
-                    for (int i = packConfiguration.length - chosenPacks.size(); i > 1; i--) {
-                        if (themeAdded.isEmpty()) {
-                            for (String theme : themeMap.keySet()) {
-                                if (themeMap.get(theme).size() >= i) {
-                                    themeAdded = theme;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (themeAdded.isEmpty()) {
-                        done = true;
-                    }
-                    else {
-                        chosenPacks.addAll(themeMap.get(themeAdded).subList(0, Math.min(themeMap.get(themeAdded).size(),packConfiguration.length - chosenPacks.size())));
-                        availableOptions.removeAll(themeMap.get(themeAdded));
-                        themeMap.remove(themeAdded);
-                        themeAdded = "";
-                    }
-                }*/
                 boolean done = false;
                 
                 chosenPacks.add(availableOptions.get(0));
 
                 chosenPacks.add(availableOptions.get(1));
-                //2. Fill remaining slots with colors already picked whenever possible
-                /*Map<String, List<Deck>> colorMap = new HashMap<>();
-                for (Deck option : availableOptions) {
-                    if (option.getTags().contains("black")) colorMap.getOrDefault("black", new ArrayList<Deck>()).add(option);
-                    if (option.getTags().contains("blue")) colorMap.getOrDefault("blue", new ArrayList<Deck>()).add(option);
-                    if (option.getTags().contains("green")) colorMap.getOrDefault("green", new ArrayList<Deck>()).add(option);
-                    if (option.getTags().contains("red")) colorMap.getOrDefault("red", new ArrayList<Deck>()).add(option);
-                    if (option.getTags().contains("white")) colorMap.getOrDefault("white", new ArrayList<Deck>()).add(option);
-                    if (option.getTags().contains("multicolor")) colorMap.getOrDefault("multicolor", new ArrayList<Deck>()).add(option);
-                    if (option.getTags().contains("colorless")) colorMap.getOrDefault("colorless", new ArrayList<Deck>()).add(option);
-                }
-
-                done = false;
-                String colorAdded = "";
-                while (!done) {
-                    List<String> colorsAlreadyPicked = new ArrayList<>();
-                    for (Deck picked : chosenPacks) {
-                        if (picked.getTags().contains("black")) colorsAlreadyPicked.add("black");
-                        if (picked.getTags().contains("blue")) colorsAlreadyPicked.add("blue");
-                        if (picked.getTags().contains("green")) colorsAlreadyPicked.add("green");
-                        if (picked.getTags().contains("red")) colorsAlreadyPicked.add("red");
-                        if (picked.getTags().contains("white")) colorsAlreadyPicked.add("white");
-                        if (picked.getTags().contains("multicolor")) colorsAlreadyPicked.add("multicolor");
-                        if (picked.getTags().contains("colorless")) colorsAlreadyPicked.add("colorless");
-                    }
-
-                    while (colorAdded.isEmpty() && colorsAlreadyPicked.size() > 0) {
-                        String colorToTry = Aggregates.removeRandom(colorsAlreadyPicked);
-                        for (Deck toCheck : availableOptions) {
-                            if (toCheck.getTags().contains(colorToTry)) {
-                                colorAdded = colorToTry;
-                                chosenPacks.add(toCheck);
-                                availableOptions.remove(toCheck);
-                                break;
-                            }
-                        }
-                    }
-                        //3. If no matching color found and need more packs, add any available at random.
-                        if (packConfiguration.length > chosenPacks.size() && colorAdded.isEmpty() && !availableOptions.isEmpty()){
-                            chosenPacks.add(Aggregates.removeRandom(availableOptions));
-                            colorAdded = "";
-                        }
-                        else {
-                            done = colorAdded.isEmpty() || packConfiguration.length <= chosenPacks.size();
-                            colorAdded = "";
-                        }
-
-                }*/
                 participant.registeredDeck = new Deck();
                 for (Deck chosen : chosenPacks){
                     participant.registeredDeck.getMain().addAllFlat(chosen.getMain().toFlatList());
@@ -388,7 +386,7 @@ public class AdventureEventData implements Serializable {
     }
 
     public BoosterDraft getDraft() {
-        if (format != AdventureEventController.EventFormat.Draft && format != AdventureEventController.EventFormat.JumpstartDraft)
+        if (format != AdventureEventController.EventFormat.Draft && format != AdventureEventController.EventFormat.JumpstartDraft && format != AdventureEventController.EventFormat.TriCubeDraft)
             return null;
 
         Random placeholder = MyRandom.getRandom();
@@ -400,6 +398,11 @@ public class AdventureEventData implements Serializable {
                 draft = BoosterDraft.createJumpstartDraft(LimitedPoolType.JumpstartDraft, getCardBlock(), jumpstartBoosters);
                 System.out.println(draft);
                 break;
+        	case TriCubeDraft:
+        		jumpstartBoosters = AdventureEventController.instance().getTriCubeBoosters(cardBlock, 3);
+        		draft = BoosterDraft.createTriCubeDraft(LimitedPoolType.TriCubeDraft, getCardBlock(), jumpstartBoosters);
+                System.out.println(draft);
+        		break;
         	default:
         	case Draft:
             	draft = BoosterDraft.createDraft(LimitedPoolType.Block, getCardBlock(), packConfiguration);
@@ -531,6 +534,26 @@ public class AdventureEventData implements Serializable {
         return legalBlocks.isEmpty()?null:Aggregates.random(legalBlocks);
     }
 
+    private CardBlock pickTriCubeCardBlock() {
+        Iterable<CardBlock> src = FModel.getBlocks(); //all blocks
+        List<CardBlock> legalBlocks = new ArrayList<>();
+        for (CardBlock b : src) { // for each block
+            //I hate doing this, but it seems like the simplest way to reliably filter out prereleases
+            if (b.getName().toUpperCase().contains("TRICUBE") || b.getName().toUpperCase().contains("TRI-CUBE")) {
+                legalBlocks.add(b);
+            }
+        }
+        ConfigData configData = Config.instance().getConfigData();
+        if (configData.allowedEditions != null) {
+            List<String> allowed = Arrays.asList(configData.allowedEditions);
+            legalBlocks.removeIf(q -> !allowed.contains(q.getName()));
+        } else {
+            for (String restricted : configData.restrictedEditions) {
+                legalBlocks.removeIf(q -> q.getName().equals(restricted));
+            }
+        }
+        return legalBlocks.isEmpty()?null:Aggregates.random(legalBlocks);
+    }
 
     public String[] getBoosterConfiguration(CardBlock selectedBlock) {
         Random placeholder = MyRandom.getRandom();
@@ -714,6 +737,7 @@ public class AdventureEventData implements Serializable {
     }
 
     public String getDescription(PointOfInterestChanges changes) {
+    	System.out.println("Format desc: " + format);
         if (format.equals(AdventureEventController.EventFormat.Draft)) {
             description = "Event Type: Booster Draft\n";
             description += "Block: " + getCardBlock() + "\n";
@@ -750,6 +774,23 @@ public class AdventureEventData implements Serializable {
         }
         else if (format.equals(AdventureEventController.EventFormat.JumpstartDraft)) {
             description = "Event Type: Jumpstart Draft\n";
+            description += "Block: " + getCardBlock() + "\n";
+            description += "Competition Style: " + participants.length + " players, matches played as best of " + eventRules.gamesPerMatch + ", " + (getPairingDescription()) + "\n\n";
+            description += String.format("Entry Fee (incl. reputation)\nGold %d[][+Gold][BLACK]\nMana Shards %d[][+Shards][BLACK]\n", Math.round(eventRules.goldToEnter * changes.getTownPriceModifier()), Math.round(eventRules.shardsToEnter  * changes.getTownPriceModifier()));
+            if (eventRules.acceptsBronzeChallengeCoin) {
+                description += "Bronze Challenge Coin [][+BronzeChallengeCoin][BLACK]\n\n";
+            } else if (eventRules.acceptsSilverChallengeCoin) {
+                description += "Silver Challenge Coin [][+SilverChallengeCoin][BLACK]\n\n";
+            } else if (eventRules.acceptsChallengeCoin) {
+                description += "Gold Challenge Coin [][+ChallengeCoin][BLACK]\n\n";
+            } else {
+                description += "\n";
+            }
+            //description += String.format("Prizes\n3 round wins: 500 gold\n2 round wins: 200 gold\n1 round win: 100 gold\n");
+            //description += "Finishing event will award an unsellable copy of each card in your Jumpstart deck.";
+        }
+        else if (format.equals(AdventureEventController.EventFormat.JumpstartDraft)) {
+            description = "Event Type: Tri-Cube Draft\n";
             description += "Block: " + getCardBlock() + "\n";
             description += "Competition Style: " + participants.length + " players, matches played as best of " + eventRules.gamesPerMatch + ", " + (getPairingDescription()) + "\n\n";
             description += String.format("Entry Fee (incl. reputation)\nGold %d[][+Gold][BLACK]\nMana Shards %d[][+Shards][BLACK]\n", Math.round(eventRules.goldToEnter * changes.getTownPriceModifier()), Math.round(eventRules.shardsToEnter  * changes.getTownPriceModifier()));
@@ -916,6 +957,15 @@ public class AdventureEventData implements Serializable {
                     acceptsBronzeChallengeCoin = false;
                     baseGoldEntry = 1000;
                     baseShardEntry = 20;
+                    //startingLife = 20;
+                    allowsAddBasicLands = true;
+                    break;
+                case TriCubeDraft:
+                    acceptsChallengeCoin = false;
+                    acceptsSilverChallengeCoin = false;
+                    acceptsBronzeChallengeCoin = false;
+                    baseGoldEntry = 4000;
+                    baseShardEntry = 80;
                     //startingLife = 20;
                     allowsAddBasicLands = true;
                     break;

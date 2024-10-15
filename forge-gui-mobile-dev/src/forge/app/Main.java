@@ -111,7 +111,6 @@ public class Main {
         }
 
         config = new Lwjgl3ApplicationConfiguration();
-        System.out.println(config);
         config.setResizable(false);
         ForgePreferences prefs = FModel.getPreferences();
         boolean propertyConfig = prefs != null && prefs.getPrefBoolean(ForgePreferences.FPref.UI_NETPLAY_COMPAT);
@@ -135,6 +134,7 @@ public class Main {
             }
         });
 
+        System.out.println("config: " + config);
         if (desktopMode)
             config.setHdpiMode(HdpiMode.Logical);
 

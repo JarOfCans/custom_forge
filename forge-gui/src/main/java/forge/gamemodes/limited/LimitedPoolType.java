@@ -9,7 +9,8 @@ public enum LimitedPoolType {
     FantasyBlock(Localizer.getInstance().getMessage("lblLimitedFantasy")),
     Custom(Localizer.getInstance().getMessage("lblLimitedCustom")),
     Chaos(Localizer.getInstance().getMessage("lblLimitedChaos")),
-    JumpstartDraft(Localizer.getInstance().getMessage("lblLimitedJumpstardDraft"));
+    JumpstartDraft(Localizer.getInstance().getMessage("lblLimitedJumpstardDraft")),
+	TriCubeDraft(Localizer.getInstance().getMessage("lblLimitedTriCubeDraft"));
 
     private final String displayName;
     private final boolean draftable;

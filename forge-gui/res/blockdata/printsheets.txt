@@ -8156,11 +8156,11 @@ Gandalf the White|LTR
 1 Meteor Golem
 1 Aarakocra Sneak
 1 Alirios, Enraptured
-1 Frost Trickster
 1 Circuit Mender
-1 Cloudkin Seer
-1 Rishadan Footpad
-1 Manic Scribe
+1 Omenspeaker
+1 Bellowing Crier
+1 Frost Trickster
+1 Archaeomancer
 1 Ghostly Flicker
 1 Displace
 1 Illusionist's Stratagem
@@ -8824,6 +8824,952 @@ Gandalf the White|LTR
 6 Forest
 1 Captivating Cave
 1 Rogue's Passage
+
+[YUM Plumecreed Mentor]
+1 Starforged Sword
+1 Plumecreed Mentor
+1 Seedpod Squire
+1 Three Tree Mascot
+1 Pileated Provisioner
+1 Shrike Force
+1 Knightfisher
+1 Plumecreed Escort
+1 Finch Formation
+1 Feather of Flight
+1 Banishing Light
+1 Dazzling Denial
+1 Hidden Grotto
+3 Island
+3 Plains
+1 Uncharted Haven
+
+[YUM Tidecaller Mentor]
+1 Fountainport Bell
+1 Tidecaller Mentor
+1 Three Tree Mascot
+1 Mind Drill Assailant
+1 Mindwhisker
+1 Shoreline Looter
+1 Thought Shucker
+1 Persistent Marshstalker
+1 Thornplate Intimidator
+1 Wick's Patrol
+1 Spellgyre
+1 Uncharted Haven
+1 Hidden Grotto
+3 Swamp
+3 Island
+1 Fell
+
+[YUM Fireglass Mentor]
+1 Short Bow
+1 Fireglass Mentor
+1 Three Tree Mascot
+1 Cindering Cutthroat
+1 Agate-Blade Assassin
+1 Ravine Raider
+1 Thought-Stalker Warlock
+1 Frilled Sparkshooter
+1 Flamecache Gecko
+1 Steampath Charger
+1 Reptilian Recruiter
+1 Scales of Shale
+3 Swamp
+3 Mountain
+1 Hidden Grotto
+1 Uncharted Haven
+
+[YUM Wandertale Mentor]
+1 Fountainport Bell
+1 Wandertale Mentor
+1 Junkblade Bruiser
+1 Rust-Shield Rampager
+1 Brambleguard Veteran
+1 Bark-Knuckle Boxer
+1 Teapot Slinger
+1 Raccoon Rallier
+1 Brazen Collector
+1 Three Tree Mascot
+1 Hivespine Wolverine
+1 Take Out the Trash
+3 Mountain
+3 Forest
+1 Uncharted Haven
+1 Hidden Grotto
+
+[YUM Burrowguard Mentor]
+1 Tangle Tumbler
+1 Carrot Cake
+1 Burrowguard Mentor
+1 Harvestrite Host
+1 Druid of the Spade
+1 Hazardroot Herbalist
+1 Head of the Homestead
+1 Three Tree Mascot
+1 Rabbit Response
+1 Pawpatch Formation
+3 Forest
+3 Plains
+1 Uncharted Haven
+1 Hidden Grotto
+1 Hop to It
+1 Longstalk Brawl
+
+[YUM Starseer Mentor]
+1 Bumbleflower's Sharepot
+1 Starseer Mentor
+1 Moonrise Cleric
+1 Three Tree Mascot
+1 Moonstone Harbinger
+1 Starscape Cleric
+1 Starlit Soothsayer
+1 Wax-Wane Witness
+1 Star Charter
+1 Sonar Strike
+1 Nocturnal Hunger
+1 Crumb and Get It
+3 Plains
+3 Swamp
+1 Uncharted Haven
+1 Hidden Grotto
+
+[YUM Stormcatch Mentor]
+1 Fountainport Bell
+1 Stormcatch Mentor
+1 Tempest Angler
+1 Three Tree Mascot
+1 Daring Waverider
+1 Alania's Pathmaker
+1 Coruscation Mage
+1 Harnesser of Storms
+1 Spellgyre
+1 Conduct Electricity
+3 Island
+3 Mountain
+1 Hidden Grotto
+1 Uncharted Haven
+1 Otterball Antics
+1 Pearl of Wisdom
+
+[YUM Vinereap Mentor]
+1 Heaped Harvest
+1 Bumbleflower's Sharepot
+1 Vinereap Mentor
+1 Corpseberry Cultivator
+1 Bonebind Orator
+1 Bonecache Overseer
+1 Bushy Bodyguard
+1 Honored Dreyleader
+1 Treetop Sentries
+1 Savor
+1 Cache Grab
+1 Feed the Cycle
+3 Forest
+3 Swamp
+1 Hidden Grotto
+1 Uncharted Haven
+
+[YUM Seedglaive Mentor]
+1 Short Bow
+1 Seedglaive Mentor
+1 Veteran Guardmouse
+1 Nettle Guard
+1 Flowerfoot Swordmaster
+1 Mouse Trapper
+1 Three Tree Mascot
+1 Brambleguard Captain
+1 Heartfire Hero
+1 Whiskerquill Scribe
+1 Mabel's Mettle
+1 Might of the Meek
+3 Mountain
+3 Plains
+1 Hidden Grotto
+1 Uncharted Haven
+
+[YUM Lilysplash Mentor]
+1 Heirloom Epic
+1 Lilysplash Mentor
+1 Pond Prophet
+1 Long River Lurker
+1 Splash Lasher
+1 Clifftop Lookout
+1 Stickytongue Sentinel
+1 Sunshower Druid
+1 Three Tree Scribe
+1 Three Tree Mascot
+1 Run Away Together
+3 Forest
+3 Island
+1 Uncharted Haven
+1 Hidden Grotto
+1 Splash Portal
+
+[YUM Builder Talent]
+1 Carrot Cake
+1 Bumbleflower's Sharepot
+1 Fountainport Bell
+1 Brightblade Stoat
+1 Shrike Force
+1 Cathar's Companion
+1 Flutterfox
+1 Stone Haven Pilgrim
+1 Builder's Talent
+1 Banishing Light
+1 Feather of Flight
+1 Myth Realized
+6 Plains
+1 Roadside Reliquary
+1 Vivid Meadow
+
+[YUM Gossip Talent]
+1 Heirloom Epic
+1 Mindwhisker
+1 Nightwhorl Hermit
+1 Skyskipper Duo
+1 Plumecreed Escort
+1 Man-o'-War
+1 Aspiring Aeronaut
+1 Whirler Rogue
+1 Eldrazi Skyspawner
+1 Gossip's Talent
+1 Blur
+6 Island
+1 Vivid Creek
+1 Foundry of the Consuls
+1 Mind Spiral
+
+[YUM Bandit Talent]
+1 Invasion of Eldraine
+1 Burglar Rat
+1 Ravenous Rats
+1 Stronghold Rats
+1 Sinuous Vermin
+1 Bandit's Talent
+1 Shrieking Affliction
+6 Swamp
+1 Vivid Marsh
+1 Davriel, Rogue Shadowmage
+1 Pelakka Predation
+1 Psychic Whorl
+1 Fell
+1 Ruthless Negotiation
+1 Reaper of Night // Harvest Fear
+
+[YUM Blacksmith Talent]
+1 Short Bow
+1 Starforged Sword
+1 Golem-Skin Gauntlets
+1 Batterbone
+1 Heartfire Hero
+1 Brambleguard Captain
+1 Quaketusk Boar
+1 Oxidda Finisher
+1 Champion of the Flame
+1 Bladegraft Aspirant
+1 Blacksmith's Talent
+6 Mountain
+1 Vivid Crag
+1 Cradle of the Accursed
+1 Agate Assault
+
+[YUM Hunter Talent]
+1 Heaped Harvest
+1 Galewind Moose
+1 Three Tree Rootweaver
+1 Whisperer of the Wilds
+1 Beastbond Outcaster
+1 Arborback Stomper
+1 Loathsome Chimera
+1 Colossadactyl
+1 Hivespine Wolverine
+1 Hunter's Talent
+1 Colossal Majesty
+1 Vastwood Fortification
+6 Forest
+1 Vivid Grove
+1 Longstalk Brawl
+
+[YUM Lupinflower Village]
+1 Brave-Kin Duo
+1 Lifecreed Duo
+1 Intrepid Rabbit
+1 Warren Elder
+1 Thistledown Players
+1 Canyon Jerboa
+1 Shrike Force
+1 Aerie Auxiliary
+1 Star Charter
+1 Ruin-Lurker Bat
+1 Faith's Fetters
+1 Banishing Light
+1 Lupinflower Village
+6 Plains
+1 Captivating Cave
+
+[YUM Dewdrop Cure]
+1 Imperial Recovery Unit
+1 Jolly Gerbils
+1 Bereaved Survivor
+1 Devoted Crop-Mate
+1 Warren Elder
+1 Brightblade Stoat
+1 Silverchase Fox
+1 Signal Pest
+1 Trusty Companion
+1 Crumb and Get It
+1 Parting Gust
+6 Plains
+1 Evolving Wilds
+1 Hidden Grotto
+1 Dewdrop Cure
+
+[YUM Lilypad Village]
+1 Lightshell Duo
+1 Skyskipper Duo
+1 Shoreline Looter
+1 Mindwhisker
+1 Daring Waverider
+1 Thieving Otter
+1 Finch Formation
+1 Echo Inspector
+1 Bellowing Crier
+1 Halo Hopper
+1 Repulse
+1 Spellgyre
+1 Lilypad Village
+6 Island
+1 Hidden Grotto
+
+[YUM Eddymurk Crab]
+1 Eddymurk Crab
+1 Bellowing Crier
+1 Thought Shucker
+1 Augur of Bolas
+1 Tolarian Terror
+1 Curious Homunculus
+1 Silundi Vision
+1 Consider
+1 Sinister Sabotage
+1 Confounding Riddle
+1 Moment of Truth
+6 Island
+1 Hidden Grotto
+1 Mind Spiral
+1 Calamitous Tide
+
+[YUM Mudflat Village]
+1 Glidedive Duo
+1 Daggerfang Duo
+1 Duskhunter Bat
+1 Ghastly Gloomhunter
+1 Burglar Rat
+1 Thought-Stalker Warlock
+1 Undercity Necrolisk
+1 Bonebind Orator
+1 Bonecache Overseer
+1 Wick's Patrol
+1 Price of Fame
+1 Dig Up the Body
+1 Mudflat Village
+6 Swamp
+1 Captivating Cave
+
+[YUM Thornplate Intimidator]
+1 Isolation Cell
+1 Thornplate Intimidator
+1 Indulgent Tormentor
+1 Carrion Wurm
+1 Prowling Pangolin
+1 Typhoid Rats
+1 Orzhov Enforcer
+1 Vengeful Strangler
+1 Torment of Scarabs
+1 Braids's Frightful Return
+1 Torment of Venom
+1 Dash Hopes
+6 Swamp
+1 Memorial to Folly
+1 Conduit Pylons
+
+[YUM Rockface Village]
+1 Roughshod Duo
+1 Kindlespark Duo
+1 Brazen Collector
+1 Coruscation Mage
+1 Brambleguard Captain
+1 Riveteers Requisitioner
+1 Brute Force
+1 Explosive Derailment
+1 Magma Jet
+1 Valley Rally
+1 Sazacap's Brew
+1 Rockface Village
+6 Mountain
+1 Captivating Cave
+1 Surreal Memoir
+
+[YUM Hoarder's Overflow]
+1 Everflowing Chalice
+1 Fire Diamond
+1 Brazen Collector
+1 Teapot Slinger
+1 Roughshod Duo
+1 Brazen Freebooter
+1 Goblin Ruinblaster
+1 Quaketusk Boar
+1 Hoarder's Overflow
+1 Burst Lightning
+1 Street Spasm
+1 Lunar Frenzy
+6 Mountain
+1 Gateway Plaza
+1 Smoldering Spires
+
+[YUM Oakhollow Village]
+1 Bakersbane Duo
+1 Treeguard Duo
+1 Halo Hopper
+1 Jade Avenger
+1 Hazardroot Herbalist
+1 Placid Rottentail
+1 Scurrid Colony
+1 Bushy Bodyguard
+1 Rust-Shield Rampager
+1 Bark-Knuckle Boxer
+1 Oakhollow Village
+6 Forest
+1 Captivating Cave
+1 Hunter's Edge
+1 Desert Twister
+
+[YUM Stocking the Pantry]
+1 Explorer's Cache
+1 Mowu, Loyal Companion
+1 Basking Broodscale
+1 Evolution Witness
+1 Wildwood Scourge
+1 Iron Apprentice
+1 Armorcraft Judge
+1 Stocking the Pantry
+1 Titanic Brawl
+6 Forest
+1 Captivating Cave
+1 Llanowar Reborn
+1 Jiang Yanggu
+1 Fangs of Kalonia
+1 Biogenic Upgrade
+
+[YUM Chromatic Star]
+1 Chromatic Star
+1 Chromatic Sphere
+1 Conjurer's Bauble
+1 Darkwater Egg
+1 Mossfire Egg
+1 Shadowblood Egg
+1 Skycloud Egg
+1 Sungrass Egg
+1 Golem Foundry
+1 Jhoira's Familiar
+1 Foundry Inspector
+1 Etherium Sculptor
+3 Island
+1 Hidden Grotto
+1 Urza's Power Plant
+1 Urza's Mine
+1 Urza's Tower
+1 Clear the Mind
+
+
+[YUM3 Amonkhet]
+1 Kefnet's Monument
+1 Bontu's Monument
+1 Hazoret's Monument
+1 Oketra's Monument
+1 Rhonas's Monument
+1 Gate to the Afterlife
+1 God-Pharaoh's Gift
+1 Abandoned Sarcophagus
+1 Hollow One
+1 Aven Wind Guide
+1 The Scarab God
+1 Neheb, the Worthy
+1 Ahn-Crop Champion
+1 Wayward Servant
+1 Enigma Drake
+1 Hapatra, Vizier of Poisons
+1 Honored Crop-Captain
+1 Oketra the True
+1 Regal Caracal
+1 Anointer Priest
+1 Sacred Cat
+1 Glory-Bound Initiate
+1 Adorned Pouncer
+1 Nimble Obstructionist
+1 Champion of Wits
+1 Curator of Mysteries
+1 Kefnet the Mindful
+1 Unesh, Criosphinx Sovereign
+1 Glyph Keeper
+1 Bonepicker Skirge
+1 Doomed Dissenter
+1 Dread Wanderer
+1 Bontu the Glorified
+1 Ammit Eternal
+1 Archfiend of Ifnir
+1 Hazoret the Fervent
+1 Neheb, the Eternal
+1 Combat Celebrant
+1 Glorybringer
+1 Ahn-Crop Crasher
+1 Bloodrage Brawler
+1 Earthshaker Khenra
+1 Soul-Scar Mage
+1 Vizier of the Menagerie
+1 Rhonas the Indomitable
+1 Ramunap Hydra
+1 Ramunap Excavator
+1 Channeler Initiate
+1 Shefet Monitor
+1 Prowling Serpopard
+1 Resilient Khenra
+1 Exemplar of Strength
+1 Bounty of the Luxa
+1 Anointed Procession
+1 Cast Out
+1 Overwhelming Splendor
+1 Drake Haven
+1 As Foretold
+1 Liliana's Mastery
+1 Cruel Reality
+1 Sandwurm Convergence
+1 Farm // Market
+1 Consign // Oblivion
+1 Struggle // Survive
+1 Reduce // Rubble
+1 Refuse // Cooperate
+1 Destined // Lead
+1 Onward // Victory
+1 Spring // Mind
+1 Commit // Memory
+1 Hieroglyphic Illumination
+1 Countervailing Winds
+1 Censor
+1 Abrade
+1 Magma Spray
+1 Scattered Groves
+1 Irrigated Farmland
+1 Sheltered Thicket
+1 Fetid Pools
+1 Canyon Slough
+1 Scavenger Grounds
+1 Ramunap Ruins
+1 Desert of the Mindful
+1 Hashep Oasis
+1 Dunes of the Dead
+1 Shefet Dunes
+1 Ifnir Deadlands
+1 Hostile Desert
+1 Ipnu Rivulet
+1 Desert of the Glorified
+1 Desert of the Fervent
+1 Desert of the True
+1 Desert of the Indomitable
+1 Cascading Cataracts
+1 Sunscorched Desert
+1 Nicol Bolas, God-Pharaoh
+1 Samut, the Tested
+1 Gideon of the Trials
+1 Liliana, Death's Majesty
+1 Failure // Comply
+1 Rags // Riches
+1 Claim // Fame
+1 Cut // Ribbons
+1 Heaven // Earth
+1 Appeal // Authority
+1 Prepare // Fight
+1 Grind // Dust
+1 Start // Finish
+1 Driven // Despair
+1 Leave // Chance
+1 Reason // Believe
+1 Dusk // Dawn
+1 Never // Return
+1 Insult // Injury
+1 Mouth // Feed
+1 Approach of the Second Sun
+1 Torment of Hailfire
+1 Lay Bare the Heart
+1 Sweltering Suns
+1 Hour of Promise
+
+[YUM3 Core]
+1 Fire Diamond
+1 Moss Diamond
+1 Marble Diamond
+1 Sky Diamond
+1 Charcoal Diamond
+1 Mazemind Tome
+1 Gilded Lotus
+1 Sword of the Animist
+1 Mind Stone
+1 Chaos Wand
+1 Fountain of Renewal
+1 Loxodon Warhammer
+1 Solemn Simulacrum
+1 Meteor Golem
+1 Kytheon, Hero of Akros
+1 Chandra, Fire of Kaladesh
+1 Jace, Vryn's Prodigy
+1 Nissa, Vastwood Seer
+1 Liliana, Heretical Healer
+1 Inferno Titan
+1 Sun Titan
+1 Grave Titan
+1 Frost Titan
+1 Primeval Titan
+1 Soul Warden
+1 Selfless Savior
+1 Knight of the White Orchid
+1 Grand Abolisher
+1 Mentor of the Meek
+1 Leonin Warleader
+1 Baneslayer Angel
+1 Remorseful Cleric
+1 Spectral Sailor
+1 Cloudkin Seer
+1 Talrand, Sky Summoner
+1 Fog Bank
+1 Barrin, Tolarian Archmage
+1 Stitcher's Supplier
+1 Doomed Dissenter
+1 Vampire Nighthawk
+1 Dread Presence
+1 Rotting Regisaur
+1 Grim Lavamancer
+1 Scorch Spitter
+1 Young Pyromancer
+1 Goblin Rabblemaster
+1 Ogre Battledriver
+1 Avaricious Dragon
+1 Terror of the Peaks
+1 Bogardan Hellkite
+1 Birds of Paradise
+1 Llanowar Elves
+1 Elvish Reclaimer
+1 Scavenging Ooze
+1 Satyr Wayfinder
+1 Reclamation Sage
+1 Goreclaw, Terror of Qal Sisma
+1 Acidic Slime
+1 Elder Gargaroth
+1 Pelakka Wurm
+1 Hangarback Walker
+1 Palladium Myr
+1 Oblivion Ring
+1 Sphinx's Tutelage
+1 Mind Control
+1 Animate Dead
+1 Open the Graves
+1 Zombie Infestation
+1 Sylvan Library
+1 Swords to Plowshares
+1 Raise the Alarm
+1 Enlightened Tutor
+1 Feat of Resistance
+1 Mystical Tutor
+1 Counterspell
+1 Negate
+1 Mana Leak
+1 Vampiric Tutor
+1 Disfigure
+1 Doom Blade
+1 Hero's Downfall
+1 Lightning Bolt
+1 Thrill of Possibility
+1 Shock
+1 Worldly Tutor
+1 Chord of Calling
+1 Tropical Island
+1 Savannah
+1 Badlands
+1 Underground Sea
+1 Tundra
+1 Taiga
+1 Bayou
+1 Scrubland
+1 Plateau
+1 Volcanic Island
+1 Faerie Conclave
+1 Treetop Village
+1 Forbidding Watchtower
+1 Spawning Pool
+1 Ghitu Encampment
+1 Fabled Passage
+1 Mutavault
+1 Field of the Dead
+1 Ugin, the Spirit Dragon
+1 Wrath of God
+1 Tragic Arrogance
+1 Ponder
+1 Preordain
+1 Drawn from Dreams
+1 Time Warp
+1 Duress
+1 Read the Bones
+1 Languish
+1 Dragon Fodder
+1 Wheel of Fortune
+1 Krenko's Command
+1 Banefire
+1 Farseek
+1 Scapeshift
+
+[YUM3 Theros]
+1 Springleaf Drum
+1 Armory of Iroas
+1 Astral Cornucopia
+1 Chariot of Victory
+1 Pyxis of Pandemonium
+1 Bident of Thassa
+1 Whip of Erebos
+1 Bow of Nylea
+1 Hammer of Purphoros
+1 Spear of Heliod
+1 Pharika, God of Affliction
+1 Athreos, God of Passage
+1 Thassa, God of the Sea
+1 Mogis, God of Slaughter
+1 Iroas, God of Victory
+1 Ephara, God of the Polis
+1 Erebos, God of the Dead
+1 Nylea, God of the Hunt
+1 Purphoros, God of the Forge
+1 Heliod, God of the Sun
+1 Kruphix, God of Horizons
+1 Karametra, God of Harvests
+1 Xenagos, God of Revels
+1 Phenax, God of Deception
+1 Keranos, God of Storms
+1 Akroan Horse
+1 Colossus of Akros
+1 Burnished Hart
+1 Eidolon of Countless Battles
+1 Fabled Hero
+1 Hero of Iroas
+1 Silent Sentinel
+1 Evangel of Heliod
+1 Ghostblade Eidolon
+1 God-Favored General
+1 Nyx-Fleece Ram
+1 Brimaz, King of Oreskos
+1 Celestial Archon
+1 Hypnotic Siren
+1 Omenspeaker
+1 Sigiled Starfish
+1 Master of Waves
+1 Arbiter of the Ideal
+1 Scourge of Fleets
+1 Archetype of Imagination
+1 Tromokratis
+1 Daring Thief
+1 Abhorrent Overlord
+1 Hythonia the Cruel
+1 Brain Maggot
+1 Gray Merchant of Asphodel
+1 Herald of Torment
+1 Doomwake Giant
+1 King Macar, the Gold-Cursed
+1 Reckless Reveler
+1 Prophetic Flamespeaker
+1 Flame-Wreathed Phoenix
+1 Eidolon of the Great Revel
+1 Stormbreath Dragon
+1 Oracle of Bones
+1 Polukranos, World Eater
+1 Courser of Kruphix
+1 Eidolon of Blossoms
+1 Heroes' Bane
+1 Hydra Broodmaster
+1 Reverent Hunter
+1 Sylvan Caryatid
+1 Karametra's Acolyte
+1 Nessian Game Warden
+1 Nylea's Disciple
+1 Satyr Wayfinder
+1 Voyaging Satyr
+1 Arbor Colossus
+1 Dictate of Heliod
+1 Dictate of Kruphix
+1 Dictate of Karametra
+1 Dictate of the Twin Gods
+1 Dictate of Erebos
+1 Banishing Light
+1 Ordeal of Heliod
+1 Ordeal of Nylea
+1 Ordeal of Purphoros
+1 Ordeal of Thassa
+1 Ordeal of Erebos
+1 Ajani's Presence
+1 Fated Infatuation
+1 Fated Retribution
+1 Fated Intervention
+1 Fated Conflagration
+1 Fated Return
+1 Dissolve
+1 Voyage's End
+1 Hero's Downfall
+1 Bile Blight
+1 Rescue from the Underworld
+1 Magma Jet
+1 Searing Blood
+1 Fall of the Hammer
+1 Lightning Strike
+1 Magma Spray
+1 Titan's Strength
+1 Temple of Epiphany
+1 Temple of Mystery
+1 Temple of Abandon
+1 Temple of Enlightenment
+1 Temple of Plenty
+1 Temple of Triumph
+1 Temple of Malady
+1 Temple of Malice
+1 Temple of Silence
+1 Temple of Deceit
+1 Mana Confluence
+1 Nykthos, Shrine to Nyx
+1 Elspeth, Sun's Champion
+1 Curse of the Swine
+1 Whelming Wave
+1 Thoughtseize
+1 Read the Bones
+1 Worst Fears
+1 Anger of the Gods
+
+[YUM3 Lands]
+1 Mox Diamond
+1 Expedition Map
+1 Crucible of Worlds
+1 Zuran Orb
+1 Hammer of Purphoros
+1 Noyan Dar, Roil Shaper
+1 Sire of Stagnation
+1 Fulminator Mage
+1 Carmen, Cruel Skymarcher
+1 Knight of the Reliquary
+1 The Gitrog Monster
+1 Tatyova, Benthic Druid
+1 Walking Atlas
+1 Lumra, Bellow of the Woods
+1 Six
+1 Ramunap Excavator
+1 Oracle of Mul Daya
+1 Titania, Protector of Argoth
+1 Springheart Nantuko
+1 Tireless Tracker
+1 Loyal Warhound
+1 Canyon Jerboa
+1 Cartographer's Hawk
+1 Wall of Resurgence
+1 Sun Titan
+1 Meloku the Clouded Mirror
+1 Hedron Crab
+1 Roil Elemental
+1 Roil Cartographer
+1 The Reality Chip
+1 Cosima, God of the Voyage
+1 Bonehoard Dracosaur
+1 Goblin Ruinblaster
+1 Iridescent Vinelasher
+1 Bloodghast
+1 Herald of Leshrac
+1 Braids, Arisen Nightmare
+1 Ob Nixilis, the Fallen
+1 Skyclave Shade
+1 The Lost and the Damned
+1 Goblin Trenches
+1 Felidar Retreat
+1 The Restoration of Eiganjo
+1 Trade Routes
+1 Valakut Exploration
+1 Crop Rotation
+1 Swords to Plowshares
+1 Gush
+1 Arid Mesa
+1 Bloodstained Mire
+1 Flooded Strand
+1 Marsh Flats
+1 Misty Rainforest
+1 Polluted Delta
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Restless Anchorage
+1 Blinkmoth Nexus
+1 Commercial District
+1 Elegant Parlor
+1 Hedge Maze
+1 Lush Portico
+1 Meticulous Archive
+1 Raucous Theater
+1 Shadowy Backstreet
+1 Thundering Falls
+1 Undercity Sewers
+1 Underground Mortuary
+1 Creeping Tar Pit
+1 Drossforge Bridge
+1 Sheltered Thicket
+1 Gavony Township
+1 Silent Clearing
+1 Desolate Lighthouse
+1 Nurturing Peatland
+1 Restless Bivouac
+1 Simic Growth Chamber
+1 Dunes of the Dead
+1 Drownyard Temple
+1 Flagstones of Trokair
+1 Faerie Conclave
+1 Dakmor Salvage
+1 Valakut, the Molten Pinnacle
+1 Tranquil Thicket
+1 Strip Mine
+1 Wasteland
+1 Prismatic Vista
+1 Dark Depths
+1 Thespian's Stage
+1 Field of Ruin
+1 Field of the Dead
+1 Ghost Quarter
+1 Ancient Tomb
+1 Glacial Chasm
+1 Maze of Ith
+1 Lotus Field
+1 Vesuva
+1 Blast Zone
+1 Fountainport
+1 Urza's Cave
+1 Darksteel Citadel
+1 Wrenn and Six
+1 Koth, Fire of Resistance
+1 Scapeshift
+1 Life from the Loam
+1 Planar Outburst
+1 Sevinne's Reclamation
+1 Part the Waterveil
+1 Finale of Revelation
+1 Gamble
+1 Devastating Summons
+1 From the Ashes
+1 Cleansing Wildfire
+1 Jokulhaups
+1 Sinkhole
+1 Smallpox
+1 Damnation
+1 Torment of Hailfire
+
+
 
 [JSE White1]
 1 Circle of Protection: Red

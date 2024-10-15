@@ -1,0 +1,6 @@
+[metadata]
+Code=YUM3
+Date=2024-09-20
+Name=YUMI Custom Tri
+Type=Draft
+ScryfallCode=YUM

@@ -30,7 +30,8 @@ public class AdventureEventController implements Serializable {
         Sealed,
         Jumpstart,
         Constructed,
-        JumpstartDraft
+        JumpstartDraft,
+        TriCubeDraft
     }
 
     public enum EventStyle{
@@ -102,17 +103,21 @@ public class AdventureEventController implements Serializable {
 
         AdventureEventData e ;
         int randInt = random.nextInt(20);
-        if (randInt <= 3){
+        if (randInt <= 2-20){
             e = new AdventureEventData(eventSeed, EventFormat.Jumpstart);
         }
-        else if (randInt <= 7){
+        else if (randInt <= 6-20){
             e = new AdventureEventData(eventSeed, EventFormat.JumpstartDraft);
+        }
+        else if (randInt <= 20){
+            e = new AdventureEventData(eventSeed, EventFormat.TriCubeDraft);
         }
         else{
             e = new AdventureEventData(eventSeed, EventFormat.Draft);
         }
-
+        System.out.println("Format to create:" + e);
         if (e.cardBlock == null){
+            System.out.println("Card block not found");
             //covers cases where (somehow) editions that do not match the event style have been picked up
             return null;
         }
@@ -217,6 +222,35 @@ public class AdventureEventController implements Serializable {
                 contents.getTags().add("red");
             if (white > 3)
                 contents.getTags().add("white");
+
+            packsAsDecks.add(contents);
+        }
+
+        while (packsAsDecks.size() > count){
+            Aggregates.removeRandom(packsAsDecks);
+        }
+
+        return packsAsDecks;
+    }
+    public List<Deck> getTriCubeBoosters(CardBlock block, int count){
+        //Get all candidates then remove at random until no more than count are included
+        //This will prevent duplicate choices within a round of a Jumpstart draft
+        List<Deck> packsAsDecks = new ArrayList<>();
+        for(SealedProduct.Template template : StaticData.instance().getSpecialBoosters())
+        {
+            if (!template.getEdition().contains(block.getLandSet().getCode()))
+                continue;
+            UnOpenedProduct toOpen = new UnOpenedProduct(template);
+
+            Deck contents = new Deck();
+            contents.getMain().add(toOpen.get());
+
+            int size = contents.getMain().toFlatList().size();
+
+            if (size != 120)
+                continue;
+
+            contents.setName(template.getEdition());
 
             packsAsDecks.add(contents);
         }
