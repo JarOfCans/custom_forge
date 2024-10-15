@@ -60,6 +60,7 @@ public final class CardUtil {
             "Fortify", "Transfigure", "Champion", "Evoke", "Prowl", "Freerunning",
             "Reinforce", "Unearth", "Level up", "Miracle", "Overload", "Cleave",
             "Scavenge", "Encore", "Bestow", "Outlast", "Dash", "Surge", "Emerge", "Hexproof:",
+            "Bands with other",
             "etbCounter", "Reflect", "Ward").build();
     /** List of keyword endings of keywords that could be modified by text changes. */
     public static final ImmutableList<String> modifiableKeywordEndings = ImmutableList.<String>builder().add(
@@ -211,6 +212,24 @@ public final class CardUtil {
         } else {
             ret.setImageKey(c.getImageKey());
         }
+        return ret;
+    }
+
+    public static CardState getEmptyRoomCharacteristic(Card c) {
+        return getEmptyRoomCharacteristic(c, CardStateName.EmptyRoom);
+    }
+    public static CardState getEmptyRoomCharacteristic(Card c, CardStateName state) {
+        final CardType type = new CardType(false);
+        type.add("Enchantment");
+        type.add("Room");
+        final CardState ret = new CardState(c, state);
+
+        ret.setName("");
+        ret.setType(type);
+
+        // find new image key for empty room
+        ret.setImageKey(c.getImageKey());
+
         return ret;
     }
 

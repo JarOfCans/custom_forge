@@ -64,7 +64,6 @@ import forge.util.Aggregates;
 import forge.util.ComparatorUtil;
 import forge.util.Expressions;
 import forge.util.MyRandom;
-import forge.util.collect.FCollectionView;
 import io.sentry.Breadcrumb;
 import io.sentry.Sentry;
 
@@ -437,11 +436,11 @@ public class AiController {
         }
 
         landList = CardLists.filter(landList, c -> {
-            CardCollectionView battlefield = player.getCardsIn(ZoneType.Battlefield);
             if (canPlaySpellBasic(c, null) != AiPlayDecision.WillPlay) {
                 return false;
             }
             String name = c.getName();
+            CardCollectionView battlefield = player.getCardsIn(ZoneType.Battlefield);
             if (c.getType().isLegendary() && !name.equals("Flagstones of Trokair")) {
                 if (Iterables.any(battlefield, CardPredicates.nameEquals(name))) {
                     return false;
@@ -461,15 +460,11 @@ public class AiController {
                 }
 
                 // don't play the land if it has cycling and enough lands are available
-                final FCollectionView<SpellAbility> spellAbilities = c.getSpellAbilities();
-                for (final SpellAbility sa : spellAbilities) {
-                    if (sa.isCycling()) {
-                        return false;
-                    }
+                if (c.hasKeyword(Keyword.CYCLING)) {
+                    return false;
                 }
             }
-
-            return player.canPlayLand(c);
+            return Iterables.any(c.getAllPossibleAbilities(player, true), SpellAbility::isLandAbility);
         });
         return landList;
     }
@@ -928,6 +923,10 @@ public class AiController {
         if (checkCurseEffects(sa)) {
             return AiPlayDecision.CurseEffects;
         }
+        // TODO maybe other location for this?
+        if (!sa.isLegalAfterStack()) {
+            return AiPlayDecision.AnotherTime;
+        }
         Card spellHost = card;
         if (sa.isSpell()) {
             spellHost = CardCopyService.getLKICopy(spellHost);
@@ -935,15 +934,8 @@ public class AiController {
             spellHost.setLastKnownZone(game.getStackZone()); // need to add to stack to make check Restrictions respect stack cmc
             spellHost.setCastFrom(card.getZone());
         }
-        // TODO maybe other location for this?
-        if (!sa.isLegalAfterStack()) {
-            return AiPlayDecision.AnotherTime;
-        }
         if (!sa.checkRestrictions(spellHost, player)) {
             return AiPlayDecision.AnotherTime;
-        }
-        if (sa instanceof SpellPermanent) {
-            return canPlayFromEffectAI((SpellPermanent) sa, false, true);
         }
         if (sa.usesTargeting()) {
             if (!sa.isTargetNumberValid() && sa.getTargetRestrictions().getNumCandidates(sa, true) == 0) {
@@ -954,6 +946,9 @@ public class AiController {
             }
         }
         if (sa instanceof Spell) {
+            if (sa.getApi() == ApiType.PermanentCreature || sa.getApi() == ApiType.PermanentNoncreature) {
+                return canPlayFromEffectAI((Spell) sa, false, true);
+            }
             if (!player.cantLoseForZeroOrLessLife() && player.canLoseLife() &&
                     ComputerUtil.getDamageForPlaying(player, sa) >= player.getLife()) {
                 return AiPlayDecision.CurseEffects;
@@ -1039,8 +1034,8 @@ public class AiController {
     }
 
     public CardCollection getCardsToDiscard(int min, final int max, final CardCollection validCards, final SpellAbility sa) {
-        if (validCards.size() < min) {
-            return null;
+        if (validCards.size() <= min) {
+            return validCards; //return all valid cards since they will be discarded without filtering needed
         }
 
         Card sourceCard = null;
@@ -1284,7 +1279,7 @@ public class AiController {
                 return AiPlayDecision.WillPlay;
             }
 
-            if (spell instanceof SpellPermanent) {
+            if (card.isPermanent()) {
                 if (!checkETBEffects(card, spell, null)) {
                     return AiPlayDecision.BadEtbEffects;
                 }
@@ -1376,30 +1371,12 @@ public class AiController {
                 Card land = chooseBestLandToPlay(landsWannaPlay);
                 if ((!player.canLoseLife() || player.cantLoseForZeroOrLessLife() || ComputerUtil.getDamageFromETB(player, land) < player.getLife())
                         && (!game.getPhaseHandler().is(PhaseType.MAIN1) || !isSafeToHoldLandDropForMain2(land))) {
-                    final List<SpellAbility> abilities = Lists.newArrayList();
+                    final List<SpellAbility> abilities = land.getAllPossibleAbilities(player, true);
+                    // skip non Land Abilities
+                    abilities.removeIf(sa -> !sa.isLandAbility());
 
-                    // TODO extend this logic to evaluate MDFC with both sides land
-                    // this can only happen if its a MDFC land
-                    if (!land.isLand()) {
-                        land.setState(CardStateName.Modal, true);
-                        land.setBackSide(true);
-                    }
-
-                    LandAbility la = new LandAbility(land, player, null);
-                    la.setCardState(land.getCurrentState());
-                    if (la.canPlay()) {
-                        abilities.add(la);
-                    }
-
-                    // add mayPlay option
-                    for (CardPlayOption o : land.mayPlay(player)) {
-                        la = new LandAbility(land, player, o);
-                        la.setCardState(land.getCurrentState());
-                        if (la.canPlay()) {
-                            abilities.add(la);
-                        }
-                    }
                     if (!abilities.isEmpty()) {
+                        // TODO extend this logic to evaluate MDFC with both sides land
                         return abilities;
                     }
                 }
@@ -1570,7 +1547,7 @@ public class AiController {
 
         Iterables.removeIf(saList, spellAbility -> { //don't include removedAI cards if somehow the AI can play the ability or gain control of unsupported card
             // TODO allow when experimental profile?
-            return spellAbility instanceof LandAbility || (spellAbility.getHostCard() != null && ComputerUtilCard.isCardRemAIDeck(spellAbility.getHostCard()));
+            return spellAbility.isLandAbility() || (spellAbility.getHostCard() != null && ComputerUtilCard.isCardRemAIDeck(spellAbility.getHostCard()));
         });
         //update LivingEndPlayer
         useLivingEnd = Iterables.any(player.getZone(ZoneType.Library), CardPredicates.nameEquals("Living End"));

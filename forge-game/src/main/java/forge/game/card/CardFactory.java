@@ -33,6 +33,7 @@ import forge.game.cost.Cost;
 import forge.game.keyword.Keyword;
 import forge.game.keyword.KeywordInterface;
 import forge.game.player.Player;
+import forge.game.replacement.ReplacementEffect;
 import forge.game.replacement.ReplacementHandler;
 import forge.game.spellability.*;
 import forge.game.staticability.StaticAbility;
@@ -107,7 +108,6 @@ public class CardFactory {
         copy.setCopiedPermanent(original);
 
         copy.setXManaCostPaidByColor(original.getXManaCostPaidByColor());
-        copy.setKickerMagnitude(original.getKickerMagnitude());
         copy.setPromisedGift(original.getPromisedGift());
 
         if (targetSA.isBestow()) {
@@ -259,6 +259,21 @@ public class CardFactory {
                 final CardState original = card.getState(CardStateName.Original);
                 original.addNonManaAbilities(card.getCurrentState().getNonManaAbilities());
                 original.addIntrinsicKeywords(card.getCurrentState().getIntrinsicKeywords()); // Copy 'Fuse' to original side
+                for (Trigger t : card.getCurrentState().getTriggers()) {
+                    if (t.isIntrinsic()) {
+                        original.addTrigger(t.copy(card, false));
+                    }
+                }
+                for (StaticAbility st : card.getCurrentState().getStaticAbilities()) {
+                    if (st.isIntrinsic()) {
+                        original.addStaticAbility(st.copy(card, false));
+                    }
+                }
+                for (ReplacementEffect re : card.getCurrentState().getReplacementEffects()) {
+                    if (re.isIntrinsic()) {
+                        original.addReplacementEffect(re.copy(card, false));
+                    }
+                }
                 original.getSVars().putAll(card.getCurrentState().getSVars()); // Unfortunately need to copy these to (Effect looks for sVars on execute)
             } else if (state != CardStateName.Original) {
                 CardFactoryUtil.setupKeywordedAbilities(card);
@@ -356,13 +371,16 @@ public class CardFactory {
     }
 
     private static void readCardFace(Card c, ICardFace face) {
+        String variantName = null;
         //If it's a functional variant card, switch to that first.
         if(face.hasFunctionalVariants()) {
-            String variantName = c.getPaperCard().getFunctionalVariant();
+            variantName = c.getPaperCard().getFunctionalVariant();
             if (!IPaperCard.NO_FUNCTIONAL_VARIANT.equals(variantName)) {
                 ICardFace variant = face.getFunctionalVariant(variantName);
-                if (variant != null)
+                if (variant != null) {
                     face = variant;
+                    c.getCurrentState().setFunctionalVariantName(variantName);
+                }
                 else
                     System.err.printf("Tried to apply unknown or unsupported variant - Card: \"%s\"; Variant: %s\n", face.getName(), variantName);
             }
@@ -370,7 +388,7 @@ public class CardFactory {
 
         // Build English oracle and translated oracle mapping
         if (c.getId() >= 0) {
-            CardTranslation.buildOracleMapping(face.getName(), face.getOracleText());
+            CardTranslation.buildOracleMapping(face.getName(), face.getOracleText(), variantName);
         }
 
         // Name first so Senty has the Card name
@@ -378,13 +396,7 @@ public class CardFactory {
 
         for (Entry<String, String> v : face.getVariables())  c.setSVar(v.getKey(), v.getValue());
 
-        for (String r : face.getReplacements()) {
-    		try {
-        	c.addReplacementEffect(ReplacementHandler.parseReplacement(r, c, true, c.getCurrentState()));
-    		} catch (RuntimeException e) {
-    			e.printStackTrace();
-    		}
-        }
+        for (String r : face.getReplacements())              c.addReplacementEffect(ReplacementHandler.parseReplacement(r, c, true, c.getCurrentState()));
         for (String s : face.getStaticAbilities())           c.addStaticAbility(s);
         for (String t : face.getTriggers())                  c.addTrigger(TriggerHandler.parseTrigger(t, c, true, c.getCurrentState()));
 
@@ -419,18 +431,21 @@ public class CardFactory {
         c.setAttractionLights(face.getAttractionLights());
 
         // SpellPermanent only for Original State
-        if (c.getCurrentStateName() == CardStateName.Original || c.getCurrentStateName() == CardStateName.Modal || c.getCurrentStateName().toString().startsWith("Specialize")) {
-            // this is the "default" spell for permanents like creatures and artifacts
-            if (c.isPermanent() && !c.isAura() && !c.isLand()) {
+        if (c.getCurrentStateName() == CardStateName.Original ||
+                c.getCurrentStateName() == CardStateName.LeftSplit ||
+                c.getCurrentStateName() == CardStateName.RightSplit ||
+                c.getCurrentStateName() == CardStateName.Modal ||
+                c.getCurrentStateName().toString().startsWith("Specialize")) {
+            if (c.isLand()) {
+                SpellAbility sa = new LandAbility(c);
+                sa.setCardState(c.getCurrentState());
+                c.addSpellAbility(sa);
+            } else if (c.isPermanent() && !c.isAura()) {
+                // this is the "default" spell for permanents like creatures and artifacts
                 SpellAbility sa = new SpellPermanent(c);
-
-                // Currently only for Modal, might react different when state is always set
-                //if (c.getCurrentStateName() == CardStateName.Modal) {
-                    sa.setCardState(c.getCurrentState());
-                //}
+                sa.setCardState(c.getCurrentState());
                 c.addSpellAbility(sa);
             }
-            // TODO add LandAbility there when refactor MayPlay
         }
 
         CardFactoryUtil.addAbilityFactoryAbilities(c, face.getAbilities());

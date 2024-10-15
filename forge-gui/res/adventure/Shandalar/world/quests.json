@@ -96,7 +96,7 @@
 					"key": ""
 				},
 				"issueQuest": "",
-				"addMapReputation": -1,
+				"addMapReputation": -2,
 				"POIReference": "$(poi_2)"
 			}
 		],
@@ -583,9 +583,9 @@
 												"grantRewards": [
 													{
 														"type": "card",
-														"count": 2,
+														"count": 1,
 														"rarity": [
-															"Common"
+															"Uncommon"
 														]
 													}
 												]
@@ -699,7 +699,8 @@
 									},
 									{
 										"type": "shards",
-										"count": 10
+										"count": 5,
+										"addMaxCount": 5
 									}
 								]
 							}
@@ -885,7 +886,7 @@
 							},
 							{
 								"type": "shards",
-								"count": 8,
+								"count": 4,
 								"addMaxCount": 4
 							}
 						]
@@ -1335,9 +1336,9 @@
 										"grantRewards": [
 											{
 												"type": "card",
-												"probability": 1,
+												"probability": 0.5,
 												"count": 1,
-												"addMaxCount": 1,
+												"addMaxCount": 2,
 												"rarity": [
 													"Common"
 												],
@@ -1413,7 +1414,7 @@
 						"grantRewards": [
 							{
 								"type": "gold",
-								"count": 250
+								"count": 100
 							},
 							{
 								"type": "card",
@@ -1427,7 +1428,7 @@
 							},
 							{
 								"type": "shards",
-								"count": 8
+								"count": 3
 							}
 						]
 					}
@@ -1437,7 +1438,7 @@
 				"options": [
 					{
 						"name": "Turn over the stolen loot. (Complete Quest)",
-						"text": "You receive a second nod, more respectful than the previous acknowledgement. \"Thank you, citizen.\" (+2 Reputation)",
+						"text": "You receive a second nod, more respectful than the previous acknowledgement. \"Thank you, citizen.\" (+1 Reputation)",
 						"options": [
 							{
 								"action": [
@@ -1453,7 +1454,7 @@
 											"key": ""
 										},
 										"issueQuest": "",
-										"addMapReputation": 2,
+										"addMapReputation": 1,
 										"POIReference": ""
 									}
 								],
@@ -1556,7 +1557,7 @@
 		]
 	},
 	"failureDialog": {
-		"text": "The $(enemy_2) has escaped, and will likely be trouble again in the future.",
+		"text": "The $(enemy_2) has escaped, and will likely be trouble again in the future. (-2 Town Reputation)",
 		"options": [
 			{
 				"action": [
@@ -1572,6 +1573,7 @@
 							"key": ""
 						},
 						"issueQuest": "",
+						"addMapReputation": -2,
 						"POIReference": "$(poi_1)"
 					}
 				],
@@ -1752,7 +1754,7 @@
 						"grantRewards": [
 							{
 								"type": "shards",
-								"count": 8
+								"count": 5
 							},
 							{
 								"type": "card",
@@ -2045,7 +2047,7 @@
 							},
 							{
 								"type": "card",
-								"probability": 1,
+								"probability": 0.8,
 								"count": 1,
 								"colors": [
 									"Blue"
@@ -2066,8 +2068,8 @@
 							},
 							{
 								"type": "shards",
-								"count": 5,
-								"addMaxCount": 8
+								"count": 2,
+								"addMaxCount": 3
 							}
 						]
 					}
@@ -2324,11 +2326,10 @@
 						"POIReference": ""
 					},
 					{
-						"grantRewards": [,
+						"grantRewards": [
 							{
 								"type": "shards",
-								"count": 5,
-								"addMaxCount": 8
+								"count": 5
 							},
 							{
 								"type": "card",

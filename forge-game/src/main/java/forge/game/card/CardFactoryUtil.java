@@ -119,6 +119,12 @@ public class CardFactoryUtil {
         return morphDown;
     }
 
+    public static SpellAbility abilityUnlockRoom(CardState cardState) {
+        String unlockStr = "ST$ UnlockDoor | Cost$ " + cardState.getManaCost().getShortString() + " | Unlock$ True | SpellDescription$ Unlock " + cardState.getName();
+
+        return AbilityFactory.getAbility(unlockStr, cardState);
+    }
+
     /**
      * <p>
      * abilityMorphUp.
@@ -1067,8 +1073,8 @@ public class CardFactoryUtil {
             pump.setSubAbility(remove);
             remove.setSubAbility(cleanup);
             trigger.setOverridingAbility(trigMake);
-            
-            inst.addTrigger(trigger); 
+
+            inst.addTrigger(trigger);
         } else if (keyword.startsWith("Echo")) {
             final String[] k = keyword.split(":");
             final String cost = k[1];
@@ -1381,7 +1387,7 @@ public class CardFactoryUtil {
             String hideawayDig = "DB$ Dig | Defined$ You | DigNum$ " + n + " | DestinationZone$ Exile | ExileFaceDown$ True | RememberChanged$ True | RestRandomOrder$ True";
             String hideawayEffect = "DB$ Effect | StaticAbilities$ STHideawayEffectLookAtCard | ForgetOnMoved$ Exile | RememberObjects$ Remembered | Duration$ Permanent";
             String cleanupStr = "DB$ Cleanup | ClearRemembered$ True";
-            
+
             String lookAtCard = "Mode$ Continuous | Affected$ Card.IsRemembered | MayLookAt$ EffectSourceController | EffectZone$ Command | AffectedZone$ Exile | Description$ Any player who has controlled the permanent that exiled this card may look at this card in the exile zone.";
 
             SpellAbility digSA = AbilityFactory.getAbility(hideawayDig, card);
@@ -1415,7 +1421,7 @@ public class CardFactoryUtil {
             inst.addTrigger(trigger);
         } else if (keyword.startsWith("Impending")) {
             // Remove Time counter trigger
-            final String endTrig = "Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | IsPresent$ Card.Self+counters_GE1_TIME" +
+            final String endTrig = "Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | IsPresent$ Card.Self+impended+counters_GE1_TIME" +
                     " | Secondary$ True | TriggerDescription$ At the beginning of your end step, remove a time counter from it.";
 
             final String remove = "DB$ RemoveCounter | Defined$ Self | CounterType$ TIME | CounterNum$ 1";
@@ -1553,7 +1559,7 @@ public class CardFactoryUtil {
             final String actualTrigger = "Mode$ Attacks | ValidCard$ Card.Self | Secondary$ True"
                     + " | TriggerDescription$ Myriad (" + inst.getReminderText() + ")";
 
-            final String copyStr = "DB$ CopyPermanent | Defined$ Self | TokenTapped$ True | Optional$ True | TokenAttacking$ RememberedPlayer & Valid Planeswalker.ControlledBy Remembered"
+            final String copyStr = "DB$ CopyPermanent | Defined$ Self | TokenTapped$ True | OptionalForEach$ True | TokenAttacking$ RememberedPlayer & Valid Planeswalker.ControlledBy Remembered"
                     + "| ForEach$ OppNonDefendingPlayer | AtEOT$ ExileCombat | CleanupForEach$ True";
 
             final SpellAbility copySA = AbilityFactory.getAbility(copyStr, card);
@@ -1597,7 +1603,7 @@ public class CardFactoryUtil {
             trigger.setOverridingAbility(AbilityFactory.getAbility(effect, card));
             trigger.setSVar("Offspring", "Count$OptionalKeywordAmount");
 
-            inst.addTrigger(trigger);            
+            inst.addTrigger(trigger);
         } else if (keyword.startsWith("Partner:")) {
             // Partner With
             final String[] k = keyword.split(":");
@@ -1991,7 +1997,6 @@ public class CardFactoryUtil {
             final Trigger t = TriggerHandler.parseTrigger(trigStr, card, intrinsic);
             t.setOverridingAbility(sa);
             inst.addTrigger(t);
-
         } else if (keyword.startsWith("Prize")) {
             final String[] k = keyword.split(":");
 
@@ -2439,7 +2444,7 @@ public class CardFactoryUtil {
 
             re.setOverridingAbility(saCounter);
 
-            inst.addReplacement(re); 
+            inst.addReplacement(re);
         } else if (keyword.equals("Rebound")) {
             String repeffstr = "Event$ Moved | ValidLKI$ Card.Self+wasCastFromHand+YouOwn+YouCtrl "
             + " | Origin$ Stack | Destination$ Graveyard | Fizzle$ False "
@@ -2730,7 +2735,7 @@ public class CardFactoryUtil {
                     sbRem.append(i + 1 == bCost.getCostParts().size() ? "." : " and ");
                     i++;
                 }
-                remTxt = sbRem.toString();   
+                remTxt = sbRem.toString();
             }
             sbDesc.append(onlyMana ? " " : "—").append(bCost.toSimpleString()).append(!onlyMana ? "." : "");
             sbDesc.append(" (").append(remTxt).append(")");
@@ -2822,12 +2827,7 @@ public class CardFactoryUtil {
             final String[] k = keyword.split(":");
             final Cost disturbCost = new Cost(k[1], true);
 
-            SpellAbility newSA;
-            if (host.getAlternateState().getType().hasSubtype("Aura")) {
-                newSA = host.getAlternateState().getFirstAbility().copyWithDefinedCost(disturbCost);
-            } else {
-                newSA = new SpellPermanent(host, host.getAlternateState(), disturbCost);
-            }
+            SpellAbility newSA = host.getAlternateState().getFirstSpellAbilityWithFallback().copyWithDefinedCost(disturbCost);
             newSA.setCardState(host.getAlternateState());
 
             StringBuilder sbCost = new StringBuilder("Disturb");
@@ -3138,7 +3138,7 @@ public class CardFactoryUtil {
         } else if (keyword.startsWith("Freerunning")) {
             final String[] k = keyword.split(":");
             final Cost freerunningCost = new Cost(k[1], false);
-            final SpellAbility newSA = card.getFirstSpellAbility().copyWithDefinedCost(freerunningCost);
+            final SpellAbility newSA = card.getFirstSpellAbilityWithFallback().copyWithDefinedCost(freerunningCost);
 
             if (host.isInstant() || host.isSorcery()) {
                 newSA.putParam("Secondary", "True");
@@ -3269,11 +3269,6 @@ public class CardFactoryUtil {
             sa.putParam("AfterDescription", "(Converted)");
             sa.setIntrinsic(intrinsic);
             inst.addSpellAbility(sa);
-        } else if (keyword.startsWith("Multikicker")) {
-            final String[] n = keyword.split(":");
-            final SpellAbility sa = card.getFirstSpellAbility();
-            sa.setMultiKickerManaCost(new ManaCost(new ManaCostParser(n[1])));
-            sa.addAnnounceVar("Multikicker");
         } else if (keyword.startsWith("Mutate")) {
             final String[] params = keyword.split(":");
             final String cost = params[1];
@@ -3469,7 +3464,7 @@ public class CardFactoryUtil {
         } else if (keyword.startsWith("Prowl")) {
             final String[] k = keyword.split(":");
             final Cost prowlCost = new Cost(k[1], false);
-            final SpellAbility newSA = card.getFirstSpellAbility().copyWithDefinedCost(prowlCost);
+            final SpellAbility newSA = card.getFirstSpellAbilityWithFallback().copyWithDefinedCost(prowlCost);
 
             if (host.isInstant() || host.isSorcery()) {
                 newSA.putParam("Secondary", "True");
@@ -4000,10 +3995,10 @@ public class CardFactoryUtil {
                     " | Description$ Horsemanship (" + inst.getReminderText() + ")";
             inst.addStaticAbility(StaticAbility.create(effect, state.getCard(), state, intrinsic));
         } else if (keyword.startsWith("Impending")) {
-            String effect = "Mode$ Continuous | Affected$ Card.Self+counters_GE1_TIME | RemoveType$ Creature | Secondary$ True";
+            String effect = "Mode$ Continuous | Affected$ Card.Self+impended+counters_GE1_TIME | RemoveType$ Creature | Secondary$ True";
             inst.addStaticAbility(StaticAbility.create(effect, state.getCard(), state, intrinsic));
         } else if (keyword.equals("Intimidate")) {
-            String effect = "Mode$ CantBlockBy | ValidAttacker$ Creature.Self | ValidBlocker$ Creature.nonArtifact+notSharesColorWith | Secondary$ True " +
+            String effect = "Mode$ CantBlockBy | ValidAttacker$ Creature.Self | ValidBlocker$ Creature.nonArtifact+!SharesColorWith | Secondary$ True " +
                     " | Description$ Intimidate (" + inst.getReminderText() + ")";
             inst.addStaticAbility(StaticAbility.create(effect, state.getCard(), state, intrinsic));
         } else if (keyword.startsWith("Landwalk")) {

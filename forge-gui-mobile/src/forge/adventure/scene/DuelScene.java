@@ -134,13 +134,14 @@ public class DuelScene extends ForgeScene {
     Runnable endRunnable = null;
 
     void afterGameEnd(String enemyName, boolean winner) {
-        Forge.restrictAdvMenus = winner;
+        Forge.advFreezePlayerControls = winner;
         endRunnable = () -> Gdx.app.postRunnable(() -> {
             GameHUD.getInstance().switchAudio();
             dungeonEffect = null;
             callbackExit = false;
             Forge.clearTransitionScreen();
             Forge.clearCurrentScreen();
+            Forge.advFreezePlayerControls = false;
             Scene last = Forge.switchToLast();
             Current.player().getStatistic().setResult(enemyName, winner);
 
@@ -164,28 +165,25 @@ public class DuelScene extends ForgeScene {
         });
     }
 
-    void addEffects(RegisteredPlayer player, Array<EffectData> effects, RegisteredPlayer enemy) {
+    void addEffects(RegisteredPlayer player, Array<EffectData> effects) {
         if (effects == null) return;
         //Apply various combat effects.
         int lifeMod = 0;
         int changeStartCards = 0;
         int extraManaShards = 0;
         Array<IPaperCard> startCards = new Array<>();
-        Array<IPaperCard> enemystartCards = new Array<>();
         Array<IPaperCard> startCardsInCommandZone = new Array<>();
 
         for (EffectData data : effects) {
             lifeMod += data.lifeModifier;
             changeStartCards += data.changeStartCards;
             startCards.addAll(data.startBattleWithCards());
-            enemystartCards.addAll(data.enemystartBattleWithCards());
             startCardsInCommandZone.addAll(data.startBattleWithCardsInCommandZone());
 
             extraManaShards += data.extraManaShards;
         }
         player.addExtraCardsOnBattlefield(startCards);
         player.addExtraCardsInCommandZone(startCardsInCommandZone);
-        enemy.addExtraCardsOnBattlefield(enemystartCards);
 
         if (lifeMod != 0)
             player.setStartingLife(Math.max(1, lifeMod + player.getStartingLife()));
@@ -282,6 +280,7 @@ public class DuelScene extends ForgeScene {
                 playerEffects.add(dungeonEffect.opponent);
         }
 
+        addEffects(humanPlayer, playerEffects);
 
         currentEnemy = enemy.getData();
         boolean bossBattle = currentEnemy.boss;
@@ -303,7 +302,7 @@ public class DuelScene extends ForgeScene {
             } else if (this.eventData != null) {
                 deck = eventData.nextOpponent.getDeck();
             } else {
-                deck = currentEnemy.copyPlayerDeck ? this.playerDeck : currentEnemy.generateDeck(Current.player().isFantasyMode(), Current.player().isUsingCustomDeck() || Current.player().getDifficulty().name.equalsIgnoreCase("Insane") || Current.player().getDifficulty().name.equalsIgnoreCase("Hard"));
+                deck = currentEnemy.copyPlayerDeck ? this.playerDeck : currentEnemy.generateDeck(Current.player().isFantasyMode(), Current.player().isUsingCustomDeck() || Current.player().isHardorInsaneDifficulty());
             }
             RegisteredPlayer aiPlayer = RegisteredPlayer.forVariants(playerCount, appliedVariants, deck, null, false, null, null);
 
@@ -330,9 +329,8 @@ public class DuelScene extends ForgeScene {
                     }
                 }
             }
-            addEffects(humanPlayer, playerEffects, aiPlayer);
-            addEffects(aiPlayer, oppEffects, humanPlayer);
-            addEffects(aiPlayer, equipmentEffects, humanPlayer);
+            addEffects(aiPlayer, oppEffects);
+            addEffects(aiPlayer, equipmentEffects);
 
             //add extra cards for challenger mode
             if (chaosBattle) {
@@ -412,9 +410,7 @@ public class DuelScene extends ForgeScene {
         this.eventData = eventData;
         if (eventData != null && eventData.eventRules == null)
             eventData.eventRules = new AdventureEventData.AdventureEventRules(AdventureEventController.EventFormat.Constructed, 1.0f);
-        this.arenaBattleChallenge = isArena
-                && (Current.player().getDifficulty().name.equalsIgnoreCase("Hard")
-                || Current.player().getDifficulty().name.equalsIgnoreCase("Insane"));
+        this.arenaBattleChallenge = isArena && Current.player().isHardorInsaneDifficulty();
         if (eventData != null && eventData.registeredDeck != null)
             this.playerDeck = eventData.registeredDeck;
         else

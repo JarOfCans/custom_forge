@@ -39,7 +39,7 @@ import forge.game.replacement.ReplacementEffect;
 import forge.game.replacement.ReplacementHandler;
 import forge.game.replacement.ReplacementLayer;
 import forge.game.spellability.AlternativeCost;
-import forge.game.spellability.LandAbility;
+
 import forge.game.spellability.SpellAbility;
 import forge.game.spellability.SpellAbilityPredicates;
 import forge.game.zone.Zone;
@@ -326,6 +326,7 @@ public class PlayEffect extends SpellAbilityEffect {
             if (sa.hasParam("CastFaceDown")) {
                 // For Illusionary Mask effect
                 tgtSA = CardFactoryUtil.abilityCastFaceDown(tgtCard.getCurrentState(), false, "Morph");
+                tgtSA.setCastFromPlayEffect(true);
             } else {
                 tgtSA = controller.getController().getAbilityToPlay(tgtCard, sas);
             }
@@ -343,7 +344,7 @@ public class PlayEffect extends SpellAbilityEffect {
             final Zone originZone = tgtCard.getZone();
 
             // lands will be played
-            if (tgtSA instanceof LandAbility) {
+            if (tgtSA.isLandAbility()) {
                 tgtSA.resolve();
                 amount--;
                 if (remember) {

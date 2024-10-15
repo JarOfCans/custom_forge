@@ -48,37 +48,21 @@ public class ShopScene extends ForgeScene {
     }
 
     public void doAutosell() {
-        boolean promptToConfirmSale = true; //Todo: config option
+        boolean promptToConfirmSale = false; //Todo: config option
         if (promptToConfirmSale) {
             int profit = 0;
             int cards = 0;
             for (PaperCard cardToSell: Current.player().autoSellCards.toFlatList()) {
                 cards++;
-                profit += AdventurePlayer.current().cardSellPrice(cardToSell);
-                
+                profit += getCardPrice(cardToSell);
             }
             if (!confirmAutosell(profit, cards, changes.getTownPriceModifier())) {
                 return;
             }
         }
         AdventurePlayer.current().doAutosell();
-    }
-    
-    public void doDupSell(int dupCount) {
-        boolean promptToConfirmSale = true; //Todo: config option
-        if (promptToConfirmSale) {
-            int profit = 0;
-            int cards = 0;
-            for (PaperCard cardToSell: Current.player().autoSellCards.toFlatList()) {
-                cards++;
-                profit += AdventurePlayer.current().cardSellPrice(cardToSell);
-                
-            }
-            if (!confirmAutosell(profit, cards, changes.getTownPriceModifier())) {
-                return;
-            }
-        }
-        AdventurePlayer.current().doDupsell(dupCount);
+        if (screen != null)
+            screen.refresh();
     }
 
     private boolean confirmAutosell(int profit, int cards, float townPriceModifier) {
@@ -88,5 +72,8 @@ public class ShopScene extends ForgeScene {
     public void loadChanges(PointOfInterestChanges changes) {
         AdventurePlayer.current().loadChanges(changes);
         this.changes = changes;
+    }
+    public int getCardPrice(PaperCard pc) {
+        return AdventurePlayer.current().cardSellPrice(pc);
     }
 }

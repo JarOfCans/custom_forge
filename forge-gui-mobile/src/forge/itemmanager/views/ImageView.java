@@ -10,7 +10,7 @@ import forge.Forge;
 import forge.Forge.KeyInputAdapter;
 import forge.Graphics;
 import forge.ImageKeys;
-import forge.adventure.player.AdventurePlayer;
+import forge.adventure.scene.ShopScene;
 import forge.assets.*;
 import forge.assets.FSkinColor.Colors;
 import forge.card.*;
@@ -431,10 +431,12 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
                 Map<Comparable<?>, Pile> piles = new TreeMap<>();
                 for (ItemInfo itemInfo : group.items) {
                     Comparable<?> key = groupPileBy.fnSort.apply(itemInfo);
-                    if (!piles.containsKey(key)) {
+                    if (key != null && !piles.containsKey(key)) {
                         piles.put(key, new Pile());
                     }
-                    piles.get(key).items.add(itemInfo);
+                    Pile p = key == null ? null : piles.getOrDefault(key, null);
+                    if (p != null)
+                        p.items.add(itemInfo);
                 }
                 group.piles.clear();
                 group.piles.addAll(piles.values());
@@ -966,6 +968,7 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
 
     private class ItemInfo extends FDisplayObject implements Entry<InventoryItem, Integer> {
         private final T item;
+        private Integer cardPrice;
         private final Group group;
         private int index;
         private CardStackPosition pos;
@@ -995,6 +998,17 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
         @Override
         public Integer setValue(Integer value) {
             return 1;
+        }
+
+        private void drawCardLabel(Graphics g, String message, Color bgColor, float x, float y, float w, float h) {
+            FSkinFont skinFont = FSkinFont.forHeight(w / 7);
+            float fontheight = skinFont.getLineHeight();
+            float ymod = h / 2 - fontheight / 2;
+            float oldAlpha = g.getfloatAlphaComposite();
+            g.setAlphaComposite(0.4f);
+            g.fillRect(bgColor, x, y + ymod, w, fontheight);
+            g.setAlphaComposite(oldAlpha);
+            g.drawText(message, skinFont, Color.WHITE, x, y, w, h, false, Align.center, true);
         }
 
         @Override
@@ -1032,28 +1046,31 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
                     float x2 = x + rankSize / 2;
                     if (draftRank >= 90) {
                         g.drawImage(FSkinImage.DRAFTRANK_S, x2, y2 + 1, rankSize, rankSize);
-                    } else if (draftRank >= 80) {
+                    } else if (draftRank >= 80 && draftRank <= 89) {
                         g.drawImage(FSkinImage.DRAFTRANK_A, x2, y2 + 1, rankSize, rankSize);
-                    } else if (draftRank >= 60) {
+                    } else if (draftRank >= 60 && draftRank <= 79) {
                         g.drawImage(FSkinImage.DRAFTRANK_B, x2, y2 + 1, rankSize, rankSize);
-                    } else if (draftRank >= 25) {
+                    } else if (draftRank >= 25 && draftRank <= 59) {
                         g.drawImage(FSkinImage.DRAFTRANK_C, x2, y2 + 1, rankSize, rankSize);
                     } else {
                         g.drawImage(FSkinImage.DRAFTRANK_D, x2, y2 + 1, rankSize, rankSize);
                     }
                     String value = String.valueOf(draftRank);
                     g.drawText(value, FSkinFont.forHeight(rankSize / 4), Color.WHITE, x, y, w, h, true, Align.center, true);
-                    String count = "";
-                    if (((PaperCard)item).isFoil()) {
-                    	int allCount = AdventurePlayer.current().getOwnedCountIgnoreFoil((PaperCard)item);
-                    	int thisCount = AdventurePlayer.current().getOwnedCount((PaperCard)item);
-                        count = String.format("%d + %d", (allCount - thisCount), thisCount);
-                    } else {
+                }
 
-                       count = String.valueOf(AdventurePlayer.current().getOwnedCount((PaperCard)item));
-                    }
-                    //System.out.println(x + ", " + y);
-                    g.drawText(count, FSkinFont.forHeight(rankSize / 8), Color.WHITE, x, y - getHeight()/20, w, h, false, Align.center, true);
+                if (Forge.isMobileAdventureMode) {
+                    if (Forge.getCurrentScene() instanceof ShopScene) {
+                        if (cardPrice == null)
+                            cardPrice = ((ShopScene) Forge.getCurrentScene()).getCardPrice((PaperCard) item);
+                        drawCardLabel(g, "$" + cardPrice, Color.GOLD, x, y ,w ,h);
+                    } /*else if (Forge.getCurrentScene() instanceof DeckEditScene) {
+                        if (((DeckEditScene) Forge.getCurrentScene()).isAutoSell((PaperCard) item)) {
+                            drawCardLabel(g, Forge.getLocalizer().getMessage("lblAutoSell"), Color.GREEN, x, y, w, h);
+                        } else if (((DeckEditScene) Forge.getCurrentScene()).isNoSell((PaperCard) item)) {
+                            drawCardLabel(g, Forge.getLocalizer().getMessage("lblNoSell"), Color.RED, x, y, w, h);
+                        }
+                    }*///TODO FIX Distinction
                 }
             } else if (item instanceof ConquestCommander) {
                 CardRenderer.drawCard(g, ((ConquestCommander) item).getCard(), x, y, w, h, pos);

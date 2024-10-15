@@ -277,7 +277,7 @@ public class CardImageRenderer {
         if (!noText && state != null) {
             //draw mana cost for card
             ManaCost mainManaCost = state.getManaCost();
-            if (card.isSplitCard() && card.getAlternateState() != null) {
+            if (card.isSplitCard() && card.getAlternateState() != null && !card.isFaceDown() && card.getZone() != ZoneType.Stack && card.getZone() != ZoneType.Battlefield) {
                 //handle rendering both parts of split card
                 mainManaCost = card.getLeftSplitState().getManaCost();
                 ManaCost otherManaCost = card.getRightSplitState().getManaCost();
@@ -670,12 +670,13 @@ public class CardImageRenderer {
                     CardView cv = card.getBackup();
                     if (cv == null || isFaceDown)
                         cv = card;
-                    text = cv.getText(cv.getState(true), needTranslation ? CardTranslation.getTranslationTexts(cv.getName(), "") : null);
+                    CardStateView csv = cv.getState(true);
+                    text = cv.getText(csv, needTranslation ? CardTranslation.getTranslationTexts(csv) : null);
 
                 } else {
                     text = !card.isSplitCard() ?
-                            card.getText(state, needTranslation ? state == null ? null : CardTranslation.getTranslationTexts(state.getName(), "") : null) :
-                            card.getText(state, needTranslation ? CardTranslation.getTranslationTexts(card.getLeftSplitState().getName(), card.getRightSplitState().getName()) : null);
+                            card.getText(state, needTranslation ? state == null ? null : CardTranslation.getTranslationTexts(state) : null) :
+                            card.getText(state, needTranslation ? CardTranslation.getTranslationTexts(card.getLeftSplitState(), card.getRightSplitState()) : null);
                 }
             } else {
                 if (noText)
@@ -684,12 +685,13 @@ public class CardImageRenderer {
                     CardView cv = card.getBackup();
                     if (cv == null || isFaceDown)
                         cv = card;
-                    text = cv.getText(cv.getState(false), needTranslation ? CardTranslation.getTranslationTexts(cv.getName(), "") : null);
+                    CardStateView csv = cv.getState(false);
+                    text = cv.getText(csv, needTranslation ? CardTranslation.getTranslationTexts(csv) : null);
 
                 } else {
                     text = !card.isSplitCard() ?
-                            card.getText(state, needTranslation ? state == null ? null : CardTranslation.getTranslationTexts(state.getName(), "") : null) :
-                            card.getText(state, needTranslation ? CardTranslation.getTranslationTexts(card.getLeftSplitState().getName(), card.getRightSplitState().getName()) : null);
+                            card.getText(state, needTranslation ? state == null ? null : CardTranslation.getTranslationTexts(state) : null) :
+                            card.getText(state, needTranslation ? CardTranslation.getTranslationTexts(card.getLeftSplitState(), card.getRightSplitState()) : null);
                 }
             }
             if (StringUtils.isEmpty(text)) {
@@ -1110,7 +1112,7 @@ public class CardImageRenderer {
         float manaCostWidth = 0;
         if (canShow) {
             ManaCost mainManaCost = state.getManaCost();
-            if (card.isSplitCard() && card.hasAlternateState() && !card.isFaceDown() && card.getZone() != ZoneType.Stack) { //only display current state's mana cost when on stack
+            if (card.isSplitCard() && card.hasAlternateState() && !card.isFaceDown() && card.getZone() != ZoneType.Stack && card.getZone() != ZoneType.Battlefield) { //only display current state's mana cost when on stack
                 //handle rendering both parts of split card
                 mainManaCost = card.getLeftSplitState().getManaCost();
                 ManaCost otherManaCost = card.getAlternateState().getManaCost();

@@ -76,7 +76,7 @@ public enum GroupDef {
             }),
 
     CARD_TYPE("lblType",
-    		new String[] { "Planeswalker", "Creature", "Sorcery", "Instant", "Artifact", "Enchantment", "Land", "Battle" },
+            new String[] { "Planeswalker", "Creature", "Sorcery", "Instant", "Artifact", "Enchantment", "Land", "Battle" },
             groupIndex -> {
                 if (groupIndex == 6) {
                     return ColumnDef.NAME; //pile lands by name regardless

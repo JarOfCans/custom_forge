@@ -4,7 +4,7 @@
     <artifactId>forge</artifactId>
     <packaging>pom</packaging>
     <name>Forge Parent</name>
-    <version>1.6.65-SNAPSHOT</version>
+    <version>1.6.66-SNAPSHOT</version>
 
     <description>
         Forge lets you play the card game Magic: The Gathering against a computer opponent using all of the rules.
@@ -280,6 +280,28 @@
                                 <requirePluginVersions />
                             </rules>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>checkstyle-validation</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <failOnViolation>true</failOnViolation>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

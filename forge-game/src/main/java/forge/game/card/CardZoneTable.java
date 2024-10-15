@@ -109,6 +109,15 @@ public class CardZoneTable extends ForwardingTable<ZoneType, ZoneType, CardColle
             }
         }
         if (!isEmpty()) {
+            // this should still refresh for empty battlefield
+            if (lastStateBattlefield != CardCollection.EMPTY) {
+                game.getTriggerHandler().resetActiveTriggers(false);
+                // register all LTB trigger from last state battlefield
+                for (Card lki : lastStateBattlefield) {
+                    game.getTriggerHandler().registerActiveLTBTrigger(lki);
+                }
+            }
+
             final Map<AbilityKey, Object> runParams = AbilityKey.newMap();
             runParams.put(AbilityKey.Cards, new CardZoneTable(this));
             runParams.put(AbilityKey.Cause, cause);

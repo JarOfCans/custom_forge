@@ -13,7 +13,6 @@ import forge.Forge;
 import forge.StaticData;
 import forge.adventure.data.ConfigData;
 import forge.adventure.data.RewardData;
-import forge.adventure.player.AdventurePlayer;
 import forge.adventure.util.*;
 import forge.card.CardEdition;
 import forge.card.ColorSet;
@@ -40,7 +39,7 @@ public class SpellSmithScene extends UIScene {
 
     private List<PaperCard> cardPool = new ArrayList<>();
     private TextraLabel playerGold, playerShards, poolSize;
-    private final TextraButton pullUsingGold, pullUsingShards;
+    private final TextraButton pullUsingGold, pullUsingShards, acceptReward, declineReward, exitSmith;
     private final ScrollPane rewardDummy;
     private RewardActor rewardActor;
     SelectBox<CardEdition> editionList;
@@ -48,6 +47,7 @@ public class SpellSmithScene extends UIScene {
     final private HashMap<String, TextraButton> rarityButtons = new HashMap<>();
     final private HashMap<String, TextraButton> costButtons = new HashMap<>();
     final private HashMap<String, TextraButton> colorButtons = new HashMap<>();
+
     //Filter variables.
     private String edition = "";
     private String rarity = "";
@@ -58,20 +58,28 @@ public class SpellSmithScene extends UIScene {
     private int currentPrice = 0;
     private int currentShardPrice = 0;
     private List<CardEdition> editions = null;
+    private Reward currentReward = null;
+    private boolean paidInShards = false;
 
     private SpellSmithScene() {
         super(Forge.isLandscapeMode() ? "ui/spellsmith.json" : "ui/spellsmith_portrait.json");
-
 
         editionList = ui.findActor("BSelectPlane");
         rewardDummy = ui.findActor("RewardDummy");
         rewardDummy.setVisible(false);
 
-
         pullUsingGold = ui.findActor("pullUsingGold");
         pullUsingGold.setDisabled(true);
         pullUsingShards = ui.findActor("pullUsingShards");
         pullUsingShards.setDisabled(true);
+
+        exitSmith = ui.findActor("done");
+
+        acceptReward = ui.findActor("accept");
+        acceptReward.setVisible(false);
+        declineReward = ui.findActor("decline");
+        declineReward.setVisible(false);
+
         playerGold = Controls.newAccountingLabel(ui.findActor("playerGold"), false);
         playerShards = Controls.newAccountingLabel(ui.findActor("playerShards"), true);
         poolSize = ui.findActor("poolSize");
@@ -115,6 +123,8 @@ public class SpellSmithScene extends UIScene {
             }
         }
 
+        ui.onButtonPress("accept", SpellSmithScene.this::acceptSmithing);
+        ui.onButtonPress("decline", SpellSmithScene.this::declineSmithing);
         ui.onButtonPress("done", SpellSmithScene.this::done);
         ui.onButtonPress("pullUsingGold", () -> SpellSmithScene.this.pullCard(false));
         ui.onButtonPress("pullUsingShards", () -> SpellSmithScene.this.pullCard(true));
@@ -123,6 +133,7 @@ public class SpellSmithScene extends UIScene {
             filterResults();
         });
     }
+
     private void reset() {
         edition = "";
         cost_low = -1;
@@ -161,6 +172,10 @@ public class SpellSmithScene extends UIScene {
     }
 
     public boolean done() {
+        if (currentReward != null) {
+            acceptSmithing();
+        }
+
         if (rewardActor != null) rewardActor.remove();
         cardPool.clear(); //Get rid of cardPool, filtering is fast enough to justify keeping it cached.
         Forge.switchToLast();
@@ -306,7 +321,7 @@ public class SpellSmithScene extends UIScene {
 
     public void filterResults() {
         Iterable<PaperCard> P = RewardData.getAllCards();
-        float modifierCost = Current.player().goldModifier();
+        float totalCost = basePrice * Current.player().goldModifier();
         final List<String> colorFilter = new ArrayList<>();
         for (Map.Entry<String, TextraButton> B : colorButtons.entrySet())
             switch (B.getKey()) {
@@ -346,71 +361,109 @@ public class SpellSmithScene extends UIScene {
         }).collect(Collectors.toList());
         //Stream method is very fast, might not be necessary to precache anything.
         if (!edition.isEmpty())
-        	modifierCost *= 1.1f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
+            totalCost *= 4.0f; //Edition select cost multiplier. This is a huge factor, so it's most expensive.
         if (colorFilter.size() > 0)
-        	modifierCost *= 1.1f; //Color filter cost multiplier.
-        /*if (!rarity.isEmpty()) { //Rarity cost multiplier.
+            totalCost *= Math.min(colorFilter.size() * 2.5f, 6.0f); //Color filter cost multiplier.
+        if (!rarity.isEmpty()) { //Rarity cost multiplier.
             switch (rarity) {
                 case "C":
-                	modifierCost *= 2f;
+                    totalCost *= 1.5f;
                     break;
                 case "U":
-                	modifierCost *= 1.5f;
+                    totalCost *= 2.5f;
                     break;
                 case "R":
-                	modifierCost *= 1.5f;
+                    totalCost *= 4.0f;
                     break;
                 case "M":
-                	modifierCost *= 1f;
+                    totalCost *= 5.5f;
                     break;
                 default:
                     break;
             }
-        }*/
-        if (cost_low > -1) modifierCost *= 1.1f; //And CMC cost multiplier.
+        }
+        if (cost_low > -1) totalCost *= 2.5f; //And CMC cost multiplier.
 
         cardPool = StreamSupport.stream(P.spliterator(), false).collect(Collectors.toList());
         poolSize.setText(((cardPool.size() > 0 ? "[/][FOREST]" : "[/][RED]")) + cardPool.size() + " possible card" + (cardPool.size() != 1 ? "s" : ""));
-        int buyPrice = 1000;
-        for (PaperCard card: cardPool) {
-        	buyPrice += CardUtil.getCardPrice(card)*(AdventurePlayer.current().getDifficulty().sellFactor+0.1f);
-        }
-        buyPrice /= Math.max(cardPool.size(),1);
-        
-        currentPrice = (int) (buyPrice * modifierCost);
-        currentShardPrice = (int) ((currentPrice+25) /50); //casting to int rounds down, idk why this comment originally said it rounds up
+        currentPrice = (int) totalCost;
+        currentShardPrice = (int) (totalCost * 0.2f); //Intentionally rounding up via the cast to int
         pullUsingGold.setText("[+Pull][+goldcoin] "+ currentPrice);
         pullUsingShards.setText("[+Pull][+shards]" + currentShardPrice);
-        pullUsingGold.setDisabled(!(cardPool.size() > 0) || Current.player().getGold() < currentPrice);
+        pullUsingGold.setDisabled(!(cardPool.size() > 0) || Current.player().getGold() < totalCost);
         pullUsingShards.setDisabled(!(cardPool.size() > 0) || Current.player().getShards() < currentShardPrice);
         editionList.setUserObject(edition);
     }
 
     public void pullCard(boolean usingShards) {
+        paidInShards = usingShards;
         PaperCard P = cardPool.get(MyRandom.getRandom().nextInt(cardPool.size())); //Don't use the standard RNG.
-        Reward R = null;
-        if (Config.instance().getSettingData().useAllCardVariants || true) {
+        currentReward = null;
+        if (Config.instance().getSettingData().useAllCardVariants) {
             if (!edition.isEmpty()) {
-                R = new Reward(CardUtil.getCardByNameAndEdition(P.getCardName(), edition));
+                currentReward = new Reward(CardUtil.getCardByNameAndEdition(P.getCardName(), edition));
             } else {
-            	//System.out.println("No edition");
-                R = new Reward(CardUtil.getCardByName(P.getCardName())); // grab any random variant if no set preference is specified
+                currentReward = new Reward(CardUtil.getCardByName(P.getCardName())); // grab any random variant if no set preference is specified
             }
         } else {
-            R = new Reward(P);
+            currentReward = new Reward(P);
         }
-        Current.player().addReward(R);
-        if (usingShards) {
+        if (rewardActor != null) rewardActor.remove();
+        rewardActor = new RewardActor(currentReward, true, null, true);
+        rewardActor.flip(); //Make it flip so it draws visual attention, why not.
+        rewardActor.setBounds(rewardDummy.getX(), rewardDummy.getY(), rewardDummy.getWidth(), rewardDummy.getHeight());
+        stage.addActor(rewardActor);
+
+        acceptReward.setVisible(true);
+        declineReward.setVisible(true);
+        exitSmith.setDisabled(true);
+        disablePullButtons();
+    }
+
+    private void acceptSmithing() {
+        if (paidInShards) {
             Current.player().takeShards(currentShardPrice);
         } else {
             Current.player().takeGold(currentPrice);
         }
-        if (Current.player().getGold() < currentPrice) pullUsingGold.setDisabled(true);
-        if (Current.player().getShards() < currentShardPrice) pullUsingShards.setDisabled(true);
+
+        Current.player().addReward(currentReward);
+
+        clearReward();
+        updatePullButtons();
+    }
+
+    private void declineSmithing() {
+        // Decline the smith reward for 10% of original price
+        float priceAdjustment = .10f;
+        if (paidInShards) {
+            Current.player().takeShards((int)(currentShardPrice * priceAdjustment));
+        } else {
+            Current.player().takeGold((int)(currentPrice * priceAdjustment));
+        }
+
+        clearReward();
+        updatePullButtons();
+    }
+
+    private void clearReward() {
         if (rewardActor != null) rewardActor.remove();
-        rewardActor = new RewardActor(R, true, null, true);
-        rewardActor.flip(); //Make it flip so it draws visual attention, why not.
-        rewardActor.setBounds(rewardDummy.getX(), rewardDummy.getY(), rewardDummy.getWidth(), rewardDummy.getHeight());
-        stage.addActor(rewardActor);
+        currentReward = null;
+    }
+
+
+    private void updatePullButtons() {
+        pullUsingGold.setDisabled(Current.player().getGold() < currentPrice);
+        pullUsingShards.setDisabled(Current.player().getShards() < currentShardPrice);
+
+        acceptReward.setVisible(false);
+        declineReward.setVisible(false);
+
+        exitSmith.setDisabled(false);
+    }
+
+    private void disablePullButtons() {
+        pullUsingGold.setDisabled(true);
+        pullUsingShards.setDisabled(true);
     }
 }

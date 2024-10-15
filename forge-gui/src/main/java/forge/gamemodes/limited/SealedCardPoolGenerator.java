@@ -17,9 +17,6 @@
  */
 package forge.gamemodes.limited;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Supplier;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import forge.StaticData;
 import forge.card.CardEdition;
@@ -31,8 +28,7 @@ import forge.deck.DeckSection;
 import forge.gui.util.SGuiChoose;
 import forge.gui.util.SOptionPane;
 import forge.item.PaperCard;
-import forge.item.SealedProduct;
-import forge.item.generation.ChaosBoosterSupplier;
+import forge.item.SealedTemplate;
 import forge.item.generation.IUnOpenedProduct;
 import forge.item.generation.UnOpenedProduct;
 import forge.localinstance.properties.ForgeConstants;
@@ -168,7 +164,7 @@ public class SealedCardPoolGenerator {
         switch(poolType) {
             case Full:
                 // Choose number of boosters
-                if (!chooseNumberOfBoosters(new UnOpenedProduct(SealedProduct.Template.genericDraftBooster))) {
+                if (!chooseNumberOfBoosters(new UnOpenedProduct(SealedTemplate.genericDraftBooster))) {
                     return;
                 }
                 landSetCode = CardEdition.Predicates.getRandomSetWithAllBasicLands(FModel.getMagicDb().getEditions()).getCode();
@@ -222,7 +218,7 @@ public class SealedCardPoolGenerator {
                         List<Pair<String, Integer>> promoSlot = new ArrayList<>();
                         promoSlot.add(Pair.of(pieces[1], num));
 
-                        SealedProduct.Template promoProduct = new SealedProduct.Template("Prerelease Promo", promoSlot);
+                        SealedTemplate promoProduct = new SealedTemplate("Prerelease Promo", promoSlot);
 
                         // Create a "booster" with just the promo card. Rarity + Edition into a Template
                         this.product.add(new UnOpenedProduct(promoProduct, FModel.getMagicDb().getCommonCards().getAllCards(chosenEdition)));
@@ -284,42 +280,7 @@ public class SealedCardPoolGenerator {
 
                 landSetCode = block.getLandSet().getCode();
                 break;
-               
-            case Chaos:
-                // Get chaos draft themes
-                final List<ThemedChaosDraft> themes = new ArrayList<>();
-                final IStorage<ThemedChaosDraft> themeStorage = FModel.getThemedChaosDrafts();
-                for (final ThemedChaosDraft theme : themeStorage) {
-                    themes.add(theme);
-                }
-                Collections.sort(themes); // sort for user interface
-                // Ask user to select theme
-                final String dialogQuestion = Localizer.getInstance().getMessage("lblChooseChaosTheme");
-                final ThemedChaosDraft theme = SGuiChoose.oneOrNone(dialogQuestion, themes);
-                if (theme == null) {
-                	//TODO something
-                    //return false; // abort if no theme is selected
-                }
-                // Filter all sets by theme restrictions
-                final Predicate<CardEdition> themeFilter = theme.getEditionFilter();
-                final CardEdition.Collection allEditions = StaticData.instance().getEditions();
-                final Iterable<CardEdition> chaosDraftEditions = Iterables.filter(
-                        allEditions.getOrderedEditions(),
-                        themeFilter);
-                // Add chaos "boosters" as special suppliers
-                landSetCode = CardEdition.Predicates.getRandomSetWithAllBasicLands(FModel.getMagicDb().getEditions()).getCode();
-                final ChaosBoosterSupplier ChaosDraftSupplier;
-                try {
-                    ChaosDraftSupplier = new ChaosBoosterSupplier(chaosDraftEditions);
-                    for (int i = 0; i < 6; i++) {
-                        this.product.add(ChaosDraftSupplier);
-                    }
-                } catch(IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                    //return false;
-                }
-                break;
-             
+
             case Custom:
                 String[] dList;
                 final List<CustomLimited> customs = new ArrayList<>();

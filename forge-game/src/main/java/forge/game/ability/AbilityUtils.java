@@ -2,6 +2,7 @@ package forge.game.ability;
 
 import com.google.common.base.Functions;
 import com.google.common.collect.*;
+import com.google.common.math.IntMath;
 import forge.card.CardStateName;
 import forge.card.CardType;
 import forge.card.ColorSet;
@@ -1295,7 +1296,7 @@ public class AbilityUtils {
                 }
             }
         } else if (defined.startsWith("ValidStack")) {
-            String valid = changedDef.split(" ", 2)[1];
+            String[] valid = changedDef.split(" ", 2)[1].split(",");
             for (SpellAbilityStackInstance stackInstance : game.getStack()) {
                 SpellAbility instanceSA = stackInstance.getSpellAbility();
                 if (instanceSA != null && instanceSA.isValid(valid, player, card, sa)) {
@@ -1541,6 +1542,11 @@ public class AbilityUtils {
                 host.clearRemembered();
             }
             host.addRemembered(sa.getTargets());
+            if (sa.hasParam("IncludeAllComponentCards")) {
+                for (Card c : sa.getTargets().getTargetCards()) {
+                    host.addRemembered(c.getAllComponentCards(false));
+                }
+            }
         }
 
         if (sa.hasParam("RememberCostMana")) {
@@ -1623,6 +1629,14 @@ public class AbilityUtils {
                 final int lhs = calculateAmount(c, compString[1], ctb);
                 final int rhs =  calculateAmount(c, compString[2].substring(2), ctb);
                 boolean v = Expressions.compare(lhs, compString[2], rhs);
+                return doXMath(calculateAmount(c, sq[v ? 1 : 2], ctb), expr, c, ctb);
+            }
+
+            // Count$IsPrime <SVar>.<True>.<False>
+            if (sq[0].startsWith("IsPrime")) {
+                final String[] compString = sq[0].split(" ");
+                final int lhs = calculateAmount(c, compString[1], ctb);
+                boolean v = IntMath.isPrime(lhs);
                 return doXMath(calculateAmount(c, sq[v ? 1 : 2], ctb), expr, c, ctb);
             }
 
@@ -2290,6 +2304,10 @@ public class AbilityUtils {
             return doXMath(player.getNumDrawnThisTurn(), expr, c, ctb);
         }
 
+        if (sq[0].equals("YouDrewLastTurn")) {
+            return doXMath(player.getNumDrawnLastTurn(), expr, c, ctb);
+        }
+
         if (sq[0].equals("YouRollThisTurn")) {
             return doXMath(player.getNumRollsThisTurn(), expr, c, ctb);
         }
@@ -2493,6 +2511,36 @@ public class AbilityUtils {
             final String[] workingCopy = l[0].split(" ", 2);
             final String validFilter = workingCopy[1];
             return doXMath(CardLists.getValidCardCount(game.getLeftGraveyardThisTurn(), validFilter, player, c, ctb), expr, c, ctb);
+        }
+
+        // Count$UnlockedDoors <Valid>
+        if (sq[0].startsWith("UnlockedDoors")) {
+            final String[] workingCopy = l[0].split(" ", 2);
+            final String validFilter = workingCopy[1];
+
+            int unlocked = 0;
+            for (Card doorCard : CardLists.getValidCards(player.getCardsIn(ZoneType.Battlefield), validFilter, player, c, ctb)) {
+                unlocked += doorCard.getUnlockedRooms().size();
+            }
+
+            return doXMath(unlocked, expr, c, ctb);
+        }
+
+        // Count$DistinctUnlockedDoors <Valid>
+        // Counts the distinct names of unlocked doors. Used for the "Promising Stairs"
+        if (sq[0].startsWith("DistinctUnlockedDoors")) {
+            final String[] workingCopy = l[0].split(" ", 2);
+            final String validFilter = workingCopy[1];
+
+            Set<String> viewedNames = new HashSet<>();
+            for (Card doorCard : CardLists.getValidCards(player.getCardsIn(ZoneType.Battlefield), validFilter, player, c, ctb)) {
+                for(CardStateName stateName : doorCard.getUnlockedRooms()) {
+                    viewedNames.add(doorCard.getState(stateName).getName());
+                }
+            }
+            int distinctUnlocked = viewedNames.size();
+
+            return doXMath(distinctUnlocked, expr, c, ctb);
         }
 
         // Manapool
@@ -2953,7 +3001,8 @@ public class AbilityUtils {
         }
 
         for (SpellAbility s : list) {
-            if (s instanceof LandAbility) {
+            if (s.isLandAbility()) {
+                s.setActivatingPlayer(controller);
                 // CR 305.3
                 if (controller.getGame().getPhaseHandler().isPlayerTurn(controller) && controller.canPlayLand(tgtCard, true, s)) {
                     sas.add(s);
@@ -2981,9 +3030,7 @@ public class AbilityUtils {
 
     private static void collectSpellsForPlayEffect(final List<SpellAbility> result, final CardState state, final Player controller, final boolean withAltCost) {
         if (state.getType().isLand()) {
-            LandAbility la = new LandAbility(state.getCard(), controller, null);
-            la.setCardState(state);
-            result.add(la);
+            result.add(state.getFirstSpellAbility());
         }
         final Iterable<SpellAbility> spells = state.getSpellAbilities();
         for (SpellAbility sa : spells) {

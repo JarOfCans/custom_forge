@@ -1,6 +1,7 @@
 package forge.game.card;
 
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import forge.ImageKeys;
 import forge.StaticData;
@@ -22,10 +23,7 @@ import forge.trackable.TrackableCollection;
 import forge.trackable.TrackableObject;
 import forge.trackable.TrackableProperty;
 import forge.trackable.Tracker;
-import forge.util.CardTranslation;
-import forge.util.Lang;
-import forge.util.Localizer;
-import forge.util.TextUtil;
+import forge.util.*;
 import forge.util.collect.FCollectionView;
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,6 +39,14 @@ public class CardView extends GameEntityView {
         if (c == null) { return null; }
         CardState s = c.getState(state);
         return s == null ? null : s.getView();
+    }
+
+    public static Map<CardStateView, CardState> getStateMap(Iterable<CardState> states) {
+        Map<CardStateView, CardState> stateViewCache = Maps.newLinkedHashMap();
+        for (CardState state : states) {
+            stateViewCache.put(state.getView(), state);
+        }
+        return stateViewCache;
     }
 
     public CardView getBackup() {
@@ -798,7 +804,7 @@ public class CardView extends GameEntityView {
             sb.append(getOwner().getCommanderInfo(this)).append("\r\n");
         }
 
-        if (isSplitCard() && !isFaceDown() && getZone() != ZoneType.Stack) {
+        if (isSplitCard() && !isFaceDown() && getZone() != ZoneType.Stack && getZone() != ZoneType.Battlefield) {
             sb.append("(").append(getLeftSplitState().getName()).append(") ");
             sb.append(getLeftSplitState().getAbilityText());
             sb.append("\r\n\r\n").append("(").append(getRightSplitState().getName()).append(") ");
@@ -1165,7 +1171,7 @@ public class CardView extends GameEntityView {
         return (zone + ' ' + CardTranslation.getTranslatedName(name) + " (" + getId() + ")").trim();
     }
 
-    public class CardStateView extends TrackableObject {
+    public class CardStateView extends TrackableObject implements ITranslatable {
         private static final long serialVersionUID = 6673944200513430607L;
 
         private final CardStateName state;
@@ -1184,6 +1190,11 @@ public class CardView extends GameEntityView {
                 return String.valueOf(getId());
             }
             return StringUtils.EMPTY;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getId(), state);
         }
 
         @Override
@@ -1316,6 +1327,13 @@ public class CardView extends GameEntityView {
         }
         void setOracleText(String oracleText) {
             set(TrackableProperty.OracleText, oracleText.replace("\\n", "\r\n\r\n").trim());
+        }
+
+        public String getFunctionalVariantName() {
+            return get(TrackableProperty.FunctionalVariant);
+        }
+        void setFunctionalVariantName(String functionalVariant) {
+            set(TrackableProperty.FunctionalVariant, functionalVariant);
         }
 
         public String getRulesText() {
@@ -1740,6 +1758,25 @@ public class CardView extends GameEntityView {
         }
         public boolean isAttraction() {
             return getType().isAttraction();
+        }
+
+        @Override
+        public String getTranslationKey() {
+            String key = getName();
+            String variant = getFunctionalVariantName();
+            if(StringUtils.isNotEmpty(variant))
+                key = key + " $" + variant;
+            return key;
+        }
+
+        @Override
+        public String getUntranslatedType() {
+            return getType().toString();
+        }
+
+        @Override
+        public String getUntranslatedOracle() {
+            return getOracleText();
         }
     }
 

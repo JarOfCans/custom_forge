@@ -47,6 +47,7 @@ public final class CardType implements Comparable<CardType>, CardTypeView {
     public static final CardTypeView EMPTY = new CardType(false);
 
     public enum CoreType {
+        Kindred(false, "kindreds"), // always printed first
         Artifact(true, "artifacts"),
         Battle(true, "battles"),
         Conspiracy(false, "conspiracies"),
@@ -60,7 +61,6 @@ public final class CardType implements Comparable<CardType>, CardTypeView {
         Planeswalker(true, "planeswalkers"),
         Scheme(false, "schemes"),
         Sorcery(false, "sorceries"),
-        Kindred(false, "kindreds"),
         Vanguard(false, "vanguards");
 
         public final boolean isPermanent;
@@ -779,13 +779,29 @@ public final class CardType implements Comparable<CardType>, CardTypeView {
         if (ctOther == null) {
             return false;
         }
-
         for (final CoreType type : getCoreTypes()) {
             if (ctOther.hasType(type)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean sharesAllCardTypesWith(final CardTypeView ctOther) {
+        if (ctOther == null) {
+            return false;
+        }
+        for (final CoreType type : getCoreTypes()) {
+            if (!ctOther.hasType(type)) {
+                return false;
+            }
+        }
+        for (final CoreType type : ctOther.getCoreTypes()) {
+            if (!this.hasType(type)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean sharesSubtypeWith(final CardTypeView ctOther) {

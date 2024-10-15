@@ -22,7 +22,6 @@ import java.util.Comparator;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
-import forge.card.CardStateName;
 import forge.game.CardTraitBase;
 import forge.game.GameEntity;
 import forge.game.combat.CombatUtil;
@@ -113,6 +112,10 @@ public final class CardPredicates {
 
     public static Predicate<Card> sharesCardTypeWith(final Card card) {
         return c -> c.sharesCardTypeWith(card);
+    }
+
+    public static Predicate<Card> sharesAllCardTypesWith(final Card card) {
+        return c -> c.sharesAllCardTypesWith(card);
     }
 
     public static Predicate<Card> sharesCreatureTypeWith(final Card card) {
@@ -379,7 +382,7 @@ public final class CardPredicates {
         /**
          * a Predicate<Card> to get all lands.
          */
-        public static final Predicate<Card> LANDS = c -> c.isLand() || (!c.isInZone(ZoneType.Battlefield) && c.isModal() && c.getState(CardStateName.Modal).getType().isLand());
+        public static final Predicate<Card> LANDS = c -> c.isLand();
         /**
          * a Predicate<Card> to get all mana-producing lands.
          */

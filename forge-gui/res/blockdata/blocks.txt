@@ -137,3 +137,4 @@ YUMI Custom Jumpstart, -/2/YUM, Meta-Choose(S(YUM Squadron Hawk)Squadron Hawk;S(
 Tri-Cube Powered, -/2/YUM3, Meta-Choose(S(YUM3 Amonkhet)Amonkhet;S(YUM3 Core)Core;S(YUM3 Lands)Lands)Themes
 Modern Horizons 3, 3/6/MH3, MH3
 Bloomburrow, 3/6/BLB, BLB
+Duskmourn: House of Horror, 3/6/DSK, DSK

@@ -307,7 +307,7 @@ public class ManaCostBeingPaid {
                                 sc.xCount = sc.totalCount;
                             }
                             // nothing more left in otherSubtract
-                            return;
+                            break;
                         }
                     }
                 }
@@ -327,7 +327,27 @@ public class ManaCostBeingPaid {
                                 sc.xCount = sc.totalCount;
                             }
                             // nothing more left in otherSubtract
-                            return;
+                            break;
+                        }
+                    }
+                }
+
+                // try to remove colorless hybrid shards with colored shard
+                for (Entry<ManaCostShard, ShardCount> e : unpaidShards.entrySet()) {
+                    final ManaCostShard eShard = e.getKey();
+                    sc = e.getValue();
+                    if (eShard.isOfKind(shard.getShard()) && eShard.isColorless()) {
+                        if (otherSubtract >= sc.totalCount) {
+                            otherSubtract -= sc.totalCount;
+                            sc.xCount = sc.totalCount = 0;
+                            toRemove.add(eShard);
+                        } else {
+                            sc.totalCount -= otherSubtract;
+                            if (sc.xCount > sc.totalCount) {
+                                sc.xCount = sc.totalCount;
+                            }
+                            // nothing more left in otherSubtract
+                            break;
                         }
                     }
                 }
@@ -367,7 +387,7 @@ public class ManaCostBeingPaid {
                                 sc.xCount = sc.totalCount;
                             }
                             // nothing more left in otherSubtract
-                            return;
+                            break;
                         }
                     }
                 }
@@ -389,7 +409,7 @@ public class ManaCostBeingPaid {
                                 sc.xCount = sc.totalCount;
                             }
                             // nothing more left in otherSubtract
-                            return;
+                            break;
                         }
                     } else if (sc.xCount > 0) { // X part that can only be paid by specific color
                         if (otherSubtract >= sc.xCount) {
@@ -403,7 +423,7 @@ public class ManaCostBeingPaid {
                             sc.totalCount -= otherSubtract;
                             sc.xCount -= otherSubtract;
                             // nothing more left in otherSubtract
-                            return;
+                            break;
                         }
                     }
                 }

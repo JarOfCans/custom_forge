@@ -112,6 +112,7 @@ public final class ForgeConstants {
     public static final String BASE_SKINS_DIR               = RES_DIR + "skins" + PATH_SEPARATOR;
     public static final String COMMON_FONTS_DIR             = RES_DIR + "fonts" + PATH_SEPARATOR;
     public static final String DEFAULT_SKINS_DIR            = BASE_SKINS_DIR + "default" + PATH_SEPARATOR;
+    //don't associate these skin files with a directory since skin directory will be determined later
     public static final String SPRITE_ICONS_FILE             = "sprite_icons.png";
     public static final String SPRITE_FOILS_FILE             = "sprite_foils.png";
     public static final String SPRITE_OLD_FOILS_FILE         = "sprite_old_foils.png";
