@@ -22,6 +22,7 @@ import forge.adventure.util.*;
 import forge.gui.FThreads;
 import forge.screens.TransitionScreen;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -262,7 +263,7 @@ public class ArenaScene extends UIScene implements IAfterMatch {
         GameHUD.getInstance().getTouchpad().setVisible(false);
         Forge.switchToLast();
         if (roundsWon != 0) {
-            Array<Reward> data = new Array<>();
+            ArrayList<Reward> data = new ArrayList<Reward>();
             for (int i = 0; i < roundsWon; i++) {
                 for (int j = 0; j < arenaData.rewards[i].length; j++) {
                     data.addAll(arenaData.rewards[i][j].generate(false, null, true));
