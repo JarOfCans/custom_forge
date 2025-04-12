@@ -10,6 +10,7 @@ import forge.Forge;
 import forge.Forge.KeyInputAdapter;
 import forge.Graphics;
 import forge.ImageKeys;
+import forge.adventure.player.AdventurePlayer;
 import forge.adventure.scene.ShopScene;
 import forge.assets.*;
 import forge.assets.FSkinColor.Colors;
@@ -1046,17 +1047,29 @@ public class ImageView<T extends InventoryItem> extends ItemView<T> {
                     float x2 = x + rankSize / 2;
                     if (draftRank >= 90) {
                         g.drawImage(FSkinImage.DRAFTRANK_S, x2, y2 + 1, rankSize, rankSize);
-                    } else if (draftRank >= 80 && draftRank <= 89) {
+                    } else if (draftRank >= 80) {
                         g.drawImage(FSkinImage.DRAFTRANK_A, x2, y2 + 1, rankSize, rankSize);
-                    } else if (draftRank >= 60 && draftRank <= 79) {
+                    } else if (draftRank >= 60) {
                         g.drawImage(FSkinImage.DRAFTRANK_B, x2, y2 + 1, rankSize, rankSize);
-                    } else if (draftRank >= 25 && draftRank <= 59) {
+                    } else if (draftRank >= 25) {
                         g.drawImage(FSkinImage.DRAFTRANK_C, x2, y2 + 1, rankSize, rankSize);
                     } else {
                         g.drawImage(FSkinImage.DRAFTRANK_D, x2, y2 + 1, rankSize, rankSize);
                     }
                     String value = String.valueOf(draftRank);
                     g.drawText(value, FSkinFont.forHeight(rankSize / 4), Color.WHITE, x, y, w, h, true, Align.center, true);
+
+                    String count = "";
+                    if (((PaperCard)item).isFoil()) {
+                    	int allCount = AdventurePlayer.current().getOwnedCountIgnoreFoil((PaperCard)item);
+                    	int thisCount = AdventurePlayer.current().getOwnedCount((PaperCard)item);
+                        count = String.format("%d + %d", (allCount - thisCount), thisCount);
+                    } else {
+                    	count = String.valueOf(AdventurePlayer.current().getOwnedCount((PaperCard)item));
+                    }
+                    //System.out.println(x + ", " + y);
+                    g.drawText(count, FSkinFont.forHeight(rankSize / 8), Color.WHITE, x, y - getHeight()/20, w, h, false, Align.center, true);
+                
                 }
 
                 if (Forge.isMobileAdventureMode) {

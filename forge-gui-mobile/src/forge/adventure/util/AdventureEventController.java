@@ -255,10 +255,12 @@ public class AdventureEventController implements Serializable {
 
             packsAsDecks.add(contents);
         }
+        System.out.println("AdventureEventController: Possible Tri-cubes: " + packsAsDecks.size());
 
         while (packsAsDecks.size() > count){
             Aggregates.removeRandom(packsAsDecks);
         }
+        System.out.println("AdventureEventController: Selected Tri-cubes: " + packsAsDecks.size());
 
         return packsAsDecks;
     }

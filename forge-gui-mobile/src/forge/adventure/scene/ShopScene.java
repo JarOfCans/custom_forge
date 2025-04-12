@@ -64,6 +64,23 @@ public class ShopScene extends ForgeScene {
         if (screen != null)
             screen.refresh();
     }
+    
+    public void doDupSell(int dupCount) {
+        boolean promptToConfirmSale = true; //Todo: config option
+        if (promptToConfirmSale) {
+            int profit = 0;
+            int cards = 0;
+            for (PaperCard cardToSell: Current.player().autoSellCards.toFlatList()) {
+                cards++;
+                profit += AdventurePlayer.current().cardSellPrice(cardToSell);
+                
+            }
+            if (!confirmAutosell(profit, cards, changes.getTownPriceModifier())) {
+                return;
+            }
+        }
+        AdventurePlayer.current().doDupsell(dupCount);
+    }
 
     private boolean confirmAutosell(int profit, int cards, float townPriceModifier) {
         return true;

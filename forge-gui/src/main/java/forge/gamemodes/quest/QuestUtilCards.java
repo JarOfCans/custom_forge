@@ -690,7 +690,11 @@ public final class QuestUtilCards {
 
         List<BoosterBox> output = new ArrayList<>();
         for (CardEdition e : editions) {
+        	try {
             output.add(BoosterBox.fromSet(e));
+        	} catch (IllegalArgumentException iae) {
+        		iae.printStackTrace();
+        	}
         }
 
         questAssets.getShopList().addAllOfTypeFlat(output);

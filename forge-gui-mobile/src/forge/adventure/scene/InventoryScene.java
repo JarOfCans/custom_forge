@@ -342,6 +342,7 @@ public class InventoryScene extends UIScene {
             });
             itemSlotsUsed++;
         }
+        Current.player().getBoostersOwned().sort();
 
         for (int i = 0; i < Current.player().getBoostersOwned().size; i++) {
 

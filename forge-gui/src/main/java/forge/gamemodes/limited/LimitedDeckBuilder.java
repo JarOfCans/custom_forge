@@ -201,7 +201,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
         }
 
         fixDeckSize(clrCnts, landSetCode);
-
+        //System.out.println("LimitedDeckBuilder: deck list size is " + deckList.size());
         if (deckList.size() == 40) {
             // add the main deck cards
             final Deck result = new Deck(generateName());
@@ -215,7 +215,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
                 final CardPool cpConsp = result.getOrCreate(DeckSection.Conspiracy);
                 cpConsp.add(draftedConspiracies);
             }
-            if (logToConsole) {
+            if (true) {
                 debugFinalDeck();
             }
             return result;
@@ -238,19 +238,19 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
      */
     private void debugFinalDeck() {
         int i = 0;
-        System.out.println("DECK");
+        System.out.println("DECK " + deckList.size());
         for (final PaperCard c : deckList) {
             i++;
             System.out.println(i + ". " + c.toString() + ": " + c.getRules().getManaCost().toString());
         }
         i = 0;
-        System.out.println("NOT PLAYABLE");
+        System.out.println("NOT PLAYABLE " + availableList.size());
         for (final PaperCard c : availableList) {
             i++;
             System.out.println(i + ". " + c.toString() + ": " + c.getRules().getManaCost().toString());
         }
         i = 0;
-        System.out.println("NOT PICKED");
+        System.out.println("NOT PICKED " + aiPlayables.size());
         for (final PaperCard c : aiPlayables) {
             i++;
             System.out.println(i + ". " + c.toString() + ": " + c.getRules().getManaCost().toString());
@@ -369,14 +369,14 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
         
         for (int i = 0; i < 5; i++) {
         	int slotsRemaining = 40-deckList.size(); // How many to still distribute
-            if (clrCnts[i] > 0) {
+        	if (clrCnts[i] > 0) {
                 // calculate proportion of mana symbols for each remaining color
                 float p = (float) clrCnts[i] / (float) totalColor;
 
                 // Rounding prefers WUBRG order, as a side effect.
                 int nLand = Math.round(slotsRemaining * p); // Round up/down
                 
-                if (logToConsole) {
+                if (true) {
                     System.out.printf("Basics[%s]: %d/%d = %f%% = %d cards%n", MagicColor.Constant.BASIC_LANDS.get(i), clrCnts[i], totalColor, 100*p, nLand);
                 }
                 
@@ -391,7 +391,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
                 }
 
                 for (int j = 0; j < nLand; j++) {
-                    deckList.add(getBasicLand(i, landSetCode));
+                    deckList.add(getBasicLand(i, (landSetCode.contains("YUM"))?"M15":landSetCode));
                 }
             }
         }

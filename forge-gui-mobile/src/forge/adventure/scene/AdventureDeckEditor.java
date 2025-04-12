@@ -129,7 +129,21 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
             BoosterDraft draft = getDraft();
             assert draft != null;
             draft.setChoice(card);
-            AdventurePlayer.current().addCard(card);
+            if (card.getName().equals("Black Lotus")
+                    || card.getName().equals("Mox Emerald")
+                    || card.getName().equals("Mox Pearl")
+                    || card.getName().equals("Mox Ruby")
+                    || card.getName().equals("Mox Sapphire")
+                    || card.getName().equals("Mox Jet")
+                    || card.getName().equals("Ancestral Recall")
+                    || card.getName().equals("Timetwister")
+                    || card.getName().equals("Time Walk")
+                    || card.getName().equals("Sol Ring")
+                    || card.getName().equals("Channel")) {
+            	//Nothing
+            } else {
+                AdventurePlayer.current().addCard(card);
+            }
 
             if (draft.hasNextChoice()) {
                 refresh();
@@ -323,6 +337,7 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         Deck[] opponentDecks = currentEvent.getDraft().getDecks();
         for (int i = 0; i < currentEvent.participants.length && i < opponentDecks.length; i++) {
             currentEvent.participants[i].setDeck(opponentDecks[i]);
+            System.out.println(opponentDecks[i].getMain().countAll());
         }
         currentEvent.draftedDeck = (Deck) currentEvent.registeredDeck.copyTo("Draft Deck");
         if (allowsAddBasic()) {
