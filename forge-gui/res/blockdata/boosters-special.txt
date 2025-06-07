@@ -538,3 +538,48 @@ YUM3 OTJ: 1 wholeSheet("YUM3 OTJ")
 YUM3 Tempest: 1 wholeSheet("YUM3 Tempest")
 YUM3 Mirage: 1 wholeSheet("YUM3 Mirage")
 YUM3 Enchantress: 1 wholeSheet("YUM3 Enchantress")
+
+#Tri-Cube W
+YUMW3 AKH Core1: 1 wholeSheet("YUMW3 AKH Core1")
+YUMW3 MRD1: 1 wholeSheet("YUMW3 MRD1")
+YUMW3 ZNR1: 1 wholeSheet("YUMW3 ZNR1")
+YUMW3 Starter1999: 1 wholeSheet("YUMW3 Starter1999")
+
+
+#Jump-Cube
+#JC Generic
+YUMJC AKH Gods: 1 wholeSheet("YUMJC AKH Gods")
+YUMJC THBBase: 1 wholeSheet("YUMJC THBBase")
+
+#JC Artifacts
+
+#JC Lands
+YUMJC Coreset Lands1: 1 wholeSheet("YUMJC Coreset Lands1")
+YUMJC Common Trilands1: 1 wholeSheet("YUMJC Common Trilands1")
+
+#JC W
+
+#JC U
+YUMJC Brainstorms: 1 wholeSheet("YUMJC Brainstorms")
+
+#JC B
+YUMJC B Devotion: 1 wholeSheet("YUMJC B Devotion")
+
+#JC R
+YUMJC Dragon Approach: 1 wholeSheet("YUMJC Dragon Approach")
+YUMJC GoblinTokens: 1 wholeSheet("YUMJC GoblinTokens")
+
+#JC G
+YUMJC G Creaturefall: 1 wholeSheet("YUMJC G Creaturefall")
+
+#JC WU
+#JC UB
+YUMJC UB Exploit: 1 wholeSheet("YUMJC UB Exploit")
+#JC BR
+#JC RG
+#JC GW
+#JC WB
+#JC UR
+#JC BG
+#JC RW
+#JC GU

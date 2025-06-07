@@ -13304,6 +13304,504 @@ Gandalf the White|LTR
 1 Virtue of Persistence // Locthwain Scorn
 
 
+[YUMW3 AKH Core1]
+1 Bontu's Monument
+1 Hazoret's Monument
+1 Kefnet's Monument
+1 Oketra's Monument
+1 Rhonas's Monument
+1 Throne of the God-Pharaoh
+2 Honed Khopesh
+1 Oketra's Attendant
+1 Trueheart Duelist
+1 Angler Drake
+1 Cryptic Serpent
+1 Labyrinth Guardian
+1 Bone Picker
+1 Gravedigger
+1 Ahn-Crop Crasher
+1 Scaled Behemoth
+1 Manglehorn
+1 Shefet Monitor
+1 Aven Mindcensor
+1 Vizier of Many Faces
+1 Champion of Rhonas
+2 Gust Walker
+2 Tah-Crop Elite
+2 Those Who Serve
+2 Supply Caravan
+2 Ancient Crab
+2 Aven Initiate
+2 Slither Blade
+2 Tah-Crop Skirmisher
+2 Blighted Bat
+2 Cursed Minotaur
+2 Wasteland Scorpion
+2 Bloodlust Inciter
+2 Hyena Pack
+2 Nimble-Blade Khenra
+2 Minotaur Sureshot
+2 Colossapede
+2 Bitterblade Warrior
+2 Hooded Brawler
+1 Trial of Ambition
+1 Trial of Knowledge
+1 Trial of Solidarity
+1 Trial of Strength
+1 Trial of Zeal
+1 Cast Out
+1 Sixth Sense
+1 Liliana's Mastery
+2 Cartouche of Solidarity
+2 Cartouche of Knowledge
+2 Cartouche of Ambition
+2 Cartouche of Zeal
+2 Cartouche of Strength
+1 Renewed Faith
+1 Censor
+1 Deem Worthy
+1 Commit // Memory
+2 Impeccable Timing
+2 Djeru's Resolve
+2 Essence Scatter
+2 Splendid Agony
+2 Scarab Feast
+2 Final Reward
+2 Magma Spray
+2 Haze of Pollen
+2 Stinging Shot
+1 Cascading Cataracts
+2 Evolving Wilds
+2 Sunscorched Desert
+2 Cradle of the Accursed
+1 Lay Bare the Heart
+1 Stir the Sands
+1 By Force
+1 Limits of Solidarity
+1 Dusk // Dawn
+1 Never // Return
+1 Insult // Injury
+1 Mouth // Feed
+1 Sweltering Suns
+2 Floodwaters
+2 Violent Impact
+2 Benefaction of Rhonas
+
+[YUMW3 MRD1]
+1 Talisman of Dominance
+1 Talisman of Impulse
+1 Talisman of Indulgence
+1 Talisman of Progress
+1 Talisman of Unity
+1 Fireshrieker
+1 Farsight Mask
+1 Isochron Scepter
+1 Golem-Skin Gauntlets
+1 Lightning Greaves
+1 Loxodon Warhammer
+1 Vulshok Battlegear
+1 Thought Prison
+1 Tower of Champions
+1 Tower of Eons
+1 Tower of Fortunes
+1 Tower of Murmurs
+1 Chrome Mox
+1 Gilded Lotus
+2 Bonesplitter
+2 Chromatic Sphere
+2 Viridian Longbow
+2 Welding Jar
+2 Tooth of Chiss-Goria
+2 Scale of Chiss-Goria
+1 Auriok Bladewarden
+1 Psychic Membrane
+1 Nim Shambler
+1 Atog
+1 Brown Ouphe
+1 Bottle Gnomes
+1 Cathodion
+1 Clockwork Vorrac
+1 Ornithopter
+1 Rust Elemental
+1 Auriok Steelshaper
+1 Broodstar
+1 Arc-Slogger
+1 Solemn Simulacrum
+2 Skyhunter Cub
+2 Skyhunter Patrol
+2 Neurok Spy
+2 Somber Hoverguard
+2 Disciple of the Vault
+2 Nim Shrieker
+2 Krark-Clan Grunt
+2 Ogre Leadfoot
+2 Fangren Hunter
+2 Tel-Jilad Chosen
+2 Copper Myr
+2 Gold Myr
+2 Iron Myr
+2 Leaden Myr
+2 Silver Myr
+2 Frogmite
+2 Alpha Myr
+2 Yotian Soldier
+1 Necrogen Mists
+1 Soul Nova
+1 Assert Authority
+1 Betrayal of Flesh
+2 Raise the Alarm
+2 Blinding Beam
+2 Annul
+2 Regress
+2 Terror
+2 Wail of the Nim
+2 Shatter
+2 Battlegrowth
+1 Stalking Stones
+1 Blinkmoth Well
+2 Ancient Den
+2 Seat of the Synod
+2 Vault of Whispers
+2 Great Furnace
+2 Tree of Tales
+1 Detonate
+1 One Dozen Eyes
+1 Tooth and Nail
+2 Molten Rain
+2 Journey of Discovery
+
+[YUMW3 ZNR1]
+1 Relic Amulet
+1 Relic Axe
+1 Relic Vial
+1 Lithoform Engine
+2 Spare Supplies
+2 Scavenged Blade
+1 Relic Golem
+1 Canyon Jerboa
+1 Emeria Captain
+1 Ruin Crab
+1 Demon's Disciple
+1 Skyclave Geopede
+1 Thundering Sparkmage
+1 Springmantle Cleric
+1 Tangled Florahedron
+1 Veteran Adventurer
+1 Luminarch Aspirant
+1 Glasspool Mimic
+1 Nullpriest of Oblivion
+1 Relic Robber
+1 Kazandu Mammoth
+1 Lotus Cobra
+1 Myriad Construct
+2 Stonework Packbeast
+2 Sea Gate Colossus
+2 Skyclave Sentinel
+2 Farsight Adept
+2 Tazeem Raptor
+2 Cliffhaven Sell-Sword
+2 Angelheart Protector
+2 Makindi Ox
+2 Zulaport Duelist
+2 Tazeem Roilmage
+2 Cleric of Chill Depths
+2 Skyclave Squid
+2 Cascade Seer
+2 Highborn Vampire
+2 Nimana Skydancer
+2 Marauding Blight-Priest
+2 Ghastly Gloomhunter
+2 Fissure Wizard
+2 Scorch Rider
+2 Tuktuk Rubblefort
+2 Sneaking Guide
+2 Joraga Visionary
+2 Dauntless Survivor
+2 Tajuru Blightblade
+2 Turntimber Ascetic
+2 Kazandu Stomper
+2 Pyroclastic Hellion
+1 Journey to Oblivion
+2 Nissa's Zendikon
+1 Kabira Takedown
+1 Jwari Disruption
+1 Silundi Vision
+1 Concerted Defense
+1 Malakir Rebirth
+1 Spikefield Hazard
+1 Hagra Mauling
+1 Valakut Awakening
+2 Dauntless Unity
+2 Practiced Tactics
+2 Glacial Grasp
+2 Deadly Alliance
+2 Subtle Strike
+2 Synchronized Spellcraft
+1 Base Camp
+1 Jace, Mirror Mage
+1 Makindi Stampede
+1 Skyclave Plunder
+1 Bloodchief's Thirst
+1 Zof Consumption
+1 Thwart the Grave
+1 Song-Mad Treachery
+1 Thundering Rebuke
+1 Bala Ged Recovery
+1 Vastwood Surge
+1 Ondu Inversion
+2 Field Research
+2 Mind Drain
+2 Strength of Solidarity
+
+[YUMW3 Starter1999]
+2 Border Guard
+2 Devout Monk
+2 Knight Errant
+2 Royal Falcon
+2 Venerable Monk
+2 Wild Griffin
+2 Giant Octopus
+2 Ingenious Thief
+2 Snapping Drake
+2 Storm Crow
+2 Dakmor Scorpion
+2 Feral Shadow
+2 Serpent Warrior
+2 Hollow Dogs
+2 Goblin Chariot
+2 Raging Goblin
+2 Ogre Warrior
+2 Hulking Goblin
+2 Norwood Archers
+2 Grizzly Bears
+2 Durkwood Boars
+2 Barbtooth Wurm
+2 Lone Wolf
+2 Southern Elephant
+1 Veteran Cavalier
+1 Charging Paladin
+1 Royal Trooper
+1 Angel of Mercy
+1 Air Elemental
+1 Man-o'-War
+1 Ravenous Rats
+1 Gravedigger
+1 Shrieking Specter
+1 Goblin General
+1 Goblin Settler
+1 Goblin Commando
+1 Wood Elves
+1 Pride of Lions
+1 Silverback Ape
+1 Whiptail Wurm
+1 Champion Lancer
+1 Dread Reaper
+1 Thunder Dragon
+1 Thorn Elemental
+1 Sylvan Basilisk
+2 Remove Soul
+1 Counterspell
+2 Angelic Blessing
+2 Path of Peace
+2 Sleight of Hand
+2 Time Ebb
+2 Touch of Brilliance
+2 Chorus of Woe
+2 Mind Rot
+2 Raise Dead
+2 Hand of Death
+2 Lava Axe
+2 Volcanic Hammer
+2 Stone Rain
+2 Scorching Spear
+2 Nature's Lore
+2 Monstrous Growth
+1 Righteous Charge
+1 Breath of Life
+1 Tidings
+1 Undo
+1 Exhaustion
+1 Coercion
+1 Stream of Acid
+1 Dakmor Plague
+1 Goblin Lore
+1 Jagged Lightning
+1 Spitting Earth
+1 Untamed Wilds
+1 Renewing Touch
+1 Armageddon
+1 Ransack
+1 Time Warp
+1 Ancient Craving
+1 Devastation
+
+[YUMJC AKH Gods]
+1 Oketra's Monument
+1 Bontu's Monument
+1 Kefnet's Monument
+1 Hazoret's Monument
+1 Rhonas's Monument
+1 Oketra the True
+1 Bontu the Glorified
+1 Kefnet the Mindful
+1 Hazoret the Fervent
+1 Rhonas the Indomitable
+1 Oketra's Last Mercy
+1 Bontu's Last Reckoning
+1 Kefnet's Last Word
+1 Hazoret's Undying Fury
+1 Rhonas's Last Stand
+
+[YUMJC Coreset Lands1]
+1 Manifold Key
+1 Thaumatic Compass
+1 Empowered Autogenerator
+1 Meteor Golem
+1 Etched Oracle
+1 Bloodfell Caves
+1 Blossoming Sands
+1 Dismal Backwater
+1 Jungle Hollow
+1 Rugged Highlands
+1 Scoured Barrens
+1 Swiftwater Cliffs
+1 Thornwood Falls
+1 Tranquil Cove
+1 Wind-Scarred Crag
+
+[YUMJC UB Exploit]
+1 Skull Skaab
+1 Ruthless Deathfang
+1 Mortus Strider
+1 Sidisi, Undead Vizier
+1 Overcharged Amalgam
+1 Sidisi's Faithful
+1 Repository Skaab
+1 Fell Stinger
+1 Diver Skaab
+1 Loathsome Curator
+1 Mindleech Ghoul
+1 Silumgar Scavenger
+1 Stitcher's Apprentice
+1 Malcator's Watcher
+1 Village Rites
+
+[YUMJC B Devotion]
+1 Nyx Lotus
+1 Abhorrent Overlord
+1 Blight-Breath Catoblepas
+1 Disciple of Phenax
+1 Gray Merchant of Asphodel
+1 Marshmist Titan
+1 Tymaret, Chosen from Death
+1 Grim Servant
+1 Underworld Hermit
+1 Foul Imp
+1 Dauthi Slayer
+1 Liliana's Specter
+1 Hopeless Nightmare
+1 Omen of the Dead
+1 Drag to the Underworld
+
+[YUMJC G Creaturefall]
+1 Gala Greeters
+1 Prosperous Innkeeper
+1 Renata, Called to the Hunt
+1 Social Climber
+1 Basking Broodscale
+1 Eyeless Watcher
+1 Nest Invader
+1 Path of Discovery
+1 Season of Growth
+1 Warm Welcome
+1 Bestial Menace
+1 Saproling Migration
+1 Chatter of the Squirrel
+1 Wolf's Quarry
+1 Sprouting Renewal
+
+[YUMJC Dragon Approach]
+1 Fallaji Dragon Engine
+1 Ganax, Astral Hunter
+1 Red Dragon
+1 Avaricious Dragon
+1 Backdraft Hellkite
+10 Dragon's Approach
+
+[YUMJC THBBase]
+1 Nyxborn Courser
+1 Nyxborn Brute
+1 Nyxborn Colossus
+1 Nyxborn Marauder
+1 Nyxborn Seaguard
+1 Daxos, Blessed by the Sun
+1 Callaphe, Beloved of the Sea
+1 Tymaret, Chosen from Death
+1 Anax, Hardened in the Forge
+1 Renata, Called to the Hunt
+1 Omen of the Dead
+1 Omen of the Forge
+1 Omen of the Hunt
+1 Omen of the Sea
+1 Omen of the Sun
+
+
+
+
+[YUMJC Common Trilands1]
+1 Kaleidostone
+1 Armillary Sphere
+1 Crystalline Crawler
+1 Scion of Ugin
+1 Maelstrom Nexus
+1 Arcane Sanctum
+1 Crumbling Necropolis
+1 Frontier Bivouac
+1 Jungle Shrine
+1 Mystic Monastery
+1 Nomad Outpost
+1 Opulent Palace
+1 Sandsteppe Citadel
+1 Savage Lands
+1 Seaside Citadel
+
+[YUMJC Brainstorms]
+1 Brainstone
+1 Scroll Rack
+1 Lodestone Needle
+1 Alrund, God of the Cosmos
+1 Riverwise Augur
+1 Cavalier of Gales
+1 Faerie Seer
+1 Pondering Mage
+1 Search for Azcanta
+1 Brainstorm
+1 Brainsurge
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Jace, the Mind Sculptor
+1 Preordain
+
+[YUMJC GoblinTokens]
+1 Goblin Morningstar
+1 Beetleback Chief
+1 Battle Cry Goblin
+1 Legion Warboss
+1 Mogg War Marshal
+1 Siege-Gang Commander
+1 Mogg Raider
+1 Goblin Chirurgeon
+1 Goblin Surprise
+1 Brightstone Ritual
+1 Dragon Fodder
+1 Krenko's Command
+1 Hordeling Outburst
+1 Goblin War Party
+1 Goblin Grenade
+
+
+
+
 [JSE White1]
 1 Circle of Protection: Red
 1 Reveille Squad

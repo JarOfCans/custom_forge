@@ -213,6 +213,77 @@ public class AdventureEventData implements Serializable {
             
             //r3 will be the selected card packs
         }
+        else if (format.equals(AdventureEventController.EventFormat.JumpstartDraftAlt)) {
+            //int numPacksToPickFrom = 6;
+            generateParticipants(7);
+
+            cardBlock = pickJumpstartCardBlockAlt();
+            if (cardBlock == null)
+                return;
+            cardBlockName = cardBlock.getName();
+
+            jumpstartBoosters = AdventureEventController.instance().getJumpstartBoostersAlt(cardBlock, 24);
+
+            packConfiguration = new String[] {cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode()};
+
+            
+            
+            //List<Deck> bonusJumpStarts = AdventureEventController.instance().getJumpstartBoostersAlt(cardBlock, 6);
+            rewards = new ArrayList<AdventureEventData.AdventureEventReward>();
+            AdventureEventData.AdventureEventReward r0 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r1 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r2 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r3 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r4 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r5 = new AdventureEventData.AdventureEventReward();
+            AdventureEventData.AdventureEventReward r6 = new AdventureEventData.AdventureEventReward();
+
+            RewardData r0gold = new RewardData();
+            r0gold.count = 500;
+            r0gold.type = "gold";
+            r0.rewards = new RewardData[]{r0gold};
+            r0.minWins = 1;
+            r0.maxWins = 1;
+            rewards.add(r0);
+            
+            RewardData r1gold = new RewardData();
+            r1gold.count = 1000;
+            r1gold.type = "gold";
+            r1.rewards = new RewardData[]{r1gold};
+            r1.minWins = 2;
+            r1.maxWins = 3;
+            rewards.add(r1);
+            
+            r2.minWins = 3;
+            r2.maxWins = 3;
+            r2.itemRewards = new String[]{"Silver Challenge Coin"};
+            rewards.add(r2);
+            
+            /*r3.minWins = 0;
+            r3.maxWins = 3;
+            r3.cardRewards = new Deck[]{bonusJumpStarts.get(0)};
+            rewards.add(r3);
+
+            r4.minWins = 1;
+            r4.maxWins = 3;
+            r4.cardRewards = new Deck[]{bonusJumpStarts.get(1)};
+            rewards.add(r4);
+            
+            r5.minWins = 2;
+            r5.maxWins = 3;
+            r5.cardRewards = new Deck[]{bonusJumpStarts.get(2)};
+            rewards.add(r5);
+            
+            RewardData r6gold = new RewardData();
+            r6gold.count = 1200;
+            r6gold.type = "gold";
+            r6.rewards = new RewardData[]{r6gold};
+            r6.minWins = 3;
+            r6.maxWins = 3;
+            rewards.add(r6);*/
+            
+            //r3 will be the selected card packs
+        }
         else if (format.equals(AdventureEventController.EventFormat.TriCubeDraft)) {
             //int numPacksToPickFrom = 6;
             generateParticipants(7);
@@ -386,7 +457,8 @@ public class AdventureEventData implements Serializable {
     }
 
     public BoosterDraft getDraft() {
-        if (format != AdventureEventController.EventFormat.Draft && format != AdventureEventController.EventFormat.JumpstartDraft && format != AdventureEventController.EventFormat.TriCubeDraft)
+        if (format != AdventureEventController.EventFormat.Draft && format != AdventureEventController.EventFormat.JumpstartDraft
+        		 && format != AdventureEventController.EventFormat.JumpstartDraftAlt && format != AdventureEventController.EventFormat.TriCubeDraft)
             return null;
 
         Random placeholder = MyRandom.getRandom();
@@ -395,6 +467,11 @@ public class AdventureEventData implements Serializable {
         	switch (format) {
         	case JumpstartDraft:
                 jumpstartBoosters = AdventureEventController.instance().getJumpstartBoosters(cardBlock, 24);
+                draft = BoosterDraft.createJumpstartDraft(LimitedPoolType.JumpstartDraft, getCardBlock(), jumpstartBoosters);
+                System.out.println(draft);
+                break;
+        	case JumpstartDraftAlt:
+                jumpstartBoosters = AdventureEventController.instance().getJumpstartBoostersAlt(cardBlock, 24);
                 draft = BoosterDraft.createJumpstartDraft(LimitedPoolType.JumpstartDraft, getCardBlock(), jumpstartBoosters);
                 System.out.println(draft);
                 break;
@@ -534,6 +611,32 @@ public class AdventureEventData implements Serializable {
         return legalBlocks.isEmpty()?null:Aggregates.random(legalBlocks);
     }
 
+    private CardBlock pickJumpstartCardBlockAlt() {
+        Iterable<CardBlock> src = FModel.getBlocks(); //all blocks
+        List<CardBlock> legalBlocks = new ArrayList<>();
+        for (CardBlock b : src) { // for each block
+            //I hate doing this, but it seems like the simplest way to reliably filter out prereleases
+            if (b.getName().toUpperCase().contains("JUMPCUBE")) {
+            	/*if (b.getName().toUpperCase().contains("YUMI") && Math.random() < 1.1f) {
+            		return b;
+            	} else if (b.getName().toUpperCase().startsWith("Jumpstart")) {
+                    legalBlocks.add(b);
+                    legalBlocks.add(b);
+            	}*/
+                legalBlocks.add(b);
+            }
+        }
+        ConfigData configData = Config.instance().getConfigData();
+        if (configData.allowedEditions != null) {
+            List<String> allowed = Arrays.asList(configData.allowedEditions);
+            legalBlocks.removeIf(q -> !allowed.contains(q.getName()));
+        } else {
+            for (String restricted : configData.restrictedEditions) {
+                legalBlocks.removeIf(q -> q.getName().equals(restricted));
+            }
+        }
+        return legalBlocks.isEmpty()?null:Aggregates.random(legalBlocks);
+    }
     private CardBlock pickTriCubeCardBlock() {
         Iterable<CardBlock> src = FModel.getBlocks(); //all blocks
         List<CardBlock> legalBlocks = new ArrayList<>();
@@ -789,7 +892,24 @@ public class AdventureEventData implements Serializable {
             //description += String.format("Prizes\n3 round wins: 500 gold\n2 round wins: 200 gold\n1 round win: 100 gold\n");
             //description += "Finishing event will award an unsellable copy of each card in your Jumpstart deck.";
         }
-        else if (format.equals(AdventureEventController.EventFormat.JumpstartDraft)) {
+        else if (format.equals(AdventureEventController.EventFormat.JumpstartDraftAlt)) {
+            description = "Event Type: Jumpcube Draft\n";
+            description += "Block: " + getCardBlock() + "\n";
+            description += "Competition Style: " + participants.length + " players, matches played as best of " + eventRules.gamesPerMatch + ", " + (getPairingDescription()) + "\n\n";
+            description += String.format("Entry Fee (incl. reputation)\nGold %d[][+Gold][BLACK]\nMana Shards %d[][+Shards][BLACK]\n", Math.round(eventRules.goldToEnter * changes.getTownPriceModifier()), Math.round(eventRules.shardsToEnter  * changes.getTownPriceModifier()));
+            if (eventRules.acceptsBronzeChallengeCoin) {
+                description += "Bronze Challenge Coin [][+BronzeChallengeCoin][BLACK]\n\n";
+            } else if (eventRules.acceptsSilverChallengeCoin) {
+                description += "Silver Challenge Coin [][+SilverChallengeCoin][BLACK]\n\n";
+            } else if (eventRules.acceptsChallengeCoin) {
+                description += "Gold Challenge Coin [][+ChallengeCoin][BLACK]\n\n";
+            } else {
+                description += "\n";
+            }
+            //description += String.format("Prizes\n3 round wins: 500 gold\n2 round wins: 200 gold\n1 round win: 100 gold\n");
+            //description += "Finishing event will award an unsellable copy of each card in your Jumpstart deck.";
+        }
+        else if (format.equals(AdventureEventController.EventFormat.TriCubeDraft)) {
             description = "Event Type: Tri-Cube Draft\n";
             description += "Block: " + getCardBlock() + "\n";
             description += "Competition Style: " + participants.length + " players, matches played as best of " + eventRules.gamesPerMatch + ", " + (getPairingDescription()) + "\n\n";
@@ -952,6 +1072,15 @@ public class AdventureEventData implements Serializable {
                     allowsAddBasicLands = false;
                     break;
                 case JumpstartDraft:
+                    acceptsChallengeCoin = false;
+                    acceptsSilverChallengeCoin = true;
+                    acceptsBronzeChallengeCoin = false;
+                    baseGoldEntry = 1000;
+                    baseShardEntry = 20;
+                    //startingLife = 20;
+                    allowsAddBasicLands = true;
+                    break;
+                case JumpstartDraftAlt:
                     acceptsChallengeCoin = false;
                     acceptsSilverChallengeCoin = true;
                     acceptsBronzeChallengeCoin = false;

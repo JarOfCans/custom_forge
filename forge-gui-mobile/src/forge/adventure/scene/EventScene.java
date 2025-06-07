@@ -193,6 +193,7 @@ public class EventScene extends MenuScene implements IAfterMatch {
             public void clicked(InputEvent event, float x, float y) {
                 if ((currentEvent.format == AdventureEventController.EventFormat.Draft
                 		|| currentEvent.format == AdventureEventController.EventFormat.JumpstartDraft
+                        || currentEvent.format == AdventureEventController.EventFormat.JumpstartDraftAlt
                 		|| currentEvent.format == AdventureEventController.EventFormat.TriCubeDraft)
                 		&& currentEvent.eventStatus == Ready) {
                     DraftScene.instance().loadEvent(currentEvent);
@@ -476,6 +477,8 @@ public class EventScene extends MenuScene implements IAfterMatch {
                     case Jumpstart:
                         loadMetaDraft();
                         break;
+                    case JumpstartDraftAlt:
+                    	System.out.println("Loaded Jumpstart alt");
                     case JumpstartDraft:
                         DraftScene.instance().loadEvent(currentEvent);
                         Forge.switchScene(DraftScene.instance());

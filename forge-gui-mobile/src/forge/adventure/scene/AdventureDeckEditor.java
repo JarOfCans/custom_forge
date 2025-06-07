@@ -497,7 +497,8 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         if (event == null) {
             return getPages(false);
         }
-        if (event.format == AdventureEventController.EventFormat.Draft || event.format == AdventureEventController.EventFormat.JumpstartDraft || event.format == AdventureEventController.EventFormat.TriCubeDraft) {
+        if (event.format == AdventureEventController.EventFormat.Draft || event.format == AdventureEventController.EventFormat.JumpstartDraft
+        		|| event.format == AdventureEventController.EventFormat.JumpstartDraftAlt || event.format == AdventureEventController.EventFormat.TriCubeDraft) {
             switch (event.eventStatus) {
                 case Available:
                     return null;

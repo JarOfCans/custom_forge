@@ -1,0 +1,6 @@
+[metadata]
+Code=YUMW3
+Date=2025-05-13
+Name=YUMI Tri Classic
+Type=Draft
+ScryfallCode=YUMW3

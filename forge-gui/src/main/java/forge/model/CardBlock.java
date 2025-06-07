@@ -221,6 +221,7 @@ public final class CardBlock implements Comparable<CardBlock> {
          */
         public Reader(String pathname, CardEdition.Collection editions0) {
             super(pathname, CardBlock::getName);
+            //System.out.println(pathname);
             editions = editions0;
         }
 
