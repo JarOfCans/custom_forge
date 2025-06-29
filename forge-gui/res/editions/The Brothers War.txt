@@ -305,11 +305,6 @@ ScryfallCode=BRO
 290 R Terror Ballista @Leon Tukker
 291 R Artificer's Dragon @Leon Tukker
 292 R Woodcaller Automaton @Ryan Pancoast
-373 R Rescue Retriever @Jesper Ejsing
-374 R Geology Enthusiast @Fajareka Setiawan
-375 R Terror Ballista @Leon Tukker
-376 R Artificer's Dragon @Leon Tukker
-377 R Woodcaller Automaton @Ryan Pancoast
 
 [borderless]
 293 M Teferi, Temporal Pilgrim @Cosmin Podar
@@ -394,6 +389,11 @@ ScryfallCode=BRO
 370 R Fortified Beachhead @Christian Dimitrov
 371 R Hall of Tagsin @Christian Dimitrov
 372 R Mishra's Foundry @Leon Tukker
+373 R Rescue Retriever @Jesper Ejsing
+374 R Geology Enthusiast @Fajareka Setiawan
+375 R Terror Ballista @Leon Tukker
+376 R Artificer's Dragon @Leon Tukker
+377 R Woodcaller Automaton @Ryan Pancoast
 
 [buy a box]
 378 R Mishra's Foundry @Leon Tukker
@@ -443,14 +443,14 @@ A289 R A-Geology Enthusiast @Fajareka Setiawan
 1 Forest|BRO|4
 
 [tokens]
-c_0_0_a_construct_total_artifacts
-c_1_1_a_soldier
-c_1_1_a_soldier
-c_1_1_a_thopter_flying
-c_2_2_a_construct
-c_3_3_a_zombie
-c_a_powerstone
-c_x_x_a_golem
-g_1_1_forest_dryad
-g_2_2_bear
-u_2_2_spirit_vigilance_drawcounter
+1 u_2_2_spirit_vigilance_drawcounter @Tony Foti
+2 g_2_2_bear @Alexandre Honoré
+3 g_1_1_forest_dryad @Donato Giancola
+4 c_2_2_a_construct @Deruchenko Alexander
+5 c_0_0_a_construct_total_artifacts @Scott Murphy
+6 c_x_x_a_golem @Olivier Bernard
+7 c_a_powerstone @Karl Kopinski
+8 c_1_1_a_soldier @Gabor Szikszai
+8 c_1_1_a_soldier @Gabor Szikszai
+10 c_1_1_a_thopter_flying @Samuel Perin
+11 c_3_3_a_zombie @Kieran Yanner

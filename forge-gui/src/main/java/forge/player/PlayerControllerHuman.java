@@ -1,7 +1,5 @@
 package forge.player;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import com.google.common.collect.*;
 import forge.LobbyPlayer;
 import forge.StaticData;
@@ -18,6 +16,7 @@ import forge.game.*;
 import forge.game.ability.AbilityKey;
 import forge.game.ability.AbilityUtils;
 import forge.game.ability.ApiType;
+import forge.game.ability.effects.RollDiceEffect;
 import forge.game.card.*;
 import forge.game.card.CardView.CardStateView;
 import forge.game.card.token.TokenInfo;
@@ -79,6 +78,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -93,8 +94,6 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
      */
     private boolean mayLookAtAllCards = false;
     private boolean disableAutoYields = false;
-
-    private boolean fullControl = false;
 
     private IGuiGame gui;
 
@@ -199,15 +198,6 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
         tempShownCards.clear();
     }
 
-    @Override
-    public boolean isFullControl() {
-        return fullControl;
-    }
-    @Override
-    public void setFullControl(boolean full) {
-        fullControl = full;
-    }
-
     /**
      * Uses GUI to learn which spell the player (human in our case) would like
      * to play
@@ -240,14 +230,12 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
         }
         //FIXME - on mobile gui it allows the card to cast from opponent hands issue #2127, investigate where the bug occurs before this method is called
         spellViewCache = SpellAbilityView.getMap(abilities);
+        for (SpellAbility sa : abilities) {
+            sa.getView().updateCanPlay(sa);
+        }
         final SpellAbilityView resultView = getGui().getAbilityToPlay(CardView.get(hostCard),
                 Lists.newArrayList(spellViewCache.keySet()), triggerEvent);
         return resultView == null ? null : spellViewCache.get(resultView);
-    }
-
-    @Override
-    public void playSpellAbilityForFree(final SpellAbility copySA, final boolean mayChoseNewTargets) {
-        HumanPlay.playSaWithoutPayingManaCost(this, player.getGame(), copySA, mayChoseNewTargets);
     }
 
     @Override
@@ -396,7 +384,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
             }
             if (cost != null) {
                 Integer costX = cost.getMaxForNonManaX(ability, player, false);
-                if (costX != null) {
+                if (costX != null && !player.getController().isFullControl(FullControlFlag.AllowPaymentStartWithMissingResources)) {
                     max = Math.min(max, costX);
                 }
                 if (cost.hasManaCost() && !abXMin) {
@@ -466,7 +454,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     private boolean useSelectCardsInput(final FCollectionView<? extends GameEntity> sourceList, final SpellAbility sa) {
         //this can be used to stop zone select GUI when certain APIs would reveal illegal zone information
         //initially created for HeistEffect which showed library placement
-        if (ApiType.Heist.equals(sa.getApi())) return false;
+        if (sa != null && ApiType.Heist.equals(sa.getApi())) return false;
         return useSelectCardsInput(sourceList);
     }
 
@@ -539,6 +527,43 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
                 gameCachechoose.getTrackableKeys(), CardView.get(sa.getHostCard()));
         endTempShowCards();
         gameCachechoose.addToList(views, choices);
+        return choices;
+    }
+
+    /**
+     * IDs of Contraptions that have been cranked previously, and will default to the "cranked" column next time their
+     * sprocket is cranked.
+     */
+    private final Set<Integer> savedCrankedIDs = new HashSet<>();
+
+    @Override
+    public List<Card> chooseContraptionsToCrank(List<Card> contraptions) {
+        if(contraptions.isEmpty())
+            return contraptions;
+
+        tempShowCards(contraptions);
+        GameEntityViewMap<Card, CardView> gameCacheChoose = GameEntityView.getMap(contraptions);
+        TrackableCollection<CardView> viewList = gameCacheChoose.getTrackableKeys();
+
+        //Contraptions that were cranked previously will start in the cranked column when the dialog is shown.
+        List<CardView> cranked = new ArrayList<>(), uncranked = new ArrayList<>();
+        for(CardView c : viewList) {
+            int id = c.getId();
+            (savedCrankedIDs.contains(id) ? cranked : uncranked).add(c);
+        }
+
+        List<CardView> views = getGui().many(localizer.getMessage("lblChooseCrank"),
+                localizer.getMessage("lblCranked"), -1, -1, uncranked, cranked, null);
+        endTempShowCards();
+
+        //If any were on the saved cranked list before but aren't cranked now, remove them from the saved list.
+        cranked.stream().filter(v -> !views.contains(v)).map(CardView::getId).forEach(savedCrankedIDs::remove);
+        //Add any that were cranked this time to the saved list.
+        views.stream().map(CardView::getId).forEach(savedCrankedIDs::add);
+
+        List<Card> choices = new CardCollection();
+        gameCacheChoose.addToList(views, choices);
+
         return choices;
     }
 
@@ -833,31 +858,25 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
 
     @Override
     public Player chooseStartingPlayer(final boolean isFirstGame) {
+        String prompt = null;
+        if (isFirstGame) {
+            prompt = localizer.getMessage("lblYouHaveWonTheCoinToss", player.getName());
+        } else {
+            prompt = localizer.getMessage("lblYouLostTheLastGame", player.getName());
+        }
+
         if (getGame().getPlayers().size() == 2) {
-            String prompt = null;
-            if (isFirstGame) {
-                prompt = localizer.getMessage("lblYouHaveWonTheCoinToss", player.getName());
-            } else {
-                prompt = localizer.getMessage("lblYouLostTheLastGame", player.getName());
-            }
             prompt += "\n\n" + localizer.getMessage("lblWouldYouLiketoPlayorDraw");
             final InputConfirm inp = new InputConfirm(this, prompt, localizer.getMessage("lblPlay"), localizer.getMessage("lblDraw"));
             inp.showAndWait();
             return inp.getResult() ? this.player : this.player.getOpponents().get(0);
-        } else {
-            String prompt = null;
-            if (isFirstGame) {
-                prompt = localizer.getMessage("lblYouHaveWonTheCoinToss", player.getName());
-            } else {
-                prompt = localizer.getMessage("lblYouLostTheLastGame", player.getName());
-            }
-            prompt += "\n\n" + localizer.getMessage("lblWhoWouldYouLiketoStartthisGame");
-            final InputSelectEntitiesFromList<Player> input = new InputSelectEntitiesFromList<>(this, 1, 1,
-                    new FCollection<>(getGame().getPlayersInTurnOrder()));
-            input.setMessage(prompt);
-            input.showAndWait();
-            return input.getFirstSelected();
         }
+
+        prompt += "\n\n" + localizer.getMessage("lblWhoWouldYouLiketoStartthisGame");
+        final InputSelectEntitiesFromList<Player> input = new InputSelectEntitiesFromList<>(this, 1, 1, getGame().getPlayersInTurnOrder());
+        input.setMessage(prompt);
+        input.showAndWait();
+        return input.getFirstSelected();
     }
 
     @Override
@@ -892,6 +911,16 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
         List<Card> chosenCards = new CardCollection();
         gameCacheExert.addToList(chosen, chosenCards);
         return chosenCards;
+    }
+
+    @Override
+    public List<CostPart> orderCosts(List<CostPart> costs) {
+        if (!isFullControl(FullControlFlag.ChooseCostOrder) || costs.size() < 2) {
+            return costs;
+        }
+        List<CostPart> chosen = getGui().order(localizer.getMessage("lblOrderCosts"), localizer.getMessage("lblPayFirst"),
+                0, 0, costs, null, null, false);
+        return chosen;
     }
 
     @Override
@@ -1127,7 +1156,8 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
                 choices = getGui().order(localizer.getMessage("lblChooseOrderCardsPutIntoSchemeDeck"), localizer.getMessage(topOfDeck ? "lblClosestToTop" : "lblClosestToBottom"), choices, null);
                 break;
             case AttractionDeck:
-                choices = getGui().order(localizer.getMessage("lblChooseOrderCardsPutIntoAttractionDeck"), localizer.getMessage(topOfDeck ? "lblClosestToTop" : "lblClosestToBottom"), choices, null);
+            case ContraptionDeck:
+                choices = getGui().order(localizer.getMessage("lblChooseOrderCardsPutIntoExtraDeck"), localizer.getMessage(topOfDeck ? "lblClosestToTop" : "lblClosestToBottom"), choices, null);
             case Stack:
                 choices = getGui().order(localizer.getMessage("lblChooseOrderCopiesCast"), localizer.getMessage("lblPutFirst"), choices, null);
                 break;
@@ -1263,12 +1293,8 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
      * java.lang.String, java.util.List, java.util.List, java.lang.String)
      */
     @Override
-    public String chooseSomeType(final String kindOfType, final SpellAbility sa, final Collection<String> validTypes,
-                                 final List<String> invalidTypes, final boolean isOptional) {
+    public String chooseSomeType(final String kindOfType, final SpellAbility sa, final Collection<String> validTypes, final boolean isOptional) {
         final List<String> types = Lists.newArrayList(validTypes);
-        if (invalidTypes != null && !invalidTypes.isEmpty()) {
-            Iterables.removeAll(types, invalidTypes);
-        }
         if (kindOfType.equals("Creature")) {
             sortCreatureTypes(types);
         }
@@ -1325,7 +1351,6 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
                             typesInDeck.put(type, count + 1);
                         }
                     }
-
                 }
             }
             // same for Trigger that does make Tokens
@@ -1381,6 +1406,30 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     }
 
     @Override
+    public int chooseSprocket(Card assignee, boolean forceDifferent) {
+        String cardName = CardTranslation.getTranslatedName(assignee.getName()) + " (" + assignee.getId() + ")";
+        String prompt = Localizer.getInstance().getMessage("lblAssignSprocket", cardName);
+        List<Integer> options = Lists.newArrayList(1, 2, 3);
+        if(forceDifferent)
+            options.remove(Integer.valueOf(assignee.getSprocket()));
+        int crankedNextTurn = (player.getCrankCounter() % 3) + 1;
+        getGui().setCard(assignee.getView());
+        List<Integer> choices = getGui().getChoices(prompt, 1, 1, options, null, (sprocket) -> {
+            //Add some info about each sprocket.
+            StringBuilder label = new StringBuilder();
+            label.append(sprocket);
+            int currentCount = CardLists.count(player.getCardsIn(ZoneType.Battlefield), CardPredicates.isContraptionOnSprocket(sprocket));
+            if(currentCount > 0)
+                label.append(' ').append(Localizer.getInstance().getMessage("lblAssignSprocketCurrentCount", currentCount));
+            if(sprocket == crankedNextTurn)
+                label.append(' ').append(Localizer.getInstance().getMessage("lblAssignSprocketNextTurn"));
+            return label.toString();
+        });
+        assert choices.size() == 1;
+        return choices.get(0);
+    }
+
+    @Override
     public PlanarDice choosePDRollToIgnore(List<PlanarDice> rolls) {
         return getGui().one(Localizer.getInstance().getMessage("lblChooseRollIgnore"), rolls);
     }
@@ -1388,6 +1437,27 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     @Override
     public Integer chooseRollToIgnore(List<Integer> rolls) {
         return getGui().one(Localizer.getInstance().getMessage("lblChooseRollIgnore"), rolls);
+    }
+
+    @Override
+    public List<Integer> chooseDiceToReroll(List<Integer> rolls) {
+        return getGui().many(Localizer.getInstance().getMessage("lblChooseDiceToRerollTitle"),
+                Localizer.getInstance().getMessage("lblChooseDiceToRerollCaption"),0, rolls.size(), rolls, null);
+    }
+
+    @Override
+    public Integer chooseRollToModify(List<Integer> rolls) {
+        return getGui().oneOrNone(Localizer.getInstance().getMessage("lblChooseRollToModify"), rolls);
+    }
+
+    @Override
+    public RollDiceEffect.DieRollResult chooseRollToSwap(List<RollDiceEffect.DieRollResult> rolls) {
+        return getGui().oneOrNone(Localizer.getInstance().getMessage("lblChooseRollToSwap"), rolls);
+    }
+
+    @Override
+    public String chooseRollSwapValue(List<String> swapChoices, Integer currentResult, int power, int toughness) {
+        return getGui().oneOrNone(Localizer.getInstance().getMessage("lblChooseSwapPT", currentResult, power, toughness), swapChoices);
     }
 
     @Override
@@ -1564,10 +1634,8 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     }
 
     @Override
-    public boolean payManaOptional(final Card c, final Cost cost, final SpellAbility sa, final String prompt,
-                                   final ManaPaymentPurpose purpose) {
-        if (sa == null && cost.isOnlyManaCost() && cost.getTotalMana().isZero()
-                && !FModel.getPreferences().getPrefBoolean(FPref.MATCHPREF_PROMPT_FREE_BLOCKS)) {
+    public boolean payCombatCost(final Card c, final Cost cost, final SpellAbility sa, final String prompt) {
+        if (cost.isOnlyManaCost() && cost.getTotalMana().isZero() && isFullControl(FullControlFlag.NoFreeCombatCostHandling)) {
             return true;
         }
         return HumanPlay.payCostDuringAbilityResolve(this, player, c, cost, sa, prompt);
@@ -1632,9 +1700,6 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
             case UntapOrLeaveTapped:
                 labels = ImmutableList.of(localizer.getMessage("lblUntap"), localizer.getMessage("lblLeaveTapped"));
                 break;
-            case UntapTimeVault:
-                labels = ImmutableList.of(localizer.getMessage("lblUntapAndSkipThisTurn"), localizer.getMessage("lblLeaveTapped"));
-                break;
             case PlayOrDraw:
                 labels = ImmutableList.of(localizer.getMessage("lblPlay"), localizer.getMessage("lblDraw"));
                 break;
@@ -1643,6 +1708,9 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
                 break;
             case AddOrRemove:
                 labels = ImmutableList.of(localizer.getMessage("lblAddCounter"), localizer.getMessage("lblRemoveCounter"));
+                break;
+            case IncreaseOrDecrease:
+                labels = ImmutableList.of(localizer.getMessage("lblIncrease"), localizer.getMessage("lblDecrease"));
                 break;
             default:
                 labels = ImmutableList.copyOf(kindOfChoice.toString().split("Or"));
@@ -1817,16 +1885,12 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     @Override
     public ICardFace chooseSingleCardFace(final SpellAbility sa, final String message, final Predicate<ICardFace> cpp,
                                           final String name) {
-        final Iterable<ICardFace> cardsFromDb = FModel.getMagicDb().getCommonCards().getAllFaces();
-        final List<ICardFace> cards = Lists.newArrayList(Iterables.filter(cardsFromDb, cpp));
-        CardFaceView cardFaceView;
-        List<CardFaceView> choices = new ArrayList<>();
-        for (ICardFace cardFace : cards) {
-            cardFaceView = new CardFaceView(CardTranslation.getTranslatedName(cardFace.getName()), cardFace.getName());
-            choices.add(cardFaceView);
-        }
-        Collections.sort(choices);
-        cardFaceView = getGui().one(message, choices);
+        List<CardFaceView> choices = FModel.getMagicDb().getCommonCards().streamAllFaces()
+                .filter(cpp)
+                .map(cardFace -> new CardFaceView(CardTranslation.getTranslatedName(cardFace.getName()), cardFace.getName()))
+                .sorted()
+                .collect(Collectors.toList());
+        CardFaceView cardFaceView = getGui().one(message, choices);
         return StaticData.instance().getCommonCards().getFaceByName(cardFaceView.getOracleName());
     }
 
@@ -1908,7 +1972,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     @Override
     public StaticAbility chooseSingleStaticAbility(final String prompt, final List<StaticAbility> possibleStatics) {
         final StaticAbility first = possibleStatics.get(0);
-        if (possibleStatics.size() == 1 || !fullControl) {
+        if (possibleStatics.size() == 1 || !isFullControl(FullControlFlag.ChooseCostOrder)) {
             return first;
         }
         final List<String> sts = possibleStatics.stream().map(StaticAbility::toString).collect(Collectors.toList());
@@ -1932,8 +1996,19 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
     }
 
     @Override
-    public boolean payCostToPreventEffect(final Cost cost, final SpellAbility sa, final boolean alreadyPaid,
-                                          final FCollectionView<Player> allPayers) {
+    public boolean payCostToPreventEffect(final Cost cost, final SpellAbility sa, final boolean alreadyPaid, final FCollectionView<Player> allPayers) {
+        // if it's paid by the AI already the human can pay, but it won't change anything
+        String prompt = null;
+        if (sa.isKeyword(Keyword.ECHO)) {
+            prompt = Localizer.getInstance().getMessage("lblPayEcho");
+        } else if (sa.isKeyword(Keyword.CUMULATIVE_UPKEEP)) {
+            prompt = "Cumulative upkeep for " + sa.getHostCard();
+        }
+        return HumanPlay.payCostDuringAbilityResolve(this, player, sa.getHostCard(), cost, sa, prompt);
+    }
+
+    @Override
+    public boolean payCostDuringRoll(final Cost cost, final SpellAbility sa, final FCollectionView<Player> allPayers) {
         // if it's paid by the AI already the human can pay, but it won't change anything
         return HumanPlay.payCostDuringAbilityResolve(this, player, sa.getHostCard(), cost, sa, null);
     }
@@ -2223,7 +2298,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
             final Map<DeckSection, List<? extends PaperCard>> removedUnplayableCards = unplayable.get(p);
             final List<Object> labels = new ArrayList<>();
             for (final DeckSection s : new TreeSet<>(removedUnplayableCards.keySet())) {
-                labels.add("=== " + DeckAIUtils.getLocalizedDeckSection(localizer, s) + " ===");
+                labels.add("=== " + s.getLocalizedName() + " ===");
                 labels.addAll(removedUnplayableCards.get(s));
             }
             getGui().reveal(localizer.getMessage("lblActionFromPlayerDeck", message, Lang.getInstance().getPossessedObject(MessageUtil.mayBeYou(player, p), "")),
@@ -2653,7 +2728,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
         public void tapPermanents() {
             getGame().getAction().invoke(() -> {
                 final CardCollectionView untapped = CardLists.filter(getGame().getCardsIn(ZoneType.Battlefield),
-                        CardPredicates.Presets.UNTAPPED);
+                        CardPredicates.UNTAPPED);
                 final InputSelectCardsFromList inp = new InputSelectCardsFromList(PlayerControllerHuman.this, 0,
                         Integer.MAX_VALUE, untapped);
                 inp.setCancelAllowed(true);
@@ -2682,7 +2757,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
         public void untapPermanents() {
             getGame().getAction().invoke(() -> {
                 final CardCollectionView tapped = CardLists.filter(getGame().getCardsIn(ZoneType.Battlefield),
-                        CardPredicates.Presets.TAPPED);
+                        CardPredicates.TAPPED);
                 final InputSelectCardsFromList inp = new InputSelectCardsFromList(PlayerControllerHuman.this, 0,
                         Integer.MAX_VALUE, tapped);
                 inp.setCancelAllowed(true);
@@ -2691,7 +2766,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
                 if (!inp.hasCancelled()) {
                     CardCollection untapped = new CardCollection();
                     for (final Card c : inp.getSelected()) {
-                        if (c.untap(true)) untapped.add(c);
+                        if (c.untap()) untapped.add(c);
                     }
                     if (!untapped.isEmpty()) {
                         final Map<AbilityKey, Object> runParams = AbilityKey.newMap();
@@ -2947,7 +3022,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
                             // controlled by chosen player.
                             sa.setActivatingPlayer(p);
                             sa.setCastFromPlayEffect(true);
-                            HumanPlay.playSaWithoutPayingManaCost(PlayerControllerHuman.this, getGame(), sa, true);
+                            HumanPlay.playSaWithoutPayingManaCost(PlayerControllerHuman.this, sa, true);
                         }
                         // playSa could fire some triggers
                         getGame().getStack().addAllTriggeredAbilitiesToStack();
@@ -3292,7 +3367,7 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
 
     @Override
     public int chooseNumberForCostReduction(final SpellAbility sa, final int min, final int max) {
-        if (fullControl) {
+        if (isFullControl(FullControlFlag.ChooseCostReductionOrderAndVariableAmount)) {
             return chooseNumber(sa, localizer.getMessage("lblChooseAmountCostReduction"), min, max);
         }
         return max;
@@ -3320,6 +3395,11 @@ public class PlayerControllerHuman extends PlayerController implements IGameCont
             }
         }
         return result;
+    }
+
+    @Override
+    public boolean isOrderedZone() {
+        return FModel.getPreferences().getPrefBoolean(FPref.UI_ORDER_HAND);
     }
 
 }

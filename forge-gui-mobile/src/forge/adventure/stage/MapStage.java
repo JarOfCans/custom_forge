@@ -61,6 +61,7 @@ public class MapStage extends GameStage {
     private EnemySprite currentMob;
     Queue<Vector2> positions = new LinkedList<>();
     private boolean isLoadingMatch = false;
+    private boolean isPlayerLeavingDungeon = false;
     //private HashMap<String, Byte> mapFlags = new HashMap<>(); //Stores local map flags. These aren't available outside this map.
 
 
@@ -717,9 +718,9 @@ public class MapStage extends GameStage {
 
                         ShopData data = shops.get(WorldSave.getCurrentSave().getWorld().getRandom().nextInt(shops.size));
                         shopsAlreadyPresent.add(data.name);
-                        List<Reward> ret = new ArrayList<Reward>();
+                        Array<Reward> ret = new Array<>();
                         WorldSave.getCurrentSave().getWorld().getRandom().setSeed(changes.getShopSeed(id));
-                        for (RewardData rdata : data.rewards) {
+                        for (RewardData rdata : new Array.ArrayIterator<>(data.rewards)) {
                             ret.addAll(rdata.generate(false, false));
                         }
                         ShopActor actor = new ShopActor(this, id, ret, data);
@@ -758,6 +759,8 @@ public class MapStage extends GameStage {
         if (defeated)
             WorldStage.getInstance().resetPlayerLocation();
         Forge.switchScene(GameScene.instance());
+        isPlayerLeavingDungeon = false;
+        dialogOnlyInput = false;
         return true;
     }
 
@@ -934,8 +937,9 @@ public class MapStage extends GameStage {
 
     @Override
     protected void onActing(float delta) {
-        if (isPaused() || isDialogOnlyInput() || Forge.advFreezePlayerControls)
+        if (isPaused() || isDialogOnlyInput() || Forge.advFreezePlayerControls || isPlayerLeavingDungeon)
             return;
+
         Iterator<EnemySprite> it = enemies.iterator();
 
         if (freezeAllEnemyBehaviors) {
@@ -1030,9 +1034,9 @@ public class MapStage extends GameStage {
                     if (Controllers.getCurrent() != null && Controllers.getCurrent().canVibrate())
                         Controllers.getCurrent().startVibration(100, 1);
                     RewardSprite RS = (RewardSprite) actor;
-                    List<Reward> rewards = RS.getRewards();
+                    Array<Reward> rewards = RS.getRewards();
 
-                    if (rewards.size() == 1) {
+                    if (rewards.size == 1) {
                         Reward reward = rewards.get(0);
                         switch (reward.getType()) {
                             case Life:
@@ -1058,7 +1062,7 @@ public class MapStage extends GameStage {
         }
     }
 
-    private void showRewardScene(List<Reward> rewards) {
+    private void showRewardScene(Array<Reward> rewards) {
         startPause(0.1f, () -> {
             RewardScene.instance().loadRewards(rewards, RewardScene.Type.Loot, null);
             Forge.switchScene(RewardScene.instance());
@@ -1108,6 +1112,10 @@ public class MapStage extends GameStage {
 
     public boolean isInMap() {
         return isInMap;
+    }
+
+    public void onBeginLeavingDungeon() {
+        isPlayerLeavingDungeon = true;
     }
 
     @Override

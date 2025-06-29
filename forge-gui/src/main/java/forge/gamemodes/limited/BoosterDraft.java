@@ -17,9 +17,6 @@
  */
 package forge.gamemodes.limited;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Supplier;
-import com.google.common.collect.Iterables;
 import forge.StaticData;
 import forge.card.CardEdition;
 import forge.deck.CardPool;
@@ -36,15 +33,14 @@ import forge.localinstance.properties.ForgeConstants;
 import forge.localinstance.properties.ForgePreferences;
 import forge.model.CardBlock;
 import forge.model.FModel;
-import forge.util.FileUtil;
-import forge.util.ItemPool;
-import forge.util.Localizer;
-import forge.util.TextUtil;
+import forge.util.*;
 import forge.util.storage.IStorage;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.File;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * Booster Draft Format.
@@ -208,7 +204,7 @@ public class BoosterDraft implements IBoosterDraft {
                 // Filter all sets by theme restrictions
                 final Predicate<CardEdition> themeFilter = theme.getEditionFilter();
                 final CardEdition.Collection allEditions = StaticData.instance().getEditions();
-                final Iterable<CardEdition> chaosDraftEditions = Iterables.filter(
+                final Iterable<CardEdition> chaosDraftEditions = IterableUtil.filter(
                         allEditions.getOrderedEditions(),
                         themeFilter);
                 // Add chaos "boosters" as special suppliers
@@ -246,40 +242,6 @@ public class BoosterDraft implements IBoosterDraft {
         IBoosterDraft.CUSTOM_RANKINGS_FILE[0] = null;
 
         draft.initializeBoosters();
-        return draft;
-    }
-    public static BoosterDraft createJumpstartDraft(final LimitedPoolType draftType, final CardBlock block, final List<Deck> boosters) {
-        final BoosterDraft draft = new BoosterDraft(LimitedPoolType.JumpstartDraft);
-
-        /*for (String booster : boosters) {
-            try {
-                draft.product.add(block.getBooster(booster));
-            } catch (Exception ex) {
-                System.err.println("Booster Draft Error: "+ex.getMessage());
-            }
-        }*/
-
-        IBoosterDraft.LAND_SET_CODE[0] = block.getLandSet();
-        IBoosterDraft.CUSTOM_RANKINGS_FILE[0] = null;
-
-        draft.initializeBoostersJumpstart(boosters);
-        return draft;
-    }
-    public static BoosterDraft createTriCubeDraft(final LimitedPoolType draftType, final CardBlock block, final List<Deck> boosters) {
-        final BoosterDraft draft = new BoosterDraft(LimitedPoolType.TriCubeDraft);
-
-        /*for (String booster : boosters) {
-            try {
-                draft.product.add(block.getBooster(booster));
-            } catch (Exception ex) {
-                System.err.println("Booster Draft Error: "+ex.getMessage());
-            }
-        }*/
-
-        IBoosterDraft.LAND_SET_CODE[0] = block.getLandSet();
-        IBoosterDraft.CUSTOM_RANKINGS_FILE[0] = null;
-
-        draft.initializeBoostersTriCube(boosters);
         return draft;
     }
 
@@ -416,87 +378,7 @@ public class BoosterDraft implements IBoosterDraft {
         }
         startRound();
     }
-    public void initializeBoostersJumpstart(List<Deck> cards) {
-    	Stack<PaperCard> tempCards = new Stack<PaperCard>();
-    	Stack<PaperCard> tempBasics = new Stack<PaperCard>();
-    	Stack<List<PaperCard>> packs = new Stack<List<PaperCard>>();
-    	for (Deck deck: cards) {
-    		for (PaperCard card: deck.getAllCardsInASinglePool().toFlatList()) {
-    			if (card.isVeryBasicLand()) {
-    				tempBasics.push(card);
-    			} else {
-    				tempCards.push(card);
-    			}
-    		}
-    	}
-    	
-    	Collections.shuffle(tempCards);
-    	Collections.shuffle(tempBasics);
 
-        for (int i = 0; i < N_PLAYERS*3; i++) {
-        	packs.add(new ArrayList<PaperCard>());
-        }
-        for (int b = 0; b < 15; b++) {
-            for (int i = 0; i < N_PLAYERS*3; i++) {
-            	if (tempCards.size() > 0) {
-                	packs.get(i).add(tempCards.pop());
-            	} else {
-            		packs.get(i).add(tempBasics.pop());
-            	}
-        	}
-    	}
-
-    	Collections.shuffle(packs);
-    	
-    	
-        for (int i = 0; i < N_PLAYERS; i++) {
-            DraftPack pack = new DraftPack(packs.pop(), nextId++);
-            this.players.get(i).receiveUnopenedPack(pack);
-            pack = new DraftPack(packs.pop(), nextId++);
-            this.players.get(i).receiveUnopenedPack(pack);
-            pack = new DraftPack(packs.pop(), nextId++);
-            this.players.get(i).receiveUnopenedPack(pack);
-            /*this.players.get(i).receiveUnopenedPack();
-            this.players.get(i).receiveUnopenedPack(packs.pop());
-            this.players.get(i).receiveUnopenedPack(packs.pop());*/
-        }
-        startRound();
-    }
-
-    public void initializeBoostersTriCube(List<Deck> cards) {
-    	Stack<PaperCard> tempCards = new Stack<PaperCard>();
-    	Stack<List<PaperCard>> packs = new Stack<List<PaperCard>>();
-    	for (Deck deck: cards) {
-    		for (PaperCard card: deck.getAllCardsInASinglePool().toFlatList()) {
-    			tempCards.push(card);
-    		}
-    	}
-    	
-    	Collections.shuffle(tempCards);
-    	System.out.println(cards.size());
-
-        for (int i = 0; i < N_PLAYERS*3; i++) {
-        	packs.add(new ArrayList<PaperCard>());
-        }
-        for (int b = 0; b < 15; b++) {
-            for (int i = 0; i < N_PLAYERS*3; i++) {
-                packs.get(i).add(tempCards.pop());
-        	}
-    	}
-
-    	Collections.shuffle(packs);
-    	
-    	
-        for (int i = 0; i < N_PLAYERS; i++) {
-            DraftPack pack = new DraftPack(packs.pop(), nextId++);
-            this.players.get(i).receiveUnopenedPack(pack);
-            pack = new DraftPack(packs.pop(), nextId++);
-            this.players.get(i).receiveUnopenedPack(pack);
-            pack = new DraftPack(packs.pop(), nextId++);
-            this.players.get(i).receiveUnopenedPack(pack);
-        }
-        startRound();
-    }
     public boolean startRound() {
         this.nextBoosterGroup++;
         this.currentBoosterPick = 0;
@@ -637,18 +519,15 @@ public class BoosterDraft implements IBoosterDraft {
         return !this.isRoundOver() || !this.localPlayer.unopenedPacks.isEmpty();
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return
-     */
+    // Return false is the pack will be passed
     @Override
     public boolean setChoice(final PaperCard c) {
         final DraftPack thisBooster = this.localPlayer.nextChoice();
 
         if (!thisBooster.contains(c)) {
-            throw new RuntimeException("BoosterDraft : setChoice() error - card not found - " + c
+            System.out.println("BoosterDraft : setChoice() error - card not found - " + c
                     + " - booster pack = " + thisBooster);
+            return false;
         }
 
         recordDraftPick(thisBooster, c);

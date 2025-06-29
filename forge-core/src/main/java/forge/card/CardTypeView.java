@@ -1,10 +1,10 @@
 package forge.card;
 
-import java.io.Serializable;
-import java.util.Set;
-
 import forge.card.CardType.CoreType;
 import forge.card.CardType.Supertype;
+
+import java.io.Serializable;
+import java.util.Set;
 
 //Interface to expose only the desired functions of CardType without allowing modification
 public interface CardTypeView extends Iterable<String>, Serializable {
@@ -16,6 +16,7 @@ public interface CardTypeView extends Iterable<String>, Serializable {
 
     Set<String> getCreatureTypes();
     Set<String> getLandTypes();
+    Set<String> getBattleTypes();
 
     boolean hasStringType(String t);
     boolean hasType(CoreType type);
@@ -58,6 +59,7 @@ public interface CardTypeView extends Iterable<String>, Serializable {
     boolean isEquipment();
     boolean isFortification();
     boolean isAttraction();
+    boolean isContraption();
 
     boolean isSaga();
     boolean isHistoric();

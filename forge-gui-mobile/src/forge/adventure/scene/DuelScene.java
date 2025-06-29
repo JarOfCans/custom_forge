@@ -165,28 +165,25 @@ public class DuelScene extends ForgeScene {
         });
     }
 
-    void addEffects(RegisteredPlayer player, Array<EffectData> effects, RegisteredPlayer enemy) {
+    void addEffects(RegisteredPlayer player, Array<EffectData> effects) {
         if (effects == null) return;
         //Apply various combat effects.
         int lifeMod = 0;
         int changeStartCards = 0;
         int extraManaShards = 0;
         Array<IPaperCard> startCards = new Array<>();
-        Array<IPaperCard> enemystartCards = new Array<>();
         Array<IPaperCard> startCardsInCommandZone = new Array<>();
 
         for (EffectData data : effects) {
             lifeMod += data.lifeModifier;
             changeStartCards += data.changeStartCards;
             startCards.addAll(data.startBattleWithCards());
-            enemystartCards.addAll(data.enemystartBattleWithCards());
             startCardsInCommandZone.addAll(data.startBattleWithCardsInCommandZone());
 
             extraManaShards += data.extraManaShards;
         }
         player.addExtraCardsOnBattlefield(startCards);
         player.addExtraCardsInCommandZone(startCardsInCommandZone);
-        enemy.addExtraCardsOnBattlefield(enemystartCards);
 
         if (lifeMod != 0)
             player.setStartingLife(Math.max(1, lifeMod + player.getStartingLife()));
@@ -240,8 +237,7 @@ public class DuelScene extends ForgeScene {
         DeckProxy deckProxy = null;
         if (chaosBattle) {
             deckProxyMapMap = DeckProxy.getAllQuestChallenges();
-            List<DeckProxy> decks = new ArrayList<>(deckProxyMapMap.keySet());
-            deckProxy = Aggregates.random(decks);
+            deckProxy = Aggregates.random(deckProxyMapMap.keySet());
             //playerextras
             List<IPaperCard> playerCards = new ArrayList<>();
             for (String s : deckProxyMapMap.get(deckProxy).getLeft()) {
@@ -283,6 +279,7 @@ public class DuelScene extends ForgeScene {
                 playerEffects.add(dungeonEffect.opponent);
         }
 
+        addEffects(humanPlayer, playerEffects);
 
         currentEnemy = enemy.getData();
         boolean bossBattle = currentEnemy.boss;
@@ -331,9 +328,8 @@ public class DuelScene extends ForgeScene {
                     }
                 }
             }
-            addEffects(humanPlayer, playerEffects, aiPlayer);
-            addEffects(aiPlayer, oppEffects, humanPlayer);
-            addEffects(aiPlayer, equipmentEffects, humanPlayer);
+            addEffects(aiPlayer, oppEffects);
+            addEffects(aiPlayer, equipmentEffects);
 
             //add extra cards for challenger mode
             if (chaosBattle) {
