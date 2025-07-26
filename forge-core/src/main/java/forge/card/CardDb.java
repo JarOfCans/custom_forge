@@ -101,7 +101,7 @@ public final class CardDb implements ICardDatabase, IDeckGenPool {
         }
 
         private CardRequest(String name, String edition, int artIndex, boolean isFoil, String collectorNumber, Map<String, String> flags) {
-            cardName = name;
+            cardName = (!name.contains("//"))?name:name.substring(0, name.indexOf("//")).trim();
             this.edition = edition;
             this.artIndex = artIndex;
             this.isFoil = isFoil;

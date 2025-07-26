@@ -441,8 +441,8 @@ public class EnemySprite extends CharacterSprite implements Steerable<Vector2> {
         return nameOverride;
     }
 
-    public Array<Reward> getRewards() {
-        Array<Reward> rewards = new Array<>();
+    public ArrayList<Reward> getRewards() {
+        ArrayList<Reward> rewards = new ArrayList<Reward>();
         //Collect custom rewards for chaos battles
 
         if (data.copyPlayerDeck && Current.latestDeck() != null) {

@@ -96,7 +96,7 @@ public class MenuScene extends UIScene {
                 Current.player().advanceQuestFlag(E.advanceQuestFlag);
             }
             if (E.grantRewards != null && E.grantRewards.length > 0) {
-                List<Reward> ret = new ArrayList<Reward>();
+            	ArrayList<Reward> ret = new ArrayList<Reward>();
                 for (RewardData rdata : E.grantRewards) {
                     ret.addAll(rdata.generate(false, true));
                 }

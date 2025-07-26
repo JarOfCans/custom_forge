@@ -718,9 +718,9 @@ public class MapStage extends GameStage {
 
                         ShopData data = shops.get(WorldSave.getCurrentSave().getWorld().getRandom().nextInt(shops.size));
                         shopsAlreadyPresent.add(data.name);
-                        Array<Reward> ret = new Array<>();
+                        ArrayList<Reward> ret = new ArrayList<Reward>();
                         WorldSave.getCurrentSave().getWorld().getRandom().setSeed(changes.getShopSeed(id));
-                        for (RewardData rdata : new Array.ArrayIterator<>(data.rewards)) {
+                        for (RewardData rdata : data.rewards) {
                             ret.addAll(rdata.generate(false, false));
                         }
                         ShopActor actor = new ShopActor(this, id, ret, data);
@@ -1034,9 +1034,9 @@ public class MapStage extends GameStage {
                     if (Controllers.getCurrent() != null && Controllers.getCurrent().canVibrate())
                         Controllers.getCurrent().startVibration(100, 1);
                     RewardSprite RS = (RewardSprite) actor;
-                    Array<Reward> rewards = RS.getRewards();
+                    List<Reward> rewards = RS.getRewards();
 
-                    if (rewards.size == 1) {
+                    if (rewards.size() == 1) {
                         Reward reward = rewards.get(0);
                         switch (reward.getType()) {
                             case Life:
@@ -1062,7 +1062,7 @@ public class MapStage extends GameStage {
         }
     }
 
-    private void showRewardScene(Array<Reward> rewards) {
+    private void showRewardScene(List<Reward> rewards) {
         startPause(0.1f, () -> {
             RewardScene.instance().loadRewards(rewards, RewardScene.Type.Loot, null);
             Forge.switchScene(RewardScene.instance());

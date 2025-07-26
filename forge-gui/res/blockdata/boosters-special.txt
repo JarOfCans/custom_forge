@@ -548,41 +548,111 @@ YUMW3 Starter1999: 1 wholeSheet("YUMW3 Starter1999")
 
 #Jump-Cube
 #JC Generic
-YUMJC AKH Gods: 1 wholeSheet("YUMJC AKH Gods")
-YUMJC THBBase: 1 wholeSheet("YUMJC THBBase")
+YUMJC Foretold: 1 wholeSheet("YUMJC Foretold")
 
 #JC Artifacts
+YUMJC Talismans: 1 wholeSheet("YUMJC Talismans")
+YUMJC Colorless Typal: 1 wholeSheet("YUMJC Colorless Typal")
+YUMJC Radiant Ironworks: 1 wholeSheet("YUMJC Radiant Ironworks")
+YUMJC Short Swords: 1 wholeSheet("YUMJC Short Swords")
+YUMJC Swords: 1 wholeSheet("YUMJC Swords")
 
 #JC Lands
-YUMJC Coreset Lands1: 1 wholeSheet("YUMJC Coreset Lands1")
+YUMJC Deserts: 1 wholeSheet("YUMJC Deserts")
 YUMJC Common Trilands1: 1 wholeSheet("YUMJC Common Trilands1")
 
+#JC Hybrid
+YUMJC MID Flashback: 1 wholeSheet("YUMJC MID Flashback")
+
+
 #JC W
+YUMJC Forward Order: 1 wholeSheet("YUMJC Forward Order")
+YUMJC Big Crew: 1 wholeSheet("YUMJC Big Crew")
 
 #JC U
 YUMJC Brainstorms: 1 wholeSheet("YUMJC Brainstorms")
+YUMJC Opponent's Turn: 1 wholeSheet("YUMJC Opponent's Turn")
 
 #JC B
-YUMJC B Devotion: 1 wholeSheet("YUMJC B Devotion")
+YUMJC Chittering Host: 1 wholeSheet("YUMJC Chittering Host")
 
 #JC R
-YUMJC Dragon Approach: 1 wholeSheet("YUMJC Dragon Approach")
-YUMJC GoblinTokens: 1 wholeSheet("YUMJC GoblinTokens")
 
 #JC G
-YUMJC G Creaturefall: 1 wholeSheet("YUMJC G Creaturefall")
 
 #JC WU
+YUMJC WU Control 1: 1 wholeSheet("YUMJC WU Control 1")
+YUMJC WU Merfolk: 1 wholeSheet("YUMJC WU Merfolk")
+
 #JC UB
-YUMJC UB Exploit: 1 wholeSheet("YUMJC UB Exploit")
+YUMJC Ninjas: 1 wholeSheet("YUMJC Ninjas")
+
 #JC BR
+YUMJC Oni-Cult: 1 wholeSheet("YUMJC Oni-Cult")
+
 #JC RG
+YUMJC No Block: 1 wholeSheet("YUMJC No Block")
+
 #JC GW
+YUMJC Coven: 1 wholeSheet("YUMJC Coven")
+YUMJC GW Legends: 1 wholeSheet("YUMJC GW Legends")
+YUMJC Vanilla: 1 wholeSheet("YUMJC Vanilla")
+
 #JC WB
+YUMJC Bats: 1 wholeSheet("YUMJC Bats")
+YUMJC Ketramose: 1 wholeSheet("YUMJC Ketramose")
+
 #JC UR
+YUMJC Otters: 1 wholeSheet("YUMJC Otters")
+YUMJC Forgetful Fish: 1 wholeSheet("YUMJC Forgetful Fish")
+
 #JC BG
+YUMJC Spiders: 1 wholeSheet("YUMJC Spiders")
+YUMJC KILL DESTROY: 1 wholeSheet("YUMJC KILL DESTROY")
+
 #JC RW
+YUMJC Solo Samurai: 1 wholeSheet("YUMJC Solo Samurai")
+YUMJC Modular: 1 wholeSheet("YUMJC Modular")
+
 #JC GU
+YUMJC Big Costs: 1 wholeSheet("YUMJC Big Costs")
+
+
+#JC Mardu
+YUMJC Kaalia: 1 wholeSheet("YUMJC Kaalia")
+
+#JC Temur
+YUMJC Cascade: 1 wholeSheet("YUMJC Cascade")
+
+#JC Abzan
+YUMJC Siege: 1 wholeSheet("YUMJC Siege")
+
+#JC Jeskai
+YUMJC Thicc Spells: 1 wholeSheet("YUMJC Thicc Spells")
+
+#JC Sultai
+YUMJC Slimy Face DMG: 1 wholeSheet("YUMJC Slimy Face DMG")
+
+#JC Esper
+YUMJC WUB Big Enchantments: 1 wholeSheet("YUMJC WUB Big Enchantments")
+
+#JC Grixis
+YUMJC Improvise: 1 wholeSheet("YUMJC Improvise")
+
+#JC Jund
+
+#JC Naya
+
+#JC Bant
+
+
+
+
+
+
+
+
+
 
 # Jump Start 2025
 J25 Prideful: 1 wholeSheet("J25 Prideful")

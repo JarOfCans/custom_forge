@@ -59,7 +59,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
     private Iterable<PaperCard> onColorCreatures;
     protected Iterable<PaperCard> onColorNonCreatures;
 
-    protected static final boolean logToConsole = false;
+    protected static final boolean logToConsole = true;
 
     /**
      *
@@ -197,6 +197,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
         fixDeckSize(clrCnts, landSetCode);
 
         if (deckList.size() == 40) {
+        	System.out.println("Limited deck made");
             // add the main deck cards
             final Deck result = new Deck(generateName());
             result.getMain().add(deckList);
@@ -356,7 +357,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
             	int nLand = 2;
             	System.out.printf("Basics[%s]: %d cards%n", MagicColor.Constant.BASIC_LANDS.get(i), nLand);
             	for (int j = 0; j < nLand; j++) {
-                    deckList.add(getBasicLand(i, landSetCode));
+                    deckList.add(getBasicLand(i, (landSetCode.contains("YUM"))?"M15":landSetCode));
                 }
             }
         }
@@ -385,7 +386,7 @@ public class LimitedDeckBuilder extends DeckGeneratorBase {
                 }
 
                 for (int j = 0; j < nLand; j++) {
-                    deckList.add(getBasicLand(i, landSetCode));
+                    deckList.add(getBasicLand(i, (landSetCode.contains("YUM"))?"M15":landSetCode));
                 }
             }
         }

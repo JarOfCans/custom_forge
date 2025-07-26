@@ -13749,11 +13749,6 @@ Gandalf the White|LTR
 
 
 [YUMJC Common Trilands1]
-1 Kaleidostone
-1 Armillary Sphere
-1 Crystalline Crawler
-1 Scion of Ugin
-1 Maelstrom Nexus
 1 Arcane Sanctum
 1 Crumbling Necropolis
 1 Frontier Bivouac
@@ -13764,43 +13759,813 @@ Gandalf the White|LTR
 1 Sandsteppe Citadel
 1 Savage Lands
 1 Seaside Citadel
+1 Bloodfell Caves
+1 Wind-Scarred Crag
+1 Jungle Hollow
+1 Blossoming Sands
+1 Tranquil Cove
+1 Rugged Highlands
+1 Dismal Backwater
+1 Scoured Barrens
+1 Thornwood Falls
+1 Swiftwater Cliffs
 
 [YUMJC Brainstorms]
 1 Brainstone
 1 Scroll Rack
 1 Lodestone Needle
-1 Alrund, God of the Cosmos
-1 Riverwise Augur
-1 Cavalier of Gales
 1 Faerie Seer
 1 Pondering Mage
+1 Sigiled Starfish
+1 Sage Owl
+1 Riverwise Augur
+1 Cavalier of Gales
+1 Alrund, God of the Cosmos
+1 Gossip's Talent
 1 Search for Azcanta
 1 Brainstorm
+1 Deliberate
 1 Brainsurge
 1 Terramorphic Expanse
 1 Evolving Wilds
+1 Halimar Depths
 1 Jace, the Mind Sculptor
 1 Preordain
 
-[YUMJC GoblinTokens]
-1 Goblin Morningstar
-1 Beetleback Chief
-1 Battle Cry Goblin
-1 Legion Warboss
-1 Mogg War Marshal
-1 Siege-Gang Commander
-1 Mogg Raider
-1 Goblin Chirurgeon
-1 Goblin Surprise
-1 Brightstone Ritual
-1 Dragon Fodder
-1 Krenko's Command
-1 Hordeling Outburst
-1 Goblin War Party
-1 Goblin Grenade
+[YUMJC Forgetful Fish]
+1 Bag of Holding
+1 Boosted Sloop
+1 Adventurer's Airship
+1 Captain Howler, Sea Scourge
+1 Rielle, the Everwise
+1 Argentum Masticore
+1 Marauding Mako
+1 Ivora, Insatiable Heir
+1 Scrounging Skyray
+1 Ghost of Ramirez DePietro
+1 Containment Construct
+1 Magmakin Artillerist
+1 Cunning Survivor
+1 Merfolk Looter
+1 Hangar Scrounger
+1 Rousing Read
+1 Hypothesizzle
+1 Prying Eyes
+1 Big Score
+1 Faithless Looting
 
+[YUMJC Opponent's Turn]
+1 Wavebreak Hippocamp
+1 Hammerhead Tyrant
+1 Glen Elendra Pranksters
+1 Stinging Lionfish
+1 Hope-Ender Coatl
+1 Sicarian Infiltrator
+1 Geyser Drake
+1 Naiad of Hidden Coves
+1 Grey Havens Navigator
+1 Saiba Cryptomancer
+1 Overwhelming Denial
+1 Dismiss
+1 Faebloom Trick
+1 Glimmerburst
+1 Phantom Interference
+1 Miscalculation
+1 Spell Shrivel
+1 Quick Study
+1 Sword Coast Serpent // Capsizing Wave
+1 Consider
 
+[YUMJC Foretold]
+1 Augury Raven
+1 Cosmos Charger
+1 Dream Devourer
+1 Jarl of the Forsaken
+1 Sarulf's Packmate
+1 Battle Mammoth
+1 Doomskar Oracle
+1 Saw It Coming
+1 Behold the Multiverse
+1 Poison the Cup
+1 Demon Bolt
+1 Dual Strike
+1 Delayed Blast Fireball
+1 Mammoth Growth
+1 Iron Verdict
+1 Kaya's Onslaught
+1 Skull Raid
+1 Dwarven Reinforcements
+1 Struggle for Skemfar
+1 Doomskar
 
+[YUMJC Short Swords]
+1 Short Sword
+1 Honed Khopesh
+1 Goldvein Pick
+1 Gold Pan
+1 Glimmerlight
+1 Leonin Scimitar
+1 Strider Harness
+1 Quick-Draw Dagger
+1 Brass Knuckles
+1 Wings of Hubris
+1 Barrow-Blade
+1 Champion's Helm
+1 Lavaspur Boots
+1 Neglected Heirloom
+1 Paradise Mantle
+1 Short Bow
+1 Lost Jitte
+1 Training Drone
+1 Myr Adapter
+1 Brass Squire
+
+[YUMJC WU Merfolk]
+1 Vanquisher's Banner
+1 Funeral Longboat
+1 Vodalian Wave-Knight
+1 Sygg, River Guide
+1 Sharae of Numbing Depths
+1 Harpoon Sniper
+1 Merrow Reejerey
+1 Veteran of the Depths
+1 Fallowsage
+1 Judge of Currents
+1 Wellgabber Apothecary
+1 Shaper Apprentice
+1 Galina's Knight
+1 Stonybrook Banneret
+1 Stonybrook Schoolmaster
+1 Stonybrook Angler
+1 Deeproot Waters
+1 Ephemeral Shields
+1 Meeting of Minds
+1 Summon the School
+
+[YUMJC WU Control 1]
+1 Sphinx of the Final Word
+1 Cloudblazer
+1 Mulldrifter
+1 Seeker of the Way
+1 Holy Cow
+1 Inspiring Overseer
+1 Filigree Familiar
+1 Pestermite
+1 Journey to Nowhere
+1 No More Lies
+1 Destroy Evil
+1 Gideon's Reproach
+1 Pressure Point
+1 Sinister Sabotage
+1 Dreams of Laguna
+1 Into the Roil
+1 Mana Leak
+1 Dovin Baan
+1 Fumigate
+1 Stock Up
+
+[YUMJC Otters]
+1 Alania, Divergent Storm
+1 Thundertrap Trainer
+1 Stormsplitter
+1 Stormcatch Mentor
+1 Coruscation Mage
+1 Harnesser of Storms
+1 Daring Waverider
+1 Lightshell Duo
+1 Kindlespark Duo
+1 Consider
+1 Soul Read
+1 Thrill of Possibility
+1 Magma Jet
+1 Staggershock
+1 Sonic Assault
+1 Ral, Crackling Wit
+1 Otterball Antics
+1 Pearl of Wisdom
+1 Strategic Planning
+1 Reckless Impulse
+
+[YUMJC KILL DESTROY]
+1 Starforged Sword
+1 Genesis Chamber
+1 Sarulf, Realm Eater
+1 Vraska, the Silencer
+1 Chevill, Bane of Monsters
+1 Affectionate Indrik
+1 Morbid Opportunist
+1 Plaguecrafter
+1 Krosan Vorine
+1 Falkenrath Noble
+1 Blitz Leech
+1 Bequeathal
+1 Beast Within
+1 Consume Strength
+1 Cosmic Hunger
+1 Blood Curdle
+1 Curse of the Werefox
+1 Longstalk Brawl
+1 Cry of Contrition
+1 Feed the Swarm
+
+[YUMJC Big Costs]
+1 Prismatic Lens
+1 Imoti, Celebrant of Bounty
+1 Radagast, Wizard of Wilds
+1 Troyan, Gutsy Explorer
+1 Thryx, the Sudden Storm
+1 Galvanic Giant // Storm Reading
+1 Beanstalk Giant // Fertile Footsteps
+1 Wretched Gryff
+1 Daggermaw Megalodon
+1 Eldrazi Skyspawner
+1 Etherium Spinner
+1 Stormkeld Prowler
+1 Fierce Empath
+1 Honey Mammoth
+1 It of the Horrid Swarm
+1 Krosan Tusker
+1 Skybeast Tracker
+1 Up the Beanstalk
+1 Monstrous Vortex
+1 Annex
+
+[YUMJC Deserts]
+1 Lonely Arroyo
+1 Soured Springs
+1 Jagged Barrens
+1 Bristling Backwoods
+1 Creosote Heath
+1 Forlorn Flats
+1 Eroded Canyon
+1 Festering Gulch
+1 Abraded Bluffs
+1 Lush Oasis
+1 Shefet Dunes
+1 Ipnu Rivulet
+1 Ifnir Deadlands
+1 Ramunap Ruins
+1 Hashep Oasis
+1 Arid Archway
+1 Conduit Pylons
+1 Dunes of the Dead
+1 Lazotep Quarry
+1 Hostile Desert
+
+[YUMJC Oni-Cult]
+1 Oni-Cult Anvil
+1 Servo Schematic
+1 Nimblewright Schematic
+1 Prized Statue
+1 Marionette Master
+1 Breya's Apprentice
+1 Stormclaw Rager
+1 Crime Novelist
+1 Marionette Apprentice
+1 Piggy Bank
+1 Wurmcoil Larva
+1 Dreg Recycler
+1 Orcish Vandal
+1 Krark-Clan Stoker
+1 Etched Familiar
+1 Clockwork Percussionist
+1 Deadly Dispute
+1 Vayne's Treachery
+1 Daretti, Ingenious Iconoclast
+1 Suspicious Detonation
+
+[YUMJC Modular]
+1 Thopter Shop
+1 Zabaz, the Glimmerwasp
+1 Artificer's Dragon
+1 Arcbound Ravager
+1 Aethershield Artificer
+1 Thopter Engineer
+1 Arcbound Shikari
+1 Arcbound Whelp
+1 Arcbound Javelineer
+1 Arcbound Mouser
+1 Arcbound Prototype
+1 Arcbound Slasher
+1 Arcbound Tracker
+1 Arcbound Worker
+1 Arcbound Stinger
+1 Sanctum Gargoyle
+1 Goldhound
+1 Built to Last
+1 Built to Smash
+1 Power Depot
+
+[YUMJC Improvise]
+1 Inspiring Statuary
+1 Boots of Speed
+1 Blood Fountain
+1 Moonsnare Prototype
+1 Tithing Blade
+1 Spare Supplies
+1 Mishra, Eminent One
+1 Wind-Kin Raiders
+1 Herald of Anguish
+1 Fen Hauler
+1 Sly Requisitioner
+1 Freejam Regent
+1 Enraged Giant
+1 Sweatworks Brawler
+1 Foundry Assembler
+1 Moonfolk Puzzlemaker
+1 Volatile Wanderglyph
+1 Stone Retrieval Unit
+1 Whir of Invention
+1 Metallic Rebuke
+
+[YUMJC Spiders]
+1 Shelob, Child of Ungoliant
+1 Doom Weaver
+1 Hatchery Spider
+1 Drider
+1 Nyx Weaver
+1 Rotwidow Pack
+1 Chainweb Aracnir
+1 Mineshaft Spider
+1 Masked Vandal
+1 Venomous Changeling
+1 Barkform Harvester
+1 Abundant Maw
+1 Webweaver Changeling
+1 Twin-Silk Spider
+1 Penumbra Spider
+1 Blex, Vexing Pest
+1 Corpse Churn
+1 Swarmyard
+1 Eaten Alive
+1 Severed Strands
+
+[YUMJC Big Crew]
+1 Peacewalker Colossus
+1 Mechtitan Core
+1 Surgehacker Mech
+1 Alacrian Armory
+1 Colossal Plow
+1 Adventurer's Airship
+1 Broadcast Rambler
+1 Renegade Freighter
+1 Mobile Garrison
+1 Spotcycle Scouter
+1 Sky Skiff
+1 Hotshot Mechanic
+1 Giant Ox
+1 Interface Ace
+1 Cloudspire Captain
+1 Daring Mechanic
+1 Born to Drive
+1 Caught in the Brights
+1 From Father to Son
+1 Collision Course
+
+[YUMJC Ketramose]
+1 Relic of Progenitus
+1 Ketramose, the New Dawn
+1 Oblivion Sower
+1 Stonebinder's Familiar
+1 Warden of the Beyond
+1 Ulamog's Despoiler
+1 Adorned Crocodile
+1 Ichor Drinker
+1 Mind Raker
+1 Ruin Processor
+1 Wreck Remover
+1 Stalwart Valkyrie
+1 Sunblade Angel
+1 Cling to Dust
+1 Otherworldly Journey
+1 Kaya, Orzhov Usurper
+1 Kaya, Spirits' Justice
+1 Go Blank
+1 Shamble Back
+1 Angelic Purge
+
+[YUMJC Bats]
+1 Fountain of Renewal
+1 Pristine Talisman
+1 Zoraline, Cosmos Caller
+1 Starseer Mentor
+1 Darkstar Augur
+1 Essence Channeler
+1 Moonstone Harbinger
+1 Ruin-Lurker Bat
+1 Star Charter
+1 Starscape Cleric
+1 Moonrise Cleric
+1 Starlit Soothsayer
+1 Ghastly Gloomhunter
+1 Wax-Wane Witness
+1 Lifecreed Duo
+1 Grimclaw Bats
+1 Lunar Convocation
+1 Sonar Strike
+1 Nocturnal Hunger
+1 Crumb and Get It
+
+[YUMJC Vanilla]
+1 Ruxa, Patient Professor
+1 Isamaru, Hound of Konda
+1 Cheeky House-Mouse // Squeak By
+1 Fang-Druid Summoner
+1 Jasmine Boreal of the Seven
+1 Watchwolf
+1 Terrain Elemental
+1 Elite Vanguard
+1 Besotted Knight // Betroth the Beast
+1 Ancient Brontodon
+1 Armored Wolf-Rider
+1 Those Who Serve
+1 Colossapede
+1 Muraganda Petroglyphs
+1 Secure the Wastes
+1 Silverflame Squire // On Alert
+1 Join the Dance
+1 Tuinvale Treefolk // Oaken Boon
+1 You Meet in a Tavern
+1 Now for Wrath, Now for Ruin!
+
+[YUMJC GW Legends]
+1 Blitzball
+1 Samwise Gamgee
+1 Serah Farron
+1 Yoshimaru, Ever Faithful
+1 Kongming, "Sleeping Dragon"
+1 Frodo Baggins
+1 Rishkar, Peema Renegade
+1 Teshar, Ancestor's Apostle
+1 Wilson, Refined Grizzly
+1 Rinoa Heartilly
+1 Terrian, World Tyrant
+1 Sundial, Dawn Tyrant
+1 Bag End Porter
+1 Serra Disciple
+1 Errand-Rider of Gondor
+1 Mirkwood Spider
+1 Guardians of Koilos
+1 D'Avenant Trapper
+1 Ancient Animus
+1 Kamahl's Druidic Vow
+
+[YUMJC No Block]
+1 Infiltration Lens
+1 Anzrag, the Quake-Mole
+1 Ib Halfheart, Goblin Tactician
+1 Engulfing Slagwurm
+1 General Marhault Elsdragon
+1 Tattermunge Witch
+1 Acolyte of the Inferno
+1 Bogardan Lancer
+1 Simian Sling
+1 Suq'Ata Lancer
+1 Ichorclaw Myr
+1 Shinen of Life's Roar
+1 Jade Avenger
+1 Thresher Beast
+1 Agility
+1 Sizzling Barrage
+1 Armed // Dangerous
+1 Enlarge
+1 King Harald's Revenge
+1 Compelled Duel
+
+[YUMJC Ninjas]
+1 Satoru Umezawa
+1 Thousand-Faced Shadow
+1 Nashi, Moon Sage's Scion
+1 Throatseeker
+1 Silver-Fur Master
+1 Prosperous Thief
+1 Ingenious Infiltrator
+1 Futurist Operative
+1 Nezumi Prowler
+1 Ninja of the Deep Hours
+1 Azra Smokeshaper
+1 Moonsnare Specialist
+1 Mukotai Ambusher
+1 Changeling Outcast
+1 Faerie Seer
+1 Network Disruptor
+1 Battlefly Swarm
+1 Smoke Shroud
+1 Kaito, Bane of Nightmares
+1 Kaito's Pursuit
+
+[YUMJC Kaalia]
+1 Unstable Obelisk
+1 Kaalia, Zenith Seeker
+1 Kaalia of the Vast
+1 Adult Gold Dragon
+1 Seraph of the Scales
+1 Valgavoth, Harrower of Souls
+1 Goremand
+1 Fallaji Dragon Engine
+1 Guardian of the Great Door
+1 Angelic Page
+1 Holy Cow
+1 Voice of the Provinces
+1 Thraxodemon
+1 Soulstinger
+1 Reckless Barbarian
+1 Rapacious Dragon
+1 Patron of the Arts
+1 Three Tree Mascot
+1 Crackling Doom
+1 Hezrou // Demonic Stench
+
+[YUMJC Cascade]
+1 Averna, the Chaos Bloom
+1 Maelstrom Wanderer
+1 Annoyed Altisaur
+1 Heralds of Tzeentch
+1 Noise Marine
+1 Boarding Party
+1 Maelstrom Colossus
+1 Generator Servant
+1 Bronze Walrus
+1 Cloudkin Seer
+1 Nightshade Dryad
+1 Filigree Familiar
+1 Forceful Denial
+1 Natural Reclamation
+1 Depths of Desire
+1 Incinerate
+1 Ancestral Vision
+1 Crashing Footfalls
+1 Glimpse of Tomorrow
+1 Cultivate
+
+[YUMJC Siege]
+1 Heaped Harvest
+1 Siege Rhino
+1 Skirmish Rhino
+1 Knights of the Black Rose
+1 Trelasarra, Moon Dancer
+1 Felidar Sovereign
+1 Thragtusk
+1 Glidedive Duo
+1 Mesa Unicorn
+1 Basri's Acolyte
+1 Professor of Zoomancy
+1 Undercellar Myconid
+1 The Cruelty of Gix
+1 Ill-Gotten Inheritance
+1 Trapped in the Screen
+1 Mortality Spear
+1 Savor
+1 Guardian Naga // Banishing Coils
+1 Heritage Reclamation
+1 Read the Bones
+
+[YUMJC MID Flashback]
+1 Siphon Insight
+1 Rite of Harmony
+1 Arcane Infusion
+1 Sacred Fire
+1 Galvanic Iteration
+1 Corpse Cobble
+1 Faithful Mending
+1 Hallowed Respite
+1 Wake to Slaughter
+1 Dire-Strain Rampage
+1 Rite of Oblivion
+1 Diregraf Rebirth
+1 Winterthorn Blessing
+1 Angelfire Ignition
+1 Join the Dance
+1 Hungry for More
+1 Ghoulcaller's Harvest
+1 Can't Stay Away
+1 Unnatural Moonrise
+1 Croaking Counterpart
+
+[YUMJC Solo Samurai]
+1 Oathkeeper, Takeno's Daisho
+1 Ancestral Katana
+1 Experimental Synthesizer
+1 Raiyuu, Storm's Edge
+1 Risona, Asari Commander
+1 Asari Captain
+1 Heiko Yamazaki, the General
+1 Norika Yamazaki, the Poet
+1 Selfless Samurai
+1 Reinforced Ronin
+1 Eiganjo Exemplar
+1 Akki Ronin
+1 Imperial Subduer
+1 Peerless Samurai
+1 Sunblade Samurai
+1 Goblin Champion
+1 Seven-Tail Mentor
+1 Unstoppable Ogre
+1 Kami's Flare
+1 Repel the Vile
+
+[YUMJC Forward Order]
+1 Portable Hole
+12 Cleric of the Forward Order
+1 Recruitment Officer
+1 Pattern Matcher
+1 Chrome Replicator
+1 Bishop of Rebirth
+1 Smile at Death
+1 Raise the Past
+1 Dewdrop Cure
+
+[YUMJC Radiant Ironworks]
+1 Radiant Lotus
+1 Krark-Clan Ironworks
+1 Servo Schematic
+1 Slagstone Refinery
+1 Chromatic Star
+1 Implement of Malice
+1 Implement of Improvement
+1 Implement of Ferocity
+1 Implement of Examination
+1 Implement of Combustion
+1 Ichor Wellspring
+1 Wizard's Rockets
+1 Terrarion
+1 Myr Retriever
+1 Clockwork Fox
+1 Marketback Walker
+1 Kuldotha Forgemaster
+1 Gleaming Barrier
+1 Su-Chi Cave Guard
+1 Iron Giant
+
+[YUMJC Colorless Typal]
+1 Prismatic Lens
+1 Runaway Boulder
+1 Breaker of Creation
+1 It That Heralds the End
+1 Glaring Fleshraker
+1 Manakin
+1 Kozilek's Channeler
+1 Kozilek's Pathfinder
+1 Filigree Familiar
+1 Echoes of Eternity
+1 Eldritch Immunity
+1 Null Elemental Blast
+1 Warping Wail
+1 Spatial Contortion
+1 Tomb of the Spirit Dragon
+1 Crystal Grotto
+1 Hidden Grotto
+1 Darksteel Citadel
+1 Ash Barrens
+1 All Is Dust
+
+[YUMJC Talismans]
+1 Talisman of Unity
+1 Sol Talisman
+1 Talisman of Curiosity
+1 Talisman of Conviction
+1 Pristine Talisman
+1 Talisman of Impulse
+1 Talisman of Resilience
+1 Talisman of Progress
+1 Talisman of Hierarchy
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Sisay's Ring
+1 Myr Enforcer
+1 Juggernaut
+1 Peace Strider
+1 Pierce Strider
+1 Eldrazi Devastator
+1 Thought-Knot Seer
+1 Scour from Existence
+
+[YUMJC Coven]
+1 Weapon Rack
+1 Leinore, Autumn Sovereign
+1 Sigarda, Champion of Light
+1 Augur of Autumn
+1 Dawnhart Wardens
+1 Dawnhart Mentor
+1 Ambitious Farmhand
+1 Contortionist Troupe
+1 Duelcraft Trainer
+1 Candlelit Cavalry
+1 Candlegrove Witch
+1 Ritual Guardian
+1 Clarion Cathars
+1 Harvesttide Sentry
+1 Timberland Guide
+1 Estwald Shieldbasher
+1 Sungold Sentinel
+1 Candletrap
+1 Duel for Dominance
+1 Might of the Old Ways
+
+[YUMJC Swords]
+1 Sword of Forge and Frontier
+1 Sword of Once and Future
+1 Sword of Hearth and Home
+1 Sword of Truth and Justice
+1 Sword of Sinew and Steel
+1 Sword of War and Peace
+1 Sword of Body and Mind
+1 Sword of Fire and Ice
+1 Sword of Feast and Famine
+1 Sword of Light and Shadow
+1 Plunge into Winter
+1 Unexplained Disappearance
+1 Cast Down
+1 Sudden Breakthrough
+1 Expel the Unworthy
+1 Merchant Scroll
+1 Night's Whisper
+1 Wrenn's Resolve
+1 Manifest Dread
+1 Bushwhack
+
+[YUMJC Thicc Spells]
+1 The Prima Vista
+1 Cathar's Companion
+1 Spellgorger Weird
+1 Narset, Enlightened Master
+1 Prompto Argentum
+1 Raff, Weatherlight Stalwart
+1 Seeker of the Way
+1 The Emperor of Palamecia
+1 Fallaji Archaeologist
+1 Iroas's Blessing
+1 Blessed Light
+1 Goblin Wizardry
+1 You're Confronted by Robbers
+1 Gleam of Resistance
+1 Glimmerburst
+1 Ray of Command
+1 Narset of the Ancient Way
+1 Imperial Oath
+1 Reconstruct History
+1 Ojutai's Summons
+
+[YUMJC Slimy Face DMG]
+1 Goldvein Pick
+1 Fleetfeather Sandals
+1 Invasion of Kamigawa
+1 Felix Five-Boots
+1 Gonti, Canny Acquisitor
+1 Kotis, the Fangkeeper
+1 Blizzard Specter
+1 Swarm Guildmage
+1 Skyrider Patrol
+1 Etched Slith
+1 Shrill Howler
+1 Centaur Rootcaster
+1 Coiling Stalker
+1 Aerial Guide
+1 Mistblade Shinobi
+1 Hoard Robber
+1 Okiba-Gang Shinobi
+1 Treetop Bracers
+1 Aqueous Form
+1 Blood Curdle
+
+[YUMJC Chittering Host]
+4 Midnight Scavengers
+4 Graf Rats
+1 Crow of Dark Tidings
+1 Daggerfang Duo
+1 Flayed One
+1 Apprentice Necromancer
+1 Bonecaller Cleric
+1 Valgavoth's Faithful
+1 Doomed Necromancer
+1 The War in Heaven
+1 Cauldron's Gift
+1 Lively Dirge
+1 No One Left Behind
+1 Victimize
+
+[YUMJC WUB Big Enchantments]
+1 Zur, Eternal Schemer
+1 Aminatou, Veil Piercer
+1 Inquisitive Glimmer
+1 Fear of Infinity
+1 Blood-Cursed Knight
+1 Thoughtrender Lamia
+1 Starnheim Courser
+1 Balemurk Leech
+1 Creeping Peeper
+1 Rosecot Knight
+1 Nezumi Bladeblesser
+1 Fear of the Dark
+1 Mindwrack Harpy
+1 Witness of Tomorrows
+1 Nimbus Naiad
+1 Fear of Immobility
+1 Sunblade Samurai
+1 Food Coma
+1 Tolarian Contempt
+1 Thirst for Meaning
 
 [JSE White1]
 1 Circle of Protection: Red

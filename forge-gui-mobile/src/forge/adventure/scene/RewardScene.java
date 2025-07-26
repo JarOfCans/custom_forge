@@ -137,7 +137,7 @@ public class RewardScene extends UIScene {
             }
         }
         //save RAM
-        ImageCache.unloadCardTextures(true);
+        ImageCache.getInstance().unloadCardTextures(true);
         Forge.advFreezePlayerControls = false;
         if (this.collectionPool != null) {
             this.collectionPool.clear();
@@ -200,7 +200,7 @@ public class RewardScene extends UIScene {
     @Override
     public void act(float delta) {
         stage.act(delta);
-        ImageCache.allowSingleLoad();
+        ImageCache.getInstance().allowSingleLoad();
         if (doneClicked) {
             if (type == Type.Loot || type == Type.QuestReward) {
                 flipCountDown -= Gdx.graphics.getDeltaTime();
@@ -311,7 +311,7 @@ public class RewardScene extends UIScene {
         loadRewards(rewards, type, shopActor);
     }
 
-    public void loadSelectableRewards(List<Reward> choices, Type type, int countToSelect) {
+    public void loadSelectableRewards(ArrayList<Reward> choices, Type type, int countToSelect) {
         if (type != Type.RewardChoice)
             return;
         this.remainingSelections = countToSelect;
@@ -329,7 +329,7 @@ public class RewardScene extends UIScene {
         this.collectionPool.addAllFlat(AdventurePlayer.current().getCollectionCards(true).toFlatList());
     }
 
-    public void loadRewards(List<Reward> newRewards, Type type, ShopActor shopActor) {
+    public void loadRewards(List<Reward> ret, Type type, ShopActor shopActor) {
         clearSelectable();
         this.type = type;
         doneClicked = false;
@@ -386,9 +386,9 @@ public class RewardScene extends UIScene {
 
         switch (type) {
             case Shop:
-            	if (newRewards.stream().allMatch(x -> x.getType() != Reward.Type.Item)) {
-            		Collections.shuffle(newRewards);
-            		Collections.sort(newRewards);
+            	if (ret.stream().allMatch(x -> x.getType() != Reward.Type.Item)) {
+            		Collections.shuffle(ret);
+            		Collections.sort(ret);
             	}
                 doneButton.setText("[+OK]");
                 String shopName = shopActor.getDescription();
@@ -408,8 +408,8 @@ public class RewardScene extends UIScene {
             case QuestReward:
             case Loot:
             	//newRewards.reverse();
-            	Collections.shuffle(newRewards);
-            	Collections.sort(newRewards);
+            	Collections.shuffle(ret);
+            	Collections.sort(ret);
                 headerLabel.setVisible(false);
                 headerLabel.setText("");
                 restockButton.setVisible(false);
@@ -429,10 +429,10 @@ public class RewardScene extends UIScene {
             }
             //cardHeight=targetHeight/i;
             cardWidth = h / CARD_WIDTH_TO_HEIGHT;
-            newArea = newRewards.size() * cardWidth * cardHeight;
+            newArea = ret.size() * cardWidth * cardHeight;
 
             int rows = (int) (targetHeight / cardHeight);
-            int cols = (int) Math.ceil(newRewards.size() / (double) rows);
+            int cols = (int) Math.ceil(ret.size() / (double) rows);
             if (newArea > oldCardArea && newArea <= targetArea && rows * cardHeight < targetHeight && cols * cardWidth < targetWidth) {
                 oldCardArea = newArea;
                 numberOfRows = rows;
@@ -480,7 +480,7 @@ public class RewardScene extends UIScene {
 
         float spacing = 2;
         int i = 0;
-        for (Reward reward : newRewards) {
+        for (Reward reward : ret) {
             boolean skipCard = false;
             if (type == Type.Shop) {
                 if (changes.wasCardBought(shopActor.getObjectId(), i)) {
@@ -492,7 +492,7 @@ public class RewardScene extends UIScene {
             int currentRow = (i / numberOfColumns);
             float lastRowXAdjust = 0;
             if (currentRow == numberOfRows - 1) {
-                int lastRowCount = newRewards.size() % numberOfColumns;
+                int lastRowCount = ret.size() % numberOfColumns;
                 if (lastRowCount != 0)
                     lastRowXAdjust = ((numberOfColumns * cardWidth) - (lastRowCount * cardWidth)) / 2;
             }

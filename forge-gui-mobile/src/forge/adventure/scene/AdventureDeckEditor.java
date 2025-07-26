@@ -103,6 +103,21 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
             BoosterDraft draft = getDraft();
             assert draft != null;
             draft.setChoice(card);
+            if (card.getName().equals("Black Lotus")
+                    || card.getName().equals("Mox Emerald")
+                    || card.getName().equals("Mox Pearl")
+                    || card.getName().equals("Mox Ruby")
+                    || card.getName().equals("Mox Sapphire")
+                    || card.getName().equals("Mox Jet")
+                    || card.getName().equals("Ancestral Recall")
+                    || card.getName().equals("Timetwister")
+                    || card.getName().equals("Time Walk")
+                    || card.getName().equals("Sol Ring")
+                    || card.getName().equals("Channel")) {
+            	//Nothing
+            } else {
+                AdventurePlayer.current().addCard(card);
+            }
 
             if (draft.hasNextChoice()) {
                 refresh();
@@ -263,8 +278,10 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
     }
 
     public static BoosterDraft getDraft() {
-        if (currentEvent == null)
+        if (currentEvent == null) {
+        	System.out.println("Draft not found");
             return null;
+        }
         return currentEvent.getDraft();
     }
 
@@ -474,7 +491,8 @@ public class AdventureDeckEditor extends TabPageScreen<AdventureDeckEditor> {
         if (event == null) {
             return getPages(false);
         }
-        if (event.format == AdventureEventController.EventFormat.Draft) {
+        if (event.format == AdventureEventController.EventFormat.Draft || event.format == AdventureEventController.EventFormat.JumpstartDraft
+        		|| event.format == AdventureEventController.EventFormat.JumpstartDraftAlt || event.format == AdventureEventController.EventFormat.TriCubeDraft) {
             switch (event.eventStatus) {
                 case Available:
                     return null;

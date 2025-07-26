@@ -1,0 +1,6 @@
+[metadata]
+Code=YUMJC
+Date=2025-06-24
+Name=YUMI Jump Cube Updated
+Type=Draft
+ScryfallCode=YUMJC

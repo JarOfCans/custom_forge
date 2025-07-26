@@ -25,8 +25,10 @@ public class Main {
             /* Prevents crash on non Windows OS before creating the LWJGL3 window.
                It seems it defeats the purpose of having a splash image since
                this is an indicator if the LWJGL3 has booted up succesfully. */
-            closeSplash();
+            System.out.println("egg");
+        	closeSplash();
         }
+        System.out.println("egg brrr");
         new GameLauncher(versionString);
     }
     public static void closeSplash() {

@@ -2,8 +2,6 @@ package forge.adventure.data;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import forge.Forge;
 import forge.adventure.character.EnemySprite;
 import forge.adventure.pointofintrest.PointOfInterestChanges;
@@ -24,10 +22,13 @@ import forge.model.CardBlock;
 import forge.model.FModel;
 import forge.util.Aggregates;
 import forge.util.MyRandom;
+import forge.util.StreamUtil;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -222,7 +223,7 @@ public class AdventureEventData implements Serializable {
                 return;
             cardBlockName = cardBlock.getName();
 
-            jumpstartBoosters = AdventureEventController.instance().getJumpstartBoostersAlt(cardBlock, 24);
+            jumpstartBoosters = AdventureEventController.instance().getJumpstartBoostersAlt(cardBlock, 18);
 
             packConfiguration = new String[] {cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode(), cardBlock.getLandSet().getCode()};
 
@@ -461,6 +462,7 @@ public class AdventureEventData implements Serializable {
         		 && format != AdventureEventController.EventFormat.JumpstartDraftAlt && format != AdventureEventController.EventFormat.TriCubeDraft)
             return null;
 
+    	System.out.println("Draft Git");
         Random placeholder = MyRandom.getRandom();
         MyRandom.setRandom(getEventRandom());
         if (draft == null && (eventStatus == AdventureEventController.EventStatus.Available || eventStatus == AdventureEventController.EventStatus.Entered)) {
@@ -468,17 +470,14 @@ public class AdventureEventData implements Serializable {
         	case JumpstartDraft:
                 jumpstartBoosters = AdventureEventController.instance().getJumpstartBoosters(cardBlock, 24);
                 draft = BoosterDraft.createJumpstartDraft(LimitedPoolType.JumpstartDraft, getCardBlock(), jumpstartBoosters);
-                System.out.println(draft);
                 break;
         	case JumpstartDraftAlt:
                 jumpstartBoosters = AdventureEventController.instance().getJumpstartBoostersAlt(cardBlock, 24);
                 draft = BoosterDraft.createJumpstartDraft(LimitedPoolType.JumpstartDraft, getCardBlock(), jumpstartBoosters);
-                System.out.println(draft);
                 break;
         	case TriCubeDraft:
         		jumpstartBoosters = AdventureEventController.instance().getTriCubeBoosters(cardBlock, 3);
         		draft = BoosterDraft.createTriCubeDraft(LimitedPoolType.TriCubeDraft, getCardBlock(), jumpstartBoosters);
-                System.out.println(draft);
         		break;
         	default:
         	case Draft:
@@ -490,7 +489,6 @@ public class AdventureEventData implements Serializable {
             packConfiguration = getBoosterConfiguration(getCardBlock());
         }
         MyRandom.setRandom(placeholder);
-        System.out.println(draft);
         return draft;
     }
 
@@ -518,10 +516,12 @@ public class AdventureEventData implements Serializable {
     private CardBlock pickWeightedCardBlock() {
         CardEdition.Collection editions = FModel.getMagicDb().getEditions();
         Iterable<CardBlock> src = FModel.getBlocks(); //all blocks
-        Predicate<CardEdition> filter = Predicates.and(CardEdition.Predicates.CAN_MAKE_BOOSTER, selectSetPool());
+        Predicate<CardEdition> filter = CardEdition.Predicates.CAN_MAKE_BOOSTER.and(selectSetPool());
         List<CardEdition> allEditions = new ArrayList<>();
-        StreamSupport.stream(editions.spliterator(), false).filter(filter::apply).filter(CardEdition::hasBoosterTemplate).collect(Collectors.toList()).iterator().forEachRemaining(allEditions::add);
-
+        StreamUtil.stream(editions)
+                .filter(filter)
+                .filter(CardEdition::hasBoosterTemplate)
+                .forEach(allEditions::add);
         //Temporary restriction until rewards are more diverse - don't want to award restricted cards so these editions need different rewards added.
         List<String> restrictedDrafts = new ArrayList<>();
         restrictedDrafts.add("LEA");
@@ -758,7 +758,7 @@ public class AdventureEventData implements Serializable {
 
     public void giveRewards() {
         int wins = matchesWon;
-        List<Reward> ret = new ArrayList<Reward>();
+        ArrayList<Reward> ret = new ArrayList<Reward>();
 
         //Todo: this should be automatic... "somehow"
 

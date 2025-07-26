@@ -106,7 +106,8 @@ public class AdventureEventController implements Serializable {
         if (randInt <= 2-20){
             e = new AdventureEventData(eventSeed, EventFormat.Jumpstart);
         }
-        else if (randInt <= 6-20){
+        else if (randInt <= 6
+        		-20){
             e = new AdventureEventData(eventSeed, EventFormat.JumpstartDraft);
         }
         else if (randInt <= 20-21){
@@ -250,12 +251,14 @@ public class AdventureEventController implements Serializable {
     public List<Deck> getJumpstartBoostersAlt(CardBlock block, int count){
         //Get all candidates then remove at random until no more than count are included
         //This will prevent duplicate choices within a round of a Jumpstart draft
-        List<Deck> packsAsDecks = new ArrayList<Deck>();
+
+    	List<Deck> packsAsDecks = new ArrayList<Deck>();
+    	
         
         List<Deck> landsAsDecks = new ArrayList<Deck>();
         List<Deck> colorlessAsDecks = new ArrayList<Deck>();
         List<List<Deck>> colorsAsDecks = new ArrayList<List<Deck>>();
-        for (int i = getColorId(9,9,9,9,9); i > 0; i-- ) {
+        for (int i = getColorId(9,9,9,9,9); i >= 0; i-- ) {
         	colorsAsDecks.add(new ArrayList<Deck>());
         }
         
@@ -270,7 +273,7 @@ public class AdventureEventController implements Serializable {
 
             int size = contents.getMain().toFlatList().size();
 
-            if ( size != 15 )
+            if ( size != 20 )
                 continue;
 
             contents.setName(template.getEdition());
@@ -348,28 +351,31 @@ public class AdventureEventController implements Serializable {
                 contents.getTags().add("white");
 
         }
+    	if (count != 18) {
 
         Random random = new Random();
         int seed = random.nextInt(16);
         List<Deck> output;
-        if (seed < 4) {
+        if (seed < 3) { // 3/16
         	output = grabMonoColorJumpAlt(colorsAsDecks, landsAsDecks, colorlessAsDecks);
-        } else if (seed < 12) {
+        } else if (seed < 10) { // 7/16
         	output = grabTwoColorJumpAlt(colorsAsDecks, landsAsDecks, colorlessAsDecks);
-        } else if (seed < 14) {
+        } else if (seed < 13) { // 3/16
         	output = grabThreeColorJumpAlt(colorsAsDecks, landsAsDecks, colorlessAsDecks);
-        } else if (seed < 15) {
+        /*} else if (seed < 13) {
         	output = grabFourColorJumpAlt(colorsAsDecks, landsAsDecks, colorlessAsDecks);
-        } else {
+        }*/ else { // 3/16
         	output = grabFiveColorJumpAlt(colorsAsDecks, landsAsDecks, colorlessAsDecks);
         }
         
         
 
-    	if (output.size() == 24) {
+    	if (output.size() == count) {
     		return output;
     	}
 		System.out.println("Seed: " + seed + " set up wrong or has invalid");
+    	
+        }
         
         while (packsAsDecks.size() > count){
             Aggregates.removeRandom(packsAsDecks);
@@ -385,9 +391,15 @@ public class AdventureEventController implements Serializable {
     	output.addAll(reduceRandom(2, decks, 0,0,1,0,0));
     	output.addAll(reduceRandom(2, decks, 0,0,0,1,0));
     	output.addAll(reduceRandom(2, decks, 0,0,0,0,1));
-    	output.addAll(reduceRandom(9, decks, 0,0,0,0,0));
-    	output.addAll(reduceRandom(3, colorless));
-    	output.addAll(reduceRandom(2, lands));
+    	int check = new Random().nextInt(10);
+    	if (check <= 7) {
+        	output.addAll(reduceRandom(2, decks, 1,1,1,1,1));
+        	output.addAll(reduceRandom(3, decks, 0,0,0,0,0));
+    	} else {
+        	output.addAll(reduceRandom(5, decks, 0,0,0,0,0));
+    	}
+    	output.addAll(reduceRandom(2, colorless));
+    	output.addAll(reduceRandom(1, lands));
     	
     	return output;
     }
@@ -403,14 +415,37 @@ public class AdventureEventController implements Serializable {
     	output.addAll(reduceRandom(1, decks, 0,0,1,0,1));
     	output.addAll(reduceRandom(1, decks, 1,0,0,1,0));
     	output.addAll(reduceRandom(1, decks, 0,1,0,0,1));
-    	output.addAll(reduceRandom(1, decks, 1,0,0,0,0));
-    	output.addAll(reduceRandom(1, decks, 0,1,0,0,0));
-    	output.addAll(reduceRandom(1, decks, 0,0,1,0,0));
-    	output.addAll(reduceRandom(1, decks, 0,0,0,1,0));
-    	output.addAll(reduceRandom(1, decks, 0,0,0,0,1));
-    	output.addAll(reduceRandom(4, decks, 0,0,0,0,0));
-    	output.addAll(reduceRandom(2, colorless));
-    	output.addAll(reduceRandom(3, lands));
+    	int check = new Random().nextInt(10);
+    	if (check <= 0) { // 1/10
+        	output.addAll(reduceRandom(1, decks, 1,0,0,0,0));
+        	output.addAll(reduceRandom(1, decks, 0,1,0,0,0));
+        	output.addAll(reduceRandom(1, decks, 0,0,1,0,0));
+        	output.addAll(reduceRandom(1, decks, 0,0,0,1,0));
+        	output.addAll(reduceRandom(1, decks, 0,0,0,0,1));
+        	output.addAll(reduceRandom(1, colorless));
+        	output.addAll(reduceRandom(1, lands));
+    	} if (check <= 1) { // 1/10
+        	output.addAll(reduceRandom(1, decks, 1,0,0,0,0));
+        	output.addAll(reduceRandom(1, decks, 0,1,0,0,0));
+        	output.addAll(reduceRandom(1, decks, 0,0,1,0,0));
+        	output.addAll(reduceRandom(1, decks, 0,0,0,1,0));
+        	output.addAll(reduceRandom(1, decks, 0,0,0,0,1));
+        	output.addAll(reduceRandom(1, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(1, lands));
+    	} if (check <= 5) { // 4/10
+        	output.addAll(reduceRandom(1, decks, 1,1,1,1,1));
+        	output.addAll(reduceRandom(4, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(1, colorless));
+        	output.addAll(reduceRandom(2, lands));
+    	} else if (check <= 8) { // 3/10
+        	output.addAll(reduceRandom(6, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(1, colorless));
+        	output.addAll(reduceRandom(1, lands));
+    	} else { // 1/10
+        	output.addAll(reduceRandom(5, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(2, colorless));
+        	output.addAll(reduceRandom(1, lands));
+    	}
     	
     	return output;
     }
@@ -426,37 +461,42 @@ public class AdventureEventController implements Serializable {
     	output.addAll(reduceRandom(1, decks, 1,0,1,0,1));
     	output.addAll(reduceRandom(1, decks, 1,1,0,1,0));
     	output.addAll(reduceRandom(1, decks, 0,1,1,0,1));
-    	output.addAll(reduceRandom(1, decks, 1,0,0,0,0));
-    	output.addAll(reduceRandom(1, decks, 0,1,0,0,0));
-    	output.addAll(reduceRandom(1, decks, 0,0,1,0,0));
-    	output.addAll(reduceRandom(1, decks, 0,0,0,1,0));
-    	output.addAll(reduceRandom(1, decks, 0,0,0,0,1));
+    	output.addAll(reduceRandom(1, decks, 1,1,1,1,1));
     	output.addAll(reduceRandom(3, decks, 0,0,0,0,0));
-    	output.addAll(reduceRandom(2, colorless));
-    	output.addAll(reduceRandom(4, lands));
+    	output.addAll(reduceRandom(1, colorless));
+    	output.addAll(reduceRandom(3, lands));
     	
     	return output;
     }
-    public static List<Deck> grabFourColorJumpAlt(List<List<Deck>> decks, List<Deck> lands, List<Deck> colorless) {
+    /*public static List<Deck> grabFourColorJumpAlt(List<List<Deck>> decks, List<Deck> lands, List<Deck> colorless) {
     	List<Deck> output = new ArrayList<Deck>();
     	output.addAll(reduceRandom(1, decks, 0,1,1,1,1));
     	output.addAll(reduceRandom(1, decks, 1,0,1,1,1));
     	output.addAll(reduceRandom(1, decks, 1,1,0,1,1));
     	output.addAll(reduceRandom(1, decks, 1,1,1,0,1));
     	output.addAll(reduceRandom(1, decks, 1,1,1,1,0));
-    	
-    	// Fill 19 slots
+    	output.addAll(reduceRandom(1, decks, 1,1,1,1,1));
+        output.addAll(reduceRandom(3, decks, 0,0,0,0,0));
+        output.addAll(reduceRandom(1, colorless));
+        output.addAll(reduceRandom(3, lands));
+	
+    	return output;
+    }*/
+    public static List<Deck> grabFiveColorJumpAlt(List<List<Deck>> decks, List<Deck> lands, List<Deck> colorless) {
+    	List<Deck> output = new ArrayList<Deck>();
+    	output.addAll(reduceRandom(3, decks, 1,1,1,1,1));
+    	// Fill 18 slots
     	int check = new Random().nextInt(10);
-    	if (check < 3) { // Mono color themes
+    	if (check < 2) { // Mono color themes 2/10
         	output.addAll(reduceRandom(1, decks, 1,0,0,0,0));
         	output.addAll(reduceRandom(1, decks, 0,1,0,0,0));
         	output.addAll(reduceRandom(1, decks, 0,0,1,0,0));
         	output.addAll(reduceRandom(1, decks, 0,0,0,1,0));
         	output.addAll(reduceRandom(1, decks, 0,0,0,0,1));
-        	output.addAll(reduceRandom(7, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(3, colorless));
-        	output.addAll(reduceRandom(4, lands));
-    	} else if (check < 5) { // Duo color themes
+        	output.addAll(reduceRandom(6, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(1, colorless));
+        	output.addAll(reduceRandom(3, lands));
+    	} else if (check < 4) { // Duo color themes 2/10
         	output.addAll(reduceRandom(1, decks, 1,1,0,0,0));
         	output.addAll(reduceRandom(1, decks, 0,1,1,0,0));
         	output.addAll(reduceRandom(1, decks, 0,0,1,1,0));
@@ -468,9 +508,8 @@ public class AdventureEventController implements Serializable {
         	output.addAll(reduceRandom(1, decks, 1,0,0,1,0));
         	output.addAll(reduceRandom(1, decks, 0,1,0,0,1));
         	output.addAll(reduceRandom(2, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(3, colorless));
-        	output.addAll(reduceRandom(4, lands));
-    	} else if (check < 7) { // Tri color themes
+        	output.addAll(reduceRandom(3, lands));
+    	} else if (check < 6) { // Tri color themes 2/10
         	output.addAll(reduceRandom(1, decks, 1,1,1,0,0));
         	output.addAll(reduceRandom(1, decks, 0,1,1,1,0));
         	output.addAll(reduceRandom(1, decks, 0,0,1,1,1));
@@ -482,79 +521,24 @@ public class AdventureEventController implements Serializable {
         	output.addAll(reduceRandom(1, decks, 1,1,0,1,0));
         	output.addAll(reduceRandom(1, decks, 0,1,1,0,1));
         	output.addAll(reduceRandom(2, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(2, colorless));
-        	output.addAll(reduceRandom(5, lands));
-    	} else if (check < 9) { // Colorless themes
-        	output.addAll(reduceRandom(7, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(8, colorless));
-        	output.addAll(reduceRandom(4, lands));
-    	} else { // Mixed themes
-        	output.addAll(reduceRandom(12, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(3, colorless));
-        	output.addAll(reduceRandom(4, lands));
-    	}
-	
-    	return output;
-    }
-    public static List<Deck> grabFiveColorJumpAlt(List<List<Deck>> decks, List<Deck> lands, List<Deck> colorless) {
-    	List<Deck> output = new ArrayList<Deck>();
-    	output.addAll(reduceRandom(1, decks, 1,1,1,1,1));
-    	// Fill 23 slots
-    	int check = new Random().nextInt(10);
-    	if (check < 2) { // Mono color themes
-        	output.addAll(reduceRandom(2, decks, 1,0,0,0,0));
-        	output.addAll(reduceRandom(2, decks, 0,1,0,0,0));
-        	output.addAll(reduceRandom(2, decks, 0,0,1,0,0));
-        	output.addAll(reduceRandom(2, decks, 0,0,0,1,0));
-        	output.addAll(reduceRandom(2, decks, 0,0,0,0,1));
-        	output.addAll(reduceRandom(5, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(3, colorless));
-        	output.addAll(reduceRandom(5, lands));
-    	} else if (check < 4) { // Duo color themes
-        	output.addAll(reduceRandom(1, decks, 1,1,0,0,0));
-        	output.addAll(reduceRandom(1, decks, 0,1,1,0,0));
-        	output.addAll(reduceRandom(1, decks, 0,0,1,1,0));
-        	output.addAll(reduceRandom(1, decks, 0,0,0,1,1));
-        	output.addAll(reduceRandom(1, decks, 1,0,0,0,1));
-        	output.addAll(reduceRandom(1, decks, 1,0,1,0,0));
-        	output.addAll(reduceRandom(1, decks, 0,1,0,1,0));
-        	output.addAll(reduceRandom(1, decks, 0,0,1,0,1));
-        	output.addAll(reduceRandom(1, decks, 1,0,0,1,0));
-        	output.addAll(reduceRandom(1, decks, 0,1,0,0,1));
-        	output.addAll(reduceRandom(5, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(3, colorless));
-        	output.addAll(reduceRandom(5, lands));
-    	} else if (check < 6) { // Tri color themes
-        	output.addAll(reduceRandom(1, decks, 1,1,1,0,0));
-        	output.addAll(reduceRandom(1, decks, 0,1,1,1,0));
-        	output.addAll(reduceRandom(1, decks, 0,0,1,1,1));
-        	output.addAll(reduceRandom(1, decks, 1,0,0,1,1));
-        	output.addAll(reduceRandom(1, decks, 1,1,0,0,1));
-        	output.addAll(reduceRandom(1, decks, 1,0,1,1,0));
-        	output.addAll(reduceRandom(1, decks, 0,1,0,1,1));
-        	output.addAll(reduceRandom(1, decks, 1,0,1,0,1));
-        	output.addAll(reduceRandom(1, decks, 1,1,0,1,0));
-        	output.addAll(reduceRandom(1, decks, 0,1,1,0,1));
-        	output.addAll(reduceRandom(4, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(3, colorless));
-        	output.addAll(reduceRandom(6, lands));
-    	} else if (check < 8) { // Colorless themes
-        	output.addAll(reduceRandom(9, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(10, colorless));
-        	output.addAll(reduceRandom(4, lands));
-    	} else if (check < 9) { // Four color themes
+        	output.addAll(reduceRandom(3, lands));
+    	} else if (check < 8) { // Colorless themes 2/10
+        	output.addAll(reduceRandom(8, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(5, colorless));
+        	output.addAll(reduceRandom(2, lands));
+    	} /*else if (check < 9) { // Four color themes
         	output.addAll(reduceRandom(1, decks, 0,1,1,1,1));
         	output.addAll(reduceRandom(1, decks, 1,0,1,1,1));
         	output.addAll(reduceRandom(1, decks, 1,1,0,1,1));
         	output.addAll(reduceRandom(1, decks, 1,1,1,0,1));
         	output.addAll(reduceRandom(1, decks, 1,1,1,1,0));
-        	output.addAll(reduceRandom(8, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(4, colorless));
-        	output.addAll(reduceRandom(6, lands));
-    	} else { // Mixed themes
-        	output.addAll(reduceRandom(14, decks, 0,0,0,0,0));
-        	output.addAll(reduceRandom(4, colorless));
-        	output.addAll(reduceRandom(5, lands));
+        	output.addAll(reduceRandom(4, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(2, colorless));
+        	output.addAll(reduceRandom(4, lands));
+    	}*/ else { // Mixed themes 2/10
+        	output.addAll(reduceRandom(10, decks, 0,0,0,0,0));
+        	output.addAll(reduceRandom(2, colorless));
+        	output.addAll(reduceRandom(3, lands));
     	}
 	
     	return output;
@@ -574,7 +558,7 @@ public class AdventureEventController implements Serializable {
     }
     
     public static int getColorId(int w, int u, int b, int r, int g) {
-    	int req = 5;
+    	int req = 6;
     	return (w>=req?1:1) + (u>=req?2:0) + (b>=req?4:0) + (r>=req?8:0) + (g>=req?16:0);
     }
     

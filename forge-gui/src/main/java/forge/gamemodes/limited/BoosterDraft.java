@@ -558,8 +558,121 @@ public class BoosterDraft implements IBoosterDraft {
         }
 
     }
+    public static BoosterDraft createJumpstartDraft(final LimitedPoolType draftType, final CardBlock block, final List<Deck> boosters) {
+        final BoosterDraft draft = new BoosterDraft(LimitedPoolType.JumpstartDraft);
 
+        /*for (String booster : boosters) {
+            try {
+                draft.product.add(block.getBooster(booster));
+            } catch (Exception ex) {
+                System.err.println("Booster Draft Error: "+ex.getMessage());
+            }
+        }*/
 
+        IBoosterDraft.LAND_SET_CODE[0] = block.getLandSet();
+        IBoosterDraft.CUSTOM_RANKINGS_FILE[0] = null;
+
+        draft.initializeBoostersJumpstart(boosters);
+        return draft;
+    }
+    public static BoosterDraft createTriCubeDraft(final LimitedPoolType draftType, final CardBlock block, final List<Deck> boosters) {
+        final BoosterDraft draft = new BoosterDraft(LimitedPoolType.TriCubeDraft);
+
+        /*for (String booster : boosters) {
+            try {
+                draft.product.add(block.getBooster(booster));
+            } catch (Exception ex) {
+                System.err.println("Booster Draft Error: "+ex.getMessage());
+            }
+        }*/
+
+        IBoosterDraft.LAND_SET_CODE[0] = block.getLandSet();
+        IBoosterDraft.CUSTOM_RANKINGS_FILE[0] = null;
+
+        draft.initializeBoostersTriCube(boosters);
+        return draft;
+    }
+    public void initializeBoostersJumpstart(List<Deck> cards) {
+    	Stack<PaperCard> tempCards = new Stack<PaperCard>();
+    	Stack<PaperCard> tempBasics = new Stack<PaperCard>();
+    	Stack<List<PaperCard>> packs = new Stack<List<PaperCard>>();
+    	for (Deck deck: cards) {
+    		for (PaperCard card: deck.getAllCardsInASinglePool().toFlatList()) {
+    			if (card.isVeryBasicLand()) {
+    				tempBasics.push(card);
+    			} else {
+    				tempCards.push(card);
+    			}
+    		}
+    	}
+    	
+    	Collections.shuffle(tempCards);
+    	Collections.shuffle(tempBasics);
+
+        for (int i = 0; i < N_PLAYERS*3; i++) {
+        	packs.add(new ArrayList<PaperCard>());
+        }
+        for (int b = 0; b < 15; b++) {
+            for (int i = 0; i < N_PLAYERS*3; i++) {
+            	if (tempCards.size() > 0) {
+                	packs.get(i).add(tempCards.pop());
+            	} else {
+            		packs.get(i).add(tempBasics.pop());
+            	}
+        	}
+    	}
+
+    	Collections.shuffle(packs);
+    	
+    	
+        for (int i = 0; i < N_PLAYERS; i++) {
+            DraftPack pack = new DraftPack(packs.pop(), nextId++);
+            this.players.get(i).receiveUnopenedPack(pack);
+            pack = new DraftPack(packs.pop(), nextId++);
+            this.players.get(i).receiveUnopenedPack(pack);
+            pack = new DraftPack(packs.pop(), nextId++);
+            this.players.get(i).receiveUnopenedPack(pack);
+            /*this.players.get(i).receiveUnopenedPack();
+            this.players.get(i).receiveUnopenedPack(packs.pop());
+            this.players.get(i).receiveUnopenedPack(packs.pop());*/
+        }
+        startRound();
+    }
+
+    public void initializeBoostersTriCube(List<Deck> cards) {
+    	Stack<PaperCard> tempCards = new Stack<PaperCard>();
+    	Stack<List<PaperCard>> packs = new Stack<List<PaperCard>>();
+    	for (Deck deck: cards) {
+    		for (PaperCard card: deck.getAllCardsInASinglePool().toFlatList()) {
+    			tempCards.push(card);
+    		}
+    	}
+    	
+    	Collections.shuffle(tempCards);
+    	System.out.println(cards.size());
+
+        for (int i = 0; i < N_PLAYERS*3; i++) {
+        	packs.add(new ArrayList<PaperCard>());
+        }
+        for (int b = 0; b < 15; b++) {
+            for (int i = 0; i < N_PLAYERS*3; i++) {
+                packs.get(i).add(tempCards.pop());
+        	}
+    	}
+
+    	Collections.shuffle(packs);
+    	
+    	
+        for (int i = 0; i < N_PLAYERS; i++) {
+            DraftPack pack = new DraftPack(packs.pop(), nextId++);
+            this.players.get(i).receiveUnopenedPack(pack);
+            pack = new DraftPack(packs.pop(), nextId++);
+            this.players.get(i).receiveUnopenedPack(pack);
+            pack = new DraftPack(packs.pop(), nextId++);
+            this.players.get(i).receiveUnopenedPack(pack);
+        }
+        startRound();
+    }
     private static String choosePackByPack(final List<String> setz, int packs) {
         StringBuilder sb = new StringBuilder();
 
